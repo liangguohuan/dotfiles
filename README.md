@@ -29,4 +29,7 @@ and so many things to be changed, just get some helps from `amix/vimrc` and read
 
 
 # Preview
-[preview.png]
+<div align="center">
+<img alt="Vim-CtrlSpace" src="https://raw.githubusercontent.com/liangguohuan/vim-zsh-tmux-conf/master/preview.png" />
+<br><br>
+</div>
