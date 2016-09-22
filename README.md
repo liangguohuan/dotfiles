@@ -20,6 +20,9 @@ and so many things to be changed, just get some helps from `amix/vimrc` and read
 
 - Step 3: Test it, it might need something other program like (ack, ag, install-markdown-d).
 
+    ag: https://github.com/ggreer/the_silver_searcher#linux  
+    install-markdown-d: https://github.com/suan/vim-instant-markdown#installation
+
 # Notices:
 - It works well on platform ubuntu, and works well in windows too if you do something change.
 - muticursor plugins need something other to do. If muticursor plugin works bad, just put these codes below to `~/.bashrc` or `~/.zshrc`(if you use zsh)
