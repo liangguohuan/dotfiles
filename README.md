@@ -1,3 +1,5 @@
+This is my vim, zsh, tmux, etc. files.
+
 # vim-install
 vim-conf base on [amix/vimrc](https://github.com/amix/vimrc). But use [ VundleVim/Vundle.vim ](https://github.com/VundleVim/Vundle.vim) to manage vim plugins,
 and so many things to be changed, just get some helps from `amix/vimrc` and read the sources from files `.vim-basic.vim` & `.vim-plugins`
@@ -30,6 +32,6 @@ and so many things to be changed, just get some helps from `amix/vimrc` and read
 
 # Preview
 <div align="center">
-<img alt="Vim-CtrlSpace" src="https://raw.githubusercontent.com/liangguohuan/vim-zsh-tmux-conf/master/preview.png" />
+<img alt="" src="https://raw.githubusercontent.com/liangguohuan/vim-zsh-tmux-conf/master/preview.png" />
 <br><br>
 </div>
