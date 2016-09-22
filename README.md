@@ -28,4 +28,5 @@ and so many things to be changed, just get some helps from `amix/vimrc` and read
         stty ixoff -ixon
 
 
-# This is it, enjoy yourself.
+# Preview
+[preview.png]
