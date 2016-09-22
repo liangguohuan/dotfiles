@@ -87,7 +87,8 @@ endfunc
 set termencoding=utf-8 
 set encoding=utf8
 set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030 
-
+set splitbelow
+set splitright
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Folding Save And View
@@ -323,8 +324,8 @@ map <silent> <leader><cr> :noh<cr>
 abbreviate vba vert ba
 map <C-W><C-Left>   <C-W><C-=>
 map <C-W><C-Right>  <C-W><C-\|>
-map <C-W><C-Up>     <C-W><C-=>
-map <C-W><C-Down>   <C-W><C-_>
+map <C-W><C-Up>     <C-W><C-_>
+map <C-W><C-Down>   <C-W><C-=>
 
 " map like terminal
 inoremap <C-E> <End>
@@ -917,3 +918,41 @@ endfunction
 if has('conceal')
   set conceallevel=2 concealcursor=i
 endif 
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Comamnd 'ban' like 'ba' and 'vert ba', but be more nautual.
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{
+abbreviate ban LayoutBuffer
+command! -nargs=* LayoutBuffer call s:Layout_buffer_allinone(<f-args>)
+function! s:Layout_buffer_allinone(col)
+    " let expr = printf('%d/%d.0', a:row, a:col)
+    " let trow = eval(expr)
+
+    let s:arrlist = GetBufListsNu()
+
+    exec 'only'
+
+    let index = 0
+    while index < len(s:arrlist)
+       let item = s:arrlist[index]
+       " execute input('DEBUG: Press ENTER to continue... ' . bufname(item))
+       if index == 0
+           exec 'vsp ' . bufname(item)
+           exe "normal \<c-w>\<c-w>"
+           exe 'q'
+       elseif index < a:col 
+           exec 'vsp ' . bufname(item)
+       else
+           if index % a:col == 0
+               exe "normal " . (a:col - 1) . "\<c-w>h"
+           else
+               exe "normal \<c-w>l"
+           endif
+           exec 'sp ' . bufname(item)
+       endif
+       let index = index + 1
+    endwhile
+endfunction
+"}}}
