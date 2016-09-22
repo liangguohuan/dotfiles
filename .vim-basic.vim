@@ -118,6 +118,7 @@ let g:mapleader = ","
 
 " Fast saving
 nmap <silent> <leader>w :w!<cr>
+nmap <silent> <leader>wa :wa!<cr>
 
 " :W sudo saves the file 
 " (useful for handling the permission-denied error)
@@ -319,10 +320,11 @@ map <space> /
 map <silent> <leader><cr> :noh<cr>
 
 " Smart way to move between windows
-map wj <C-W>j
-map wk <C-W>k
-map wh <C-W>h
-map wl <C-W>l
+abbreviate vba vert ba
+map <C-W><C-Left>   <C-W><C-=>
+map <C-W><C-Right>  <C-W><C-\|>
+map <C-W><C-Up>     <C-W><C-=>
+map <C-W><C-Down>   <C-W><C-_>
 
 " map like terminal
 inoremap <C-E> <End>
@@ -658,9 +660,9 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 " => Custom Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{
-" set nu 
-set cursorline!
-set nowrap!
+set nonumber 
+set nocursorline
+set nowrap
 
 " cursorline toggle
 cabbrev cls set cursorline!<CR>
@@ -734,6 +736,7 @@ inoremap <C-u> <Esc>ui
 vmap <C-N> y:<C-U>e /tmp/buffer<cr>:set syntax=qf<cr>O----------------------------------------------------------------<cr><Esc>pggO<Esc>
 
 " Buffer Switch Quickly
+map <leader>o :bm<cr>
 map <silent> <M-0> :bl<cr>
 for n in [1,2,3,4,5,6,7,8,9]
     exe 'map <silent> <M-' . n . '> :call GoToBuffer('. n . ')<cr>'
@@ -745,7 +748,7 @@ func! GoToBufferNext(tag)
     " let s:arr = ['tagbar', 'nerdtree', 'qf', 'ctrlsf', 'runner']
     " if index(s:arr, &filetype) == -1 
     let s:arrlist = GetBufListsNu()
-    if index(s:arrlist, bufnr('%')) > -1
+    if index(s:arrlist, bufnr('%')) > -1 && winnr('$') == 1
         execute s:commandstr
     endif
 endfunc
