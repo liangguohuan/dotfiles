@@ -681,6 +681,10 @@ map <c-k><c-i> gg=G``
 cabbrev cls set cursorline!<CR>
 command Reload :e!
 
+" fix the redraw problems with slient
+" from: http://vim.wikia.com/wiki/Avoiding_the_%22Hit_ENTER_to_continue%22_prompts
+command! -nargs=+ Silent execute 'silent <args>' | redraw!
+
 " normal mode keypress 'K' will show help of function.
 autocmd BufNewFile,Bufread *.vim set keywordprg="help"
 

@@ -87,7 +87,8 @@ let g:unite_source_menu_menus.git.command_candidates = [
     \['▷ git status     (Fugitive)                      ⌘ ,gs', 'Gstatus'],
     \['▷ git diff       (Fugitive)                      ⌘ ,gd', 'Gdiff'],
     \['▷ git commit     (Fugitive)                      ⌘ ,gc', 'Gcommit'],
-    \['▷ git log        (Fugitive)                      ⌘ ,gl', 'exe "silent Glog | Unite -no-empty -no-tab quickfix"'],
+    \['▷ git log        (Fugitive)                      ⌘ ,gl', 'exe "Silent Git log --pretty=oneline --since=\"2 days ago\" | Unite -no-empty -no-tab quickfix"'],
+    \['▷ git log        (Fugitive)                      ⌘ ,gl', 'exe "Silent Git log -p -1 | Unite -no-empty -no-tab quickfix"'],
     \['▷ git blame      (Fugitive)                      ⌘ ,gb', 'Gblame'],
     \['▷ git stage      (Fugitive)                      ⌘ ,gw', 'Gwrite'],
     \['▷ git checkout   (Fugitive)                      ⌘ ,go', 'Gread'],
@@ -99,7 +100,7 @@ let g:unite_source_menu_menus.git.command_candidates = [
     \['▷ git cd         (Fugitive)', 'Gcd'],
     \]
 nnoremap <silent>[unite]g :Unite -silent -start-insert menu:git<CR>
-
+command! -nargs=+ Silent execute 'silent <args>' | redraw!
 
 " For ag.
 if executable('ag')

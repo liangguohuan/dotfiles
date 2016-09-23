@@ -60,6 +60,7 @@ Plugin 'https://github.com/Shougo/vimproc.vim.git'
 Plugin 'https://github.com/Shougo/vimshell.git'
 Plugin 'https://github.com/Shougo/tabpagebuffer.vim.git'
 Plugin 'https://github.com/Shougo/unite-outline.git'
+Plugin 'https://github.com/chemzqm/unite-location.git'
 " }}}
 " development tools {{{
 Plugin 'https://github.com/tpope/vim-fugitive.git'
