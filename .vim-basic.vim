@@ -85,6 +85,7 @@ endfunc
 "}}}
 
 
+/home/hanson/.vim-basic.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -897,7 +898,7 @@ endfunction
 command Filename call CopyFilePath('t') 
 command Filepath call CopyFilePath('p')
 nmap <C-C>f :Filename<CR>
-nmap <C-S>p :Filepath<CR>
+nmap <C-C>c :Filepath<CR>
 function! CopyFilePath(type) abort
     let s:filename = expand('%:' . a:type)
     silent exe "silent !echo '" . s:filename . "' | xsel --input -b"
