@@ -572,6 +572,26 @@ nnoremap  <Leader>td :<C-U>TaskList<CR>
 "     call Run(s:real_cmd)
 " endfunction 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => fugitive
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" How to use it:
+" 1. input the short cut and hit the key 'Enter'
+" 2. input the short cut and hit the key 'Space'
+ab ga   Gcommit -a -m
+ab gi   Git remote -v
+ab gurl Git config --get remote.origin.url
+ab g    Git
+ab gad  Git add
+ab gc   Git checkout
+ab gb   Git branch
+ab gd   Git pull origin master
+ab gu   Git push -u origin master
+ab gr   Git reset HEAD
+ab gw   Git log --follow --diff-filter=A --find-renames=40%
+ab gl   Git log --pretty=oneline --since='2 days ago'
+ab glo  Git log -p -1
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Gitgutter
