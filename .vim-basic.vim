@@ -665,6 +665,11 @@ set nonumber
 set nocursorline
 set nowrap
 
+" reindent: auto indent
+map <c-m-i> =G
+imap <c-m-i> <Esc>=G
+map <c-k><c-i> gg=G``
+
 " cursorline toggle
 cabbrev cls set cursorline!<CR>
 command Reload :e!
