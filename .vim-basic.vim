@@ -1,9 +1,13 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Map Helper
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Map Partial
 " C:Ctrl, M:Alt, S:shift,DOWN:down,UP:up,LEFT:left,RIGHT:right
 
-" Notes: show command history normal :ctrl+f
+" Notes
+" 1. Ctrl-b and Ctrl-B are synonymous, so Ctrl+Shit+.. can't work
+" 2. ctrl+f: show command history normal
+" 3. 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -893,7 +897,7 @@ endfunction
 command Filename call CopyFilePath('t') 
 command Filepath call CopyFilePath('p')
 nmap <C-C>f :Filename<CR>
-nmap <C-C>p :Filepath<CR>
+nmap <C-S>p :Filepath<CR>
 function! CopyFilePath(type) abort
     let s:filename = expand('%:' . a:type)
     silent exe "silent !echo '" . s:filename . "' | xsel --input -b"
