@@ -342,7 +342,7 @@ inoremap <C-A> <Home>
 map <leader>bd :Bclose<cr>
 
 " Close all the buffers
-map <leader>ba :1,1000 bd!<cr>
+map <leader>ba :%bd!<cr>
 
 map <Leader>br :call BufferRightAllDelete()<cr>
 map <Leader>bl :call BufferLeftAllDelete()<cr>
@@ -354,18 +354,21 @@ function! BufferOtherAllDelete() abort
     echo "** Delete All Other Buffer"
 endfunction
 function! BufferLeftAllDelete() abort
-    let s:bufnums = bufnr('%') - 1
+    let s:arrlist = GetBufListsNu()
+    let s:bufnums = bufnr('%')
     try
-        silent exe '1,' . s:bufnums . ' bd!'
+        silent exe s:arrlist[0] . ',' . s:bufnums . '-bd!'
     catch
     endtry
     echo "** Delete All Buffer At Current Left."
 endfunction
 
 function! BufferRightAllDelete() abort
-    let s:bufnums = bufnr('%') + 1
+    let s:arrlist = GetBufListsNu()
+    let s:bufnums = bufnr('%')
+    let i = index(s:arrlist, s:bufnums)
     try
-        silent exe s:bufnums . ',1000 bd!'
+        silent exe s:arrlist[i+1] . ',$bd!'
     catch
     endtry
     echo "** Delete All Buffer At Current Right."
