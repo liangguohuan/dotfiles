@@ -581,14 +581,14 @@ nnoremap  <Leader>td :<C-U>TaskList<CR>
 " How to use it:
 " 1. input the short cut and hit the key 'Enter'
 " 2. input the short cut and hit the key 'Space'
-ab gc   Gcommit
-ab gm   Gcommit -a -m
+ab gm   Gcommit -m
+ab gma  Gcommit -a -m
 ab gr   Git remote -v
 ab gurl Git config --get remote.origin.url
 ab g    Git
 ab gs   Gstatus
 ab ga   Git add
-ab gt   Git checkout
+ab gc   Git checkout
 ab gb   Git branch
 ab gd   Git pull origin master
 ab gu   Git push -u origin master
