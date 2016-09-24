@@ -684,10 +684,11 @@ command Reload :e!
 
 " fix the redraw problems with slient
 " from: http://vim.wikia.com/wiki/Avoiding_the_%22Hit_ENTER_to_continue%22_prompts
+command! -nargs=+ Nice   execute 'silent <args>' | redraw!
+command! -nargs=+ Silent execute 'silent <args>' | redraw!
 if has("gui_running")
-    command! -nargs=+ Silent execute '<args>'
-else
-    command! -nargs=+ Silent execute 'silent <args>' | redraw!
+    command! -nargs=+ Nice   execute '<args>'
+    command! -nargs=+ Silent execute 'silent <args>'
 endif
 
 " normal mode keypress 'K' will show help of function.

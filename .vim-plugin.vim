@@ -82,14 +82,14 @@ let g:unite_source_menu_menus.git = {
     \ 'description' : '            gestionar repositorios git
         \                            ⌘ [espacio]g',
     \}
-let logwatchadded = 'exe "Silent Git! log --follow --diff-filter=A --find-renames=40\\% " input("comando git:", expand("%:t"))'
+let logwatchadded = 'exe "Nice Git! log --follow --diff-filter=A --find-renames=40\\% " input("comando git:", expand("%:t"))'
 let g:unite_source_menu_menus.git.command_candidates = [
     \['▷ tig                                             ⌘ ,gt', 'normal ,gt'],
     \['▷ git status      (Fugitive)                      ⌘ ,gs', 'Gstatus'],
     \['▷ git diff        (Fugitive)                      ⌘ ,gd', 'Gdiff'],
     \['▷ git commit      (Fugitive)                      ⌘ ,gc', 'Gcommit'],
-    \['▷ git log oneline (Fugitive)                      ⌘ ,gl', 'exe "Silent Git log --pretty=oneline --since=\"2 days ago\""'],
-    \['▷ git log one     (Fugitive)                      ⌘ ,gl', 'exe "Silent Git log -p -1"'],
+    \['▷ git log oneline (Fugitive)                      ⌘ ,gl', 'exe "Nice Git log --pretty=oneline --since=\"2 days ago\""'],
+    \['▷ git log one     (Fugitive)                      ⌘ ,gl', 'exe "Nice Git log -p -1"'],
     \['▷ git log watch   (Fugitive)                      ⌘ ,gl', logwatchadded],
     \['▷ git blame       (Fugitive)                      ⌘ ,gb', 'Gblame'],
     \['▷ git stage       (Fugitive)                      ⌘ ,gw', 'Gwrite'],
@@ -592,9 +592,9 @@ ab gb   Git branch
 ab gd   Git pull origin master
 ab gu   Git push -u origin master
 ab gr   Git reset HEAD
-ab gw   Silent Git log --follow --diff-filter=A --find-renames=40\%
-ab gl   Silent Git log --pretty=oneline --since="2 days ago"
-ab go   Silent Git log -p -1
+ab gw   Nice Git log --follow --diff-filter=A --find-renames=40\%
+ab gl   Nice Git log --pretty=oneline --since="2 days ago"
+ab go   Nice Git log -p -1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
