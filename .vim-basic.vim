@@ -847,9 +847,16 @@ function! PreviewMarkdown()
     call delete(output_file)
     exec "redraw!"
 endfunction
+"}}}
 
-" open url under cursor with browser, replace default command 'gx'
-" default commands 'gf' can open file under cursor, 'gd' can highlight word
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => open url under cursor with browser, replace default command 'gx'
+"    default commands 'gf' can open file under cursor, 'gd' can highlight word
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{
+" k
+" 
 nnoremap gx :call HandleURL()<cr>
 function! HandleURL()
     " notcie: if use 'xdg-open', it won't work in gvim.
@@ -857,11 +864,10 @@ function! HandleURL()
     let s:uri = matchstr(getline("."), "[a-z]*:\/\/[^ 　>,;'\"]*")
     echo s:uri
     if s:uri != ""
-        silent exec "!" . BROWSER_COMMAND . " '".s:uri."' &>/dev/null"
+        exec "Silent !" . BROWSER_COMMAND . " \"".s:uri."\" &>/dev/null"
     else
         echo "No URI found in line."
     endif
-    exec "redraw!"
 endfunction 
 "}}}
 
@@ -913,10 +919,8 @@ nmap <C-C>f :Filename<CR>
 nmap <C-C>c :Filepath<CR>
 function! CopyFilePath(type) abort
     let s:filename = expand('%:' . a:type)
-    silent exe "silent !echo '" . s:filename . "' | xsel --input -b"
+    exe 'Silent !echo "' . s:filename . '" | xsel --input -b'
     exe 'echo "copy file: ' . s:filename . '"'
-    "fixed the terminal to be all black when exc system command.
-    " exec "redraw!"
 endfunction
 
 nmap <silent> <C-k><C-b> :call ToggleLabelBar()<CR>
