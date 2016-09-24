@@ -97,6 +97,7 @@ set splitright
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Folding Save And View
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set foldlevel=99
 au BufWinEnter * set foldmethod=marker 
 " set viewdir=$HOME/.vim/.vim_view/
 " au BufWritePost,BufLeave,WinLeave ?* mkview " for tabs
