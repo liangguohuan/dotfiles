@@ -684,7 +684,11 @@ command Reload :e!
 
 " fix the redraw problems with slient
 " from: http://vim.wikia.com/wiki/Avoiding_the_%22Hit_ENTER_to_continue%22_prompts
-command! -nargs=+ Silent execute 'silent <args>' | redraw!
+if has("gui_running")
+    command! -nargs=+ Silent execute '<args>'
+else
+    command! -nargs=+ Silent execute 'silent <args>' | redraw!
+endif
 
 " normal mode keypress 'K' will show help of function.
 autocmd BufNewFile,Bufread *.vim set keywordprg="help"
@@ -739,15 +743,15 @@ autocmd FileType php inoremap <buffer> <C-b> <C-Left>$<Esc>ea
 autocmd FileType php inoremap <buffer> <C-k> <End>->
 autocmd FileType php inoremap <buffer> <C-t> <C-Left>$<Esc>ea->
 if has('gui_running')
-autocmd FileType php inoremap <buffer> <C-Space> <C-Left>$<Esc>ea<Space>= 
+    autocmd FileType php inoremap <buffer> <C-Space> <C-Left>$<Esc>ea<Space>= 
 else
-autocmd FileType php inoremap <buffer> <C-@> <C-Left>$<Esc>ea<Space>= 
+    autocmd FileType php inoremap <buffer> <C-@> <C-Left>$<Esc>ea<Space>= 
 endif
 autocmd FileType php smap <buffer> <C-k> <Esc><C-Left><S-Left>viwldea
 inoremap <C-u> <Esc>ui
 
 " if has("gui_running")
-    " noremap <C-Z> <cr>
+" noremap <C-Z> <cr>
 " endif
 
 " open temp buffer file to paste selection
@@ -774,9 +778,9 @@ function! GoToBuffer(tag) abort
     let s:nr = GetBufNr(a:tag)
     if s:nr > 0 && buflisted(bufnr('%'))
         exe 'b' . s:nr
-    " if buflisted(a:tag)
+        " if buflisted(a:tag)
         " exe 'b' . a:tag
-    " elseif a:tag == 1
+        " elseif a:tag == 1
         " exe 'b' . s:nr
     endif
 endfunction 
@@ -788,12 +792,12 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Go to last file(s) if invoked without arguments. 
 " autocmd VimLeave * nested if (!isdirectory($HOME . "/.vim")) |
-    " \ call mkdir($HOME . "/.vim") |
-    " \ endif |
-    " \ execute "mksession! " . $HOME . "/.vim/Session.vim"
+" \ call mkdir($HOME . "/.vim") |
+" \ endif |
+" \ execute "mksession! " . $HOME . "/.vim/Session.vim"
 
 " autocmd VimEnter * nested if argc() == 0 && filereadable($HOME . "/.vim/Session.vim") |
-    " \ execute "source " . $HOME . "/.vim/Session.vim" 
+" \ execute "source " . $HOME . "/.vim/Session.vim" 
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -847,16 +851,16 @@ endfunction
 " default commands 'gf' can open file under cursor, 'gd' can highlight word
 nnoremap gx :call HandleURL()<cr>
 function! HandleURL()
-  " notcie: if use 'xdg-open', it won't work in gvim.
-  let BROWSER_COMMAND = 'google-chrome'
-  let s:uri = matchstr(getline("."), "[a-z]*:\/\/[^ 　>,;'\"]*")
-  echo s:uri
-  if s:uri != ""
-    silent exec "!" . BROWSER_COMMAND . " '".s:uri."' &>/dev/null"
-  else
-    echo "No URI found in line."
-  endif
-  exec "redraw!"
+    " notcie: if use 'xdg-open', it won't work in gvim.
+    let BROWSER_COMMAND = 'google-chrome'
+    let s:uri = matchstr(getline("."), "[a-z]*:\/\/[^ 　>,;'\"]*")
+    echo s:uri
+    if s:uri != ""
+        silent exec "!" . BROWSER_COMMAND . " '".s:uri."' &>/dev/null"
+    else
+        echo "No URI found in line."
+    endif
+    exec "redraw!"
 endfunction 
 "}}}
 
@@ -926,14 +930,14 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " autocmd VimLeave * :call AutoSourceFiles() 
 " function! AutoSourceFiles() abort
-    " let s:filename = expand('%:P')
-    " if match(s:filename, "bash\_alias")
-        " exe "!source " . s:filename
-    " endif
+" let s:filename = expand('%:P')
+" if match(s:filename, "bash\_alias")
+" exe "!source " . s:filename
+" endif
 " endfunction
 " For snippet_complete marker.
 if has('conceal')
-  set conceallevel=2 concealcursor=i
+    set conceallevel=2 concealcursor=i
 endif 
 
 
@@ -953,23 +957,23 @@ function! s:Layout_buffer_allinone(col)
 
     let index = 0
     while index < len(s:arrlist)
-       let item = s:arrlist[index]
-       " execute input('DEBUG: Press ENTER to continue... ' . bufname(item))
-       if index == 0
-           exec 'vsp ' . bufname(item)
-           exe "normal \<c-w>\<c-w>"
-           exe 'q'
-       elseif index < a:col 
-           exec 'vsp ' . bufname(item)
-       else
-           if index % a:col == 0
-               exe "normal " . (a:col - 1) . "\<c-w>h"
-           else
-               exe "normal \<c-w>l"
-           endif
-           exec 'sp ' . bufname(item)
-       endif
-       let index = index + 1
+        let item = s:arrlist[index]
+        " execute input('DEBUG: Press ENTER to continue... ' . bufname(item))
+        if index == 0
+            exec 'vsp ' . bufname(item)
+            exe "normal \<c-w>\<c-w>"
+            exe 'q'
+        elseif index < a:col 
+            exec 'vsp ' . bufname(item)
+        else
+            if index % a:col == 0
+                exe "normal " . (a:col - 1) . "\<c-w>h"
+            else
+                exe "normal \<c-w>l"
+            endif
+            exec 'sp ' . bufname(item)
+        endif
+        let index = index + 1
     endwhile
 endfunction
 "}}}

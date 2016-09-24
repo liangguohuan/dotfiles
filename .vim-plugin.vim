@@ -102,7 +102,6 @@ let g:unite_source_menu_menus.git.command_candidates = [
     \['▷ git cd          (Fugitive)', 'Gcd'],
     \]
 nnoremap <silent>[unite]g :Unite -silent -start-insert menu:git<CR>
-command! -nargs=+ Silent execute 'silent <args>' | redraw!
 
 " For ag.
 if executable('ag')
