@@ -82,22 +82,24 @@ let g:unite_source_menu_menus.git = {
     \ 'description' : '            gestionar repositorios git
         \                            ⌘ [espacio]g',
     \}
+let logwatchadded = 'exe "Silent Git! log --follow --diff-filter=A --find-renames=40\\% " input("comando git:", expand("%:t"))'
 let g:unite_source_menu_menus.git.command_candidates = [
-    \['▷ tig                                            ⌘ ,gt', 'normal ,gt'],
-    \['▷ git status     (Fugitive)                      ⌘ ,gs', 'Gstatus'],
-    \['▷ git diff       (Fugitive)                      ⌘ ,gd', 'Gdiff'],
-    \['▷ git commit     (Fugitive)                      ⌘ ,gc', 'Gcommit'],
-    \['▷ git log        (Fugitive)                      ⌘ ,gl', 'exe "Silent Git log --pretty=oneline --since=\"2 days ago\" | Unite -no-empty -no-tab quickfix"'],
-    \['▷ git log        (Fugitive)                      ⌘ ,gl', 'exe "Silent Git log -p -1 | Unite -no-empty -no-tab quickfix"'],
-    \['▷ git blame      (Fugitive)                      ⌘ ,gb', 'Gblame'],
-    \['▷ git stage      (Fugitive)                      ⌘ ,gw', 'Gwrite'],
-    \['▷ git checkout   (Fugitive)                      ⌘ ,go', 'Gread'],
-    \['▷ git rm         (Fugitive)                      ⌘ ,gr', 'Gremove'],
-    \['▷ git mv         (Fugitive)                      ⌘ ,gm', 'exe "Gmove " input("destino: ")'],
-    \['▷ git push       (Fugitive, salida por buffer)   ⌘ ,gp', 'Git! push'],
-    \['▷ git pull       (Fugitive, salida por buffer)   ⌘ ,gP', 'Git! pull'],
-    \['▷ git prompt     (Fugitive, salida por buffer)   ⌘ ,gi', 'exe "Git! " input("comando git: ")'],
-    \['▷ git cd         (Fugitive)', 'Gcd'],
+    \['▷ tig                                             ⌘ ,gt', 'normal ,gt'],
+    \['▷ git status      (Fugitive)                      ⌘ ,gs', 'Gstatus'],
+    \['▷ git diff        (Fugitive)                      ⌘ ,gd', 'Gdiff'],
+    \['▷ git commit      (Fugitive)                      ⌘ ,gc', 'Gcommit'],
+    \['▷ git log oneline (Fugitive)                      ⌘ ,gl', 'exe "Silent Git log --pretty=oneline --since=\"2 days ago\"'],
+    \['▷ git log one     (Fugitive)                      ⌘ ,gl', 'exe "Silent Git log -p -1'],
+    \['▷ git log watch   (Fugitive)                      ⌘ ,gl', logwatchadded],
+    \['▷ git blame       (Fugitive)                      ⌘ ,gb', 'Gblame'],
+    \['▷ git stage       (Fugitive)                      ⌘ ,gw', 'Gwrite'],
+    \['▷ git checkout    (Fugitive)                      ⌘ ,go', 'Gread'],
+    \['▷ git rm          (Fugitive)                      ⌘ ,gr', 'Gremove'],
+    \['▷ git mv          (Fugitive)                      ⌘ ,gm', 'exe "Gmove " input("destino: ")'],
+    \['▷ git push        (Fugitive, salida por buffer)   ⌘ ,gp', 'Git! push'],
+    \['▷ git pull        (Fugitive, salida por buffer)   ⌘ ,gP', 'Git! pull'],
+    \['▷ git prompt      (Fugitive, salida por buffer)   ⌘ ,gi', 'exe "Git! " input("comando git: ")'],
+    \['▷ git cd          (Fugitive)', 'Gcd'],
     \]
 nnoremap <silent>[unite]g :Unite -silent -start-insert menu:git<CR>
 command! -nargs=+ Silent execute 'silent <args>' | redraw!
@@ -580,20 +582,20 @@ nnoremap  <Leader>td :<C-U>TaskList<CR>
 " 1. input the short cut and hit the key 'Enter'
 " 2. input the short cut and hit the key 'Space'
 ab gc   Gcommit
-ab gam  Gcommit -a -m
-ab gi   Git remote -v
+ab gm   Gcommit -a -m
+ab gr   Git remote -v
 ab gurl Git config --get remote.origin.url
 ab g    Git
 ab gs   Gstatus
 ab ga   Git add
-ab gco  Git checkout
+ab gt   Git checkout
 ab gb   Git branch
 ab gd   Git pull origin master
 ab gu   Git push -u origin master
 ab gr   Git reset HEAD
-ab gw   Git log --follow --diff-filter=A --find-renames=40%
-ab gl   Git log --pretty=oneline --since='2 days ago'
-ab glo  Git log -p -1
+ab gw   Silent Git log --follow --diff-filter=A --find-renames=40\%
+ab gl   Silent Git log --pretty=oneline --since="2 days ago"
+ab go   Silent Git log -p -1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
