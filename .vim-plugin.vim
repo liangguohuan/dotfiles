@@ -88,6 +88,7 @@ let g:unite_source_menu_menus.git.command_candidates = [
     \['▷ git status      (Fugitive)                      ⌘ ,gs', 'Gstatus'],
     \['▷ git diff        (Fugitive)                      ⌘ ,gd', 'Gdiff'],
     \['▷ git commit      (Fugitive)                      ⌘ ,gc', 'Gcommit'],
+    \['▷ git log         (Fugitive)                      ⌘ ,gl', 'exe "silent Glog | Unite -no-empty -no-tab quickfix"'],
     \['▷ git log oneline (Fugitive)                      ⌘ ,gl', 'exe "Nice Git log --pretty=oneline --since=\"2 days ago\""'],
     \['▷ git log one     (Fugitive)                      ⌘ ,gl', 'exe "Nice Git log -p -1"'],
     \['▷ git log watch   (Fugitive)                      ⌘ ,gl', logwatchadded],
