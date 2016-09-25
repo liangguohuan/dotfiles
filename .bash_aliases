@@ -125,9 +125,9 @@ alias cscope-update="find . -name '*.php' -type f > cscope.files && cscope -bq"
 # copy file contens to clipboard: sfc [filename]
 alias sfc="xsel -b < "
 alias copyfiletoclip=sfc
-alias trl="trash-list"
-alias trp="trash-put"
-alias trr="trash-recover"
+alias trash="sudo trash"
+alias trash-put="sudo trash"
+alias trash-list="sudo trash-list"
 alias gdriver="skicka"
 alias baiduyun="pcs"
 alias randomchars="python -c \"import random,string;print ''.join(random.sample(string.ascii_letters+string.digits, 16)).lower()\""
