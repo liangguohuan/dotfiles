@@ -749,7 +749,7 @@ inoremap <C-u> <Esc>ui
 " endif
 
 " open temp buffer file to paste selection
-vmap <C-N> y:<C-U>e /tmp/buffer<cr>:set syntax=qf<cr>O----------------------------------------------------------------<cr><Esc>pggO<Esc>
+exec "vmap <C-N> y:<C-U>e /tmp/buffer<cr><Esc>O" . repeat('-', 120) . "<cr><Esc>pggO<Esc>"
 
 " Buffer Switch Quickly
 map <leader>o :bm<cr>
