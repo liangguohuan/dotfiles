@@ -27,7 +27,7 @@ endif
 nnoremap    [unite]   <Nop>
 nmap      ; [unite]
 
-abbreviate uba UniteBookmarkAdd
+cabbrev uba UniteBookmarkAdd
 " Unite -vertical -start-insert -winwidth=30 -direction=botright outline
 
 nnoremap <silent> [unite]f :<C-u>Unite source<CR>
@@ -474,7 +474,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{
 " Use current directory as vimshell prompt. 
-abbreviate vsh VimShell
+cabbrev vsh VimShell
 let g:vimshell_prompt_expr = 'escape(fnamemodify(getcwd(), ":~").">", "\\[]()?! ")." "'
 let g:vimshell_prompt_pattern = '^\%(\f\|\\.\)\+> '
 
@@ -581,21 +581,21 @@ nnoremap  <Leader>td :<C-U>TaskList<CR>
 " How to use it:
 " 1. input the short cut and hit the key 'Enter'
 " 2. input the short cut and hit the key 'Space'
-ab gm   Gcommit -m
-ab gma  Gcommit -a -m
-ab gr   Git remote -v
-ab gurl Git config --get remote.origin.url
-ab g    Git
-ab gs   Gstatus
-ab ga   Git add
-ab gc   Git checkout
-ab gb   Git branch
-ab gd   Git pull origin master
-ab gu   Git push -u origin master
-ab gr   Git reset HEAD
-ab gw   Nice Git log --follow --diff-filter=A --find-renames=40\%
-ab gl   Nice Git log --pretty=oneline --since="2 days ago"
-ab go   Nice Git log -p -1
+cabbrev gm   Gcommit -m
+cabbrev gma  Gcommit -a -m
+cabbrev gr   Git remote -v
+cabbrev gurl Git config --get remote.origin.url
+cabbrev g    Git
+cabbrev gs   Gstatus
+cabbrev ga   Git add
+cabbrev gc   Git checkout
+cabbrev gb   Git branch
+cabbrev gd   Git pull origin master
+cabbrev gu   Git push -u origin master
+cabbrev gr   Git reset HEAD
+cabbrev gw   Nice Git log --follow --diff-filter=A --find-renames=40\%
+cabbrev gl   Nice Git log --pretty=oneline --since="2 days ago"
+cabbrev go   Nice Git log -p -1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

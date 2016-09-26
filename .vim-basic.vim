@@ -318,7 +318,7 @@ map <space> /
 map <silent> <leader><cr> :noh<cr>
 
 " Smart way to move between windows
-abbreviate vba vert ba
+cabbrev vba vert ba
 map <C-W><C-Left>   <C-W><C-=>
 map <C-W><C-Right>  <C-W><C-\|>
 map <C-W><C-Up>     <C-W><C-_>
@@ -955,7 +955,7 @@ endif
 " => Comamnd 'ban' like 'ba' and 'vert ba', but be more nautual.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{
-abbreviate ban LayoutBuffer
+cabbrev ban LayoutBuffer
 command! -nargs=* LayoutBuffer call s:Layout_buffer_allinone(<f-args>)
 function! s:Layout_buffer_allinone(col)
     " let expr = printf('%d/%d.0', a:row, a:col)
