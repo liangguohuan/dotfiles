@@ -255,14 +255,6 @@ if has("gui_running")
     set columns=145 lines=35 
 endif
 
-" MaximizeWindow
-autocmd SessionLoadPost * : call Maximize_Window()
-" The bottom will more one line when vim session is loaded in notebook.
-function Maximize_Window()
-    silent !wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
-    lang en_US.utf8
-endfunction
-
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
 
@@ -792,6 +784,18 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-session, Remember opened file when exit
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MaximizeWindow
+" The bottom will more one line when vim session is loaded in notebook.
+autocmd SessionLoadPost * : call Maximize_Window()
+function Maximize_Window()
+    " fixed bug: plugin vim-session command OpenSession blank a bottom line
+    silent !wmctrl -r :ACTIVE: -b toggle,maximized_vert,maximized_horz
+    " here is the originally main code only
+    silent !wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
+    " additional code
+    lang en_US.utf8
+endfunction
+
 " Go to last file(s) if invoked without arguments. 
 " autocmd VimLeave * nested if (!isdirectory($HOME . "/.vim")) |
 " \ call mkdir($HOME . "/.vim") |
