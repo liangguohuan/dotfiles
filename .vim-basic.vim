@@ -752,7 +752,6 @@ inoremap <C-u> <Esc>ui
 exec "vmap <C-N> y:<C-U>e /tmp/buffer<cr><Esc>O" . repeat('-', 120) . "<cr><Esc>pggO<Esc>"
 
 " Buffer Switch Quickly
-map <leader>o :bm<cr>
 map <silent> <M-0> :bl<cr>
 for n in [1,2,3,4,5,6,7,8,9]
     exe 'map <silent> <M-' . n . '> :call GoToBuffer('. n . ')<cr>'
