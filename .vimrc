@@ -32,9 +32,12 @@ Plugin 'https://github.com/Yggdroot/indentLine.git'
 Plugin 'https://github.com/plasticboy/vim-markdown.git'
 " }}}
 " extended {{{
+Plugin 'https://github.com/tpope/vim-surround.git'
+Plugin 'https://github.com/tpope/vim-eunuch.git'
+Plugin 'https://github.com/tpope/vim-repeat.git'
+Plugin 'https://github.com/tpope/vim-abolish.git'
 Plugin 'https://github.com/vim-scripts/sudo.vim.git'
 Plugin 'https://github.com/duggiefresh/vim-easydir.git'
-Plugin 'https://github.com/tpope/vim-surround.git'
 Plugin 'https://github.com/terryma/vim-multiple-cursors.git'
 Plugin 'https://github.com/vim-scripts/YankRing.vim.git'
 Plugin 'https://github.com/junegunn/goyo.vim.git'
@@ -42,8 +45,6 @@ Plugin 'https://github.com/jiangmiao/auto-pairs.git'
 Plugin 'https://github.com/bruno-/vim-alt-mappings.git'
 Plugin 'https://github.com/taku-o/vim-toggle.git'
 Plugin 'https://github.com/thinca/vim-qfreplace.git'
-Plugin 'https://github.com/tpope/vim-repeat.git'
-Plugin 'https://github.com/tpope/vim-abolish.git'
 Plugin 'https://github.com/Konfekt/FastFold.git'
 " }}}
 " snipmate {{{
