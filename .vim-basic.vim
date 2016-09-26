@@ -319,10 +319,10 @@ map <silent> <leader><cr> :noh<cr>
 
 " Smart way to move between windows
 cabbrev vba vert ba
-map <C-W><C-Left>   <C-W><C-=>
-map <C-W><C-Right>  <C-W><C-\|>
-map <C-W><C-Up>     <C-W><C-_>
-map <C-W><C-Down>   <C-W><C-=>
+" map <C-W><C-Left>   <C-W><C-=>
+" map <C-W><C-Right>  <C-W><C-\|>
+" map <C-W><C-Up>     <C-W><C-_>
+" map <C-W><C-Down>   <C-W><C-=>
 
 " map like terminal
 inoremap <C-E> <End>
