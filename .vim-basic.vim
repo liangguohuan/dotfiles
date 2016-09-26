@@ -695,7 +695,8 @@ endif
 autocmd BufNewFile,Bufread *.vim set keywordprg="help"
 
 " let QuicklyFix buffer out of list 
-autocmd FileType qf setlocal nobuflisted
+autocmd FileType qf,vimfiler setlocal nobuflisted
+autocmd BufWinEnter * if &previewwindow | setlocal nobuflisted | endif
 
 " let the help buffer map 'q' to quit
 autocmd FileType help nmap <buffer> q :<C-U>q<CR>
