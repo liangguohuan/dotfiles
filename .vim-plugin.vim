@@ -624,29 +624,6 @@ nmap ga <Plug>(EasyAlign)
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => sudo.vim
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-cmap <C-S> <C-A><Right><Right>sudo: 
-command W silent call SudoFileHandle('write')
-command R silent call SudoFileHandle('read')
-function! SudoFileHandle(tag) abort
-    let s:command = a:tag == 'read' ? 'SudoRead' : 'SudoWrite'
-    let s:filename = expand('%:p')
-    if a:tag == 'read'
-        exe 'Bclose'
-        exe 'e sudo:' . s:filename
-    elseif a:tag == 'write'
-        exe s:command . ' ' . s:filename
-        if matchstr(s:filename, '^\(sudo\)\ze:') == 'sudo'
-            exe 'echo "nothing"'
-        else
-            call SudoFileHandle('read')
-        endif
-    endif
-endfunction 
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => toggle.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 imap <silent><C-T> <Plug>ToggleI 
