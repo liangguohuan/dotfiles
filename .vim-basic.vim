@@ -332,16 +332,20 @@ cabbrev vba vert ba
 " map <C-W><C-Right>  <C-W><C-\|>
 " map <C-W><C-Up>     <C-W><C-_>
 " map <C-W><C-Down>   <C-W><C-=>
-nnoremap <C-W>z :call ToggleWinZoom()<CR>
-function! ToggleWinZoom() abort
-    if exists('g:togglewinzoom') && g:togglewinzoom == 1
-        exec "normal \<C-W>\<C-=>'"
-        let g:togglewinzoom = 0
+" Zoom / Restore window.
+function! s:ZoomToggle() abort
+    if exists('t:zoomed') && t:zoomed
+        execute t:zoom_winrestcmd
+        let t:zoomed = 0
     else
-        exec "normal \<C-W>\<C-|>\<C-W>\<C-_>"
-        let g:togglewinzoom = 1
+        let t:zoom_winrestcmd = winrestcmd()
+        resize
+        vertical resize
+        let t:zoomed = 1
     endif
 endfunction
+command! ZoomToggle call s:ZoomToggle()
+nnoremap <silent> <C-W>z :ZoomToggle<CR>
 
 " map like terminal
 inoremap <C-E> <End>
