@@ -39,6 +39,7 @@ export PATH=$PATH:$JAVA_HOME/bin:$STORM_HOME/bin:$ZOOKEEPER_HOME/bin:$LAMPP_HOME
 export PATH=$PATH:/home/hanson/CodeHub/SHELL
 export PHP_EXTENSION_PATH=/opt/lampp/lib/php/extensions/no-debug-non-zts-20131226
 export DOCSWEB="/media/d/技术资料/docs-web"
+export EDITOR=vim
 
 export LANGUAGE=en_US.UTF-8 git vi vim gvim
 
