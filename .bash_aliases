@@ -135,3 +135,6 @@ alias randomchars="python -c \"import random,string;print ''.join(random.sample(
 alias temphostname="sudo hostname android-obylyw02ziobm8fr"
 alias china-weather-restart="psaux indicator-china-weather | grep -v color | awk '{print \$2}' | xargs kill -9 && start-stop-daemon --exec /usr/bin/indicator-china-weather --start --background"
 alias mux="tmuxinator"
+# good for session deattach from <keyprefix>d
+alias muxd="tmux attach -d" # reload session from last deattach
+alias muxfg="tmux attach -t" # reload session like fg
