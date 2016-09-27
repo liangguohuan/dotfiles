@@ -308,7 +308,7 @@ set wrap "Wrap lines
 " Visual mode pressing * or # searches for the current selection 
 " Super useful! From an idea by Michael Naumann
 vnoremap <silent> * :call VisualSelection('f', '')<CR>
-vnoremap <silent> # :call VisualSelection('b', '')<CR> 
+vnoremap <silent> # :call VisualSelection('b', '')<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -494,7 +494,7 @@ vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
 map <leader>cc :botright cope<cr>
 map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
 map <leader>n :cn<cr>
-map <leader>p :cp<cr> 
+map <leader>p :cp<cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -537,7 +537,7 @@ function! SmartQuit() abort
 endfunction
 
 " Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr> 
+map <leader>pp :setlocal paste!<cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -720,7 +720,7 @@ if has('clipboard')
         set clipboard=unnamed 
     endif 
 endif
-nnoremap <silent> <F4> :<C-u>q<cr> 
+nnoremap <silent> <F4> :<C-u>q<cr>
 
 " show the command line 
 nnoremap cm :

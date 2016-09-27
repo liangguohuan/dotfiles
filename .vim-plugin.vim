@@ -261,7 +261,7 @@ map <silent> <leader>nn :silent NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark 
 map <silent> <leader>nf :NERDTreeFind<cr>
 map <silent> <leader>nc :silent NERDTreeCWD<cr>
-map <silent> <leader>ng :silent NERDTreeFocus<cr> 
+map <silent> <leader>ng :silent NERDTreeFocus<cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -269,7 +269,7 @@ map <silent> <leader>ng :silent NERDTreeFocus<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:tagbar_width=30 
 let g:tagbar_autofocus = 1
-nnoremap <silent> <Leader>t :<C-u>TagbarToggle<CR> 
+nnoremap <silent> <Leader>t :<C-u>TagbarToggle<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -281,7 +281,7 @@ vmap     <C-F>F <Plug>CtrlSFVwordExec
 nmap     <C-F>n <Plug>CtrlSFCwordPath
 nmap     <C-F>p <Plug>CtrlSFPwordPath
 nnoremap <silent> <C-F>o :CtrlSFOpen<CR>
-nnoremap <silent> <C-F>t :CtrlSFToggle<CR> 
+nnoremap <silent> <C-F>t :CtrlSFToggle<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -523,7 +523,7 @@ let g:trans_default_api = 'bing'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => IndentLine
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <Leader>ig :<C-U>IndentLinesToggle<CR> 
+map <Leader>ig :<C-U>IndentLinesToggle<CR>
 let g:indentLine_enabled = 0
 let g:indentLine_color_term = 239
 let g:indentLine_color_gui = '#586e75' 
@@ -533,7 +533,7 @@ let g:indentLine_color_gui = '#586e75'
 " => tasklist.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:tlTokenList = ["FIXME", "TODO", "HACK", "NOTE", "WARN", "MODIFY", "\" => "] 
-nnoremap  <Leader>td :<C-U>TaskList<CR> 
+nnoremap  <Leader>td :<C-U>TaskList<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -660,7 +660,7 @@ let g:toggle_pairs = {
 let g:executor_output_win_height = 12 
 nmap <Leader><Leader>r vip:ExecuteSelection<CR>
 nmap <Leader><Leader>rd :bd executor_output<CR>
-vmap <Leader><Leader>r :ExecuteSelection<CR> 
+vmap <Leader><Leader>r :ExecuteSelection<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -732,7 +732,7 @@ nmap <C-l>t :cs find t <C-R>=expand("<cword>")<CR><CR>
 nmap <C-l>e :cs find e <C-R>=expand("<cword>")<CR><CR>
 nmap <C-l>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-l>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-nmap <C-l>d :cs find d <C-R>=expand("<cword>")<CR><CR> 
+nmap <C-l>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
