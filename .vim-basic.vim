@@ -327,10 +327,21 @@ map <silent> <leader><cr> :noh<cr>
 
 " Smart way to move between windows
 cabbrev vba vert ba
+" window rezoom
 " map <C-W><C-Left>   <C-W><C-=>
 " map <C-W><C-Right>  <C-W><C-\|>
 " map <C-W><C-Up>     <C-W><C-_>
 " map <C-W><C-Down>   <C-W><C-=>
+nnoremap <C-W>z :call ToggleWinZoom()<CR>
+function! ToggleWinZoom() abort
+    if exists('g:togglewinzoom') && g:togglewinzoom == 1
+        exec "normal \<C-W>\<C-=>'"
+        let g:togglewinzoom = 0
+    else
+        exec "normal \<C-W>\<C-|>\<C-W>\<C-_>"
+        let g:togglewinzoom = 1
+    endif
+endfunction
 
 " map like terminal
 inoremap <C-E> <End>
