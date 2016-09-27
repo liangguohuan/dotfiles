@@ -772,7 +772,7 @@ inoremap <C-u> <Esc>ui
 " endif
 
 " open temp buffer file to paste selection
-exec "vmap <C-N> y:<C-U>e /tmp/buffer<cr><Esc>O" . repeat('-', 120) . "<cr><Esc>pggO<Esc>"
+exec "vnoremap <C-N> y:<C-U>e /tmp/buffer<cr><Esc>O" . repeat('-', 120) . "<cr><Esc>pggO<Esc>"
 
 " Buffer Switch Quickly
 map <silent> <M-0> :bl<cr>
