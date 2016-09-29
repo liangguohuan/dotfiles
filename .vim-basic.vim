@@ -7,7 +7,15 @@
 " Notes
 " 1. Ctrl-b and Ctrl-B are synonymous, so Ctrl+Shit+.. can't work
 " 2. ctrl+f: show command history normal
-" 3. 
+" 3. bottom blank white line fixed
+"    # filepath: ~/.gtkrc-2.0
+"    # desc: let gvim white board invisible. 
+"    style "vimfix" {
+"      bg[NORMAL] = "#272822" # this matches my gvim theme 'Normal' bg color.
+"    }
+"    widget "vim-main-window.*GtkForm" style "vimfix"
+" 4. 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
