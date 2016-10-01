@@ -138,3 +138,4 @@ alias mux="tmuxinator"
 # good for session deattach from <keyprefix>d
 alias muxd="tmux attach -d" # reload session from last deattach
 alias muxfg="tmux attach -t" # reload session like fg
+alias ToggleTouchpad='_(){ synclient TouchpadOff=${1:-0}  }; _'
