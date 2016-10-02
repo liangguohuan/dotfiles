@@ -1,0 +1,32 @@
+[user]
+    email = liangguohuan@gmail.com
+    name = liangguohuan
+[push]
+    default = matching
+[branch "master"]
+    remote = origin
+    merge = refs/heads/master
+[include]
+    path = ~/.gitalias
+[alias]
+    cma = commit -a -m
+    cam = commit --amend -m
+    url = config --get remote.origin.url
+    info = remote  -v
+    uload = push -u origin master
+    dload = pull origin master
+    newchange= status -vv
+    whatadded = log --follow --diff-filter=A --find-renames=40%
+    oneline = log --pretty=oneline --since='2 days ago'
+    onelog = log -p -1
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    ui = auto
+[core]
+    editor = vim
+[credential]
+    helper = store
+[http]
+    sslVerify = false
