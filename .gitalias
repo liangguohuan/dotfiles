@@ -366,7 +366,7 @@
   # TODO
   log-refs = log --all --graph --decorate --oneline --simplify-by-decoration --no-merges
   log-timeline = log --format='%h %an %ar - %s'
-  log-local = log --oneline origin..HEAD
+  # log-local = log --oneline origin..HEAD
   log-fetched = log --oneline HEAD..origin/master
 
   # churn: show log of files that have many changes
