@@ -9,6 +9,8 @@
 [include]
     path = ~/.gitalias
 [alias]
+    addurl = remote add origin
+    seturl = remote set-url origin
     cma = commit -a -m
     cam = commit --amend -m
     url = config --get remote.origin.url
