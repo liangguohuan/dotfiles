@@ -15,7 +15,7 @@
     info = remote  -v
     uload = push -u origin master
     dload = pull origin master
-    newchange= status -vv
+    showchange = diff HEAD
     whatadded = log --follow --diff-filter=A --find-renames=40%
     oneline = log --pretty=oneline --since='2 days ago'
     onelog = log -p -1
