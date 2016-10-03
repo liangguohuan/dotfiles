@@ -581,21 +581,30 @@ nnoremap  <Leader>td :<C-U>TaskList<CR>
 " How to use it:
 " 1. input the short cut and hit the key 'Enter'
 " 2. input the short cut and hit the key 'Space'
-cabbrev gm   Gcommit -m
-cabbrev gma  Gcommit -a -m
-cabbrev gr   Git remote -v
-cabbrev gurl Git config --get remote.origin.url
-cabbrev g    Git
-cabbrev gs   Gstatus
-cabbrev ga   Git add
-cabbrev gc   Git checkout
-cabbrev gb   Git branch
-cabbrev gd   Git pull origin master
-cabbrev gu   Git push -u origin master
-cabbrev gr   Git reset HEAD
-cabbrev gw   Nice Git log --follow --diff-filter=A --find-renames=40\%
-cabbrev gl   Nice Git log --pretty=oneline --since="2 days ago"
-cabbrev go   Nice Git log -p -1
+cabbrev gcm   Gcommit -m
+cabbrev gcma  Gcommit -a -m
+cabbrev gcam  Gcommit --amend -m
+cabbrev grv   Git remote -v
+cabbrev gurl  Git config --get remote.origin.url
+cabbrev G     Git
+cabbrev gst   Gstatus
+cabbrev gad   Git add
+cabbrev gco   Git checkout
+cabbrev gbr   Git branch
+cabbrev gdl   Git pull origin master
+cabbrev gul   Git push -u origin master
+cabbrev gsh   Git show
+cabbrev gdh   Git diff HEAD
+cabbrev grev  Git revert HEAD~1
+cabbrev grs   Git reset --soft HEAD~1
+cabbrev grh   Git reset --hard HEAD~1
+cabbrev grc   Git reset --hard HEAD~1 && git clean -fd
+cabbrev gsta  Git stash
+cabbrev gstap Git stash pop
+cabbrev gstal Git stash list
+cabbrev gwa   Nice Git log --follow --diff-filter=A --find-renames=40\%
+cabbrev glo   Nice Git log --pretty=oneline --since="2 days ago"
+cabbrev gla   Nice Git log -p -1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
