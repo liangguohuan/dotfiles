@@ -12,11 +12,12 @@ let g:session_command_aliases = 1
 let g:session_autosave_silent = 1
 let g:session_verbose_messages = 0
 let g:session_autosave = 'yes'
-if has("gui_running")
-    let g:session_autoload = 'yes'
-else
-    let g:session_autoload = 'no'
-endif 
+let g:session_autoload = 'no'
+" if has("gui_running")
+    " let g:session_autoload = 'yes'
+" else
+    " let g:session_autoload = 'no'
+" endif 
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -595,6 +596,7 @@ cabbrev gdl   Git pull origin master
 cabbrev gul   Git push -u origin master
 cabbrev gsh   Git show
 cabbrev gdh   Git diff HEAD
+cabbrev grec  Git checkout --
 cabbrev grev  Git revert HEAD~1
 cabbrev grs   Git reset --soft HEAD~1
 cabbrev grh   Git reset --hard HEAD~1
