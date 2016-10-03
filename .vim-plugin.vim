@@ -606,7 +606,8 @@ cabbrev gstap Git stash pop
 cabbrev gstal Git stash list
 cabbrev gwa   Nice Git log --follow --diff-filter=A --find-renames=40\%
 cabbrev glo   Nice Git log --pretty=oneline --since="2 days ago"
-cabbrev gla   Nice Git log -p -1
+cabbrev gll   Nice Git log -p -1
+cabbrev glf   Nice Git log -p --
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

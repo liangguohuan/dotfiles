@@ -109,6 +109,9 @@
 
   ### log ###
 
+  # show log via filename
+  lf = log -p --
+
   # log with a text-based graphical representation of the commit history.
   lg = log --graph
 
