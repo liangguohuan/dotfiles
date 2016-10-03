@@ -694,7 +694,7 @@
   #
   # Example: search commits for "foobar", print full diff of commit with 1 line context
   #     git searchcommits foobar --pickaxe-all -U1 src/lib
-  searchcommits = !"f() { query=\"$1\"; shift; git log -S\"$query\" \"$@\"; }; f \"$@\""
+  searchcommits = !"_f() { query=\"$1\"; shift; git log -S\"$query\" \"$@\"; }; _f"
 
   # A 'debug' alias to help debugging builtins: when debugging builtins,
   # we use gdb to analyze the runtime state. However, we have to disable
