@@ -817,7 +817,7 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MaximizeWindow
 " The bottom will more one line when vim session is loaded in notebook.
-autocmd SessionLoadPost * : call Maximize_Window()
+autocmd SessionLoadPost,GuiEnter * : call Maximize_Window()
 function Maximize_Window()
     " fixed bug: plugin vim-session command OpenSession blank a bottom line
     silent !wmctrl -r :ACTIVE: -b toggle,maximized_vert,maximized_horz
