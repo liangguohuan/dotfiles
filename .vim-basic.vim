@@ -635,6 +635,7 @@ try
 catch
 endtry 
 
+set viminfo='100,n$HOME/.vim/files/info/viminfo
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Command mode related
