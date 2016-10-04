@@ -85,13 +85,14 @@ let g:unite_source_menu_menus.git = {
     \}
 let logwatchadded = 'exe "Nice Git! log --follow --diff-filter=A --find-renames=40\\% " input("comando git:", expand("%:t"))'
 let g:unite_source_menu_menus.git.command_candidates = [
-    \['▷ tig                                             ⌘ ,gt', 'normal ,gt'],
+    \['▷ tig show                                        ⌘ ,gt', 'exe "Unite tig -no-split"'],
+    \['▷ tig preview                                     ⌘ ,gt', 'exe "Unite tig -no-split -auto-preview"'],
     \['▷ git status      (Fugitive)                      ⌘ ,gs', 'Gstatus'],
     \['▷ git diff        (Fugitive)                      ⌘ ,gd', 'Gdiff'],
     \['▷ git commit      (Fugitive)                      ⌘ ,gc', 'Gcommit'],
     \['▷ git log         (Fugitive)                      ⌘ ,gl', 'exe "silent Glog | Unite -no-empty -no-tab quickfix"'],
-    \['▷ git log oneline (Fugitive)                      ⌘ ,gl', 'exe "Nice Git log --pretty=oneline --since=\"2 days ago\""'],
-    \['▷ git log one     (Fugitive)                      ⌘ ,gl', 'exe "Nice Git log -p -1"'],
+    \['▷ git log last    (Fugitive)                      ⌘ ,gl', 'exe "Nice Git log -p -1"'],
+    \['▷ git log 2 days  (Fugitive)                      ⌘ ,gl', 'exe "Nice Git log --pretty=oneline --since=\"2 days ago\""'],
     \['▷ git log watch   (Fugitive)                      ⌘ ,gl', logwatchadded],
     \['▷ git blame       (Fugitive)                      ⌘ ,gb', 'Gblame'],
     \['▷ git stage       (Fugitive)                      ⌘ ,gw', 'Gwrite'],
