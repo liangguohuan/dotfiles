@@ -134,8 +134,12 @@ alias baiduyun="pcs"
 alias randomchars="python -c \"import random,string;print ''.join(random.sample(string.ascii_letters+string.digits, 16)).lower()\""
 alias temphostname="sudo hostname android-obylyw02ziobm8fr"
 alias china-weather-restart="psaux indicator-china-weather | grep -v color | awk '{print \$2}' | xargs kill -9 && start-stop-daemon --exec /usr/bin/indicator-china-weather --start --background"
-alias mux="tmuxinator"
+alias t="tmux"
 # good for session deattach from <keyprefix>d
-alias muxd="tmux attach -d" # reload session from last deattach
-alias muxfg="tmux attach -t" # reload session like fg
+alias tt="tmux attach -t"
+alias td="tmux attach -d"
+alias m="tmuxinator"
+alias ms="tmuxinator start"
+alias msd="tmuxinator start default"
+alias mux="tmuxinator"
 alias ToggleTouchpad='_(){ eval `synclient | grep TouchpadOff | tr -d " "`; [[ $TouchpadOff == 1 ]] && V=0 || V=1;synclient TouchpadOff=$V }; _'
