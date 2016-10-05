@@ -110,7 +110,7 @@ au BufWinEnter * set splitright
 " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
 if &term =~ '256color'
   set t_ut=
-  au VimEnter * if $is_tmux != '' | call ToggleLabelBar() | endif
+  " au VimEnter * if $is_tmux != '' | call ToggleLabelBar() | endif
 endif
 "}}}
 
