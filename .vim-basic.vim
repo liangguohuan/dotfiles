@@ -860,7 +860,9 @@ endfunction
 " MaximizeWindow
 "{{{
 " The bottom will more one line when vim session is loaded in notebook.
-autocmd SessionLoadPost,GuiEnter * : call Maximize_Window()
+if has('gui_running')
+    autocmd SessionLoadPost,GuiEnter * : call Maximize_Window()
+endif
 "{{{
 function Maximize_Window()
     " fixed bug: plugin vim-session command OpenSession blank a bottom line
