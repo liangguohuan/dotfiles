@@ -263,9 +263,10 @@ let g:airline_theme="bubblegum"
 " let NERDTreeShowBookmarks=1 
 let NERDTreeQuitOnOpen=1
 let NERDTreeAutoDeleteBuffer=1
+let NERDTreeShowHidden=1
 let NERDTreeChDirMode=2
 let NERDTreeQuitOnOpen=1
-" let NERDTreeIgnore=['\.*', '\~$']
+let NERDTreeIgnore=['\~$', 'fugitive:$', '.git$']
 map <silent> <leader>nn :silent NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark 
 map <silent> <leader>nf :NERDTreeFind<cr>
