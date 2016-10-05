@@ -86,7 +86,7 @@ let g:unite_source_menu_menus.git = {
 let logwatchadded = 'exe "Nice Git! log --follow --diff-filter=A --find-renames=40\\% " input("comando git:", expand("%:t"))'
 let g:unite_source_menu_menus.git.command_candidates = [
     \['▷ tig show                                        ⌘ ,gt',  'exe "Unite tig -no-split"'],
-    \['▷ tig preview                                     ⌘ ,gp',  'exe "Unite tig -no-split -auto-preview"'],
+    \['▷ tig preview                                     ⌘ ,gtp', 'exe "Unite tig -no-split -auto-preview"'],
     \['▷ git status      (Fugitive)                      ⌘ ,gs',  'Gstatus'],
     \['▷ git diff        (Fugitive)                      ⌘ ,gd',  'Gdiff'],
     \['▷ git commit      (Fugitive)                      ⌘ ,gc',  'Gcommit'],
@@ -99,17 +99,17 @@ let g:unite_source_menu_menus.git.command_candidates = [
     \['▷ git checkout    (Fugitive)                      ⌘ ,go',  'Gread'],
     \['▷ git rm          (Fugitive)                      ⌘ ,gr',  'Gremove'],
     \['▷ git mv          (Fugitive)                      ⌘ ,gm',  'exe "Gmove " input("DESTINO: ")'],
-    \['▷ git push        (Fugitive, salida por buffer)   ⌘ ,gu',  'Git! push'],
-    \['▷ git pull        (Fugitive, salida por buffer)   ⌘ ,gd',  'Git! pull'],
+    \['▷ git push        (Fugitive, salida por buffer)   ⌘ ,gp',  'Git! push'],
+    \['▷ git pull        (Fugitive, salida por buffer)   ⌘ ,gg',  'Git! pull'],
     \['▷ git prompt      (Fugitive, salida por buffer)   ⌘ ,gi',  'exe "Git! " input("COMANDO GIT: ")'],
     \['▷ git cd          (Fugitive)', 'Gcd'],
     \]
 nnoremap <silent>[unite]g :Unite -silent -start-insert menu:git<CR>
 for item in g:unite_source_menu_menus.git.command_candidates
     if stridx(item[0], ',') > -1
-        let _key = split(item[0], ',')[1]
+        let _key = split(item[0], ',')[-1]
         let _val = item[1]
-        exe "nnoremap <leader>" . _key . " :" . _val . "<CR>"
+        exe 'nnoremap <leader>' . _key . ' :' . _val . '<CR>'
     endif
 endfor
 
