@@ -763,6 +763,18 @@ autocmd FileType help nmap <buffer> q :<C-U>q<CR>
 
 nnoremap <silent> <F4> :<C-u>q<cr>
 
+nnoremap <C-q> :<C-u>call SmartQwindow()<CR>
+"{{{
+function! SmartQwindow() abort
+   if &filetype == 'unite'
+       exe "UniteClose"
+   else
+       exe "q"
+   endif
+   exe "normal! \<C-w>\<C-o>"
+endfunction
+"}}}
+
 " show the command line 
 nnoremap cm :
 nnoremap cme :e 
