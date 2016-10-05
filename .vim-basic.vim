@@ -768,6 +768,13 @@ function! SmartQwindow() abort
 endfunction
 "}}}
 
+
+" toggle conceal
+command! ToggleConceal call s:ToogleConceal()
+function! s:ToogleConceal() abort
+    exe 'set conceallevel=' . (&conceallevel==0 ? 2 : 0)
+endfunction
+
 " show the command line 
 nnoremap cm :
 nnoremap cme :e 
