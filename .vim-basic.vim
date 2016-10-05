@@ -742,7 +742,7 @@ endif
 autocmd BufNewFile,Bufread *.vim set keywordprg="help"
 
 " let QuicklyFix buffer out of list 
-autocmd FileType qf,vimfiler setlocal nobuflisted
+autocmd FileType qf,vimfiler,git setlocal nobuflisted
 autocmd BufWinEnter * if &previewwindow | setlocal nobuflisted | endif
 
 " System clipboard sharing
@@ -760,7 +760,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{
 " let the help buffer map 'q' to quit
-autocmd FileType help nmap <buffer> q :<C-U>q<CR>
+autocmd FileType help,git nmap <buffer> q :<C-U>q<CR>
 
 nnoremap <silent> <F4> :<C-u>q<cr>
 
