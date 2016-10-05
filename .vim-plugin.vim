@@ -39,42 +39,42 @@ nnoremap <silent> [unite]j :<C-u>Unite -buffer-name=jump jump<CR>
 
 autocmd FileType unite call s:unite_nice_settings()
 function! s:unite_nice_settings()
-  " Overwrite settings.
-  imap <buffer> jj        <Plug>(unite_insert_leave)
-  imap  <buffer> <C-c>    <Esc>q
-  nmap  <buffer> <C-c>    q
+    " Overwrite settings.
+    imap <buffer> jj        <Plug>(unite_insert_leave)
+    imap  <buffer> <C-c>    <Esc>q
+    nmap  <buffer> <C-c>    q
 
-  imap <buffer><expr> j unite#smart_map('j', '')
-  imap <buffer> <TAB>     <Plug>(unite_select_next_line)
-  imap <buffer> <C-w>     <Plug>(unite_delete_backward_path)
-  imap <buffer> '         <Plug>(unite_quick_match_default_action)
-  nmap <buffer> '         <Plug>(unite_quick_match_default_action)
-  imap <buffer><expr> x unite#smart_map('x', "\<Plug>(unite_quick_match_choose_action)")
-  nmap <buffer> x         <Plug>(unite_quick_match_choose_action)
-  nmap <buffer> <C-z>     <Plug>(unite_toggle_transpose_window)
-  imap <buffer> <C-z>     <Plug>(unite_toggle_transpose_window)
-  imap <buffer> <C-y>     <Plug>(unite_narrowing_path)
-  nmap <buffer> <C-y>     <Plug>(unite_narrowing_path)
-  nmap <buffer> <C-j>     <Plug>(unite_toggle_auto_preview)
-  nmap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
-  imap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
-  nnoremap <silent><buffer><expr> l
-      \ unite#smart_map('l', unite#do_action('default'))
+    imap <buffer><expr> j unite#smart_map('j', '')
+    imap <buffer> <TAB>     <Plug>(unite_select_next_line)
+    imap <buffer> <C-w>     <Plug>(unite_delete_backward_path)
+    imap <buffer> '         <Plug>(unite_quick_match_default_action)
+    nmap <buffer> '         <Plug>(unite_quick_match_default_action)
+    imap <buffer><expr> x unite#smart_map('x', "\<Plug>(unite_quick_match_choose_action)")
+    nmap <buffer> x         <Plug>(unite_quick_match_choose_action)
+    nmap <buffer> <C-z>     <Plug>(unite_toggle_transpose_window)
+    imap <buffer> <C-z>     <Plug>(unite_toggle_transpose_window)
+    imap <buffer> <C-y>     <Plug>(unite_narrowing_path)
+    nmap <buffer> <C-y>     <Plug>(unite_narrowing_path)
+    nmap <buffer> <C-j>     <Plug>(unite_toggle_auto_preview)
+    nmap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
+    imap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
+    nnoremap <silent><buffer><expr> l
+                \ unite#smart_map('l', unite#do_action('default'))
 
-  let unite = unite#get_current_unite()
-  if unite.profile_name ==# 'search'
-    nnoremap <silent><buffer><expr> r     unite#do_action('replace')
-  else
-    nnoremap <silent><buffer><expr> r     unite#do_action('rename')
-  endif
+    let unite = unite#get_current_unite()
+    if unite.profile_name ==# 'search'
+        nnoremap <silent><buffer><expr> r     unite#do_action('replace')
+    else
+        nnoremap <silent><buffer><expr> r     unite#do_action('rename')
+    endif
 
-  nnoremap <silent><buffer><expr> cd     unite#do_action('lcd')
-  nnoremap <buffer><expr> S      unite#mappings#set_current_filters(
-      \ empty(unite#mappings#get_current_filters()) ?
-      \ ['sorter_reverse'] : [])
+    nnoremap <silent><buffer><expr> cd     unite#do_action('lcd')
+    nnoremap <buffer><expr> S      unite#mappings#set_current_filters(
+                \ empty(unite#mappings#get_current_filters()) ?
+                \ ['sorter_reverse'] : [])
 
-  " Runs "split" action by <C-s>.
-  imap <silent><buffer><expr> <C-s>     unite#do_action('split')
+    " Runs "split" action by <C-s>.
+    imap <silent><buffer><expr> <C-s>     unite#do_action('split')
 endfunction
 
 " custom menu for unite
@@ -104,7 +104,7 @@ let g:unite_source_menu_menus.git.command_candidates = [
     \['▷ git prompt      (Fugitive, salida por buffer)   ⌘ ,gi',  'exe "Git! " input("COMANDO GIT: ")'],
     \['▷ git cd          (Fugitive)', 'Gcd'],
     \]
-nnoremap <silent>[unite]g :Unite -silent -start-insert menu:git<CR>
+nnoremap <silent>[unite]g :Unite -prompt=>>> -silent -start-insert menu:git<CR>
 for item in g:unite_source_menu_menus.git.command_candidates
     if stridx(item[0], ',') > -1
         let _key = split(item[0], ',')[-1]
