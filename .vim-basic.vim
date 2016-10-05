@@ -100,8 +100,8 @@ endfunc
 set termencoding=utf-8 
 set encoding=utf8
 set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030 
-au BufWinEnter * set splitbelow
-au BufWinEnter * set splitright
+" au BufWinEnter * set splitbelow
+" au BufWinEnter * set splitright
 
 
 " disable Background Color Erase (BCE) so that color schemes
@@ -1054,13 +1054,19 @@ function! s:Layout_buffer_allinone(col)
     " let expr = printf('%d/%d.0', a:row, a:col)
     " let trow = eval(expr)
 
-    let s:arrlist = GetBufListsNu()
+    " set split window rule
+    let l:sb = &splitbelow
+    let l:sr = &splitright
+    set splitbelow
+    set splitright
+
+    let l:arrlist = GetBufListsNu()
 
     exec 'only'
 
     let index = 0
-    while index < len(s:arrlist)
-        let item = s:arrlist[index]
+    while index < len(l:arrlist)
+        let item = l:arrlist[index]
         " execute input('DEBUG: Press ENTER to continue... ' . bufname(item))
         if index == 0
             exec 'vsp ' . bufname(item)
@@ -1078,6 +1084,15 @@ function! s:Layout_buffer_allinone(col)
         endif
         let index = index + 1
     endwhile
+
+    " reset split window rule
+    if l:sb == 0
+        set splitbelow!
+    endif
+    if l:sr == 0
+        set splitright!
+    endif
+
 endfunction
 "}}}
 "}}}
