@@ -1,6 +1,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Map Helper
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{
 " Map Partial
 " C:Ctrl, M:Alt, S:shift,DOWN:down,UP:up,LEFT:left,RIGHT:right
 
@@ -15,7 +16,7 @@
 "    }
 "    widget "vim-main-window.*GtkForm" style "vimfix"
 " 4. 
-
+"}}}
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -92,10 +93,10 @@ func! CurrentFileDir(cmd)
 endfunc 
 "}}}
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{
 set termencoding=utf-8 
 set encoding=utf8
 set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030 
@@ -110,20 +111,23 @@ if &term =~ '256color'
   set t_ut=
   au VimEnter * if $is_tmux != '' | call ToggleLabelBar() | endif
 endif
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Folding Save And View
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{
 set foldlevelstart=99
 au BufWinEnter * set foldmethod=marker 
 " set viewdir=$HOME/.vim/.vim_view/
 " au BufWritePost,BufLeave,WinLeave ?* mkview " for tabs
 " au BufWinEnter ?* silent loadview 
-
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{
 " Sets how many lines of history VIM has to remember 
 set history=700
 
@@ -146,7 +150,7 @@ nmap <silent> <leader>wa :wa!<cr>
 " :W sudo saves the file 
 " (useful for handling the permission-denied error)
 " command W silent w !sudo tee % > /dev/null 
-
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -217,7 +221,6 @@ set tm=500
 set foldcolumn=1 
 "}}}
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -240,6 +243,7 @@ set foldcolumn=1
 " autocmd BufEnter * hi CursorLineNr guifg=#7C8F8B ctermfg=245
 
 " NOTICE : 'set background=dark' must before 'colorscheme sublime'
+"{{{
 function! SetColorScheme()
     syntax enable
     set background=dark
@@ -250,8 +254,10 @@ function! SetColorScheme()
 endfunction
 " Goyo Plugin Must call for well
 call SetColorScheme()
+"}}}
 
 " Set extra options when running in GUI mode
+"{{{
 if has("gui_running")
     set guioptions-=T
     set guioptions-=e
@@ -271,27 +277,28 @@ if has("gui_running")
     " set columns=173 lines=46 
     set columns=145 lines=35 
 endif
-
+"}}}
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac 
-
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn backup off, since most stuff is in SVN, git et.c anyway... 
+"{{{
 set nobackup
 set nowb
 set noswapfile 
 "}}}
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{
 " Use spaces instead of tabs 
 set expandtab
 
@@ -309,16 +316,17 @@ set tw=500
 set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines 
-
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Visual mode related
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{
 " Visual mode pressing * or # searches for the current selection 
 " Super useful! From an idea by Michael Naumann
 vnoremap <silent> * :call VisualSelection('f', '')<CR>
 vnoremap <silent> # :call VisualSelection('b', '')<CR>
-
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
@@ -342,6 +350,7 @@ cabbrev vba vert ba
 " map <C-W><C-Up>     <C-W><C-_>
 " map <C-W><C-Down>   <C-W><C-=>
 " Zoom / Restore window.
+"{{{
 function! s:ZoomToggle() abort
     if exists('t:zoomed') && t:zoomed
         execute t:zoom_winrestcmd
@@ -353,6 +362,7 @@ function! s:ZoomToggle() abort
         let t:zoomed = 1
     endif
 endfunction
+"}}}
 command! ZoomToggle call s:ZoomToggle()
 nnoremap <silent> <C-W>z :ZoomToggle<CR>
 
@@ -373,11 +383,13 @@ map <Leader>br :call BufferRightAllDelete()<cr>
 map <Leader>bl :call BufferLeftAllDelete()<cr>
 map <Leader>bo :call BufferOtherAllDelete()<cr>
 " bug with function bufexists() , so use 'try ... catch ... end'
+"{{{
 function! BufferOtherAllDelete() abort
     silent call BufferLeftAllDelete()
     silent call BufferRightAllDelete()
     echo "** Delete All Other Buffer"
 endfunction
+
 function! BufferLeftAllDelete() abort
     let s:arrlist = GetBufListsNu()
     let s:bufnums = bufnr('%')
@@ -398,7 +410,7 @@ function! BufferRightAllDelete() abort
     endtry
     echo "** Delete All Buffer At Current Right."
 endfunction
-
+"}}}
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
@@ -435,20 +447,21 @@ autocmd BufReadPost *
 set viminfo^=% 
 "}}}
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Status line
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{
 " Always show the status line 
 set laststatus=2
 
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l 
-
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{
 " Remap VIM 0 to first non-blank character 
 map 0 ^
 
@@ -478,12 +491,13 @@ func! DeleteTrailingWS()
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS() 
-
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Ack searching and cope displaying
 "    requires ack.vim - it's much better than vimgrep/grep
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{
 " When you press gv you Ack after the selected text 
 vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
 
@@ -508,11 +522,12 @@ map <leader>cc :botright cope<cr>
 map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
-
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{
 " Pressing ,ss will toggle and untoggle spell checking 
 map <leader>ss :setlocal spell!<cr>
 
@@ -521,11 +536,12 @@ map <leader>sn ]s
 map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z= 
-
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{
 " Remove the Windows ^M - when the encodings gets messed up 
 noremap dwm mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
@@ -551,7 +567,7 @@ endfunction
 
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
-
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
@@ -617,18 +633,19 @@ function! <SID>BufcloseCloseIt()
 endfunction 
 "}}}
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fast editing and reloading of vimrc configs
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{
 map <leader>e :e! ~/.vimrc<cr>
 autocmd! bufwritepost vimrc source ~/.vimrc 
-
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Turn persistent undo on 
 "    means that you can undo even when you close a buffer/VIM
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{
 try 
     set undodir=~/.vim/temp_dirs/undodir
     set undofile
@@ -636,10 +653,12 @@ catch
 endtry 
 
 set viminfo='100,n$HOME/.vim/files/info/viminfo
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Command mode related
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{
 " Smart mappings on the command line 
 cno $h e ~/
 cno $d e ~/Desktop/
@@ -661,11 +680,12 @@ cnoremap <C-N> <Down>
 map ½ $
 cmap ½ $
 imap ½ $ 
-
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Parenthesis/bracket
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{
 " select text, then Quickly ouput '$1' 
 vnoremap $1 <esc>`>a)<esc>`<i(<esc>
 vnoremap $2 <esc>`>a]<esc>`<i[<esc>
@@ -682,13 +702,14 @@ vnoremap $e <esc>`>a"<esc>`<i"<esc>
 " inoremap $q ''<esc>i
 " inoremap $e ""<esc>i
 " inoremap $t <><esc>i 
-
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General abbreviations
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{
 iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
-
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Custom Settings
@@ -723,9 +744,6 @@ autocmd BufNewFile,Bufread *.vim set keywordprg="help"
 autocmd FileType qf,vimfiler setlocal nobuflisted
 autocmd BufWinEnter * if &previewwindow | setlocal nobuflisted | endif
 
-" let the help buffer map 'q' to quit
-autocmd FileType help nmap <buffer> q :<C-U>q<CR>
-
 " System clipboard sharing
 if has('clipboard') 
     if has('unnamedplus') 
@@ -734,6 +752,15 @@ if has('clipboard')
         set clipboard=unnamed 
     endif 
 endif
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => key map
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{
+" let the help buffer map 'q' to quit
+autocmd FileType help nmap <buffer> q :<C-U>q<CR>
+
 nnoremap <silent> <F4> :<C-u>q<cr>
 
 " show the command line 
@@ -791,6 +818,7 @@ for n in [1,2,3,4,5,6,7,8,9]
 endfor
 map <silent> <Tab> :call GoToBufferNext('next')<cr>
 map <silent> <S-Tab> :call GoToBufferNext('prev')<cr>
+"{{{
 func! GoToBufferNext(tag)
     let s:commandstr = a:tag == 'next' ? 'bn' : 'bp'
     " let s:arr = ['tagbar', 'nerdtree', 'qf', 'ctrlsf', 'runner']
@@ -811,14 +839,17 @@ function! GoToBuffer(tag) abort
     endif
 endfunction 
 "}}}
-
+"}}}
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-session, Remember opened file when exit
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MaximizeWindow
+"{{{
 " The bottom will more one line when vim session is loaded in notebook.
 autocmd SessionLoadPost,GuiEnter * : call Maximize_Window()
+"{{{
 function Maximize_Window()
     " fixed bug: plugin vim-session command OpenSession blank a bottom line
     silent !wmctrl -r :ACTIVE: -b toggle,maximized_vert,maximized_horz
@@ -827,7 +858,7 @@ function Maximize_Window()
     " additional code
     lang en_US.utf8
 endfunction
-
+"}}}
 " Go to last file(s) if invoked without arguments. 
 " autocmd VimLeave * nested if (!isdirectory($HOME . "/.vim")) |
 " \ call mkdir($HOME . "/.vim") |
@@ -836,7 +867,7 @@ endfunction
 
 " autocmd VimEnter * nested if argc() == 0 && filereadable($HOME . "/.vim/Session.vim") |
 " \ execute "source " . $HOME . "/.vim/Session.vim" 
-
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => markdown preview
@@ -844,6 +875,7 @@ endfunction
 "{{{
 " from http://www.jmlog.com/use-pandoc-to-preview-markdown-in-vim/ 
 command! PreviewMarkdown call PreviewMarkdown()
+"{{{
 function! PreviewMarkdown()
     if !executable('pandoc')
         echohl ErrorMsg | echo 'Please install pandoc first.' | echohl None
@@ -885,6 +917,7 @@ function! PreviewMarkdown()
     exec "redraw!"
 endfunction
 "}}}
+"}}}
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -895,6 +928,7 @@ endfunction
 " k
 " 
 nnoremap gx :call HandleURL()<cr>
+"{{{
 function! HandleURL()
     " notcie: if use 'xdg-open', it won't work in gvim.
     let BROWSER_COMMAND = 'google-chrome'
@@ -907,7 +941,7 @@ function! HandleURL()
     endif
 endfunction 
 "}}}
-
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => autoload file when changed by other editor.
@@ -915,6 +949,8 @@ endfunction
 " normal mode is doing well.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Find diff change 
+"{{{
+"{{{
 function! DiffOrig()
     if &diff
         wincmd p | bdel | diffoff
@@ -922,15 +958,18 @@ function! DiffOrig()
         vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
     endif
 endfunction
+"}}}
 map <leader>do :call DiffOrig()<cr>
 set autoread
 set autowriteall 
-
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => make the code right
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{
 command Coderight call MakeTheCodeRight() 
+"{{{
 function! MakeTheCodeRight() abort
     try
         silent exe "%s/  / /g"
@@ -945,31 +984,38 @@ function! MakeTheCodeRight() abort
     endtry
     echo "codes had been maked right."
 endfunction 
-
+"}}}
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => copy filename
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{
 command Filename call CopyFilePath('t') 
 command Filepath call CopyFilePath('p')
 nmap <C-C>f :Filename<CR>
 nmap <C-C>c :Filepath<CR>
+"{{{
 function! CopyFilePath(type) abort
     let s:filename = expand('%:' . a:type)
     exe 'Silent !echo "' . s:filename . '" | xsel --input -b'
     exe 'echo "copy file: ' . s:filename . '"'
 endfunction
+"}}}
 
 nmap <silent> <C-k><C-b> :call ToggleLabelBar()<CR>
+"{{{
 function! ToggleLabelBar() abort
     exe 'set showtabline=' . (&showtabline==0 ? 2 : 0)
     exe 'set laststatus=' . (&laststatus==0 ? 2 : 0)
 endfunction 
-
+"}}}
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => hope to auto effect bash_aliases file, but it doesn't ok.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{
 " autocmd VimLeave * :call AutoSourceFiles() 
 " function! AutoSourceFiles() abort
 " let s:filename = expand('%:P')
@@ -981,7 +1027,7 @@ endfunction
 if has('conceal')
     set conceallevel=2 concealcursor=i
 endif 
-
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Comamnd 'ban' like 'ba' and 'vert ba', but be more nautual.
@@ -989,6 +1035,7 @@ endif
 "{{{
 cabbrev ban LayoutBuffer
 command! -nargs=* LayoutBuffer call s:Layout_buffer_allinone(<f-args>)
+"{{{
 function! s:Layout_buffer_allinone(col)
     " let expr = printf('%d/%d.0', a:row, a:col)
     " let trow = eval(expr)
@@ -1018,4 +1065,5 @@ function! s:Layout_buffer_allinone(col)
         let index = index + 1
     endwhile
 endfunction
+"}}}
 "}}}
