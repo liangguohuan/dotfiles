@@ -546,26 +546,6 @@ map <leader>s? z=
 " Remove the Windows ^M - when the encodings gets messed up 
 noremap dwm mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
-" Smart quit in windows and buffers
-map <silent> <leader>q :<C-U>call SmartQuit()<cr>
-function! SmartQuit() abort
-    let s:winnums = winnr('$')
-    let s:bufnums = GetBufListedNr()
-    let s:syntaxerr =  exists('*SyntasticStatuslineFlag') ? SyntasticStatuslineFlag() : ''
-
-    if &filetype == 'help'
-        exe 'q'
-    elseif s:syntaxerr != ''
-        exe 'Bclose'
-    elseif buflisted(bufnr('%')) == 0 && s:winnums > 1
-        exe 'q'
-    elseif s:winnums == 1 || s:winnums == 2 && s:bufnums < 2
-        exe 'Bclose'
-    else
-        exe 'q'
-    endif
-endfunction
-
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 "}}}
@@ -764,11 +744,38 @@ autocmd FileType help,git nmap <buffer> q :<C-U>q<CR>
 
 nnoremap <silent> <F4> :<C-u>q<cr>
 
+" Smart quit in windows and buffers
+map <silent> <leader>q :<C-U>call SmartQuit()<cr>
+"{{{
+function! SmartQuit() abort
+    let s:winnums = winnr('$')
+    let s:bufnums = GetBufListedNr()
+    let s:syntaxerr =  exists('*SyntasticStatuslineFlag') ? SyntasticStatuslineFlag() : ''
+
+    if &filetype == 'help'
+        exe 'q'
+    elseif &filetype == 'vimfiler'
+        exe 'normal q'
+    elseif s:syntaxerr != ''
+        exe 'Bclose'
+    elseif buflisted(bufnr('%')) == 0 && s:winnums > 1
+        exe 'q'
+    elseif s:winnums == 1 || s:winnums == 2 && s:bufnums < 2
+        exe 'Bclose'
+    else
+        exe 'q'
+    endif
+endfunction
+"}}}
+
+" map <C-q> to quit window (deal with two windows are opened)
 nnoremap <C-q> :<C-u>call SmartQwindow()<CR>
 "{{{
 function! SmartQwindow() abort
    if &filetype == 'unite'
        exe "UniteClose"
+   elseif &filetype == 'vimfiler'
+       exe 'normal q'
    else
        exe "q"
    endif
