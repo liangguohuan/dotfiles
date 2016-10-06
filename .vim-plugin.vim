@@ -85,8 +85,8 @@ let g:unite_source_menu_menus.git = {
     \}
 let logwatchadded = 'exe "Nice Git! log --follow --diff-filter=A --find-renames=40\\% " input("comando git:", expand("%:t"))'
 let g:unite_source_menu_menus.git.command_candidates = [
-    \['▷ tig show                                        ⌘ ,gt',  'exe "Unite tig -no-split"'],
-    \['▷ tig preview                                     ⌘ ,gtp', 'exe "Unite tig -no-split -auto-preview"'],
+    \['▷ tig preview     (Tig)                           ⌘ ,gt', 'exe "Unite tig -no-split -auto-preview"'],
+    \['▷ gitv browser    (Gitv)                          ⌘ ,gv', 'exe "Gitv"'],
     \['▷ git status      (Fugitive)                      ⌘ ,gs',  'Gstatus'],
     \['▷ git diff        (Fugitive)                      ⌘ ,gd',  'Gdiff'],
     \['▷ git commit      (Fugitive)                      ⌘ ,gc',  'Gcommit'],
