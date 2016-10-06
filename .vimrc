@@ -45,7 +45,7 @@ Plugin 'https://github.com/bruno-/vim-alt-mappings.git'
 Plugin 'https://github.com/taku-o/vim-toggle.git'
 Plugin 'https://github.com/thinca/vim-qfreplace.git'
 Plugin 'https://github.com/Konfekt/FastFold.git'
-Plugin 'https://github.com/mhinz/vim-startify.git'
+" Plugin 'https://github.com/mhinz/vim-startify.git'
 " }}}
 " snipmate {{{
 " Plugin 'tomtom/tlib_vim'
