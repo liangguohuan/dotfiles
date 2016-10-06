@@ -1,26 +1,4 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim-session
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-noremap <leader>seo : <C-U>SessionOpen  
-noremap <leader>ses : <C-U>SessionSave 
-noremap <leader>sev : <C-U>SessionView<CR>
-
-" Don't save hidden and unloaded buffers in sessions.
-" set sessionoptions-=buffers
-let g:session_default_to_last = 1
-let g:session_command_aliases = 1
-let g:session_autosave_silent = 1
-let g:session_verbose_messages = 0
-let g:session_autosave = 'yes'
-let g:session_autoload = 'no'
-" if has("gui_running")
-    " let g:session_autoload = 'yes'
-" else
-    " let g:session_autoload = 'no'
-" endif 
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Unite
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " {{{
@@ -829,3 +807,17 @@ nnoremap <leader>tm :ToggleMarkdowExpand<CR>
 command! ToggleMarkdowExpand ToggleConceal
 
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-startify
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" set sessionoptions-=buffers
+" set sessionoptions-=options
+let g:session_default_to_last = 1
+let g:session_command_aliases = 1
+let g:session_autosave_silent = 1
+let g:session_verbose_messages = 0
+let g:session_autosave = 'yes'
+let g:session_autoload = 'no'
+let g:startify_session_dir = '~/.vim/sessions'
+let g:startify_session_persistence = 1
+let g:startify_session_delete_buffers = 1

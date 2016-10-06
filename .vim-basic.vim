@@ -860,27 +860,19 @@ endfunction
 " MaximizeWindow
 "{{{
 " The bottom will more one line when vim session is loaded in notebook.
-if has('gui_running')
-    autocmd SessionLoadPost,GuiEnter * : call Maximize_Window()
-endif
-"{{{
-function Maximize_Window()
-    " fixed bug: plugin vim-session command OpenSession blank a bottom line
-    silent !wmctrl -r :ACTIVE: -b toggle,maximized_vert,maximized_horz
-    " here is the originally main code only
-    silent !wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
-    " additional code
-    lang en_US.utf8
-endfunction
+" if has('gui_running')
+"     autocmd SessionLoadPost,GuiEnter * : call Maximize_Window()
+" endif
+" "{{{
+" function Maximize_Window()
+"     " fixed bug: plugin vim-session command OpenSession blank a bottom line
+"     silent !wmctrl -r :ACTIVE: -b toggle,maximized_vert,maximized_horz
+"     " here is the originally main code only
+"     silent !wmctrl -r :ACTIVE: -b add,maximized_vert,maximized_horz
+"     " additional code
+"     lang en_US.utf8
+" endfunction
 "}}}
-" Go to last file(s) if invoked without arguments. 
-" autocmd VimLeave * nested if (!isdirectory($HOME . "/.vim")) |
-" \ call mkdir($HOME . "/.vim") |
-" \ endif |
-" \ execute "mksession! " . $HOME . "/.vim/Session.vim"
-
-" autocmd VimEnter * nested if argc() == 0 && filereadable($HOME . "/.vim/Session.vim") |
-" \ execute "source " . $HOME . "/.vim/Session.vim" 
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

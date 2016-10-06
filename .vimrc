@@ -17,8 +17,8 @@ Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
 
 " vim-session
-Plugin 'https://github.com/xolox/vim-misc.git'
-Plugin 'https://github.com/xolox/vim-session.git'
+" Plugin 'https://github.com/xolox/vim-misc.git'
+" Plugin 'https://github.com/xolox/vim-session.git'
 
 " base editor plugins {{{
 Plugin 'https://github.com/altercation/vim-colors-solarized.git'
@@ -45,7 +45,7 @@ Plugin 'https://github.com/bruno-/vim-alt-mappings.git'
 Plugin 'https://github.com/taku-o/vim-toggle.git'
 Plugin 'https://github.com/thinca/vim-qfreplace.git'
 Plugin 'https://github.com/Konfekt/FastFold.git'
-" Plugin 'https://github.com/mhinz/vim-startify.git'
+Plugin 'https://github.com/mhinz/vim-startify.git'
 " }}}
 " snipmate {{{
 " Plugin 'tomtom/tlib_vim'
