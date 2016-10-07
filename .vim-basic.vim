@@ -737,7 +737,7 @@ function! SmartQuit(tag) abort
     " if gdiff run, call function once
     if getwinvar('#', '&diff')
         exe 'q'
-        if bufnr('fugitive') > -1
+        if buflisted(bufnr('fugitive')) != 0
             exe 'bdelete! fugitive:'
         endif
         return
