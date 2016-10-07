@@ -40,6 +40,7 @@ Plugin 'https://github.com/duggiefresh/vim-easydir.git'
 Plugin 'https://github.com/terryma/vim-multiple-cursors.git'
 Plugin 'https://github.com/vim-scripts/YankRing.vim.git'
 Plugin 'https://github.com/junegunn/goyo.vim.git'
+Plugin 'https://github.com/roman/golden-ratio.git'
 Plugin 'https://github.com/jiangmiao/auto-pairs.git'
 Plugin 'https://github.com/bruno-/vim-alt-mappings.git'
 Plugin 'https://github.com/taku-o/vim-toggle.git'
@@ -119,7 +120,6 @@ Plugin 'https://github.com/mattn/webapi-vim.git'
 Plugin 'https://github.com/Rykka/trans.vim.git'
 Plugin 'https://github.com/seyDoggy/vim-watchforchanges.git'
 " }}}
-
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
