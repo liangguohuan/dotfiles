@@ -768,12 +768,12 @@ let g:php_cs_fixer_verbose = 0                    " Return the output of command
 " => Emmet
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:user_emmet_install_global = 0 
-autocmd FileType html,css EmmetInstall
 let g:user_emmet_leader_key='<C-Z>'
-imap <C-Y> <C-Z><Leader>
-vmap <C-Y> <C-Z><Leader>
-imap <C-K> <C-Z>k
-nmap <C-K> <C-Z>k 
+autocmd FileType html,css EmmetInstall
+autocmd FileType html,css imap <C-Y> <C-Z><Leader>
+autocmd FileType html,css vmap <C-Y> <C-Z><Leader>
+autocmd FileType html,css imap <C-X> <C-Z>k
+autocmd FileType html,css nmap <C-X> <C-Z>k 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => FastFold, neocomplete nedd it.
