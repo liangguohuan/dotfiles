@@ -594,6 +594,9 @@ nnoremap  <Leader>td :<C-U>TaskList<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => fugitive
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" keymap
+autocmd FileType gitcommit inoremap <buffer> <C-c> <Esc>:q<CR>
+autocmd FileType gitcommit nnoremap <buffer> <C-c> <Esc>:q<CR>
 " How to use it:
 " 1. input the short cut and hit the key 'Enter'
 " 2. input the short cut and hit the key 'Space'
