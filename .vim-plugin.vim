@@ -441,7 +441,7 @@ let g:goyo_margin_bottom = 2
 nnoremap <silent> <leader>z :call GoyoFunc()<cr>
 
 let g:goyo_toggle_trigger = 0
-function GoyoFunc()
+function! GoyoFunc()
     if &filetype == "help"
         let g:goyo_width = 100
     endif

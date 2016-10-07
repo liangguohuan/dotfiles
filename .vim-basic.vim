@@ -150,7 +150,7 @@ nmap <silent> <leader>wa :wa!<cr>
 
 " :W sudo saves the file 
 " (useful for handling the permission-denied error)
-" command W silent w !sudo tee % > /dev/null 
+" command! W silent w !sudo tee % > /dev/null 
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -691,7 +691,7 @@ map <c-k><c-i> gg=G``
 
 " cursorline toggle
 cabbrev cls set cursorline!<CR>
-command Reload :e!
+command! Reload :e!
 
 " fix the redraw problems with slient
 " from: http://vim.wikia.com/wiki/Avoiding_the_%22Hit_ENTER_to_continue%22_prompts
@@ -974,7 +974,7 @@ set autowriteall
 " => make the code right
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{
-command Coderight call MakeTheCodeRight() 
+command! Coderight call MakeTheCodeRight() 
 "{{{
 function! MakeTheCodeRight() abort
     try
@@ -997,8 +997,8 @@ endfunction
 " => copy filename
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{
-command Filename call CopyFilePath('t') 
-command Filepath call CopyFilePath('p')
+command! Filename call CopyFilePath('t') 
+command! Filepath call CopyFilePath('p')
 nmap <C-C>f :Filename<CR>
 nmap <C-C>c :Filepath<CR>
 "{{{
