@@ -63,8 +63,8 @@ let g:unite_source_menu_menus.git = {
     \}
 let logwatchadded = 'exe "Nice Git! log --follow --diff-filter=A --find-renames=40\\% " input("comando git:", expand("%:t"))'
 let g:unite_source_menu_menus.git.command_candidates = [
-    \['▷ tig preview     (Tig)                           ⌘ ,gt', 'exe "Unite tig -no-split -auto-preview"'],
-    \['▷ gitv browser    (Gitv)                          ⌘ ,gv', 'exe "Gitv"'],
+    \['▷ tig preview     (Tig)                           ⌘ ,gt',  'exe "Unite tig -no-split -auto-preview"'],
+    \['▷ gitv browser    (Gitv)                          ⌘ ,gv',  'exe "Gitv"'],
     \['▷ git status      (Fugitive)                      ⌘ ,gs',  'Gstatus'],
     \['▷ git diff        (Fugitive)                      ⌘ ,gd',  'Gdiff'],
     \['▷ git commit      (Fugitive)                      ⌘ ,gc',  'Gcommit'],
@@ -77,10 +77,11 @@ let g:unite_source_menu_menus.git.command_candidates = [
     \['▷ git checkout    (Fugitive)                      ⌘ ,go',  'Gread'],
     \['▷ git rm          (Fugitive)                      ⌘ ,gr',  'Gremove'],
     \['▷ git mv          (Fugitive)                      ⌘ ,gm',  'exe "Gmove " input("DESTINO: ")'],
-    \['▷ git push        (Fugitive, salida por buffer)   ⌘ ,gp',  'Git! push'],
-    \['▷ git pull        (Fugitive, salida por buffer)   ⌘ ,gg',  'Git! pull'],
-    \['▷ git prompt      (Fugitive, salida por buffer)   ⌘ ,gi',  'exe "Git! " input("COMANDO GIT: ")'],
-    \['▷ git cd          (Fugitive)', 'Gcd'],
+    \['▷ git push        (Fugitive)                      ⌘ ,gp',  'Git! push'],
+    \['▷ git pull        (Fugitive)                      ⌘ ,gg',  'Git! pull'],
+    \['▷ git prompt      (Fugitive)                      ⌘ ,gi',  'exe "Git! " input("COMANDO GIT: ")'],
+    \['▷ git ci          (Fugitive) (add and commmit)    ⌘ ,gg',  'exe "Gwrite \| Gcommit"'],
+    \['▷ git cd          (Fugitive)'                           ,  'Gcd'],
     \]
 nnoremap <silent>[unite]g :Unite -prompt=>>> -silent -start-insert menu:git<CR>
 for item in g:unite_source_menu_menus.git.command_candidates
