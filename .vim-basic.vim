@@ -731,44 +731,57 @@ autocmd BufWinEnter * if &previewwindow | nmap <buffer> q :q<CR> | endif
 nnoremap <silent> <F4> :<C-u>q<cr>
 
 " Smart quit in windows and buffers
-map <silent> <leader>q :<C-U>call SmartQuit()<cr>
+map <silent> <leader>q :<C-U>call SmartQuit(0)<cr>
 "{{{
-function! SmartQuit() abort
-    let s:winnums = winnr('$')
-    let s:bufnums = GetBufListedNr()
-    let s:syntaxerr =  exists('*SyntasticStatuslineFlag') ? SyntasticStatuslineFlag() : ''
+function! SmartQuit(tag) abort
 
-    if &filetype == 'help'
+    " if gdiff run, call function once
+    if getwinvar('#', '&diff')
         exe 'q'
-    elseif &filetype == 'vimfiler'
-        exe 'normal q'
-    elseif s:syntaxerr != ''
-        exe 'Bclose'
-    elseif buflisted(bufnr('%')) == 0 && s:winnums > 1
-        exe 'q'
-    elseif s:winnums == 1 || s:winnums == 2 && s:bufnums < 2
-        exe 'Bclose'
-    else
-        exe 'q'
+        if bufnr('fugitive') > -1
+            exe 'bdelete! fugitive:'
+        endif
+        return
     endif
+
+    " Close all specail  window
+    exe 'pc'
+    exe 'lclose'
+    exe 'cclose'
+
+    " delete the current window
+    if a:tag == 0
+        if buflisted(bufnr('%')) == 0
+            exe 'bdelete!'
+        else
+            if winnr('$') > 1
+                exe 'q'
+            else
+                exe 'bdelete!'
+            endif
+        endif
+    endif
+
+    " delete unuseful window
+    let winnums = winnr('$')
+    if winnums > 0
+        let index = winnums
+        while index > 0
+            if buflisted(winbufnr(index)) == 0
+                exe 'bdelete!'
+            endif
+            let index -= 1 
+        endwhile
+
+    endif
+
+    " continue
+    if buflisted(bufnr('%')) == 0 && GetBufListedNr() > 0
+        call SmartQuit(1)
+    endif
+
 endfunction
 "}}}
-
-" map <C-q> to quit window (deal with two windows are opened)
-nnoremap <C-q> :<C-u>call SmartQwindow()<CR>
-"{{{
-function! SmartQwindow() abort
-   if &filetype == 'unite'
-       exe "UniteClose"
-   elseif &filetype == 'vimfiler'
-       exe 'normal q'
-   else
-       exe "q"
-   endif
-   exe "normal! \<C-w>\<C-o>"
-endfunction
-"}}}
-
 
 " toggle conceal
 command! ToggleConceal call s:ToogleConceal()
