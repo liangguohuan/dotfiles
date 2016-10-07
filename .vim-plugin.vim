@@ -33,9 +33,13 @@ function! s:unite_nice_settings()
     imap <buffer> <C-z>     <Plug>(unite_toggle_transpose_window)
     imap <buffer> <C-y>     <Plug>(unite_narrowing_path)
     nmap <buffer> <C-y>     <Plug>(unite_narrowing_path)
-    nmap <buffer> <C-j>     <Plug>(unite_toggle_auto_preview)
-    nmap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
     imap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
+    nmap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
+
+    nmap <buffer> <C-t>     <Plug>(unite_toggle_auto_preview)
+    nmap <buffer> <C-q>     <Plug>(unite_print_candidate)
+    nmap <buffer> <C-X>     <Plug>(unite_redraw)
+    
     nnoremap <silent><buffer><expr> l
                 \ unite#smart_map('l', unite#do_action('default'))
 
@@ -98,6 +102,13 @@ if executable('ag')
   let g:unite_source_grep_default_opts = '-i --no-heading --no-color -k -H'
  let g:unite_source_grep_recursive_opt = ''
 endif 
+
+" TmuxNavigate Keymap Fixed
+autocmd FileType unite nnoremap <buffer> <silent> <C-H> :TmuxNavigateLeft<cr>
+autocmd FileType unite nnoremap <buffer> <silent> <C-J> :TmuxNavigateDown<cr>
+autocmd FileType unite nnoremap <buffer> <silent> <C-K> :TmuxNavigateUp<cr>
+autocmd FileType unite nnoremap <buffer> <silent> <C-L> :TmuxNavigateRight<cr>
+
 "}}}
 
 
@@ -109,6 +120,9 @@ let g:vimfiler_safe_mode_by_default=0
 nnoremap <silent> [unite]v  :<C-u>VimFiler<CR>
 autocmd FileType vimfiler nmap <buffer> <Tab> <Plug>(vimfiler_hide)
 autocmd FileType vimfiler nmap <buffer> <C-N> <Plug>(vimfiler_switch_to_another_vimfiler)
+" fixed the map <C-J> for TmuxNavigate
+autocmd FileType vimfiler nmap <buffer> <C-Q> <Plug>(vimfiler_switch_to_history_directory)
+autocmd FileType vimfiler nnoremap <buffer> <silent> <C-J> :TmuxNavigateDown<cr>
 "}}}
 
 
