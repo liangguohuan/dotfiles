@@ -342,7 +342,7 @@ let g:Lf_WildIgnore = {
         \ 'dir': ['.svn','.git', 'node_modules'],
         \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
         \}
-let g:Lf_MruFileExclude = ['*index', '*HEAD', '*.out']
+let g:Lf_MruFileExclude = ['*.git*', '*.out']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => snipMate (beside <TAB> support <CTRL-j>)
@@ -823,3 +823,10 @@ let g:session_autoload = 'no'
 let g:startify_session_dir = '~/.vim/sessions'
 let g:startify_session_persistence = 1
 let g:startify_session_delete_buffers = 1
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => golden-ratio
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <C-w>g :GoldenRatioToggle<CR>
