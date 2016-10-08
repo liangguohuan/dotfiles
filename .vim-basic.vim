@@ -341,7 +341,7 @@ map k gk
 map <space> /
 
 " Disable highlight when <leader><cr> is pressed
-nnoremap <silent> <CR> :noh<CR>
+nnoremap <silent> <leader><CR> :noh<CR>
 
 " Smart way to move between windows
 cabbrev vba vert ba
@@ -603,7 +603,7 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{
 map <leader>e :e! ~/.vimrc<cr>
-autocmd! bufwritepost vimrc source ~/.vimrc 
+autocmd! bufwritepost *.vimrc source ~/.vimrc 
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -789,7 +789,7 @@ function! s:ToogleConceal() abort
 endfunction
 
 " show the command line 
-nnoremap cm :
+nnoremap cm  : 
 nnoremap cme :e 
 nnoremap cms :e ~/.storge<cr>
 nnoremap cmt :e /tmp/test.php<cr>
