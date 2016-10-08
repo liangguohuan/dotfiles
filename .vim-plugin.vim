@@ -437,16 +437,20 @@ let g:syntastic_check_on_wq = 0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-bookmark
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" highlight BookmarkSign ctermbg=235 ctermfg=Gray 
-" highlight BookmarkSign guibg=#073642 guifg=#B58900
-" highlight BookmarkAnnotationSign ctermbg=235 ctermfg=Gray
-" highlight BookmarkAnnotationSign guibg=#073642 guifg=#B58900
-" highlight clear SignColumn
+highlight BookmarkSign ctermbg=NONE ctermfg=gray 
+highlight BookmarkSign guibg=NONE guifg=#A8A8A8
+highlight BookmarkAnnotationSign ctermbg=NONE ctermfg=gray
+highlight BookmarkAnnotationSign guibg=NONE guifg=#A8A8A8
+highlight BookmarkLineDefault ctermfg=NONE ctermbg=237
+highlight BookmarkLineDefault guibg=#3c3d37 gui=NONE
+highlight BookmarkAnnotationLine ctermbg=237 ctermfg=NONE
+highlight BookmarkAnnotationLine guibg=#3c3d37 guifg=NONE
+highlight clear SignColumn
+let g:bookmark_save_per_working_dir = 1
+let g:bookmark_auto_save = 1 
 " let g:bookmark_highlight_lines = 1
 " let g:bookmark_sign = '♥'
 " let g:bookmark_annotation_sign = '⚑'
-let g:bookmark_save_per_working_dir = 1
-let g:bookmark_auto_save = 1 
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -831,7 +835,7 @@ command! ToggleMarkdowExpand ToggleConceal
 " => vim-startify
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " set sessionoptions-=buffers
-" set sessionoptions-=options
+set sessionoptions-=options
 let g:session_default_to_last = 1
 let g:session_command_aliases = 1
 let g:session_autosave_silent = 1
