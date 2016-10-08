@@ -158,10 +158,9 @@ if exists percol; then
 fi
 
 function vman() {
-      vim -c "SuperMan $*"
+    vim -c "SuperMan $*"
 
-        if [ "$?" != "0"  ]; then
-                echo "No manual entry for $*"
-                  fi
-
+    if [ "$?" != "0"  ]; then
+        echo "No manual entry for $*"
+    fi
 }
