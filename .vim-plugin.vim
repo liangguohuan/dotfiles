@@ -357,7 +357,7 @@ let g:Lf_WildIgnore = {
         \ 'dir': ['.svn','.git', 'node_modules'],
         \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
         \}
-let g:Lf_MruFileExclude = ['*.git*', '*.out']
+let g:Lf_MruFileExclude = ['*.git*', '*.out', '*/vim-zsh-tmux*']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => snipMate (beside <TAB> support <CTRL-j>)
