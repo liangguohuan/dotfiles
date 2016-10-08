@@ -32,6 +32,7 @@ Plugin 'https://github.com/Yggdroot/indentLine.git'
 Plugin 'https://github.com/plasticboy/vim-markdown.git'
 " }}}
 " extended {{{
+Plugin 'https://github.com/tpope/vim-dispatch.git'
 Plugin 'https://github.com/tpope/vim-surround.git'
 Plugin 'https://github.com/tpope/vim-eunuch.git'
 Plugin 'https://github.com/tpope/vim-repeat.git'
