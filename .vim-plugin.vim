@@ -842,6 +842,15 @@ let g:startify_session_dir = '~/.vim/sessions'
 let g:startify_session_persistence = 1
 let g:startify_session_delete_buffers = 1
 
+let g:startify_skiplist = [
+    \ 'COMMIT_EDITMSG',
+    \ '\.git',
+    \ '/tmp/',
+    \ '\.\(png\|jpeg\)',
+    \ '/vim-zsh',
+    \ escape(fnamemodify(resolve($VIMRUNTIME), ':p'), '\') .'doc',
+    \ 'bundle/.*/doc',
+    \ ]
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
