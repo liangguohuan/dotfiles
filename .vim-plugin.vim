@@ -358,7 +358,7 @@ let g:Lf_WildIgnore = {
         \ 'dir': ['.svn','.git', 'node_modules'],
         \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
         \}
-let g:Lf_MruFileExclude = ['*.git*', '*.out', '*/vim-zsh-tmux*']
+let g:Lf_MruFileExclude = ['*.git*', '*.out', '*/vim-zsh-tmux*', '*/tmp/*', '*.(jpg|png|jpeg|txt)']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => snipMate (beside <TAB> support <CTRL-j>)
@@ -851,8 +851,7 @@ let g:startify_skiplist = [
     \ 'COMMIT_EDITMSG',
     \ '\.git',
     \ '/tmp/',
-    \ '\.\(png\|jpeg\)',
-    \ '/vim-zsh',
+    \ '\.\(jpg\|png\|jpeg\|txt\)',
     \ escape(fnamemodify(resolve($VIMRUNTIME), ':p'), '\') .'doc',
     \ 'bundle/.*/doc',
     \ ]
