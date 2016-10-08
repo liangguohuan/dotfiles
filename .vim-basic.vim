@@ -724,7 +724,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{
 " let the help buffer map 'q' to quit
-autocmd FileType help,git nmap <buffer> q :<C-U>q<CR>
+autocmd FileType help nmap <buffer> q :<C-U>q<CR>
 autocmd BufWinEnter * if &previewwindow | nmap <buffer> q :q<CR> | endif
 
 nnoremap <silent> <F4> :<C-u>q<cr>
