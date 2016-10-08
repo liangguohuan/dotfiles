@@ -156,11 +156,3 @@ if exists percol; then
     zle -N percol_select_history
     bindkey '^R' percol_select_history
 fi
-
-function vman() {
-    vim -c "SuperMan $*"
-
-    if [ "$?" != "0"  ]; then
-        echo "No manual entry for $*"
-    fi
-}
