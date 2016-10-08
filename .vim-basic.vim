@@ -789,7 +789,7 @@ function! s:ToogleConceal() abort
 endfunction
 
 " show the command line 
-nnoremap cm  : 
+nnoremap cm  :
 nnoremap cme :e 
 nnoremap cms :e ~/.storge<cr>
 nnoremap cmt :e /tmp/test.php<cr>
