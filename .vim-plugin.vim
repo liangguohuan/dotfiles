@@ -82,7 +82,7 @@ let g:unite_source_menu_menus.git.command_candidates = [
     \['▷ git rm          (Fugitive)                      ⌘ ,gr',  'Gremove'],
     \['▷ git mv          (Fugitive)                      ⌘ ,gm',  'exe "Gmove " input("DESTINO: ")'],
     \['▷ git push        (Fugitive)                      ⌘ ,gp',  'Git! push'],
-    \['▷ git pull        (Fugitive)                      ⌘ ,gg',  'Git! pull'],
+    \['▷ git pull        (Fugitive)                      ⌘ ,gf',  'Git! pull'],
     \['▷ git prompt      (Fugitive)                      ⌘ ,gi',  'exe "Git! " input("COMANDO GIT: ")'],
     \['▷ git ci          (Fugitive) (add and commmit)    ⌘ ,gg',  'exe "Gwrite \| Gcommit"'],
     \['▷ git cd          (Fugitive)'                           ,  'Gcd'],
