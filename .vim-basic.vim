@@ -119,7 +119,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{
 set foldlevelstart=99
-au BufWinEnter filetype vim set foldmethod=marker 
+au BufWinEnter FileType vim set foldmethod=marker 
 " set viewdir=$HOME/.vim/.vim_view/
 " au BufWritePost,BufLeave,WinLeave ?* mkview " for tabs
 " au BufWinEnter ?* silent loadview 
