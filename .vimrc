@@ -100,6 +100,7 @@ Plugin 'https://github.com/liangguohuan/vim-monokai.git'
 Plugin 'https://github.com/liangguohuan/vim-script-runner'
 Plugin 'https://github.com/liangguohuan/vim-shell-executor.git'
 Plugin 'https://github.com/liangguohuan/vim-control-window.git'
+Plugin 'https://github.com/liangguohuan/vim-toggle-abbrevs.git'
 " }}}
 " php plugins {{{
 Plugin 'https://github.com/alvan/vim-php-manual.git'
