@@ -65,29 +65,45 @@ let g:unite_source_menu_menus.git = {
     \ 'description' : '            gestionar repositorios git
         \                            ⌘ [espacio]g',
     \}
-let logwatchadded = 'exe "Nice Git! log --follow --diff-filter=A --find-renames=40\\% " input("comando git:", expand("%:t"))'
+let logwatchadded = 'exe "Git! log --follow --diff-filter=A --find-renames=40\\% " input("path:", ".")'
 let g:unite_source_menu_menus.git.command_candidates = [
-    \['▷ tig preview     (Tig)                           ⌘ ,gt',  'exe "Unite tig -no-split -auto-preview"'],
-    \['▷ gitv browser    (Gitv)                          ⌘ ,gv',  'exe "Gitv"'],
-    \['▷ git status      (Fugitive)                      ⌘ ,gs',  'Gstatus'],
-    \['▷ git diff        (Fugitive)                      ⌘ ,gd',  'Gdiff'],
-    \['▷ git commit      (Fugitive)                      ⌘ ,gc',  'Gcommit'],
-    \['▷ git log         (Fugitive)                      ⌘ ,gl',  'exe "silent Glog \| Unite -no-empty -no-tab quickfix"'],
-    \['▷ git log last    (Fugitive)                      ⌘ ,gll', 'exe "Nice Git log -p -1"'],
-    \['▷ git log 2 days  (Fugitive)                      ⌘ ,glo', 'exe "Nice Git log --pretty=oneline --since=\"2 days ago\""'],
-    \['▷ git log watch   (Fugitive)                      ⌘ ,glf', logwatchadded],
-    \['▷ git blame       (Fugitive)                      ⌘ ,gb',  'Gblame'],
-    \['▷ git stage       (Fugitive)                      ⌘ ,gw',  'Gwrite'],
-    \['▷ git checkout    (Fugitive)                      ⌘ ,go',  'Gread'],
-    \['▷ git rm          (Fugitive)                      ⌘ ,gr',  'Gremove'],
-    \['▷ git mv          (Fugitive)                      ⌘ ,gm',  'exe "Gmove " input("DESTINO: ")'],
-    \['▷ git push        (Fugitive)                      ⌘ ,gp',  'Git! push'],
-    \['▷ git pull        (Fugitive)                      ⌘ ,gf',  'Git! fetch'],
-    \['▷ git pull        (Fugitive)                      ⌘ ,gfm', 'Git! pull'],
-    \['▷ git prompt      (Fugitive)                      ⌘ ,gi',  'exe "Git! " input("COMANDO GIT: ")'],
-    \['▷ git ci          (Fugitive) (add and commmit)    ⌘ ,gg',  'exe "Gwrite \| Gcommit"'],
-    \['▷ git cd          (Fugitive)'                           ,  'Gcd'],
+    \['▷ tig preview     (Tig)                           ⌘ ,gt  ', 'exe "Unite tig -no-split -auto-preview"'],
+    \['▷ gitv browser    (Gitv)                          ⌘ ,gv  ', 'exe "Gitv"'],
+    \['▷ git status                                      ⌘ ,gs  ', 'Gstatus'],
+    \['▷ git diff                                        ⌘ ,gd  ', 'Gdiff'],
+    \['▷ git commit                                      ⌘ ,gc  ', 'Gcommit'],
+    \['▷ git log                                         ⌘ ,gl  ', 'exe "silent Glog \| Unite -no-empty -no-tab quickfix"'],
+    \['▷ git blame                                       ⌘ ,gb  ', 'Gblame'],
+    \['▷ git stage                                       ⌘ ,gw  ', 'Gwrite'],
+    \['▷ git checkout                                    ⌘ ,go  ', 'Gread'],
+    \['▷ git rm                                          ⌘ ,gr  ', 'Gremove'],
+    \['▷ git mv                                          ⌘ ,gm  ', 'exe "Gmove " input("DESTINO: ")'],
+    \['▷ git push                                        ⌘ ,gp  ', 'Git! push'],
+    \['▷ git pull                                        ⌘ ,gf  ', 'Git! fetch'],
+    \['▷ git pull                                        ⌘ ,gfm ', 'Git! pull'],
+    \['▷ git prompt                                      ⌘ ,gi  ', 'exe "Git! " input("COMANDO GIT: ")'],
+    \['▷ git cd                                          ⌘ ,gcd ', 'Gcd'],
+    \['▷ git () add and commmit                          ⌘ ,gg  ', 'exe "Gwrite \| Gcommit"'],
+    \['▷ git () change last commit message               ⌘ ,gca ', 'Gcommit --amend'],
+    \['▷ git () log show last commit                     ⌘ ,gll ', 'Git! log -p -1"'],
+    \['▷ git () log show two days commits                ⌘ ,glo ', 'Git! log --pretty=oneline --since=\"2 days ago\""'],
+    \['▷ git () log show what added                      ⌘ ,glf ', logwatchadded],
+    \['▷ git () show the repositorios info                      ', 'Git! remote -v'],
+    \['▷ git () show remote url                                 ', 'Git! config --get remote.origin.url'],
+    \['▷ git () log show current file all commit                ', 'Git! log -p -- %'],
+    \['▷ git () current file last commit                        ', 'Git! show %'],
+    \['▷ git () current file new change                         ', 'Git! diff HEAD %'],
+    \['▷ git () current file recover from remote                ', 'Git! checkout -- %'],
+    \['▷ git () current file revert commit                      ', 'Git! revert HEAD~1 %'],
+    \['▷ git () current file reset commit soft                  ', 'Git! reset --soft HEAD~1 %'],
+    \['▷ git () current file reset commit hard                  ', 'Git! reset --hard HEAD~1 %'],
+    \['▷ git () reset commit hard and clean cache               ', 'Git! reset --hard HEAD~1 && git clean -fd'],
+    \['▷ git () stash dirty working directory                   ', 'Git! stash'],
+    \['▷ git () remove and apply a single stashed state         ', 'Git! stash pop'],
+    \['▷ git () show stash list                                 ', 'Git! stash list'],
     \]
+
+
 nnoremap <silent>[unite]g :Unite -prompt=>>> -silent -start-insert menu:git<CR>
 for item in g:unite_source_menu_menus.git.command_candidates
     if stridx(item[0], ',') > -1
@@ -608,30 +624,14 @@ autocmd FileType gitcommit nnoremap <buffer> <silent> <C-c> <Esc>:q<CR>
 cabbrev gcm   Gcommit -m
 cabbrev gcma  Gcommit -a -m
 cabbrev gcam  Gcommit --amend -m
-cabbrev grv   Git! remote -v
-cabbrev gurl  Git! config --get remote.origin.url
 cabbrev g     Git!
-cabbrev gst   Gstatus
-cabbrev gad   Git! add
+cabbrev gs    Gstatus
+cabbrev ga    Git! add
+cabbrev gaa   Git! add --all
 cabbrev gco   Git! checkout
 cabbrev gbr   Git! branch
 cabbrev gdl   Git! pull origin master
 cabbrev gul   Git! push -u origin master
-cabbrev gsh   Git! show
-cabbrev gdh   Git! diff HEAD
-cabbrev grec  Git! checkout --
-cabbrev grev  Git! revert HEAD~1
-cabbrev grs   Git! reset --soft HEAD~1
-cabbrev grh   Git! reset --hard HEAD~1
-cabbrev grc   Git! reset --hard HEAD~1 && git clean -fd
-cabbrev gsta  Git! stash
-cabbrev gstap Git! stash pop
-cabbrev gstal Git! stash list
-cabbrev gwa   Git! log --follow --diff-filter=A --find-renames=40\%
-cabbrev glo   Git! log --pretty=oneline --since="2 days ago"
-cabbrev gll   Git! log -p -1
-cabbrev glf   Git! log -p --
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Gitgutter
