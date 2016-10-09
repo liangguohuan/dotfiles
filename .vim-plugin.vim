@@ -224,8 +224,8 @@ endif
 let g:neosnippet#enable_snipmate_compatibility = 1
 
 " Tell Neosnippet about the other snippets
-" let g:neosnippet#snippets_directory='~/.vim/snippets'
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-php-snippets/snippets'
+let g:neosnippet#snippets_directory='~/.vim/snippets'
 "}}}
 
 
@@ -610,7 +610,7 @@ cabbrev gcma  Gcommit -a -m
 cabbrev gcam  Gcommit --amend -m
 cabbrev grv   Git remote -v
 cabbrev gurl  Git config --get remote.origin.url
-cabbrev G     Git
+cabbrev g     Git
 cabbrev gst   Gstatus
 cabbrev gad   Git add
 cabbrev gco   Git checkout
