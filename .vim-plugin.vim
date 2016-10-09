@@ -608,29 +608,29 @@ autocmd FileType gitcommit nnoremap <buffer> <silent> <C-c> <Esc>:q<CR>
 cabbrev gcm   Gcommit -m
 cabbrev gcma  Gcommit -a -m
 cabbrev gcam  Gcommit --amend -m
-cabbrev grv   Git remote -v
-cabbrev gurl  Git config --get remote.origin.url
-cabbrev g     Git
+cabbrev grv   Git! remote -v
+cabbrev gurl  Git! config --get remote.origin.url
+cabbrev g     Git!
 cabbrev gst   Gstatus
-cabbrev gad   Git add
-cabbrev gco   Git checkout
-cabbrev gbr   Git branch
-cabbrev gdl   Git pull origin master
-cabbrev gul   Git push -u origin master
-cabbrev gsh   Git show
-cabbrev gdh   Git diff HEAD
-cabbrev grec  Git checkout --
-cabbrev grev  Git revert HEAD~1
-cabbrev grs   Git reset --soft HEAD~1
-cabbrev grh   Git reset --hard HEAD~1
-cabbrev grc   Git reset --hard HEAD~1 && git clean -fd
-cabbrev gsta  Git stash
-cabbrev gstap Git stash pop
-cabbrev gstal Git stash list
-cabbrev gwa   Nice Git log --follow --diff-filter=A --find-renames=40\%
-cabbrev glo   Nice Git log --pretty=oneline --since="2 days ago"
-cabbrev gll   Nice Git log -p -1
-cabbrev glf   Nice Git log -p --
+cabbrev gad   Git! add
+cabbrev gco   Git! checkout
+cabbrev gbr   Git! branch
+cabbrev gdl   Git! pull origin master
+cabbrev gul   Git! push -u origin master
+cabbrev gsh   Git! show
+cabbrev gdh   Git! diff HEAD
+cabbrev grec  Git! checkout --
+cabbrev grev  Git! revert HEAD~1
+cabbrev grs   Git! reset --soft HEAD~1
+cabbrev grh   Git! reset --hard HEAD~1
+cabbrev grc   Git! reset --hard HEAD~1 && git clean -fd
+cabbrev gsta  Git! stash
+cabbrev gstap Git! stash pop
+cabbrev gstal Git! stash list
+cabbrev gwa   Git! log --follow --diff-filter=A --find-renames=40\%
+cabbrev glo   Git! log --pretty=oneline --since="2 days ago"
+cabbrev gll   Git! log -p -1
+cabbrev glf   Git! log -p --
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
