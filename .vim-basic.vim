@@ -341,7 +341,7 @@ map k gk
 map <space> /
 
 " Disable highlight when <leader><cr> is pressed
-nnoremap <silent> <leader><CR> :noh<CR>
+nnoremap <silent> <CR> :noh<CR>
 
 " Smart way to move between windows
 cabbrev vba vert ba
@@ -365,7 +365,7 @@ function! s:ZoomToggle() abort
 endfunction
 "}}}
 command! ZoomToggle call s:ZoomToggle()
-nnoremap <silent> <C-W>z :ZoomToggle<CR>
+nnoremap <silent> <leader>a :ZoomToggle<CR>
 
 " map like terminal
 inoremap <C-E> <End>
@@ -455,18 +455,6 @@ nmap <M-j> mz:m+<cr>`z
 nmap <M-k> mz:m-2<cr>`z
 vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
-nmap <C-S-DOWN> mz:m+<cr>`z
-nmap <C-S-UP> mz:m-2<cr>`z
-vmap <C-S-DOWN> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <C-S-UP> :m'<-2<cr>`>my`<mzgv`yo`z
-
-if has("mac") || has("macunix")
-  nmap <D-j> <M-j>
-  nmap <D-k> <M-k>
-  vmap <D-j> <M-j>
-  vmap <D-k> <M-k>
-endif
 
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
 func! DeleteTrailingWS()
@@ -732,7 +720,7 @@ nmap <M-e> <C-e>
 nmap <M-y> <C-y>
 nmap <M-i> <C-i>
 nmap <M-o> <C-o>
-nmap <M-w> <C-w>z
+nmap <M-m> <C-m>
 nmap <M-w><M-o> <C-w><C-o>
 cmap <M-a> <C-a>
 cmap <M-e> <C-e>
