@@ -723,6 +723,26 @@ endif
 " => key map
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{
+" human keymap
+nmap <M-f> <C-f>
+nmap <M-b> <C-b>
+nmap <M-d> <C-d>
+nmap <M-u> <C-u>
+nmap <M-e> <C-e>
+nmap <M-y> <C-y>
+nmap <M-i> <C-i>
+nmap <M-o> <C-o>
+nmap <M-w> <C-w>z
+nmap <M-w><M-o> <C-w><C-o>
+cmap <M-a> <C-a>
+cmap <M-e> <C-e>
+cmap <M-w> <C-w>
+cmap <M-h> <C-h>
+cmap <M-u> <C-u>
+cmap <M-f> <C-f>
+cmap <M-m> <C-m>
+cmap <M-g> :<M-u>ToggleAbbrevs<CR>:
+
 " let the help buffer map 'q' to quit
 autocmd FileType help nmap <buffer> q :<C-U>q<CR>
 autocmd BufWinEnter * if &previewwindow | nmap <buffer> q :q<CR> | endif
