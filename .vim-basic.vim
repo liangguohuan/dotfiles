@@ -737,7 +737,6 @@ cnoremap <M-h> <C-h>
 cnoremap <M-u> <C-u>
 cnoremap <M-f> <C-f>
 cnoremap <M-m> <C-m>
-cnoremap <M-g> :<M-u>ToggleAbbrevs<CR>:
 
 " let the help buffer map 'q' to quit
 autocmd FileType help nmap <buffer> q :<C-U>q<CR>
