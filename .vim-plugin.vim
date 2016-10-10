@@ -120,12 +120,6 @@ if executable('ag')
  let g:unite_source_grep_recursive_opt = ''
 endif 
 
-" TmuxNavigate Keymap Fixed
-autocmd FileType unite nnoremap <buffer> <silent> <C-H> :TmuxNavigateLeft<cr>
-autocmd FileType unite nnoremap <buffer> <silent> <C-J> :TmuxNavigateDown<cr>
-autocmd FileType unite nnoremap <buffer> <silent> <C-K> :TmuxNavigateUp<cr>
-autocmd FileType unite nnoremap <buffer> <silent> <C-L> :TmuxNavigateRight<cr>
-
 "}}}
 
 
@@ -137,9 +131,6 @@ let g:vimfiler_safe_mode_by_default=0
 nnoremap <silent> [unite]v  :<C-u>VimFiler<CR>
 autocmd FileType vimfiler nmap <buffer> <Tab> <Plug>(vimfiler_hide)
 autocmd FileType vimfiler nmap <buffer> <C-N> <Plug>(vimfiler_switch_to_another_vimfiler)
-" fixed the map <C-J> for TmuxNavigate
-autocmd FileType vimfiler nmap <buffer> <C-Q> <Plug>(vimfiler_switch_to_history_directory)
-autocmd FileType vimfiler nnoremap <buffer> <silent> <C-J> :TmuxNavigateDown<cr>
 "}}}
 
 
