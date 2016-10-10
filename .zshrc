@@ -117,6 +117,10 @@ zle -N sudo-command-line
 bindkey "\e\e" sudo-command-line
 #}}}
 
+# remove keymap [Alt+l], dont exec 'ls' to list directory contents,
+# and this is helpful for vim-tmux-navigator to map 'Alt'
+bindkey -r '^[l'
+
 # zsh alias setting
 alias '..'='cd ..'
 alias -g ...='../..'
