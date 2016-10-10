@@ -714,6 +714,7 @@ endif
 " human keymap
 inoremap <M-u> <Esc>ui
 inoremap <M-k> <Esc>ddO
+inoremap <M-m> <Esc>o
 inoremap <M-a> <HOME>
 inoremap <M-e> <END>
 inoremap <M-w> <C-w>
