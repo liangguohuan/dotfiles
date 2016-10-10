@@ -712,24 +712,30 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{
 " human keymap
-nmap <M-f> <C-f>
-nmap <M-b> <C-b>
-nmap <M-d> <C-d>
-nmap <M-u> <C-u>
-nmap <M-e> <C-e>
-nmap <M-y> <C-y>
-nmap <M-i> <C-i>
-nmap <M-o> <C-o>
-nmap <M-m> <C-m>
-nmap <M-w><M-o> <C-w><C-o>
-cmap <M-a> <C-a>
-cmap <M-e> <C-e>
-cmap <M-w> <C-w>
-cmap <M-h> <C-h>
-cmap <M-u> <C-u>
-cmap <M-f> <C-f>
-cmap <M-m> <C-m>
-cmap <M-g> :<M-u>ToggleAbbrevs<CR>:
+inoremap <M-u> <Esc>ui
+inoremap <M-k> <Esc>ddO
+inoremap <M-a> <HOME>
+inoremap <M-e> <END>
+inoremap <M-w> <C-w>
+inoremap <M-h> <C-h>
+nnoremap <M-f> <C-f>
+nnoremap <M-b> <C-b>
+nnoremap <M-d> <C-d>
+nnoremap <M-u> <C-u>
+nnoremap <M-e> <C-e>
+nnoremap <M-y> <C-y>
+nnoremap <M-i> <C-i>
+nnoremap <M-o> <C-o>
+nnoremap <M-m> <C-m>
+nnoremap <M-w><M-o> <C-w><C-o>
+cnoremap <M-a> <C-a>
+cnoremap <M-e> <C-e>
+cnoremap <M-w> <C-w>
+cnoremap <M-h> <C-h>
+cnoremap <M-u> <C-u>
+cnoremap <M-f> <C-f>
+cnoremap <M-m> <C-m>
+cnoremap <M-g> :<M-u>ToggleAbbrevs<CR>:
 
 " let the help buffer map 'q' to quit
 autocmd FileType help nmap <buffer> q :<C-U>q<CR>
@@ -835,7 +841,6 @@ else
     autocmd FileType php inoremap <buffer> <C-@> <C-Left>$<Esc>ea<Space>= 
 endif
 autocmd FileType php smap <buffer> <C-k> <Esc><C-Left><S-Left>viwldea
-inoremap <C-u> <Esc>ui
 
 " if has("gui_running")
 " noremap <C-Z> <cr>
