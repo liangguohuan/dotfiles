@@ -68,8 +68,8 @@ let g:unite_source_menu_menus.git = {
 let logwatchadded = 'exe "Git! log --follow --diff-filter=A --find-renames=40\\% " input("path:", ".")'
 let g:unite_source_menu_menus.git.command_candidates = [
     \['▷ tig preview     (Tig)                           ⌘ ,gt  ', 'exe "Unite tig -no-split -auto-preview"'],
-    \['▷ gitv browser    (Gitv Browser mode)             ⌘ ,gv ', 'exe "Gitv"'],
-    \['▷ gitv browser    (Gitv File mode)                ⌘ ,ge ', 'exe "Gitv!"'],
+    \['▷ gitv browser    (Gitv Browser mode)             ⌘ ,gv  ', 'exe "Gitv"'],
+    \['▷ gitv browser    (Gitv File mode)                ⌘ ,ge  ', 'exe "Gitv!"'],
     \['▷ git status                                      ⌘ ,gs  ', 'Gstatus'],
     \['▷ git diff                                        ⌘ ,gd  ', 'Gdiff'],
     \['▷ git commit                                      ⌘ ,gc  ', 'Gcommit'],
