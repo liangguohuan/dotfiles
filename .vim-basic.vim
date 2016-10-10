@@ -275,11 +275,6 @@ if has("gui_running")
     set guioptions-=r        " hide scroll right
     set guioptions-=b        " hide scroll bottom
     set showtabline=0        " hide tabline
-    command! Grb winpos 119 117  " window go to right below
-    command! Gtl winpos 49  24   " window go to top left
-    command! Gmd winpos 86  60   " window go to middle
-    " autocmd BufEnter * winpos 119 117
-    " set columns=173 lines=46 
     set columns=145 lines=35 
 endif
 "}}}
