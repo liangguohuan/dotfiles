@@ -765,7 +765,7 @@ function! SmartQuit(tag) abort
     exe 'cclose'
 
     " delete the current window
-    if a:tag == 0
+    if a:tag == 0 && winnr('$') > 1
         if buflisted(bufnr('%')) == 0
             exe 'bdelete!'
         else
