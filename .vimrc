@@ -70,7 +70,7 @@ Plugin 'https://github.com/Kocha/vim-unite-tig.git'
 Plugin 'https://github.com/tpope/vim-fugitive.git'
 Plugin 'https://github.com/gregsexton/gitv.git'
 Plugin 'https://github.com/airblade/vim-gitgutter.git'
-Plugin 'https://github.com/vim-scripts/vcscommand.vim.git'
+" Plugin 'https://github.com/vim-scripts/vcscommand.vim.git'
 " }}}
 " sidebar tools {{{
 Plugin 'https://github.com/scrooloose/nerdtree.git'
