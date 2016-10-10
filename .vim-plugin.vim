@@ -467,26 +467,27 @@ let g:bookmark_auto_save = 1
 let g:goyo_width = 120 
 let g:goyo_margin_top = 2
 let g:goyo_margin_bottom = 2
-nnoremap <silent> <leader>z :call GoyoFunc()<cr>
+nnoremap <silent> <leader>z :Goyo<cr>
+" nnoremap <silent> <leader>z :call GoyoFunc()<cr>
 
-let g:goyo_toggle_trigger = 0
-function! GoyoFunc()
-    if &filetype == "help"
-        let g:goyo_width = 100
-    endif
-    if g:goyo_toggle_trigger == 0
-        let g:goyo_showtabline = &showtabline
-    endif
-    execute 'Goyo'
-    if g:goyo_toggle_trigger == 1 
-        call SetColorScheme()
-        let g:goyo_toggle_trigger = 0
-        let g:goyo_width = 100
-        exec 'set showtabline=' . g:goyo_showtabline
-    else
-        let g:goyo_toggle_trigger = 1
-    endif
-endfunction 
+" let g:goyo_toggle_trigger = 0
+" function! GoyoFunc()
+    " if &filetype == "help"
+        " let g:goyo_width = 100
+    " endif
+    " if g:goyo_toggle_trigger == 0
+        " let g:goyo_showtabline = &showtabline
+    " endif
+    " execute 'Goyo'
+    " if g:goyo_toggle_trigger == 1 
+        " call SetColorScheme()
+        " let g:goyo_toggle_trigger = 0
+        " let g:goyo_width = 100
+        " exec 'set showtabline=' . g:goyo_showtabline
+    " else
+        " let g:goyo_toggle_trigger = 1
+    " endif
+" endfunction 
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

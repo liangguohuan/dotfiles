@@ -244,14 +244,18 @@ set foldcolumn=1
 " autocmd BufEnter * hi CursorLineNr guifg=#7C8F8B ctermfg=245
 
 " NOTICE : 'set background=dark' must before 'colorscheme sublime'
+" add variable 'g:colorschemealreadyseted' prevent auto source look bad.
 "{{{
 function! SetColorScheme()
-    syntax enable
-    set background=dark
-    colorscheme monokai
-    " let g:solarized_degrade=1
-    " let g:solarized_termcolors=256
-    " colorscheme solarized
+    if exists('g:colorschemealreadyseted') == 0
+        syntax enable
+        set background=dark
+        colorscheme monokai
+        " let g:solarized_degrade=1
+        " let g:solarized_termcolors=256
+        " colorscheme solarized
+        let g:colorschemealreadyseted = 1
+    endif
 endfunction
 " Goyo Plugin Must call for well
 call SetColorScheme()
@@ -592,6 +596,9 @@ endfunction
 "{{{
 map <leader>e :e! ~/.vimrc<cr>
 autocmd! bufwritepost *.vimrc source ~/.vimrc | exec "AirlineRefresh"
+autocmd! bufwritepost *.vim-basic.vim source ~/.vim-basic.vim | exec "AirlineRefresh"
+autocmd! bufwritepost *.vim-plugin.vim source ~/.vim-plugin.vim | exec "AirlineRefresh"
+
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
