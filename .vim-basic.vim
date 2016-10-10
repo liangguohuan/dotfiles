@@ -758,13 +758,8 @@ function! SmartQuit(tag) abort
         return
     endif
 
-    " Close all specail  window
-    exe 'pc'
-    exe 'lclose'
-    exe 'cclose'
-
     " delete the current window
-    if a:tag == 0 && winnr('$') > 1
+    if a:tag == 0
         if buflisted(bufnr('%')) == 0
             exe 'bdelete!'
         else
@@ -775,6 +770,11 @@ function! SmartQuit(tag) abort
             endif
         endif
     endif
+
+    " Close all specail  window
+    exe 'pc'
+    exe 'lclose'
+    exe 'cclose'
 
     " delete unuseful window
     let winnums = winnr('$')
