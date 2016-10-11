@@ -617,6 +617,7 @@ nnoremap  <Leader>td :<C-U>TaskList<CR>
 " keymap
 autocmd FileType gitcommit inoremap <buffer> <silent> <C-c> <Esc>:q<CR>
 autocmd FileType gitcommit nnoremap <buffer> <silent> <C-c> <Esc>:q<CR>
+autocmd BufWinEnter .git/index nmap <buffer> <silent> C <leader>q:Gcommit<CR>
 " How to use it:
 " 1. input the short cut and hit the key 'Enter'
 " 2. input the short cut and hit the key 'Space'
