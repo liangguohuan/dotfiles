@@ -66,6 +66,12 @@ let g:unite_source_menu_menus.git = {
         \                            ⌘ [espacio]g',
     \}
 let logwatchadded = 'exe "Git! log --follow --diff-filter=A --find-renames=40\\% " input("path:", ".")'
+function! MenuGitGremoveConfirm() abort
+    let sel = confirm("Do You Really Want To RM This File ?",  "&y\n&n", 1)
+    if sel == 1
+        exe "Gremove"
+    endif
+endfunction
 let g:unite_source_menu_menus.git.command_candidates = [
     \['▷ tig preview     (Tig)                           ⌘ ,gt  ', 'exe "Unite tig -no-split -auto-preview"'],
     \['▷ gitv browser    (Gitv Browser mode)             ⌘ ,gv  ', 'exe "Gitv"'],
@@ -77,7 +83,7 @@ let g:unite_source_menu_menus.git.command_candidates = [
     \['▷ git blame                                       ⌘ ,gb  ', 'Gblame'],
     \['▷ git stage                                       ⌘ ,gw  ', 'Gwrite'],
     \['▷ git checkout                                    ⌘ ,go  ', 'Gread'],
-    \['▷ git rm                                          ⌘ ,gr  ', 'Gremove'],
+    \['▷ git rm                                          ⌘ ,gr  ', 'exe "call MenuGitGremoveConfirm()"'],
     \['▷ git mv                                          ⌘ ,gm  ', 'exe "Gmove " input("DESTINO: ")'],
     \['▷ git push                                        ⌘ ,gp  ', 'Git! push'],
     \['▷ git pull                                        ⌘ ,gf  ', 'Git! fetch'],
