@@ -91,6 +91,13 @@ endfunc
 func! CurrentFileDir(cmd)
     return a:cmd . " " . expand("%:p:h") . "/"
 endfunc 
+
+function! Vimcmd(cmd) abort
+    redir => output
+        silent exe a:cmd
+    redir END
+    return output
+endfunction
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -723,18 +730,19 @@ inoremap <M-a> <HOME>
 inoremap <M-e> <END>
 inoremap <M-w> <C-w>
 inoremap <M-h> <C-h>
-nmap <M-f> <C-f>
-nmap <M-b> <C-b>
-nmap <M-d> <C-d>
-nmap <M-u> <C-u>
-nmap <M-e> <C-e>
-nmap <M-y> <C-y>
+nmap     <M-f> <C-f>
+nmap     <M-b> <C-b>
+nmap     <M-d> <C-d>
+nmap     <M-u> <C-u>
+nmap     <M-e> <C-e>
+nmap     <M-y> <C-y>
+nnoremap <M-r> <C-r>
 nnoremap <M-i> <C-i>
 nnoremap <M-o> <C-o>
 nnoremap <M-m> <C-m>
 nnoremap <M-w><M-o> <C-w><C-o>
-cnoremap <M-a> <C-a>
-cnoremap <M-e> <C-e>
+cnoremap <M-a> <Home>
+cnoremap <M-e> <End>
 cnoremap <M-w> <C-w>
 cnoremap <M-h> <C-h>
 cnoremap <M-u> <C-u>
@@ -750,13 +758,25 @@ nnoremap <silent> <F4> :<C-u>q<cr>
 " Smart quit in windows and buffers
 map <silent> <leader>q :<C-U>call SmartQuit(0)<cr>
 "{{{
-function! SmartQuit(tag) abort
+" use buffer 'nmap q' to quit if 'nmap q' is exsist
+let g:smartqdebug = 0
 
+function! NormalQOr(cmd) abort
+    if g:smartqdebug == 1 | exec 'sleep 3' | endif
+    if match(Vimcmd('nmap q'), '\cdelete\|exit\|close\|quit') > -1
+        exec 'normal q'
+    else
+        exec a:cmd
+    end
+endfunction
+
+function! SmartQuit(tag) abort
     " if gdiff run, call function once
     if getwinvar('#', '&diff')
-        exe 'q'
+        call NormalQOr('q')
         if buflisted(bufnr('fugitive')) != 0
-            exe 'bdelete! fugitive:'
+            if g:smartqdebug == 1 | echo "delete from 0" | endif
+            call NormalQOr('bdelete! fugitive:')
         endif
         return
     endif
@@ -764,12 +784,15 @@ function! SmartQuit(tag) abort
     " delete the current window
     if a:tag == 0
         if buflisted(bufnr('%')) == 0
-            exe 'bdelete!'
+            if g:smartqdebug == 1 | echo "delete from 1" | endif
+            call NormalQOr('bdelete!')
         else
             if winnr('$') > 1
-                exe 'q'
+                if g:smartqdebug == 1 | echo "delete from 2" | endif
+                call NormalQOr('q')
             else
-                exe 'bdelete!'
+                if g:smartqdebug == 1 | echo "delete from 3" | endif
+                call NormalQOr('bdelete!')
             endif
         endif
     endif
@@ -781,19 +804,24 @@ function! SmartQuit(tag) abort
 
     " delete unuseful window
     let winnums = winnr('$')
+    let bufnrtmp = []
     if winnums > 0
         let index = winnums
         while index > 0
             if buflisted(winbufnr(index)) == 0
-                exe 'bdelete!'
+                call insert(bufnrtmp, winbufnr(index))
             endif
             let index -= 1 
         endwhile
-
+        if len(bufnrtmp) > 0
+            if g:smartqdebug == 1 | echo "delete from 4" | endif
+            call NormalQOr('bdelete!' . join(bufnrtmp, ' '))
+        endif
     endif
 
     " continue
     if buflisted(bufnr('%')) == 0 && GetBufListedNr() > 0
+        if g:smartqdebug == 1 | echo "continue ..." | endif
         call SmartQuit(1)
     endif
 
