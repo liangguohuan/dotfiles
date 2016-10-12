@@ -1,3 +1,8 @@
+if has('nvim')
+let g:python_host_prog  = '/home/hanson/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/home/hanson/.pyenv/versions/neovim3/bin/python'
+endif
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -10,11 +15,14 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-
+if has('nvim')
+Plugin 'https://github.com/Valloric/YouCompleteMe.git'
+else
 " https://github.com/Shougo/neocomplete.vim.git
 Plugin 'Shougo/neocomplete'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
+endif
 
 " vim-session
 " Plugin 'https://github.com/xolox/vim-misc.git'
@@ -43,7 +51,9 @@ Plugin 'https://github.com/vim-scripts/YankRing.vim.git'
 Plugin 'https://github.com/junegunn/goyo.vim.git'
 Plugin 'https://github.com/roman/golden-ratio.git'
 Plugin 'https://github.com/jiangmiao/auto-pairs.git'
+if !has('nvim')
 Plugin 'https://github.com/bruno-/vim-alt-mappings.git'
+endif
 Plugin 'https://github.com/taku-o/vim-toggle.git'
 Plugin 'https://github.com/thinca/vim-qfreplace.git'
 Plugin 'https://github.com/Konfekt/FastFold.git'
@@ -139,6 +149,4 @@ filetype plugin indent on    " required
 
 source ~/.vim-basic.vim
 source ~/.vim-plugin.vim
-
-
 

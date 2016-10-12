@@ -144,6 +144,7 @@ autocmd FileType vimfiler nmap <buffer> <C-N> <Plug>(vimfiler_switch_to_another_
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => neocomplete
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if !has('nvim')
 "{{{
 try  
     "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
@@ -241,6 +242,35 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-php-snippets/snippets'
 let g:neosnippet#snippets_directory='~/.vim/snippets'
 "}}}
+endif
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => YouCompleteMe
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has('nvim')
+"{{{
+let g:ycm_python_binary_path = '/home/hanson/.pyenv/versions/neovim3/bin/python'
+let g:ycm_filetype_blacklist = {
+      \ 'tagbar' : 1,
+      \ 'qf' : 1,
+      \ 'notes' : 1,
+      \ 'markdown' : 1,
+      \ 'unite' : 1,
+      \ 'text' : 1,
+      \ 'vimwiki' : 1,
+      \ 'pandoc' : 1,
+      \ 'infolog' : 1,
+      \ 'mail' : 1,
+      \ 'gitcommit' : 1
+      \}
+set completeopt-=preview
+let g:ycm_auto_trigger = 1
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_key_invoke_completion = '<M-Space>'
+let g:ycm_autoclose_preview_window_after_insertion = 1
+"}}}
+endif
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -363,6 +393,8 @@ noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => LeaderF
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if !has('nvim')
+"{{{
 " autocmd FileType LeaderF lmap <C-M> <C-C> 
 nnoremap  <leader>m  :<C-u>LeaderfMru<CR>
 nnoremap  <leader>f  :<C-u>Leaderf .<CR>
@@ -373,6 +405,15 @@ let g:Lf_WildIgnore = {
         \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
         \}
 let g:Lf_MruFileExclude = ['*.git*', '*.out', '*/vim-zsh-tmux*', '*/tmp/*', '*.(jpg|png|jpeg|txt)']
+"}}}
+else
+"{{{
+nnoremap  <leader>m  :<C-u>Unite file_mru -buffer-name=files    -no-split -prompt=>>> -start-insert<CR>
+nnoremap  <leader>f  :<C-u>Unite file     -buffer-name=MRUfiles -no-split -prompt=>>> -start-insert<CR>
+nnoremap  <leader>b  :<C-u>Unite buffer   -buffer-name=buffers  -no-split -prompt=>>> -start-insert<CR>
+"}}}
+endif
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => snipMate (beside <TAB> support <CTRL-j>)
