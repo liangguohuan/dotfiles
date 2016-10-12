@@ -143,3 +143,4 @@ alias ms="tmuxinator start"
 alias msd="tmuxinator start default &>/dev/null"
 alias mux="tmuxinator"
 alias ToggleTouchpad='_(){ eval `synclient | grep TouchpadOff | tr -d " "`; [[ $TouchpadOff == 1 ]] && V=0 || V=1;synclient TouchpadOff=$V }; _'
+alias nv="nvim"
