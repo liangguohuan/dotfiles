@@ -760,7 +760,7 @@ autocmd BufWinEnter * if &previewwindow | nmap <buffer> q :q<CR> | endif
 nnoremap <silent> <F4> :<C-u>q<cr>
 
 " Smart quit in windows and buffers
-map <silent> <leader>q :<C-U>call SmartQuit(0)<cr>
+map <silent> <leader>x :<C-U>call SmartQuit(0)<cr>
 "{{{
 " use buffer 'nmap q' to quit if 'nmap q' is exsist
 let g:smartqdebug = 0
