@@ -9,11 +9,12 @@ nmap      ; [unite]
 cabbrev uba UniteBookmarkAdd
 " Unite -vertical -start-insert -winwidth=30 -direction=botright outline
 
-nnoremap <silent> [unite]f :<C-u>Unite source<CR>
-nnoremap <silent> [unite]o :<C-u>Unite -start-insert outline<CR>
-nnoremap <silent> [unite]c :<C-u>UniteWithCurrentDir -buffer-name=files file<CR>
-nnoremap <silent> [unite]b :<C-u>Unite -buffer-name=buffer -start-insert -winheight=10 buffer<CR>
-nnoremap <silent> [unite]j :<C-u>Unite -buffer-name=jump jump<CR>
+nnoremap <silent> [unite]c :<C-u>UniteWithCurrentDir -start-insert -prompt=> -buffer-name=files file<CR>
+nnoremap <silent> [unite]f :<C-u>Unite -prompt=> -start-insert source<CR>
+nnoremap <silent> [unite]o :<C-u>Unite -prompt=> -start-insert outline<CR>
+nnoremap <silent> [unite]b :<C-u>Unite -prompt=> -start-insert -buffer-name=buffer buffer<CR>
+nnoremap <silent> [unite]j :<C-u>Unite -prompt=> -start-insert -buffer-name=jump jump<CR>
+nnoremap <silent> [unite]a :<C-u>Unite -prompt=> -start-insert -buffer-name=buffer&file buffer file<CR>
 
 autocmd FileType unite call s:unite_nice_settings()
 function! s:unite_nice_settings()
@@ -111,7 +112,7 @@ let g:unite_source_menu_menus.git.command_candidates = [
     \]
 
 
-nnoremap <silent>[unite]g :Unite -prompt=>>> -silent -start-insert menu:git<CR>
+nnoremap <silent>[unite]g :Unite -prompt=> -silent -start-insert menu:git<CR>
 for item in g:unite_source_menu_menus.git.command_candidates
     if stridx(item[0], ',') > -1
         let _key = split(item[0], ',')[-1]
