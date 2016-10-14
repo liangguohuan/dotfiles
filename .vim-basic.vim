@@ -748,6 +748,8 @@ cnoremap <M-u> <C-u>
 cnoremap <M-f> <C-f>
 cnoremap <M-m> <C-m>
 
+imap jj <Esc>
+
 " let the help buffer map 'q' to quit
 autocmd FileType help nmap <buffer> q :<C-U>q<CR>
 autocmd BufWinEnter * if &previewwindow | nmap <buffer> q :q<CR> | endif
