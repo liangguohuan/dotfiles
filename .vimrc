@@ -1,6 +1,8 @@
 if has('nvim')
+"{{{
 let g:python_host_prog  = '/home/hanson/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '/home/hanson/.pyenv/versions/neovim3/bin/python'
+"}}}
 endif
 
 set nocompatible              " be iMproved, required
@@ -16,12 +18,16 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 if has('nvim')
+"{{{
 Plugin 'https://github.com/Valloric/YouCompleteMe.git'
+"}}}
 else
+"{{{
 " https://github.com/Shougo/neocomplete.vim.git
 Plugin 'Shougo/neocomplete'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
+"}}}
 endif
 
 " vim-session
@@ -58,6 +64,7 @@ endif
 Plugin 'https://github.com/taku-o/vim-toggle.git'
 Plugin 'https://github.com/thinca/vim-qfreplace.git'
 Plugin 'https://github.com/Konfekt/FastFold.git'
+Plugin 'https://github.com/kopischke/vim-stay.git'
 Plugin 'https://github.com/mhinz/vim-startify.git'
 " }}}
 " snipmate {{{
@@ -137,7 +144,7 @@ Plugin 'https://github.com/seyDoggy/vim-watchforchanges.git'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
+" To ignore plugin indent changes, instead use:"{{{
 "filetype plugin on
 "
 " Brief help
@@ -147,7 +154,7 @@ filetype plugin indent on    " required
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "
 " see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+" Put your non-Plugin stuff after this line"}}}
 
 source ~/.vim-basic.vim
 source ~/.vim-plugin.vim
