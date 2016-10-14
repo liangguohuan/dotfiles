@@ -54,12 +54,13 @@ ZSH_THEME="pretty"
 #
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git composer docker gem laravel laravel4 mvn node npm nvm perl pip pyenv python rbenv rsync rvm sublime sudo tmux vagrant)# }}}
-plugins=(zsh_reload git composer laravel5 docker docker-compose gem tmuxinator npm pip python tmux zsh-syntax-highlighting autojump)
+plugins=(zsh_reload git composer laravel6 docker docker-compose gem tmuxinator npm pip python tmux zsh-syntax-highlighting autojump)
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
+source ~/.bash_aliases
 
 # You may need to manually set your language environment# {{{
 # export LANG=en_US.UTF-8
@@ -85,53 +86,29 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"# }}}
-source ~/.bash_aliases
 
-# 重定义命令
+########################################################################################################################
+# => zsh keymap
+########################################################################################################################
+# {{{
+# remove keymap [Alt+l], dont exec 'ls' to list directory contents,
+# and this is helpful for vim-tmux-navigator to map 'Alt'
+bindkey -r '^[l'
+# }}}
+
+########################################################################################################################
+# => misc setting
+########################################################################################################################
+# {{{
+# let vboxmanage equal VBoxManage
 compdef vboxmanage=VBoxManage
 
-#{{{自定义补全
-##补全 ping
 zstyle ':completion:*:ping:*' hosts 163.com twitter.com facebook.com
-
-##补全 ssh scp sftp 等
 my_accounts=(
 {hanson,osily,john,root}@{192.168.1.1,192.168.0.1,202.96.128.100}
 osily@localhost
 )
 zstyle ':completion:*:my-accounts' users-hosts $my_accounts
-
-#[Esc][h] man 当前命令时，显示简短说明
-alias run-help >&/dev/null && unalias run-help
-autoload run-help
-
-##在命令前插入 sudo {{{
-#定义功能
-sudo-command-line() {
-[[ -z $BUFFER ]] && zle up-history
-[[ $BUFFER != sudo\ * ]] && BUFFER="sudo $BUFFER"
-zle end-of-line #光标移动到行末
-}
-zle -N sudo-command-line
-#定义快捷键为： [Esc] [Esc]
-bindkey "\e\e" sudo-command-line
-#}}}
-
-# remove keymap [Alt+l], dont exec 'ls' to list directory contents,
-# and this is helpful for vim-tmux-navigator to map 'Alt'
-bindkey -r '^[l'
-
-# zsh alias setting
-alias '..'='cd ..'
-alias -g ...='../..'
-alias -g ....='../../..'
-alias -g .....='../../../..'
-alias -g PR=http_proxy=127.0.0.1:8087
-
-# autoload -U zsh-mime-setup
-# zsh-mime-setup
-alias -s php=gvim
-alias -s deb=gdebi
 
 # tmux layout autostart except 'guake terminal'
 # [[ -z $GIO_LAUNCHED_DESKTOP_FILE ]] && \
@@ -146,7 +123,45 @@ hash -d music=~/音乐
 hash -d download=~/下载
 hash -d video=~/视频
 hash -d image=~/图片
+# }}}
 
+########################################################################################################################
+# => zsh alias
+########################################################################################################################
+# {{{
+# [Esc][h] man
+alias run-help >&/dev/null && unalias run-help
+autoload run-help
+
+# zsh alias setting
+alias '..'='cd ..'
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g PR=http_proxy=127.0.0.1:8087
+
+# autoload -U zsh-mime-setup
+# zsh-mime-setup
+alias -s php=gvim
+alias -s deb=gdebi
+# }}}
+
+########################################################################################################################
+# => zsh extend plugins
+########################################################################################################################
+## sudo prefix
+# {{{
+sudo-command-line() {
+[[ -z $BUFFER ]] && zle up-history
+[[ $BUFFER != sudo\ * ]] && BUFFER="sudo $BUFFER"
+zle end-of-line
+}
+zle -N sudo-command-line
+bindkey "\e\e" sudo-command-line
+# }}}
+
+## percol: search shell history easier
+# {{{
 function exists { which $1 &> /dev/null }
 if exists percol; then
     function percol_select_history() {
@@ -160,3 +175,5 @@ if exists percol; then
     zle -N percol_select_history
     bindkey '^R' percol_select_history
 fi
+# }}}
+
