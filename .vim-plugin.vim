@@ -704,7 +704,7 @@ nmap <Leader>cp vip<plug>NERDCommenterSexy
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Easy-Align
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-vmap <Enter> <Plug>(EasyAlign) 
+vmap ea <Plug>(EasyAlign) 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
