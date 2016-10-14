@@ -91,9 +91,14 @@ source ~/.bash_aliases
 # => zsh keymap
 ########################################################################################################################
 # {{{
-# remove keymap [Alt+l], dont exec 'ls' to list directory contents,
+## remove keymap [Alt+l], dont exec 'ls' to list directory contents,
 # and this is helpful for vim-tmux-navigator to map 'Alt'
 bindkey -r '^[l'
+
+## swap 'F10' and 'Caps_Lock', and let tmux key prefix is 'F10'
+xmodmap -e 'keycode 66 = F10'
+xmodmap -e 'keycode 76 = Caps_Lock'
+# xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 # }}}
 
 ########################################################################################################################
