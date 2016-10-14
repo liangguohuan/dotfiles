@@ -128,6 +128,10 @@ if executable('ag')
  let g:unite_source_grep_recursive_opt = ''
 endif 
 
+" wildignore
+call unite#custom#source('file,file_rec,file/async,directory,directory_mru,directory_rec,directory_rec/async',
+            \ 'ignore_pattern',
+            \ 'fugitive\|.idea\|.phpcomplete')
 "}}}
 
 
