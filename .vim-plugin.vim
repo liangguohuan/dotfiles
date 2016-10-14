@@ -14,14 +14,14 @@ nnoremap <silent> [unite]f :<C-u>Unite -prompt=> -start-insert source<CR>
 nnoremap <silent> [unite]o :<C-u>Unite -prompt=> -start-insert outline<CR>
 nnoremap <silent> [unite]b :<C-u>Unite -prompt=> -start-insert -buffer-name=buffer buffer<CR>
 nnoremap <silent> [unite]j :<C-u>Unite -prompt=> -start-insert -buffer-name=jump jump<CR>
-nnoremap <silent> [unite]a :<C-u>Unite -prompt=> -start-insert -buffer-name=buffer&file buffer file<CR>
+nnoremap <silent> [unite]a :<C-u>Unite -prompt=> -start-insert -buffer-name=mixed buffer file<CR>
 
 autocmd FileType unite call s:unite_nice_settings()
 function! s:unite_nice_settings()
     " Overwrite settings.
     imap <buffer> jj        <Plug>(unite_insert_leave)
-    imap  <buffer> <C-c>    <Esc>q
-    nmap  <buffer> <C-c>    q
+    imap <buffer> <C-c>     <Plug>(unite_exit)
+    nmap <buffer> <C-c>     <Plug>(unite_exit)
 
     imap <buffer><expr> j unite#smart_map('j', '')
     imap <buffer> <TAB>     <Plug>(unite_select_next_line)
