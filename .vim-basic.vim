@@ -125,9 +125,9 @@ endif
 " => Folding Save And View
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{
-set foldlevelstart=99
-au FileType vim set foldmethod=marker 
-au FileType markdown set foldmethod=indent 
+set foldmethod=marker
+set foldlevel=0
+set foldlevelstart=0
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -845,8 +845,8 @@ nnoremap cmt :e /tmp/test.php<cr>
 nnoremap cmb :e /tmp/buffer<cr>
 
 " split buffer
-nnoremap <silent> sp :<C-u>sp<cr>
-nnoremap <silent> vsp :<C-u>vsp<cr>
+au FileType * nnoremap <buffer> <silent> sp :<C-u>sp<cr>
+au FileType * nnoremap <buffer> <silent> vsp :<C-u>vsp<cr>
 
 inoremap <C-V> <Esc>pA
 
