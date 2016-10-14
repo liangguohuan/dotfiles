@@ -1068,11 +1068,13 @@ function! CopyFilePath(type) abort
 endfunction
 "}}}
 
-nmap <silent> <C-k><C-b> :call ToggleLabelBar()<CR>
+nmap <silent> <C-k><C-t> :call ToggleLabelBar(1, 1)<CR>
+nmap <silent> <C-k><C-a> :call ToggleLabelBar(1, 0)<CR>
+nmap <silent> <C-k><C-b> :call ToggleLabelBar(0, 1)<CR>
 "{{{
-function! ToggleLabelBar() abort
-    exe 'set showtabline=' . (&showtabline==0 ? 2 : 0)
-    exe 'set laststatus=' . (&laststatus==0 ? 2 : 0)
+function! ToggleLabelBar(a, b) abort
+    if a:a == 1 | exe 'set showtabline=' . (&showtabline==0 ? 2 : 0) | endif
+    if a:b == 1 | exe 'set laststatus=' . (&laststatus==0 ? 2 : 0) | endif
 endfunction 
 "}}}
 "}}}
