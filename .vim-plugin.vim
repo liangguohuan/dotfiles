@@ -921,3 +921,8 @@ nnoremap <C-w>g :GoldenRatioToggle<CR>
 " => vim-toggle-abbrevs
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 cnoremap <M-g> :<C-u>ToggleAbbrevs<CR>:
+
+
+
+
+" vim: set fdm=marker ts=4 sw=4 sts=4 expandtab
