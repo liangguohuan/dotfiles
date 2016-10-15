@@ -102,7 +102,7 @@ let g:unite_source_menu_menus.git.command_candidates = [
     \['▷ git () last commit                                     ', 'Git! show %'],
     \['▷ git () new change                                      ', 'Git! diff HEAD %'],
     \['▷ git () recover from remote                             ', 'Git! checkout -- %'],
-    \['▷ git () revert commit                                   ', 'Git! revert HEAD~1'],
+    \['▷ git () revert commit                                   ', 'Git  revert HEAD'],
     \['▷ git () reset commit (soft)                             ', 'Git! reset --soft HEAD~1'],
     \['▷ git () reset commit (hard)                             ', 'Git! reset --hard HEAD~1'],
     \['▷ git () reset commit (hard) and (clean) cache           ', 'Git! reset --hard HEAD~1 && git clean -fd'],

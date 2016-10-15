@@ -774,6 +774,8 @@ function! NormalQOr(cmd) abort
     if g:smartqdebug == 1 | exec 'sleep 3' | endif
     if match(Vimcmd('nmap q'), '\cdelete\|exit\|close\|quit') > -1
         exec 'normal q'
+    elseif index(['gitcommit'], &filetype) > -1
+        exec 'q'
     else
         exec a:cmd
     end
