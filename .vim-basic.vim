@@ -109,10 +109,9 @@ endfunction
 set termencoding=utf-8 
 if !has('nvim')
 set encoding=utf8
-
+endif
 " Use Unix as the standard file type
 set ffs=unix,dos,mac 
-endif
 set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030 
 set previewheight=20
 set diffopt+=vertical
@@ -444,29 +443,6 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Editing mappings"{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-"{{{
-" Remap VIM 0 to first non-blank character 
-map 0 ^
-
-" Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-nmap <M-DOWN> mz:m+<cr>`z
-nmap <M-UP> mz:m-2<cr>`z
-vmap <M-DOWN> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-UP> :m'<-2<cr>`>my`<mzgv`yo`z
-
-" Delete trailing white space on save, useful for Python and CoffeeScript ;)
-func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
-endfunc
-autocmd BufWrite *.py :call DeleteTrailingWS()
-autocmd BufWrite *.coffee :call DeleteTrailingWS() 
-"}}}
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Ack searching and cope displaying"{{{
 "    requires ack.vim - it's much better than vimgrep/grep"}}}
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -681,7 +657,7 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Custom Settings"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-"{{{"{{{
+"{{{
 set nonumber 
 set nocursorline
 set nowrap
@@ -719,21 +695,43 @@ if has('clipboard')
         set clipboard=unnamed 
     endif 
 endif
-
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => key map
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => key map"{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-" human keymap
+"Editing mappings{{{
+" Remap VIM 0 to first non-blank character 
+map 0 ^
+
+" Goback normal mode Quickly
+imap jj <Esc>
+
+" Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
+nmap <M-DOWN> mz:m+<cr>`z
+nmap <M-UP> mz:m-2<cr>`z
+vmap <M-DOWN> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-UP> :m'<-2<cr>`>my`<mzgv`yo`z
+
+" Delete trailing white space on save, useful for Python and CoffeeScript ;)
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `z"
+endfunc
+autocmd BufWrite *.py :call DeleteTrailingWS()
+autocmd BufWrite *.coffee :call DeleteTrailingWS() 
+"}}}
+"human keymap{{{
 inoremap <M-u> <Esc>ui
-inoremap <M-d> <Esc>ddO
 inoremap <M-o> <Esc>o
-inoremap <M-l> <RIGHT>
-inoremap <M-a> <HOME>
-inoremap <M-e> <END>
+inoremap <M-d> <Delete>
+inoremap <M-l> <Esc>ddO
 inoremap <M-w> <C-w>
 inoremap <M-h> <C-h>
+inoremap <M-a> <HOME>
+inoremap <M-e> <END>
 inoremap <M-j> <C-j>
 inoremap <M-k> <C-k>
 inoremap <M-i> <C-i>
@@ -755,18 +753,16 @@ cnoremap <M-h> <C-h>
 cnoremap <M-u> <C-u>
 cnoremap <M-f> <C-f>
 cnoremap <M-m> <C-m>
-
-imap jj <Esc>
-
+"}}}
 " let the help buffer map 'q' to quit
 autocmd FileType help nmap <buffer> q :<C-U>q<CR>
 autocmd BufWinEnter * if &previewwindow | nmap <buffer> q :q<CR> | endif
 
 nnoremap <silent> <F4> :<C-u>q<cr>
 
-" Smart quit in windows and buffers
+" Smart quit in windows and buffers"{{{
 map <silent> <leader>x :<C-U>call SmartQuit(0)<cr>
-"{{{
+
 " use buffer 'nmap q' to quit if 'nmap q' is exsist
 let g:smartqdebug = 0
 
@@ -839,11 +835,12 @@ function! SmartQuit(tag) abort
 endfunction
 "}}}
 
-" toggle conceal
+" toggle conceal"{{{
 command! ToggleConceal call s:ToogleConceal()
 function! s:ToogleConceal() abort
     exe 'set conceallevel=' . (&conceallevel==0 ? 2 : 0)
 endfunction
+"}}}
 
 " show the command line 
 nnoremap cm  :
@@ -875,14 +872,13 @@ nmap <Leader>s :sav
 " open temp buffer file to paste selection
 exec "vnoremap <C-N> y:<C-U>e /tmp/buffer<cr><Esc>O" . repeat('-', 120) . "<cr><Esc>pggO<Esc>"
 
-" Buffer Switch Quickly
+"Buffer Switch Quickly{{{
 " map <silent> <M-0> :bl<cr>
 " for n in [1,2,3,4,5,6,7,8,9]
     " exe 'map <silent> <M-' . n . '> :call GoToBuffer('. n . ')<cr>'
 " endfor
 map <silent> <Tab> :call GoToBufferNext('next')<cr>
 map <silent> <S-Tab> :call GoToBufferNext('prev')<cr>
-"{{{
 func! GoToBufferNext(tag)
     let s:commandstr = a:tag == 'next' ? 'bn' : 'bp'
     " let s:arr = ['tagbar', 'nerdtree', 'qf', 'ctrlsf', 'runner']
@@ -904,8 +900,7 @@ function! GoToBuffer(tag) abort
 endfunction 
 "}}}
 "}}}
-"}}}
-"}}}
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-session, Remember opened file when exit"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
@@ -1160,4 +1155,6 @@ autocmd FileType php smap <buffer> <M-k> <Esc><C-Left><S-Left>viwldea
 
 
 
+" prevent source file show again.
+set showtabline=0
 " vim: set fdm=marker ts=4 sw=4 sts=4 expandtab
