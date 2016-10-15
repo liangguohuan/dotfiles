@@ -38,6 +38,7 @@ endif
 
 " base editor plugins {{{
 Plugin 'https://github.com/altercation/vim-colors-solarized.git'
+Plugin 'https://github.com/ryanoasis/vim-devicons.git'
 Plugin 'https://github.com/lambdalisue/vim-fullscreen.git'
 Plugin 'https://github.com/bling/vim-airline.git'
 Plugin 'https://github.com/vim-airline/vim-airline-themes.git'
