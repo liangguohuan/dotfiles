@@ -927,6 +927,7 @@ let g:vimsyn_folding='af'
 let g:xml_syntax_folding = 1
 let g:php_folding = 1
 let g:perl_fold = 1 
+let g:fastfold_skip_filetypes = [ 'taglist', 'gitcommit' ]
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
