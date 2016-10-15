@@ -20,6 +20,8 @@ Plugin 'gmarik/Vundle.vim'
 if has('nvim')
 "{{{
 Plugin 'https://github.com/Valloric/YouCompleteMe.git'
+Plugin 'https://github.com/SirVer/ultisnips.git'
+Plugin 'https://github.com/honza/vim-snippets.git'
 "}}}
 else
 "{{{
@@ -93,7 +95,9 @@ Plugin 'https://github.com/airblade/vim-gitgutter.git'
 " sidebar tools {{{
 Plugin 'https://github.com/scrooloose/nerdtree.git'
 Plugin 'https://github.com/majutsushi/tagbar.git'
+if !has('nvim')
 Plugin 'https://github.com/Yggdroot/LeaderF.git'
+endif
 Plugin 'https://github.com/dyng/ctrlsf.vim.git'
 Plugin 'https://github.com/rking/ag.vim.git'
 Plugin 'https://github.com/sjl/gundo.vim.git'
