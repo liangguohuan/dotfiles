@@ -105,8 +105,14 @@ endfunction
 " => Settings"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
+" Set utf8 as standard encoding and en_US as the standard language
 set termencoding=utf-8 
+if !has('nvim')
 set encoding=utf8
+
+" Use Unix as the standard file type
+set ffs=unix,dos,mac 
+endif
 set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030 
 set previewheight=20
 set diffopt+=vertical
@@ -284,11 +290,6 @@ if has("gui_running")
     set columns=145 lines=35 
 endif
 "}}}
-" Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
-
-" Use Unix as the standard file type
-set ffs=unix,dos,mac 
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -732,6 +733,9 @@ inoremap <M-a> <HOME>
 inoremap <M-e> <END>
 inoremap <M-w> <C-w>
 inoremap <M-h> <C-h>
+inoremap <M-j> <C-j>
+inoremap <M-k> <C-k>
+inoremap <M-i> <C-i>
 nmap     <M-f> <C-f>
 nmap     <M-b> <C-b>
 nmap     <M-d> <C-d>
