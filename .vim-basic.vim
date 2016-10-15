@@ -280,7 +280,8 @@ if has("gui_running")
     set guioptions-=e
     set t_Co=256
     set guitablabel=%M\ %t
-    set guifont=Source\ Code\ Pro\ Medium\ 11
+    " set guifont=Source\ Code\ Pro\ Medium\ 11
+    set guifont=SauceCodePro\ Nerd\ Font\ Medium\ 11
     set guioptions-=m        " hide menus
     set guioptions-=T        " hide tools
     set guioptions-=L        " hide scroll left
