@@ -61,9 +61,6 @@ Plugin 'https://github.com/vim-scripts/YankRing.vim.git'
 Plugin 'https://github.com/junegunn/goyo.vim.git'
 Plugin 'https://github.com/roman/golden-ratio.git'
 Plugin 'https://github.com/jiangmiao/auto-pairs.git'
-if !has('nvim')
-Plugin 'https://github.com/bruno-/vim-alt-mappings.git'
-endif
 Plugin 'https://github.com/taku-o/vim-toggle.git'
 Plugin 'https://github.com/thinca/vim-qfreplace.git'
 Plugin 'https://github.com/Konfekt/FastFold.git'
