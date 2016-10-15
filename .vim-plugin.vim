@@ -994,6 +994,20 @@ nnoremap <C-w>g :GoldenRatioToggle<CR>
 cnoremap <M-g> :<C-u>ToggleAbbrevs<CR>:
 "}}}
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-devicons"{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+"{{{
+" loading the plugin 
+let g:webdevicons_enable = 1
+" adding the flags to NERDTree 
+let g:webdevicons_enable_nerdtree = 1
+" adding the custom source to unite 
+let g:webdevicons_enable_unite = 1
+" adding the column to vimfiler 
+let g:webdevicons_enable_vimfiler = 1
+"}}}
+
 
 
 " vim: set fdm=marker ts=4 sw=4 sts=4 expandtab
