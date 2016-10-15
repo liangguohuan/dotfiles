@@ -456,6 +456,19 @@ endif
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => ultisnips"{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+if has('nvim')
+"{{{
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<Enter>"
+let g:UltiSnipsJumpForwardTrigger="<M-n>"
+let g:UltiSnipsJumpBackwardTrigger="<M-p>"
+let g:UltiSnipsSnippetDirectories=["~/.vim/bundle/vim-php-snippets/snippets"]
+"}}}
+endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => YankRing"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
