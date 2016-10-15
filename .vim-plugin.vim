@@ -920,6 +920,8 @@ autocmd FileType html,css nmap <C-X> <C-Z>k
 " => FastFold, neocomplete nedd it."{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
+let g:fastfold_savehook = 1
+let g:fastfold_fdmhook = 0
 let g:tex_fold_enabled=1 
 let g:vimsyn_folding='af'
 let g:xml_syntax_folding = 1
