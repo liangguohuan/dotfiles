@@ -366,7 +366,10 @@ imap <M-y> <Esc>A
 let g:UltiSnipsExpandTrigger= "<Enter>"
 let g:UltiSnipsJumpForwardTrigger="<Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
-let g:UltiSnipsSnippetDirectories=["~/.vim/bundle/vim-php-snippets/snippets"]
+" notice: snippets must make sure to be writed right, it will caused to open more then one buffer when you open one file.
+" The third part snippets will be autoload as long as VunduleInstall them.
+" local snippets can be loaded via g:UltiSnipsSnippetDirectories, and use UltisnipEdit to edit them.
+let g:UltiSnipsSnippetDirectories=["~/.vim/snippets"]
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
