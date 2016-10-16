@@ -125,11 +125,18 @@ endfor
 if executable('ag')
   let g:unite_source_grep_command = 'ag'
   let g:unite_source_grep_default_opts = '-i --no-heading --no-color -k -H'
- let g:unite_source_grep_recursive_opt = ''
+  let g:unite_source_grep_recursive_opt = ''
 endif 
 
+let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
+
+" neovim file_rec
+call unite#custom#source('file_rec/neovim', 'matchers', ['converter_relative_word', 'matcher_fuzzy'])
+call unite#custom#source('file_rec/neovim', 'sorters', 'sorter_rank')
+
+
 " wildignore
-call unite#custom#source('file,file_rec,file/async,directory,directory_mru,directory_rec,directory_rec/async',
+call unite#custom#source('file,file_rec,file/async,file_rec/neovim,directory,directory_mru,directory_rec,directory_rec/async',
             \ 'ignore_pattern',
             \ 'fugitive\|.idea\|.phpcomplete')
 
@@ -164,112 +171,8 @@ let g:vimfiler_ignore_pattern = ['^\.git$', '^\.DS_Store$', 'fugitive', '\.idea'
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => neocomplete"{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-if !has('nvim')
-"{{{
-try  
-    "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-    " Disable AutoComplPop.
-    let g:acp_enableAtStartup = 0
-    " Use neocomplete.
-    let g:neocomplete#enable_at_startup = 1
-    " Use smartcase.
-    let g:neocomplete#enable_smart_case = 1
-    " Set minimum syntax keyword length.
-    let g:neocomplete#sources#syntax#min_keyword_length = 3
-    let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
-    " Define dictionary.
-    let g:neocomplete#sources#dictionary#dictionaries = {
-        \ 'default' : '',
-        \ 'vimshell' : $HOME.'/.vimshell_hist',
-        \ 'scheme' : $HOME.'/.gosh_completions'
-            \ }
-
-    " Define keyword.
-    if !exists('g:neocomplete#keyword_patterns')
-        let g:neocomplete#keyword_patterns = {}
-    endif
-    let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-    " Plugin key-mappings.
-    inoremap <expr><C-d>     neocomplete#undo_completion()
-    " inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-    " Recommended key-mappings.
-    " <CR>: close popup and save indent.
-    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-    function! s:my_cr_function()
-      " return pumvisible() ? "\<c-y>\<Plug>(neosnippet_expand_or_jump)" : "\<CR>"
-      " return neocomplete#close_popup() . "\<CR>"
-      " For no inserting <CR> key.
-      return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-    endfunction
-    " <TAB>: completion.
-    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-    " <C-h>, <BS>: close popup and delete backword char.
-    inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-    inoremap <expr><C-c>  neocomplete#cancel_popup()
-    " Close popup by <Space>.
-    "inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
-
-    set completeopt=longest,menu 
-
-    " Enable omni completion.
-    " autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-    " autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-    " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-    " autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-    " autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-
-    " Enable heavy omni completion.
-    if !exists('g:neocomplete#sources#omni#input_patterns')
-      let g:neocomplete#sources#omni#input_patterns = {}
-    endif
-    let g:neocomplete#sources#omni#input_patterns.php = '[^. \t)]->\h\w*\|\h\w*::'
-
-catch 
-    " donothing
-endtry 
-
-" filetype plugin indent on
-" let g:SuperTabDefaultCompletionType = '<C-X><C-O>'
-" let g:SuperTabRetainCompletionType=2
-
-" --- neosnippet
-" Plugin key-mappings.
-imap <C-g>     <Plug>(neosnippet_expand_or_jump)
-smap <C-g>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-g>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
-
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-
-" Enable snipMate compatibility feature.
-let g:neosnippet#enable_snipmate_compatibility = 1
-
-" Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-php-snippets/snippets'
-let g:neosnippet#snippets_directory='~/.vim/snippets'
-"}}}
-endif
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => YouCompleteMe"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-if has('nvim')
 "{{{
 let g:ycm_python_binary_path = '/home/hanson/.pyenv/versions/neovim3/bin/python'
 let g:ycm_filetype_blacklist = {
@@ -291,7 +194,6 @@ let g:ycm_show_diagnostics_ui = 0
 let g:ycm_key_invoke_completion = '<M-Space>'
 let g:ycm_autoclose_preview_window_after_insertion = 1
 "}}}
-endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => airline"{{{
@@ -441,9 +343,9 @@ let g:Lf_MruFileExclude = ['*.git*', '*.out', '*/vim-zsh-tmux*', '*/tmp/*', '*.(
 "}}}
 else
 "{{{
-nnoremap  <leader>m  :<C-u>Unite file_mru -buffer-name=files    -no-split -prompt=>>> -start-insert<CR>
-nnoremap  <leader>f  :<C-u>Unite file     -buffer-name=MRUfiles -no-split -prompt=>>> -start-insert<CR>
-nnoremap  <leader>b  :<C-u>Unite buffer   -buffer-name=buffers  -no-split -prompt=>>> -start-insert<CR>
+nnoremap  <leader>f :<C-u>Unite  file_rec/neovim -buffer-name=files    -no-split -prompt=>>> -start-insert -ignorecase<cr>
+nnoremap  <leader>m  :<C-u>Unite file_mru        -buffer-name=filesMRU -no-split -prompt=>>> -start-insert<CR>
+nnoremap  <leader>b  :<C-u>Unite buffer          -buffer-name=buffers  -no-split -prompt=>>> -start-insert<CR>
 "}}}
 endif
 
@@ -458,15 +360,14 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ultisnips"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-if has('nvim')
 "{{{
+imap <M-y> <Esc>A
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<Enter>"
-let g:UltiSnipsJumpForwardTrigger="<M-n>"
-let g:UltiSnipsJumpBackwardTrigger="<M-p>"
+let g:UltiSnipsExpandTrigger= "<Enter>"
+let g:UltiSnipsJumpForwardTrigger="<Tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 let g:UltiSnipsSnippetDirectories=["~/.vim/bundle/vim-php-snippets/snippets"]
 "}}}
-endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => YankRing"{{{
