@@ -727,14 +727,14 @@ autocmd BufWrite *.coffee :call DeleteTrailingWS()
 inoremap <M-u> <Esc>ui
 inoremap <M-o> <Esc>o
 inoremap <M-d> <Delete>
-inoremap <M-l> <Esc>ddO
+inoremap <M-k> <Space><Esc>d^i
+inoremap <M-l> <Right><Space>
 inoremap <M-w> <C-w>
 inoremap <M-h> <C-h>
 inoremap <M-a> <HOME>
 inoremap <M-e> <END>
 inoremap <M-j> <C-j>
-inoremap <M-k> <C-k>
-inoremap <M-i> <C-i>
+inoremap <M-m> <C-m>
 nmap     <M-f> <C-f>
 nmap     <M-b> <C-b>
 nmap     <M-d> <C-d>
@@ -1150,6 +1150,7 @@ autocmd FileType php inoremap <buffer> <M-v> <C-Left>$<Esc>ea
 autocmd FileType php inoremap <buffer> <M-g> <End>->
 autocmd FileType php inoremap <buffer> <M-t> <C-Left>$<Esc>ea->
 autocmd FileType php inoremap <buffer> <M-f> <C-Left>$<Esc>ea<Space>= 
+" smap can't work if map prefix 'Alt' key in vim, but work in nvim
 autocmd FileType php smap <buffer> <M-k> <Esc><C-Left><S-Left>viwldea
 "}}}
 
