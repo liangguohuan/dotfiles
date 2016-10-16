@@ -17,20 +17,9 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-if has('nvim')
-"{{{
 Plugin 'https://github.com/Valloric/YouCompleteMe.git'
 Plugin 'https://github.com/SirVer/ultisnips.git'
 Plugin 'https://github.com/honza/vim-snippets.git'
-"}}}
-else
-"{{{
-" https://github.com/Shougo/neocomplete.vim.git
-Plugin 'Shougo/neocomplete'
-Plugin 'Shougo/neosnippet'
-Plugin 'Shougo/neosnippet-snippets'
-"}}}
-endif
 
 " vim-session
 " Plugin 'https://github.com/xolox/vim-misc.git'
@@ -62,7 +51,7 @@ Plugin 'https://github.com/junegunn/goyo.vim.git'
 Plugin 'https://github.com/roman/golden-ratio.git'
 Plugin 'https://github.com/jiangmiao/auto-pairs.git'
 if !has('nvim')
-Plugin 'https://github.com/bruno-/vim-alt-mappings.git'
+Plugin 'https://github.com/vim-utils/vim-alt-mappings.git'
 endif
 Plugin 'https://github.com/taku-o/vim-toggle.git'
 Plugin 'https://github.com/thinca/vim-qfreplace.git'
