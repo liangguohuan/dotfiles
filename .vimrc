@@ -131,8 +131,6 @@ Plugin 'https://github.com/tmux-plugins/vim-tmux-focus-events.git'
 Plugin 'https://github.com/suan/vim-instant-markdown.git'
 Plugin 'https://github.com/vimwiki/vimwiki'
 Plugin 'https://github.com/jez/vim-superman.git'
-Plugin 'https://github.com/mattn/webapi-vim.git'
-Plugin 'https://github.com/Rykka/trans.vim.git'
 Plugin 'https://github.com/seyDoggy/vim-watchforchanges.git'
 " }}}
 " All of your Plugins must be added before the following line
