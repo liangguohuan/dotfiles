@@ -435,7 +435,6 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-nnoremap <silent> <Leader>lc :lclose<CR>
 cabbrev <silent> <buffer> bd lclose\|bdelete
 
 let g:syntastic_always_populate_loc_list = 1
@@ -646,6 +645,9 @@ cabbrev gul   Git! push -u origin master
 let g:gitgutter_max_signs = 1024 
 autocmd FileType snippets let g:gitgutter_enabled = 0
 " autocmd FileType snippets set foldenable! 
+nmap <Leader>is <Plug>GitGutterStageHunk
+nmap <Leader>iu <Plug>GitGutterUndoHunk
+nmap <Leader>ip <Plug>GitGutterPreviewHunk
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
