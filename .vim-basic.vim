@@ -134,7 +134,7 @@ endif
 set foldmethod=marker
 set foldlevel=0
 set foldlevelstart=0
-autocmd FileType gitcommit setlocal foldlevel=99
+autocmd FileType git,gitcommit setlocal foldlevel=99
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
