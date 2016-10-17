@@ -1,0 +1,22 @@
+! -*- coding: utf-8 -*-
+! Using various .xinitrc containing one of the following commands:
+!
+!   if [ -s ~/.Xmodmap ]; then
+!   xmodmap ~/.Xmodmap
+!   fi
+!
+
+! swap Ctrl and Alt keys
+! swap Alt_L and Caps_Lock keys
+
+clear control
+clear mod1
+clear lock
+keycode 37  = Caps_Lock
+keycode 66  = Alt_L Meta_L
+keycode 105 = Alt_R Meta_R
+keycode 64  = Control_L
+keycode 108 = Control_R
+add control = Control_L Control_R
+add mod1    = Alt_L Meta_L
+add lock    = Caps_Lock
