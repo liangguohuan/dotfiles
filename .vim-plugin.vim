@@ -364,8 +364,8 @@ endif
 imap <M-y> <Esc>A
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger= "<Enter>"
-let g:UltiSnipsJumpForwardTrigger="<Tab>"
-let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+let g:UltiSnipsJumpForwardTrigger="<Enter>"
+let g:UltiSnipsJumpBackwardTrigger="<M-b>"
 " notice: snippets must make sure to be writed right, it will caused to open more then one buffer when you open one file.
 " The third part snippets will be autoload as long as VunduleInstall them.
 " local snippets can be loaded via g:UltiSnipsSnippetDirectories, and use UltisnipEdit to edit them.
