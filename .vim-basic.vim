@@ -732,6 +732,7 @@ inoremap <M-k> <Space><Esc>d^i
 inoremap <M-l> <Right><Space>
 inoremap <M-w> <C-w>
 inoremap <M-h> <C-h>
+inoremap <M-i> <C-i>
 inoremap <M-a> <HOME>
 inoremap <M-e> <END>
 inoremap <M-j> <C-j>
