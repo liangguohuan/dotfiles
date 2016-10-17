@@ -1114,7 +1114,8 @@ endfunction
 
 " extra keymap
 inoremap <C-f> <Right><Space>
-inoremap <C-l> <Esc>S
+inoremap <C-k> <Esc>S
+inoremap <C-l> <Right><Space>
 
 " Map to nice work in PHP
 " php-manual files are in bundle/vim-help-manual
@@ -1126,7 +1127,7 @@ autocmd FileType php inoremap <buffer> <C-g> <End>->
 autocmd FileType php inoremap <buffer> <C-t> <C-Left>$<Esc>ea->
 autocmd FileType php inoremap <buffer> <C-f> <C-Left>$<Esc>ea<Space>= 
 " smap can't work if map prefix 'Alt' key in vim, but work in nvim
-autocmd FileType php smap <buffer> <C-k> <Esc><C-Left><S-Left>viwldea
+autocmd FileType php smap <buffer> <C-k> <Esc><C-Left>dbea
 "}}}
 
 " prevent source file show again.
