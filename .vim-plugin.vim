@@ -186,7 +186,11 @@ let g:ycm_filetype_blacklist = {
       \ 'pandoc' : 1,
       \ 'infolog' : 1,
       \ 'mail' : 1,
-      \ 'gitcommit' : 1
+      \ 'vimfiler' : 1,
+      \ 'gitcommit' : 1,
+      \ 'leaderf' : 1,
+      \ 'nerdtree' : 1,
+      \ 'startify' : 1
       \}
 set completeopt-=preview
 let g:ycm_auto_trigger = 1
