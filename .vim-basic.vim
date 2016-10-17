@@ -1113,8 +1113,8 @@ endfunction
 "{{{
 
 " extra keymap
-inoremap <C-k> <Space><Esc>d^i
-inoremap <C-l> <Right><Space>
+inoremap <C-f> <Right><Space>
+inoremap <C-l> <Esc>S
 
 " Map to nice work in PHP
 " php-manual files are in bundle/vim-help-manual

@@ -365,15 +365,53 @@ endif
 " => ultisnips"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-imap <M-y> <Esc>A
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger= "<Enter>"
-let g:UltiSnipsJumpForwardTrigger="<Enter>"
-let g:UltiSnipsJumpBackwardTrigger="<M-b>"
 " notice: snippets must make sure to be writed right, it will caused to open more then one buffer when you open one file.
 " The third part snippets will be autoload as long as VunduleInstall them.
 " local snippets can be loaded via g:UltiSnipsSnippetDirectories, and use UltisnipEdit to edit them.
 let g:UltiSnipsSnippetDirectories=["~/.vim/snippets"]
+
+let g:UltiSnipsJumpForwardTrigger="<Enter>"
+let g:UltiSnipsJumpBackwardTrigger="<C-b>"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" fixed compatible between UltiSnips and YouCompleteMe
+" from: http://blog.csdn.net/qq_20336817/article/details/51115411
+
+" help function"{{{
+function! g:UltiSnips_Complete()
+    call UltiSnips#ExpandSnippet()
+    if g:ulti_expand_res == 0
+        if pumvisible()
+            return "\<C-n>"
+        else
+            call UltiSnips#JumpForwards()
+            if g:ulti_jump_forwards_res == 0
+                return "\<TAB>"
+            endif
+        endif
+    endif
+    return ""
+endfunction
+
+function! g:UltiSnips_Reverse()
+    call UltiSnips#JumpBackwards()
+    if g:ulti_jump_backwards_res == 0
+        return "\<C-P>"
+    endif
+
+    return ""
+endfunction
+"}}}
+
+if !exists("g:UltiSnipsJumpForwardTrigger")
+    let g:UltiSnipsJumpForwardTrigger = "<tab>"
+endif
+if !exists("g:UltiSnipsJumpBackwardTrigger")
+    let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+endif
+
+au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger     . " <C-R>=g:UltiSnips_Complete()<cr>"
+au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsJumpBackwardTrigger . " <C-R>=g:UltiSnips_Reverse()<cr>"
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
