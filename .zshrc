@@ -90,26 +90,10 @@ source ~/.bash_aliases
 ########################################################################################################################
 # => zsh keymap
 ########################################################################################################################
-### Tips: Run 'cat' then press keys to see the codes your shortcut send
-## human keymap
-bindkey -r '^[q'
-bindkey '^[y' backward-delete-char # 'alt + h' had used for tmux.
-bindkey '^[w' backward-kill-word
-bindkey '^[u' backward-kill-line
-bindkey '^[a' beginning-of-line
-bindkey '^[e' end-of-line
-bindkey '^[[1;3C' forward-word     # actually 'alt+b' had the same if exists oh-my-zsh   
-bindkey '^[[1;3D' backward-word    # actually 'alt+f' had the same if exists oh-my-zsh
-
 # {{{
 ## remove keymap [Alt+l], dont exec 'ls' to list directory contents,
 # and this is helpful for vim-tmux-navigator to map 'Alt'
 bindkey -r '^[l'
-
-## swap 'F10' and 'Caps_Lock', and let tmux key prefix is 'F10'
-xmodmap -e 'keycode 66 = F10'
-xmodmap -e 'keycode 76 = Caps_Lock'
-xmodmap -e 'clear Lock' -e 'keycode 0x42 = F10'
 # }}}
 
 ########################################################################################################################
