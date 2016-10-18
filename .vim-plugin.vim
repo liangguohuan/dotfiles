@@ -124,7 +124,7 @@ endfor
 " For ag.
 if executable('ag')
   let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_opts = '-i --no-heading --no-color -k -H'
+  let g:unite_source_grep_default_opts = '-i --nocolor --follow --nogroup --hidden'
   let g:unite_source_grep_recursive_opt = ''
 endif 
 
