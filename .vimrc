@@ -26,9 +26,9 @@ Plugin 'https://github.com/honza/vim-snippets.git'
 " Plugin 'https://github.com/xolox/vim-session.git'
 
 " base editor plugins {{{
+Plugin 'https://github.com/morhetz/gruvbox.git'
 Plugin 'https://github.com/tomasr/molokai.git'
 Plugin 'https://github.com/nanotech/jellybeans.vim.git'
-" Plugin 'https://github.com/altercation/vim-colors-solarized.git'
 Plugin 'https://github.com/ryanoasis/vim-devicons.git'
 Plugin 'https://github.com/lambdalisue/vim-fullscreen.git'
 Plugin 'https://github.com/bling/vim-airline.git'

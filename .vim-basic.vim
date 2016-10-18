@@ -238,35 +238,15 @@ set foldcolumn=1
 " => Colors and Fonts"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-" Enable syntax highlighting 
-" syntax enable 
-
-" try
-"     colorscheme desert
-" catch
-" endtry
-
-" set background=dark
-
-" " the most left color set
-" hi FoldColumn      guifg=#465457 guibg=#000000
-" hi Folded          guifg=#465457 guibg=#000000
-" hi LineNr          ctermfg=250 ctermbg=236
-" hi CursorLineNr guifg=#7C8F8B ctermfg=245
-" autocmd BufEnter * hi CursorLineNr guifg=#7C8F8B ctermfg=245
-
 " NOTICE : 'set background=dark' must before 'colorscheme sublime'
 " add variable 'g:colorschemealreadyseted' prevent auto source look bad.
 "{{{
 function! SetColorScheme()
     if exists('g:colorschemealreadyseted') == 0
         syntax enable
+        set t_co=256
         set background=dark
-        colorscheme monokai
-        " let g:solarized_degrade=1
-        " let g:solarized_termcolors=256
-        " colorscheme solarized
-        let g:colorschemealreadyseted = 1
+        colorscheme gruvbox
     endif
 endfunction
 " Goyo Plugin Must call for well
