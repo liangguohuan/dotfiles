@@ -286,7 +286,7 @@ nnoremap <silent> <C-F>t :CtrlSFToggle<CR>
 " => Gundo"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-map <silent> <Leader>r :GundoToggle<CR>
+map <silent> <Leader>u :GundoToggle<CR>
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -371,7 +371,7 @@ endif
 let g:UltiSnipsSnippetDirectories=["~/.vim/snippets"]
 
 let g:UltiSnipsJumpForwardTrigger="<Enter>"
-let g:UltiSnipsJumpBackwardTrigger="<C-b>"
+let g:UltiSnipsJumpBackwardTrigger="<M-b>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " fixed compatible between UltiSnips and YouCompleteMe
