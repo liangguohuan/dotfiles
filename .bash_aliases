@@ -47,6 +47,7 @@ alias grep='grep --color'
 alias ls='ls --color=auto'
 alias llu="ls -tlrh"
 alias llf="ls \$1 | fullpath"
+alias lls="ll /*(@)"
 alias fullpath="xargs -n 1 readlink -f"
 alias cls="clear"
 alias mcf="vim ~/.bash_aliases"
