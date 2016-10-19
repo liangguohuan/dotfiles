@@ -197,6 +197,9 @@ let g:ycm_auto_trigger = 1
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_key_invoke_completion = '<M-Space>'
 let g:ycm_autoclose_preview_window_after_insertion = 1
+inoremap <expr><C-j>  pumvisible() ? "\<Down>" : "\<C-j>"
+inoremap <expr><C-k>  pumvisible() ? "\<Up>" : "\<C-k>"
+inoremap <expr><C-h>  pumvisible() ? "\<Esc>a" : "\<C-h>"
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
