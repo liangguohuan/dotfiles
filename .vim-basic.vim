@@ -691,10 +691,10 @@ map 0 ^
 imap jj <Esc>
 
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-nmap <M-DOWN> mz:m+<cr>`z
-nmap <M-UP> mz:m-2<cr>`z
-vmap <M-DOWN> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-UP> :m'<-2<cr>`>my`<mzgv`yo`z
+nmap <M-j> mz:m+<cr>`z
+nmap <M-k> mz:m-2<cr>`z
+vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
 func! DeleteTrailingWS()
@@ -705,11 +705,15 @@ endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS() 
 "}}}
-" let the help buffer map 'q' to quit
-autocmd FileType help nmap <buffer> q :<C-U>q<CR>
-autocmd BufWinEnter * if &previewwindow | nmap <buffer> q :q<CR> | endif
 
 nnoremap <silent> <F4> :<C-u>q<cr>
+
+" let the help buffer map 'q' to quit
+autocmd FileType help nmap <buffer> q :<C-u>q<CR>
+
+" It cause chaos without keyword exe to do map sometimes, just like below codes it will more one extra space if without 'exe'
+autocmd BufEnter * if &previewwindow | exe 'nmap <buffer> q ZZ' | endif
+autocmd BufEnter * if &diff | exe 'nmap <buffer> q <Leader>x' | endif
 
 " Smart quit in windows and buffers"{{{
 map <silent> <leader>x :<C-U>call SmartQuit(0)<cr>
@@ -794,10 +798,13 @@ endfunction
 "}}}
 
 " show the command line 
-nnoremap cm  :
+" nnoremap cm  :
+" use 'L' to switch cmdline quickly
 nnoremap cme :e 
 nnoremap cms :e ~/.storge<cr>
-nnoremap cmt :e /tmp/test.php<cr>
+nnoremap cmt :e /tmp/t.php<cr>
+nnoremap cmp :e /tmp/a.py<cr>
+nnoremap cmv :e /tmp/c.vim<cr>
 nnoremap cmb :e /tmp/buffer<cr>
 
 " split buffer
