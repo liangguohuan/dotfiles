@@ -253,11 +253,7 @@ let NERDTreeShowHidden=1
 let NERDTreeChDirMode=2
 let NERDTreeQuitOnOpen=1
 let NERDTreeIgnore=['\~$', 'fugitive:$', '.git$']
-map <silent> <leader>nn :silent NERDTreeToggle<cr>
-map <leader>nb :NERDTreeFromBookmark 
-map <silent> <leader>nf :NERDTreeFind<cr>
-map <silent> <leader>nc :silent NERDTreeCWD<cr>
-map <silent> <leader>ng :silent NERDTreeFocus<cr>
+map <silent> <leader>nf :silent NERDTreeToggle<cr>
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -266,7 +262,7 @@ map <silent> <leader>ng :silent NERDTreeFocus<cr>
 "{{{
 let g:tagbar_width=30 
 let g:tagbar_autofocus = 1
-nnoremap <silent> <Leader>t :<C-u>TagbarToggle<CR>
+nnoremap <silent> <Leader>tt :<C-u>TagbarToggle<CR>
 "}}}
 
 """""""""""""""""""""""""""z""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -690,6 +686,8 @@ autocmd FileType snippets let g:gitgutter_enabled = 0
 nmap <Leader>is <Plug>GitGutterStageHunk
 nmap <Leader>iu <Plug>GitGutterUndoHunk
 nmap <Leader>ip <Plug>GitGutterPreviewHunk
+nmap <Leader>nb :call feedkeys("\<Plug>GitGutterPrevHunkzv")<CR>
+nmap <Leader>nn :call feedkeys("\<Plug>GitGutterNextHunkzv")<CR>
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
