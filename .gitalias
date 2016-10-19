@@ -292,6 +292,9 @@
   # Show our tags
   tags = tag -n1 --list
 
+  # push all tags to removte
+  tag-sync = tag push origin --tags
+
   # Diffs
   diff-all = !"for name in $(git diff --name-only $1); do git difftool $1 $name & done"
   diff-changes = diff --name-status -r
