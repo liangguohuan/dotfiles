@@ -246,7 +246,8 @@ function! SetColorScheme()
         syntax enable
         set t_co=256
         set background=dark
-        colorscheme gruvbox
+        colorscheme monokai
+        let g:colorschemealreadyseted = 1
     endif
 endfunction
 " Goyo Plugin Must call for well

@@ -228,7 +228,7 @@ let g:airline_symbols.readonly = '⭤'
 let g:airline_symbols.linenr = '⭡'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-let g:airline_theme="gruvbox" 
+let g:airline_theme="bubblegum" 
 
 let g:airline#extensions#tmuxline#enabled = 1
 let g:tmuxline_preset = 'righteous'
