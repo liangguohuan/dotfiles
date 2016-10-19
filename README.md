@@ -1,7 +1,7 @@
 This is my vim, zsh, tmux, etc. files.
 
 # vim-install
-vim-conf base on [amix/vimrc](https://github.com/amix/vimrc). But use [ VundleVim/Vundle.vim ](https://github.com/VundleVim/Vundle.vim) to manage vim plugins,
+vim-conf base on [amix/vimrc](https://github.com/amix/vimrc). But use [ junegunn/vim-plug ](https://github.com/junegunn/vim-plug) to manage vim plugins,
 and so many things to be changed, just get some helps from `amix/vimrc` and read the sources from files `.vim-basic.vim` & `.vim-plugins`
 
 # install
@@ -9,18 +9,13 @@ and so many things to be changed, just get some helps from `amix/vimrc` and read
 - Step 1: clone the files, and use shell script `install.sh` to autoinsall.
   > Notice: it will overwrite the files '.vimrc', '.vim-basic', '.vim-plugins' if they exists in home fold `~`
 
-        git clone https://github.com/liangguohuan/vim-zsh-tmux-conf
-        cd vim-zsh-tmux-conf
+        git clone https://github.com/liangguohuan/dotfiles
+        cd dotfiles
         sh ./vim-install.sh
-
-- Step 2: vim plugin [Shougo/vimproc.vim](https://github.com/Shougo/vimproc.vim) has something to be done.
-
-        cd ~/.vim/bundle/vimproc.vim
-        make
 
 - Step 3: Test it, it might need something other program like (ack, ag, install-markdown-d).
 
-    ag: https://github.com/ggreer/the_silver_searcher#linux  
+    ag: https://github.com/ggreer/the_silver_searcher#linux
     install-markdown-d: https://github.com/suan/vim-instant-markdown#installation
 
 # Notices:
