@@ -54,7 +54,7 @@ Plug 'https://github.com/mhinz/vim-startify.git'
 Plug 'https://github.com/Shougo/unite.vim.git'
 Plug 'https://github.com/Shougo/neomru.vim.git'
 Plug 'https://github.com/Shougo/vimfiler.vim.git'
-Plug 'https://github.com/Shougo/vimproc.vim.git'
+Plug 'https://github.com/Shougo/vimproc.vim.git', {'do' : 'make'}
 Plug 'https://github.com/Shougo/vimshell.git'
 Plug 'https://github.com/Shougo/tabpagebuffer.vim.git'
 Plug 'https://github.com/Shougo/unite-outline.git'
