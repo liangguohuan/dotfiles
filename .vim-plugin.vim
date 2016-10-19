@@ -195,7 +195,8 @@ let g:ycm_filetype_blacklist = {
 set completeopt-=preview
 let g:ycm_auto_trigger = 1
 let g:ycm_show_diagnostics_ui = 0
-let g:ycm_key_invoke_completion = '<M-Space>'
+" A bug: <C-Space> map for noting, disable it for temprory, because of it trigger one snips completion will be invalid.
+let g:ycm_key_invoke_completion = '<C-Space>'
 let g:ycm_autoclose_preview_window_after_insertion = 1
 inoremap <expr><C-j>  pumvisible() ? "\<Down>" : "\<C-j>"
 inoremap <expr><C-k>  pumvisible() ? "\<Up>" : "\<C-k>"
@@ -370,7 +371,7 @@ endif
 let g:UltiSnipsSnippetDirectories=["~/.vim/snippets"]
 
 let g:UltiSnipsJumpForwardTrigger="<Enter>"
-let g:UltiSnipsJumpBackwardTrigger="<M-b>"
+let g:UltiSnipsJumpBackwardTrigger="<C-b>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " fixed compatible between UltiSnips and YouCompleteMe
@@ -745,13 +746,6 @@ let g:toggle_pairs = {
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => auto-pairs"{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-"{{{
-let g:AutoPairsShortcutFastWrap = '<M-s>'
-"}}}
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-shell-executor"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
@@ -927,7 +921,7 @@ nnoremap <C-w>g :GoldenRatioToggle<CR>
 " => vim-toggle-abbrevs"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-cnoremap <M-g> :<C-u>ToggleAbbrevs<CR>:
+cnoremap <C-g> :<C-u>ToggleAbbrevs<CR>:
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
