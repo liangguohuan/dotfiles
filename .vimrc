@@ -28,7 +28,7 @@ Plug 'https://github.com/scrooloose/syntastic.git'
 Plug 'https://github.com/yonchu/accelerated-smooth-scroll.git'
 Plug 'https://github.com/scrooloose/nerdcommenter.git'
 Plug 'https://github.com/Yggdroot/indentLine.git'
-Plug 'https://github.com/plasticboy/vim-markdown.git'
+Plug 'https://github.com/plasticboy/vim-markdown.git', { 'for': 'markdown' }
 " }}}
 " extended {{{
 Plug 'https://github.com/tpope/vim-dispatch.git'
@@ -92,7 +92,7 @@ Plug 'https://github.com/mattn/emmet-vim'
 " Plug 'https://github.com/bkad/CamelCaseMotion.git'
 " }}}
 " my custom {{{
-Plug 'https://github.com/liangguohuan/vim-php-snippets'
+Plug 'https://github.com/liangguohuan/vim-php-snippets', { 'for': 'php' }
 Plug 'https://github.com/liangguohuan/vim-monokai.git'
 Plug 'https://github.com/liangguohuan/vim-script-runner'
 Plug 'https://github.com/liangguohuan/vim-shell-executor.git'
@@ -101,18 +101,18 @@ Plug 'https://github.com/liangguohuan/vim-toggle-abbrevs.git'
 Plug 'https://github.com/liangguohuan/vim-templates.git'
 " }}}
 " php plugins {{{
-Plug 'https://github.com/alvan/vim-php-manual.git'
-Plug 'https://github.com/shawncplus/phpcomplete.vim'
-Plug 'https://github.com/m2mdas/phpcomplete-extended'
-" Plug 'https://github.com/m2mdas/phpcomplete-extended-laravel'
-Plug 'https://github.com/vim-php/vim-php-refactoring.git'
-Plug 'https://github.com/stephpy/vim-php-cs-fixer.git'
+Plug 'https://github.com/alvan/vim-php-manual.git', { 'for': 'php' }
+Plug 'https://github.com/shawncplus/phpcomplete.vim', { 'for': 'php' }
+Plug 'https://github.com/m2mdas/phpcomplete-extended', { 'for': 'php' }
+Plug 'https://github.com/m2mdas/phpcomplete-extended-laravel', { 'for': 'php' }
+Plug 'https://github.com/vim-php/vim-php-refactoring.git', { 'for': 'php' }
+Plug 'https://github.com/stephpy/vim-php-cs-fixer.git', { 'for': 'php' }
 " }}}
 " tools {{{
 Plug 'https://github.com/szw/vim-tags'
 Plug 'https://github.com/christoomey/vim-tmux-navigator.git'
 Plug 'https://github.com/tmux-plugins/vim-tmux-focus-events.git'
-Plug 'https://github.com/suan/vim-instant-markdown.git'
+Plug 'https://github.com/suan/vim-instant-markdown.git', { 'for': 'markdown' }
 Plug 'https://github.com/vimwiki/vimwiki'
 Plug 'https://github.com/jez/vim-superman.git'
 Plug 'https://github.com/seyDoggy/vim-watchforchanges.git'
