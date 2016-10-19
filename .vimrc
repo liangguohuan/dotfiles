@@ -153,7 +153,10 @@ filetype plugin indent on    " required
 source ~/.vim-basic.vim
 source ~/.vim-plugin.vim
 
-
+try
+source ~/.vim-extra.vim
+catch
+endtry
 
 
 " vim: set fdm=marker ts=4 sw=4 sts=4 expandtab
