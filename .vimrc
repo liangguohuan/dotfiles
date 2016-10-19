@@ -57,7 +57,6 @@ Plugin 'https://github.com/vim-utils/vim-alt-mappings.git'
 endif
 Plugin 'https://github.com/taku-o/vim-toggle.git'
 Plugin 'https://github.com/thinca/vim-qfreplace.git'
-Plugin 'https://github.com/Konfekt/FastFold.git'
 Plugin 'https://github.com/kopischke/vim-stay.git'
 Plugin 'https://github.com/mhinz/vim-startify.git'
 " }}}
