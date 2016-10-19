@@ -105,6 +105,8 @@ endfunction
 " => Settings"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
+" force show window title
+set title
 " Set utf8 as standard encoding and en_US as the standard language
 set termencoding=utf-8 
 if !has('nvim')
