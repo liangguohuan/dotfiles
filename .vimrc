@@ -47,7 +47,6 @@ Plug 'https://github.com/vim-utils/vim-alt-mappings.git'
 endif
 Plug 'https://github.com/taku-o/vim-toggle.git'
 Plug 'https://github.com/thinca/vim-qfreplace.git'
-Plug 'https://github.com/kopischke/vim-stay.git'
 Plug 'https://github.com/mhinz/vim-startify.git'
 " }}}
 " Shougo Serise {{{
