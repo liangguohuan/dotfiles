@@ -10,9 +10,10 @@ cabbrev uba UniteBookmarkAdd
 " Unite -vertical -start-insert -winwidth=30 -direction=botright outline
 
 nnoremap <silent> [unite]x :<C-u>Unite output/shellcmd<CR>
+nnoremap <silent> [unite]s :<C-u>Unite grep<CR>
 nnoremap <silent> [unite]r :<C-u>Unite register -unique<CR>
 nnoremap <silent> [unite]c :<C-u>UniteWithCurrentDir file -start-insert -prompt=> -buffer-name=files<CR>
-nnoremap <silent> [unite]s :<C-u>Unite source  -prompt=> -start-insert<CR>
+nnoremap <silent> [unite]; :<C-u>Unite source  -prompt=> -start-insert<CR>
 nnoremap <silent> [unite]o :<C-u>Unite outline -prompt=> -start-insert<CR>
 nnoremap <silent> [unite]b :<C-u>Unite buffer  -prompt=> -start-insert<CR>
 nnoremap <silent> [unite]j :<C-u>Unite jump    -prompt=> -start-insert<CR>
@@ -164,13 +165,15 @@ let g:vimfiler_safe_mode_by_default=0
 nnoremap <silent> [unite]v  :<C-u>VimFiler<CR>
 augroup vimfiler_aug
     autocmd!
-    autocmd FileType vimfiler nmap  <buffer>  <Tab> <Plug>(vimfiler_hide)
-    autocmd FileType vimfiler nmap  <buffer>  <C-N> <Plug>(vimfiler_switch_to_another_vimfiler)
-    autocmd FileType vimfiler unmap <buffer>  sp
-    autocmd FileType vimfiler unmap <buffer>  vsp
-    autocmd FileType vimfiler nmap  <buffer>  s <Plug>(vimfiler_toggle_mark_current_line)
-    autocmd FileType vimfiler vmap  <buffer>  s <Plug>(vimfiler_toggle_mark_selected_lines)
-    autocmd FileType vimfiler nmap  <buffer>  <Space> /
+    autocmd FileType vimfiler nmap  <buffer> <Tab> <Plug>(vimfiler_hide)
+    autocmd FileType vimfiler nmap  <buffer> <C-N> <Plug>(vimfiler_switch_to_another_vimfiler)
+    autocmd FileType vimfiler unmap <buffer> sp
+    autocmd FileType vimfiler unmap <buffer> vsp
+    autocmd FileType vimfiler nmap  <buffer> s <Plug>(vimfiler_toggle_mark_current_line)
+    autocmd FileType vimfiler vmap  <buffer> s <Plug>(vimfiler_toggle_mark_selected_lines)
+    autocmd FileType vimfiler nmap  <buffer> <Space> /
+    autocmd FileType vimfiler nmap  <buffer> <C-h> <Plug>(vimfiler_switch_to_history_directory)
+    autocmd BufEnter,FileType vimfiler nmap <silent>  <buffer>  <C-j> :TmuxNavigateDown<CR>
 augroup END
 let g:vimfiler_ignore_pattern = ['^\.git$', '^\.DS_Store$', 'fugitive', '\.idea', '\.phpcomplete']
 "}}}
