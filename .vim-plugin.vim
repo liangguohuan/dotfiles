@@ -9,14 +9,19 @@ nmap      ; [unite]
 cabbrev uba UniteBookmarkAdd
 " Unite -vertical -start-insert -winwidth=30 -direction=botright outline
 
-nnoremap <silent> [unite]c :<C-u>UniteWithCurrentDir -start-insert -prompt=> -buffer-name=files file<CR>
-nnoremap <silent> [unite]f :<C-u>Unite -prompt=> -start-insert source<CR>
-nnoremap <silent> [unite]o :<C-u>Unite -prompt=> -start-insert outline<CR>
-nnoremap <silent> [unite]b :<C-u>Unite -prompt=> -start-insert -buffer-name=buffer buffer<CR>
-nnoremap <silent> [unite]j :<C-u>Unite -prompt=> -start-insert -buffer-name=jump jump<CR>
-nnoremap <silent> [unite]a :<C-u>Unite -prompt=> -start-insert -buffer-name=mixed buffer file<CR>
+nnoremap <silent> [unite]x :<C-u>Unite output/shellcmd<CR>
+nnoremap <silent> [unite]r :<C-u>Unite register -unique<CR>
+nnoremap <silent> [unite]c :<C-u>UniteWithCurrentDir file -start-insert -prompt=> -buffer-name=files<CR>
+nnoremap <silent> [unite]s :<C-u>Unite source  -prompt=> -start-insert<CR>
+nnoremap <silent> [unite]o :<C-u>Unite outline -prompt=> -start-insert<CR>
+nnoremap <silent> [unite]b :<C-u>Unite buffer  -prompt=> -start-insert<CR>
+nnoremap <silent> [unite]j :<C-u>Unite jump    -prompt=> -start-insert<CR>
+nnoremap <silent> [unite]f :<C-u>Unite buffer file -buffer-name=mixed -prompt=> -start-insert<CR>
+nnoremap <silent> [unite]a :<C-u>Unite file_rec/async  -buffer-name=files     -prompt=> -start-insert -unique -ignorecase<cr>
+nnoremap <silent> [unite]l :<C-u>Unite file_mru        -buffer-name=files_mru -prompt=> -start-insert <CR>
 
 autocmd FileType unite call s:unite_nice_settings()
+
 function! s:unite_nice_settings()
     " Overwrite settings.
     imap <buffer> jj        <Plug>(unite_insert_leave)
@@ -246,21 +251,6 @@ let g:tmuxline_separators = {
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => NERDTree"{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-"{{{
-" HideShowBookmarks can be done by upcase 'B' 
-" let NERDTreeShowBookmarks=1 
-let NERDTreeQuitOnOpen=1
-let NERDTreeAutoDeleteBuffer=1
-let NERDTreeShowHidden=1
-let NERDTreeChDirMode=2
-let NERDTreeQuitOnOpen=1
-let NERDTreeIgnore=['\~$', 'fugitive:$', '.git$']
-map <silent> <leader>nf :silent NERDTreeToggle<cr>
-"}}}
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tagbar"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
@@ -326,32 +316,6 @@ noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
 noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
 noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1})) 
 "}}}
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => LeaderF"{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-if !has('nvim')
-"{{{
-" autocmd FileType LeaderF lmap <C-M> <C-C> 
-nnoremap  <leader>m  :<C-u>LeaderfMru<CR>
-nnoremap  <leader>f  :<C-u>Leaderf .<CR>
-nnoremap  <leader>b  :<C-u>LeaderfBuffer<CR>
-autocmd FileType leaderf unmap <buffer>  sp
-autocmd FileType leaderf unmap <buffer>  vsp
-
-let g:Lf_WildIgnore = {
-        \ 'dir': ['.svn','.git', 'node_modules'],
-        \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
-        \}
-let g:Lf_MruFileExclude = ['*.git*', '*.out', '*/vim-zsh-tmux*', '*/tmp/*', '*.(jpg|png|jpeg|txt)']
-"}}}
-else
-"{{{
-nnoremap  <leader>f :<C-u>Unite  file_rec/neovim -buffer-name=files    -no-split -prompt=>>> -start-insert -ignorecase<cr>
-nnoremap  <leader>m  :<C-u>Unite file_mru        -buffer-name=filesMRU -no-split -prompt=>>> -start-insert<CR>
-nnoremap  <leader>b  :<C-u>Unite buffer          -buffer-name=buffers  -no-split -prompt=>>> -start-insert<CR>
-"}}}
-endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => snipMate (beside <TAB> support <CTRL-j>)"{{{
@@ -690,8 +654,8 @@ autocmd FileType snippets let g:gitgutter_enabled = 0
 nmap ms <Plug>GitGutterStageHunk
 nmap mr <Plug>GitGutterUndoHunk
 nmap mv <Plug>GitGutterPreviewHunk
-nmap mk :call feedkeys("\<Plug>GitGutterPrevHunkzv")<CR>
-nmap mj :call feedkeys("\<Plug>GitGutterNextHunkzv")<CR>
+nmap <silent> mk :call feedkeys("\<Plug>GitGutterPrevHunkzv")<CR>
+nmap <silent> mj :call feedkeys("\<Plug>GitGutterNextHunkzv")<CR>
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
