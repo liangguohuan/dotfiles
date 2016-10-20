@@ -687,11 +687,11 @@ cabbrev gul   Git! push -u origin master
 let g:gitgutter_max_signs = 1024 
 autocmd FileType snippets let g:gitgutter_enabled = 0
 " autocmd FileType snippets set foldenable! 
-nmap <Leader>is <Plug>GitGutterStageHunk
-nmap <Leader>iu <Plug>GitGutterUndoHunk
-nmap <Leader>ip <Plug>GitGutterPreviewHunk
-nmap <Leader>nb :call feedkeys("\<Plug>GitGutterPrevHunkzv")<CR>
-nmap <Leader>nn :call feedkeys("\<Plug>GitGutterNextHunkzv")<CR>
+nmap ms <Plug>GitGutterStageHunk
+nmap mr <Plug>GitGutterUndoHunk
+nmap mv <Plug>GitGutterPreviewHunk
+nmap mk :call feedkeys("\<Plug>GitGutterPrevHunkzv")<CR>
+nmap mj :call feedkeys("\<Plug>GitGutterNextHunkzv")<CR>
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
