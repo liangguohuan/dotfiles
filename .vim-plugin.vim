@@ -266,10 +266,13 @@ nnoremap <silent> <Leader>tt :<C-u>TagbarToggle<CR>
 " => CtrlSF"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-nmap     <C-F>f <Plug>CtrlSFPrompt 
+let g:ctrlsf_extra_backend_args = {
+            \ 'ag': '-i --ignore ".git" --nocolor --follow --nogroup --hidden'
+            \ }
+nmap     <C-F>f <Plug>CtrlSFPrompt
 vmap     <C-F>f <Plug>CtrlSFVwordPath
 vmap     <C-F>F <Plug>CtrlSFVwordExec
-nmap     <C-F>n <Plug>CtrlSFCwordPath
+nmap     <C-F>w <Plug>CtrlSFCwordPath
 nmap     <C-F>p <Plug>CtrlSFPwordPath
 nnoremap <silent> <C-F>o :CtrlSFOpen<CR>
 nnoremap <silent> <C-F>t :CtrlSFToggle<CR>
