@@ -67,11 +67,7 @@ Plug 'https://github.com/airblade/vim-gitgutter.git'
 " Plug 'https://github.com/vim-scripts/vcscommand.vim.git'
 " }}}
 " sidebar tools {{{
-Plug 'https://github.com/scrooloose/nerdtree.git'
 Plug 'https://github.com/majutsushi/tagbar.git'
-if !has('nvim')
-Plug 'https://github.com/Yggdroot/LeaderF.git'
-endif
 Plug 'https://github.com/dyng/ctrlsf.vim.git'
 Plug 'https://github.com/rking/ag.vim.git'
 Plug 'https://github.com/sjl/gundo.vim.git'
