@@ -715,7 +715,7 @@ autocmd FileType help nmap <buffer> q :<C-u>q<CR>
 
 " It cause chaos without keyword exe to do map sometimes, just like below codes it will more one extra space if without 'exe'
 autocmd BufEnter * if &previewwindow | exe 'nmap <buffer> q ZZ' | endif
-autocmd BufEnter * if &diff | exe 'nmap <buffer> q <Leader>x' | endif
+autocmd BufEnter * if &diff && match(bufname('%'), 'fugitive') > -1 | exe 'nmap <buffer> q <Leader>x' | endif
 
 " Smart quit in windows and buffers"{{{
 map <silent> <leader>x :<C-U>call SmartQuit(0)<cr>
