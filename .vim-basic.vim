@@ -134,8 +134,8 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
 set foldmethod=marker
-set foldlevel=0
-set foldlevelstart=0
+set nofoldenable
+set foldlevel=99
 autocmd FileType git,gitcommit setlocal foldlevel=99
 "}}}
 
