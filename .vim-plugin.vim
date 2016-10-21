@@ -162,7 +162,11 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
 let g:vimfiler_safe_mode_by_default=0
-nnoremap <silent> [unite]v  :<C-u>VimFiler<CR>
+nnoremap <silent> [unite]v    :<C-u>VimFiler<CR>
+nnoremap <silent> <leader>vc  :<C-u>VimFilerCurrentDir<CR>
+nnoremap <silent> <leader>vb  :<C-u>VimFilerBufferDir<CR>
+nnoremap <silent> <leader>vd  :<C-u>VimFilerDouble<CR>
+nnoremap <silent> <leader>ve  :<C-u>VimFilerExplorer<CR>
 augroup vimfiler_aug
     autocmd!
     autocmd FileType vimfiler nmap  <buffer> <Tab> <Plug>(vimfiler_hide)
