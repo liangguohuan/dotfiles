@@ -244,12 +244,12 @@ set foldcolumn=1
 " add variable 'g:colorschemealreadyseted' prevent auto source look bad.
 "{{{
 function! SetColorScheme()
-    if exists('g:colorschemealreadyseted') == 0
+    if exists('g:colorscheme_already_seted') == 0
         syntax enable
         set t_co=256
         set background=dark
         colorscheme monokai
-        let g:colorschemealreadyseted = 1
+        let g:colorscheme_already_seted = 1
     endif
 endfunction
 " Goyo Plugin Must call for well
@@ -452,7 +452,7 @@ vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
 "   <leader>p
 "
 map <leader>cc :botright cope<cr>
-map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
+map <leader>co ggVGy:enew<cr>:set syntax=qf<cr>pgg
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
 "}}}
@@ -673,11 +673,7 @@ autocmd BufWinEnter * if &previewwindow | setlocal nobuflisted | endif
 
 " System clipboard sharing
 if has('clipboard') 
-    if has('unnamedplus') 
-        set clipboard=unnamedplus 
-    else 
-        set clipboard=unnamed 
-    endif 
+    set clipboard=unnamedplus 
 endif
 "}}}
 
@@ -711,7 +707,7 @@ autocmd BufWrite *.coffee :call DeleteTrailingWS()
 nnoremap <silent> <F4> :<C-u>q<cr>
 
 " let the help buffer map 'q' to quit
-autocmd FileType help nmap <buffer> q :<C-u>q<CR>
+autocmd FileType help,qf nmap <silent> <buffer> q :<C-u>q<CR>
 
 " It cause chaos without keyword exe to do map sometimes, just like below codes it will more one extra space if without 'exe'
 autocmd BufEnter * if &previewwindow | exe 'nmap <buffer> q ZZ' | endif
