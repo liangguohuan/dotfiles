@@ -649,7 +649,7 @@ set nowrap
 " reindent: auto indent
 nmap <M-i> =G
 imap <M-i> <Esc>=G$
-nmap <c-k><c-i> gg=G``
+nmap <c-g><c-i> gg=G``
 
 " cursorline toggle
 cabbrev cls set cursorline!<CR>
@@ -1019,8 +1019,8 @@ endfunction
 "{{{
 command! Filename call CopyFilePath('t') 
 command! Filepath call CopyFilePath('p')
-nmap <C-C>f :Filename<CR>
-nmap <C-C>c :Filepath<CR>
+nmap <C-g>n :Filename<CR>
+nmap <C-g>f :Filepath<CR>
 "{{{
 function! CopyFilePath(type) abort
     let s:filename = expand('%:' . a:type)
@@ -1029,9 +1029,9 @@ function! CopyFilePath(type) abort
 endfunction
 "}}}
 
-nmap <silent> <C-k><C-x> :call ToggleLabelBar(1, 1)<CR>
-nmap <silent> <C-k><C-a> :call ToggleLabelBar(1, 0)<CR>
-nmap <silent> <C-k><C-b> :call ToggleLabelBar(0, 1)<CR>
+nmap <silent> <C-g><C-x> :call ToggleLabelBar(1, 1)<CR>
+nmap <silent> <C-g><C-a> :call ToggleLabelBar(1, 0)<CR>
+nmap <silent> <C-g><C-b> :call ToggleLabelBar(0, 1)<CR>
 "{{{
 function! ToggleLabelBar(a, b) abort
     if a:a | exe 'set showtabline=' . (&showtabline==0 ? 2 : 0) | endif

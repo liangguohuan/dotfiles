@@ -173,10 +173,24 @@ augroup vimfiler_aug
     autocmd FileType vimfiler vmap  <buffer> s <Plug>(vimfiler_toggle_mark_selected_lines)
     autocmd FileType vimfiler nmap  <buffer> <Space> /
     autocmd FileType vimfiler nmap  <buffer> <C-h> <Plug>(vimfiler_switch_to_history_directory)
-    autocmd BufEnter,FileType vimfiler nmap <silent>  <buffer>  <C-j> :TmuxNavigateDown<CR>
 augroup END
 let g:vimfiler_ignore_pattern = ['^\.git$', '^\.DS_Store$', 'fugitive', '\.idea', '\.phpcomplete']
 "}}}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Gitv"{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+autocmd FileType gitv nmap g? :help gitv<CR>:147<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-tmux-navigator"{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+" force everywhere
+autocmd BufEnter * nnoremap <silent> <buffer> <C-h> :TmuxNavigateLeft<cr>
+autocmd BufEnter * nnoremap <silent> <buffer> <C-j> :TmuxNavigateDown<cr>
+autocmd BufEnter * nnoremap <silent> <buffer> <C-k> :TmuxNavigateUp<cr>
+autocmd BufEnter * nnoremap <silent> <buffer> <C-l> :TmuxNavigateRight<cr>
+autocmd BufEnter * nnoremap <silent> <buffer> <C-\> :TmuxNavigatePrevious<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => YouCompleteMe"{{{
@@ -787,14 +801,14 @@ endfunction
 call LoadCscopeDB()
 command! LoadCscopeDB call LoadCscopeDB() 
 
-nmap <C-l>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-l>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-l>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <C-l>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <C-l>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <C-l>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <C-l>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-nmap <C-l>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+nmap <C-c>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-c>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-c>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-c>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-c>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-c>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-c>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-c>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
