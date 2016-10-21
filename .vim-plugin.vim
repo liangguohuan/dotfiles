@@ -97,7 +97,7 @@ let g:unite_source_menu_menus.git.command_candidates = [
     \['▷ git pull                                        ⌘ ,gx  ', 'Git! pull'],
     \['▷ git prompt                                      ⌘ ,gi  ', 'exe "Git! " input("COMANDO GIT: ")'],
     \['▷ git cd                                          ⌘ ,gj  ', 'Gcd'],
-    \['▷ git () add and commmit                          ⌘ ,gg  ', 'exe "Gwrite \| Gcommit"'],
+    \['▷ git () add and commmit                          ⌘ ,gg  ', 'exe "Gcommit %"'],
     \['▷ git () change last commit message               ⌘ ,ga  ', 'Gcommit --amend'],
     \['▷ git () log show last commit                     ⌘ ,gll ', 'Git! log -p -1'],
     \['▷ git () log show two days commits                ⌘ ,glo ', 'Git! log --pretty=oneline --since="2 days ago"'],
