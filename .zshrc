@@ -118,11 +118,11 @@ zstyle ':completion:*:my-accounts' users-hosts $my_accounts
 DISABLE_AUTO_TITLE="true"
 
 # dir hash
-hash -d document=~/文档
-hash -d music=~/音乐
-hash -d download=~/下载
-hash -d video=~/视频
-hash -d image=~/图片
+hash -d document=~/Document
+hash -d music=~/Music
+hash -d download=~/Download
+hash -d video=~/Videos
+hash -d picture=~/Pictures
 # }}}
 
 ########################################################################################################################
