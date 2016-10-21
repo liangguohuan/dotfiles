@@ -258,7 +258,9 @@ let g:airline_symbols.readonly = '⭤'
 let g:airline_symbols.linenr = '⭡'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-let g:airline_theme="bubblegum" 
+if exists('g:colorscheme_already_seted') && g:colorscheme_already_seted == 0
+    let g:airline_theme="bubblegum" 
+endif
 
 let g:airline#extensions#tmuxline#enabled = 1
 let g:tmuxline_preset = 'righteous'
@@ -430,19 +432,14 @@ let g:multi_cursor_next_key='<C-s>'
 let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<Esc>'
 
-" Called once right before you start selecting multiple cursors
+" slow multiple_cursors in YCM
 function! Multiple_cursors_before()
-  if exists(':NeoCompleteLock')==2
-    exe 'NeoCompleteLock'
-  endif
+    let g:ycm_auto_trigger = 0
 endfunction
-
-" Called once only when the multiple selection is canceled (default <Esc>)
+ 
 function! Multiple_cursors_after()
-  if exists(':NeoCompleteUnlock')==2
-    exe 'NeoCompleteUnlock'
-  endif
-endfunction 
+    let g:ycm_auto_trigger = 1
+endfunction
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
