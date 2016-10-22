@@ -107,6 +107,8 @@ endfunction
 "{{{
 " force show window title
 set title
+" completion dont show preview window
+set completeopt-=preview
 " Set utf8 as standard encoding and en_US as the standard language
 set termencoding=utf-8 
 if !has('nvim')

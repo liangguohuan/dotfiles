@@ -1,9 +1,6 @@
-if has('nvim')
-"{{{
+" nvim python virtual environments.
 let g:python_host_prog  = '/home/hanson/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = '/home/hanson/.pyenv/versions/neovim3/bin/python'
-"}}}
-endif
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -12,9 +9,16 @@ filetype off                  " required
 call plug#begin('~/.vim/bundle')
 
 " base editor plugins {{{
-Plug 'https://github.com/Valloric/YouCompleteMe.git'
-Plug 'https://github.com/SirVer/ultisnips.git'
-Plug 'https://github.com/honza/vim-snippets.git'
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+    Plug 'Shougo/neosnippet'
+    Plug 'Shougo/neosnippet-snippets'
+else
+    Plug 'https://github.com/Valloric/YouCompleteMe.git'
+    Plug 'https://github.com/SirVer/ultisnips.git'
+    Plug 'https://github.com/honza/vim-snippets.git'
+endif
 
 Plug 'https://github.com/morhetz/gruvbox.git'
 Plug 'https://github.com/tomasr/molokai.git'
@@ -107,6 +111,7 @@ Plug 'https://github.com/stephpy/vim-php-cs-fixer.git', { 'for': 'php' }
 Plug 'https://github.com/szw/vim-tags'
 Plug 'https://github.com/christoomey/vim-tmux-navigator.git'
 Plug 'https://github.com/tmux-plugins/vim-tmux-focus-events.git'
+Plug 'https://github.com/wellle/tmux-complete.vim.git'
 Plug 'https://github.com/suan/vim-instant-markdown.git', { 'for': 'markdown' }
 Plug 'https://github.com/vimwiki/vimwiki'
 Plug 'https://github.com/jez/vim-superman.git'

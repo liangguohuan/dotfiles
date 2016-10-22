@@ -24,9 +24,9 @@ nnoremap <silent> [unite]l :<C-u>Unite file_mru        -buffer-name=files_mru -p
 fun! UniteSearchRecCall()
     let cmd = 'file_rec/async'
     " b:git_dir is from plugin vim-fugitive
-    if exists('b:git_dir') 
-        let cmd = 'file_rec/git'
-    endif
+    " if exists('b:git_dir') 
+        " let cmd = 'file_rec/git'
+    " endif
     exe printf('Unite %s  -buffer-name=files -prompt=> -start-insert -unique -ignorecase', cmd)
 endf
 
@@ -207,28 +207,21 @@ autocmd BufEnter * nnoremap <silent> <buffer> <C-l> :TmuxNavigateRight<cr>
 autocmd BufEnter * nnoremap <silent> <buffer> <C-\> :TmuxNavigatePrevious<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => tmux-complete.vim"{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+let g:tmuxcomplete#trigger = 'omnifunc'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => YouCompleteMe"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+if !has('nvim')
 "{{{
-let g:ycm_python_binary_path = '/home/hanson/.pyenv/versions/neovim3/bin/python'
+let g:ycm_python_binary_path = g:python3_host_prog
 let g:ycm_filetype_blacklist = {
-      \ 'tagbar' : 1,
-      \ 'qf' : 1,
-      \ 'notes' : 1,
-      \ 'markdown' : 1,
-      \ 'unite' : 1,
-      \ 'text' : 1,
-      \ 'vimwiki' : 1,
-      \ 'pandoc' : 1,
-      \ 'infolog' : 1,
-      \ 'mail' : 1,
-      \ 'vimfiler' : 1,
-      \ 'gitcommit' : 1,
-      \ 'leaderf' : 1,
-      \ 'nerdtree' : 1,
-      \ 'startify' : 1
-      \}
-set completeopt-=preview
+            \ 'tagbar'   : 1, 'qf'        : 1, 'notes'   : 1, 'markdown' : 1, 'unite'    : 1,
+            \ 'text'     : 1, 'vimwiki'   : 1, 'pandoc'  : 1, 'infolog'  : 1, 'mail'     : 1,
+            \ 'vimfiler' : 1, 'gitcommit' : 1, 'leaderf' : 1, 'nerdtree' : 1, 'startify' : 1
+            \ }
 let g:ycm_auto_trigger = 1
 let g:ycm_show_diagnostics_ui = 0
 " A bug: <C-Space> map for noting, disable it for temprory, because of it trigger one snips completion will be invalid.
@@ -238,6 +231,62 @@ inoremap <expr><C-j>  pumvisible() ? "\<Down>" : "\<C-j>"
 inoremap <expr><C-k>  pumvisible() ? "\<Up>" : "\<C-k>"
 inoremap <expr><C-h>  pumvisible() ? "\<Esc>a" : "\<C-h>"
 "}}}
+endif
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => dpoplete.nvim"{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+if has('nvim')
+"{{{
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
+" Use smartcase.
+let g:deoplete#enable_smart_case = 1
+
+" omnifunc setting
+augroup omnifuncs
+        autocmd!
+        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+augroup end
+
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
+
+" let C-j C-k do the same thing like C-n C-p if pumvisible
+inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+inoremap <expr><S-Tab> pumvisible() ? '<C-p>' : '<S-Tab>'
+
+" ,<Tab> for regular tab
+inoremap <Leader><Tab> <Space><Space>
+inoremap <silent><expr> <TAB>
+            \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ deoplete#mappings#manual_complete()
+
+function! s:check_back_space() abort "{{{
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+
+function! s:my_cr_function() abort
+    return deoplete#close_popup() . "\<CR>"
+endfunction
+
+call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
+
+"}}}
+endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => deoplete-jedi"{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+let g:deoplete#sources#jedi#python_path = g:python3_host_prog
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => airline"{{{
@@ -368,6 +417,8 @@ noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
 " notice: snippets must make sure to be writed right, it will caused to open more then one buffer when you open one file.
 " The third part snippets will be autoload as long as VunduleInstall them.
 " local snippets can be loaded via g:UltiSnipsSnippetDirectories, and use UltisnipEdit to edit them.
+if !has('nvim')
+"{{{
 let g:UltiSnipsSnippetDirectories=["~/.vim/snippets"]
 
 let g:UltiSnipsJumpForwardTrigger="<Enter>"
@@ -413,6 +464,40 @@ endif
 au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger     . " <C-R>=g:UltiSnips_Complete()<cr>"
 au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsJumpBackwardTrigger . " <C-R>=g:UltiSnips_Reverse()<cr>"
 "}}}
+"}}}
+endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => neosnippets"{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+if has('nvim')
+"{{{
+" Plugin key-mappings.
+imap <C-g>     <Plug>(neosnippet_expand_or_jump)
+smap <C-g>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-g>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: "\<TAB>"
+
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
+" Enable snipMate compatibility feature.
+let g:neosnippet#enable_snipmate_compatibility = 1
+
+" Tell Neosnippet about the other snippets
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-php-snippets/snippets'
+let g:neosnippet#snippets_directory='~/.vim/snippets'
+"}}}
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => YankRing"{{{
@@ -444,11 +529,13 @@ let g:multi_cursor_quit_key='<Esc>'
 
 " slow multiple_cursors in YCM
 function! Multiple_cursors_before()
-    let g:ycm_auto_trigger = 0
+    if exists('g:ycm_auto_trigger') | let g:ycm_auto_trigger = 0 | endif
+    if exists('g:deoplete#disable_auto_complete') | let g:deoplete#disable_auto_complete = 1 | endif
 endfunction
  
 function! Multiple_cursors_after()
-    let g:ycm_auto_trigger = 1
+    if exists('g:ycm_auto_trigger') | let g:ycm_auto_trigger = 1 | endif
+    if exists('g:deoplete#disable_auto_complete') | let g:deoplete#disable_auto_complete = 0 | endif
 endfunction
 "}}}
 
