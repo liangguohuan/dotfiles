@@ -94,7 +94,6 @@ Plug 'https://github.com/mattn/emmet-vim'
 " my custom {{{
 Plug 'https://github.com/liangguohuan/vim-php-snippets', { 'for': 'php' }
 Plug 'https://github.com/liangguohuan/vim-monokai.git'
-Plug 'https://github.com/liangguohuan/vim-script-runner'
 Plug 'https://github.com/liangguohuan/vim-shell-executor.git'
 Plug 'https://github.com/liangguohuan/vim-control-window.git'
 Plug 'https://github.com/liangguohuan/vim-toggle-abbrevs.git'
@@ -117,6 +116,7 @@ Plug 'https://github.com/suan/vim-instant-markdown.git', { 'for': 'markdown' }
 Plug 'https://github.com/vimwiki/vimwiki'
 Plug 'https://github.com/jez/vim-superman.git'
 Plug 'https://github.com/seyDoggy/vim-watchforchanges.git'
+Plug 'https://github.com/thinca/vim-quickrun.git'
 " }}}
 
 " All of your Plugs must be added before the following line
