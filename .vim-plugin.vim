@@ -18,8 +18,18 @@ nnoremap <silent> [unite]o :<C-u>Unite outline -prompt=> -start-insert<CR>
 nnoremap <silent> [unite]b :<C-u>Unite buffer  -prompt=> -start-insert<CR>
 nnoremap <silent> [unite]j :<C-u>Unite jump    -prompt=> -start-insert<CR>
 nnoremap <silent> [unite]f :<C-u>Unite buffer file -buffer-name=mixed -prompt=> -start-insert<CR>
-nnoremap <silent> [unite]a :<C-u>Unite file_rec/async  -buffer-name=files     -prompt=> -start-insert -unique -ignorecase<cr>
+nnoremap <silent> [unite]a :<C-u>call UniteSearchRecCall()<CR>
 nnoremap <silent> [unite]l :<C-u>Unite file_mru        -buffer-name=files_mru -prompt=> -start-insert <CR>
+
+fun! UniteSearchRecCall()
+    let cmd = 'file_rec/async'
+    " b:git_dir is from plugin vim-fugitive
+    if exists('b:git_dir') 
+        let cmd = 'file_rec/git'
+    endif
+    exe printf('Unite %s  -buffer-name=files -prompt=> -start-insert -unique -ignorecase', cmd)
+endf
+
 
 autocmd FileType unite call s:unite_nice_settings()
 
