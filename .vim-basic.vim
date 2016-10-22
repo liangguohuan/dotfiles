@@ -552,7 +552,7 @@ endfunction
 " => Fast editing and reloading of vimrc configs"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-map <leader>e :e! ~/.vimrc<cr>
+" map <leader>e :e! ~/.vimrc<cr>
 autocmd! bufwritepost *.vimrc source ~/.vimrc | exec "AirlineRefresh"
 autocmd! bufwritepost *.vim-basic.vim source ~/.vim-basic.vim | exec "AirlineRefresh"
 autocmd! bufwritepost *.vim-plugin.vim source ~/.vim-plugin.vim | exec "AirlineRefresh"
