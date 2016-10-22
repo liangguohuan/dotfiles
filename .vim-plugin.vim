@@ -361,6 +361,7 @@ nnoremap <silent> <C-F>t :CtrlSFToggle<CR>
 " => Gundo"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
+let g:gundo_prefer_python3 = 1
 map <silent> zu :GundoToggle<CR>
 "}}}
 
