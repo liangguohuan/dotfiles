@@ -164,6 +164,8 @@ augroup unite_aug
     autocmd FileType unite nmap  <buffer>  s      <Plug>(unite_toggle_mark_current_candidate)
     autocmd FileType unite vmap  <buffer>  s      <Plug>(unite_toggle_mark_selected_candidates)
     autocmd FileType unite nmap  <buffer>  <Space> /
+    autocmd FileType unite nmap  <buffer>  <C-b>  <Plug>(unite_delete_backward_path)
+    autocmd FileType unite nmap  <buffer>  <C-y>  <Plug>(unite_redraw)
 augroup END
 "}}}
 
