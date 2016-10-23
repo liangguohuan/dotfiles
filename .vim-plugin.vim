@@ -1022,7 +1022,7 @@ let g:quickrun_config = {
 \   },
 \}
 let g:quickrun_no_default_key_mappings = 1
-nmap zr <Plug>(quickrun)
+nmap zr :QuickRun<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-devicons"{{{

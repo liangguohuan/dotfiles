@@ -33,7 +33,7 @@ Plug 'https://github.com/scrooloose/syntastic.git'
 Plug 'https://github.com/yonchu/accelerated-smooth-scroll.git'
 Plug 'https://github.com/scrooloose/nerdcommenter.git'
 Plug 'https://github.com/Yggdroot/indentLine.git'
-Plug 'https://github.com/plasticboy/vim-markdown.git', { 'for': 'markdown' }
+Plug 'https://github.com/plasticboy/vim-markdown.git'            , { 'for': 'markdown' }
 " }}}
 " extended {{{
 Plug 'https://github.com/tpope/vim-dispatch.git'
@@ -44,7 +44,7 @@ Plug 'https://github.com/tpope/vim-abolish.git'
 Plug 'https://github.com/duggiefresh/vim-easydir.git'
 Plug 'https://github.com/terryma/vim-multiple-cursors.git'
 Plug 'https://github.com/vim-scripts/YankRing.vim.git'
-Plug 'https://github.com/junegunn/goyo.vim.git'
+Plug 'https://github.com/junegunn/goyo.vim.git'                  , { 'on': 'Goyo' }
 Plug 'https://github.com/roman/golden-ratio.git'
 Plug 'https://github.com/jiangmiao/auto-pairs.git'
 if !has('nvim')
@@ -57,8 +57,9 @@ Plug 'https://github.com/mhinz/vim-startify.git'
 " Shougo Serise {{{
 Plug 'https://github.com/Shougo/unite.vim.git'
 Plug 'https://github.com/Shougo/neomru.vim.git'
-Plug 'https://github.com/Shougo/vimfiler.vim.git'
-Plug 'https://github.com/Shougo/vimproc.vim.git', {'do' : 'make'}
+Plug 'https://github.com/Shougo/vimfiler.vim.git',
+            \ { 'on': [ 'VimFiler', 'VimFilerExplorer', 'VimFilerDouble', 'VimFilerBufferDir', 'VimFilerCurrentDir' ] }
+Plug 'https://github.com/Shougo/vimproc.vim.git'                 , {'do' : 'make'}
 Plug 'https://github.com/Shougo/vimshell.git'
 Plug 'https://github.com/Shougo/tabpagebuffer.vim.git'
 Plug 'https://github.com/Shougo/unite-outline.git'
@@ -67,7 +68,7 @@ Plug 'https://github.com/Kocha/vim-unite-tig.git'
 " }}}
 " development tools {{{
 Plug 'https://github.com/tpope/vim-fugitive.git'
-Plug 'https://github.com/gregsexton/gitv.git'
+Plug 'https://github.com/gregsexton/gitv.git', { 'on': 'Gitv' }
 Plug 'https://github.com/airblade/vim-gitgutter.git'
 " Plug 'https://github.com/vim-scripts/vcscommand.vim.git'
 " }}}
@@ -75,13 +76,13 @@ Plug 'https://github.com/airblade/vim-gitgutter.git'
 Plug 'https://github.com/majutsushi/tagbar.git'
 Plug 'https://github.com/dyng/ctrlsf.vim.git'
 Plug 'https://github.com/rking/ag.vim.git'
-Plug 'https://github.com/sjl/gundo.vim.git'
-Plug 'https://github.com/MattesGroeger/vim-bookmarks.git'
-Plug 'https://github.com/vim-scripts/TaskList.vim.git'
+Plug 'https://github.com/sjl/gundo.vim.git'                      , { 'on': 'GundoToggle' }
+Plug 'https://github.com/MattesGroeger/vim-bookmarks.git'       
+Plug 'https://github.com/vim-scripts/TaskList.vim.git'           , { 'on': 'TaskList' }
 " }}}
 " vim motions {{{
-Plug 'https://github.com/godlygeek/tabular.git'
-Plug 'https://github.com/junegunn/vim-easy-align.git'
+Plug 'https://github.com/godlygeek/tabular.git'                  , { 'on': 'Tabularize' }
+Plug 'https://github.com/junegunn/vim-easy-align.git'            , { 'on': 'EasyAlign' }
 Plug 'https://github.com/Lokaltog/vim-easymotion.git'
 Plug 'https://github.com/haya14busa/incsearch.vim.git'
 Plug 'https://github.com/haya14busa/incsearch-easymotion.vim.git'
@@ -93,31 +94,32 @@ Plug 'https://github.com/mattn/emmet-vim'
 " Plug 'https://github.com/bkad/CamelCaseMotion.git'
 " }}}
 " my custom {{{
-Plug 'https://github.com/liangguohuan/vim-php-snippets', { 'for': 'php' }
+Plug 'https://github.com/liangguohuan/vim-php-snippets'          , { 'for': 'php' }
 Plug 'https://github.com/liangguohuan/vim-monokai.git'
-Plug 'https://github.com/liangguohuan/vim-shell-executor.git'
-Plug 'https://github.com/liangguohuan/vim-control-window.git'
-Plug 'https://github.com/liangguohuan/vim-toggle-abbrevs.git'
+Plug 'https://github.com/liangguohuan/vim-shell-executor.git'    , { 'on': 'ExecuteSelection' }
+Plug 'https://github.com/liangguohuan/vim-control-window.git'    , { 'on': 'ControlWindow' }
+Plug 'https://github.com/liangguohuan/vim-toggle-abbrevs.git'    , { 'on': 'ToggleAbbrevs' }
 Plug 'https://github.com/liangguohuan/vim-templates.git'
 " }}}
 " php plugins {{{
-Plug 'https://github.com/alvan/vim-php-manual.git', { 'for': 'php' }
-Plug 'https://github.com/shawncplus/phpcomplete.vim', { 'for': 'php' }
-Plug 'https://github.com/m2mdas/phpcomplete-extended', { 'for': 'php' }
-Plug 'https://github.com/m2mdas/phpcomplete-extended-laravel', { 'for': 'php' }
-Plug 'https://github.com/adoy/vim-php-refactoring-toolbox.git', { 'for': 'php' }
-Plug 'https://github.com/stephpy/vim-php-cs-fixer.git', { 'for': 'php' }
+Plug 'https://github.com/alvan/vim-php-manual.git'               , { 'for': 'php' }
+Plug 'https://github.com/shawncplus/phpcomplete.vim'             , { 'for': 'php' }
+Plug 'https://github.com/m2mdas/phpcomplete-extended'            , { 'for': 'php' }
+Plug 'https://github.com/m2mdas/phpcomplete-extended-laravel'    , { 'for': 'php' }
+Plug 'https://github.com/adoy/vim-php-refactoring-toolbox.git'   , { 'for': 'php' }
+Plug 'https://github.com/stephpy/vim-php-cs-fixer.git'           , { 'for': 'php' }
 " }}}
 " tools {{{
-Plug 'https://github.com/szw/vim-tags'
+Plug 'https://github.com/szw/vim-tags'                           , { 'on': 'TagsGenerate' }
 Plug 'https://github.com/christoomey/vim-tmux-navigator.git'
 Plug 'https://github.com/tmux-plugins/vim-tmux-focus-events.git'
 Plug 'https://github.com/wellle/tmux-complete.vim.git'
-Plug 'https://github.com/suan/vim-instant-markdown.git', { 'for': 'markdown' }
+Plug 'https://github.com/suan/vim-instant-markdown.git'          , { 'for': 'markdown' }
 Plug 'https://github.com/vimwiki/vimwiki'
-Plug 'https://github.com/jez/vim-superman.git'
-Plug 'https://github.com/seyDoggy/vim-watchforchanges.git'
-Plug 'https://github.com/thinca/vim-quickrun.git'
+Plug 'https://github.com/jez/vim-superman.git'                   , { 'on': 'SuperMan' }
+Plug 'https://github.com/seyDoggy/vim-watchforchanges.git', 
+            \ { 'on': [ 'WatchForChanges', 'WatchForChangesAllFile', 'WatchForChangesWhileInThisBuffer' ] }
+Plug 'https://github.com/thinca/vim-quickrun.git'                , { 'on': 'QuickRun' }
 " }}}
 
 " All of your Plugs must be added before the following line
