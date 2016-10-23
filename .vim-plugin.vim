@@ -186,7 +186,7 @@ augroup vimfiler_aug
     autocmd FileType vimfiler nmap  <buffer> s <Plug>(vimfiler_toggle_mark_current_line)
     autocmd FileType vimfiler vmap  <buffer> s <Plug>(vimfiler_toggle_mark_selected_lines)
     autocmd FileType vimfiler nmap  <buffer> <Space> /
-    autocmd FileType vimfiler nmap  <buffer> <C-h> <Plug>(vimfiler_switch_to_history_directory)
+    autocmd FileType vimfiler nmap  <buffer> <C-b> <Plug>(vimfiler_switch_to_history_directory)
 augroup END
 let g:vimfiler_ignore_pattern = ['^\.git$', '^\.DS_Store$', 'fugitive', '\.idea', '\.phpcomplete']
 "}}}
