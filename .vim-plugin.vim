@@ -748,8 +748,8 @@ nnoremap  <Leader>td :<C-U>TaskList<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
 " keymap
-autocmd FileType gitcommit inoremap <buffer> <silent> <C-c> <Esc>:q<CR>
-autocmd FileType gitcommit nnoremap <buffer> <silent> <C-c> <Esc>:q<CR>
+autocmd FileType gitcommit inoremap <buffer> <silent> <C-c> <Esc>:x!<CR>
+autocmd FileType gitcommit nnoremap <buffer> <silent> <C-c> <Esc>:x!<CR>
 autocmd BufWinEnter .git/index nmap <buffer> <silent> C <leader>x:Gcommit<CR>
 " autocmd VimLeavePre,BufDelete COMMIT_EDITMSG execute 'sleep 1|bnew|bw'
 " How to use it:
