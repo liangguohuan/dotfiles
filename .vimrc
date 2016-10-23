@@ -11,7 +11,8 @@ call plug#begin('~/.vim/bundle')
 " base editor plugins {{{
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+    " frozen this plugin, it always get screen stuck in when do update.
+    Plug 'zchee/deoplete-jedi', { 'for': 'python', 'frozen': 1 },
     Plug 'Shougo/neosnippet'
     Plug 'Shougo/neosnippet-snippets'
 else
@@ -104,7 +105,7 @@ Plug 'https://github.com/alvan/vim-php-manual.git', { 'for': 'php' }
 Plug 'https://github.com/shawncplus/phpcomplete.vim', { 'for': 'php' }
 Plug 'https://github.com/m2mdas/phpcomplete-extended', { 'for': 'php' }
 Plug 'https://github.com/m2mdas/phpcomplete-extended-laravel', { 'for': 'php' }
-Plug 'https://github.com/vim-php/vim-php-refactoring.git', { 'for': 'php' }
+Plug 'https://github.com/adoy/vim-php-refactoring-toolbox.git', { 'for': 'php' }
 Plug 'https://github.com/stephpy/vim-php-cs-fixer.git', { 'for': 'php' }
 " }}}
 " tools {{{

@@ -894,13 +894,6 @@ nmap <C-c>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim-php-refactoring"{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-"{{{
-let g:php_refactor_command='/usr/local/bin/refactor'
-"}}}
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => phpcs"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
@@ -965,6 +958,19 @@ let g:session_autoload = 'no'
 let g:startify_session_dir = '~/.vim/sessions'
 let g:startify_session_persistence = 1
 let g:startify_session_delete_buffers = 1
+
+let g:startify_list_order = [
+            \ ['   sessions:'],
+            \ 'sessions',
+            \ ['   MRU files'],
+            \ 'files',
+            \ ['   MRU directory:'],
+            \ 'dir',
+            \ ['   bookmarks:'],
+            \ 'bookmarks',
+            \ ['   commands:'],
+            \ 'commands',
+            \ ]
 
 let g:startify_skiplist = [
     \ 'COMMIT_EDITMSG',
