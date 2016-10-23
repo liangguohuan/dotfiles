@@ -354,6 +354,8 @@ function! s:ZoomToggle() abort
         vertical resize
         let t:zoomed = 1
     endif
+    " integrate with tmux
+    call system('xdotool key F6 z')
 endfunction
 "}}}
 command! ZoomToggle call s:ZoomToggle()
