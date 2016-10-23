@@ -815,10 +815,10 @@ au FileType * nnoremap <buffer> <silent> vsp :<C-u>vsp<cr>
 inoremap <C-V> <Esc>pA
 
 " gvim: map break line
-nmap <S-Enter> o
-imap <S-Enter> <Esc>o
-nmap <C-Enter> o
-imap <C-Enter> <Esc>o
+nmap <S-CR> o
+imap <S-CR> <Esc>o
+nmap <C-CR> o
+imap <C-CR> <Esc>o
 
 " file map
 nmap new :enew<cr>
@@ -1116,15 +1116,18 @@ endfunction
 "{{{
 
 " extra keymap
-inoremap <C-f> <Right><Space>
+inoremap <S-Tab> <BS>
+inoremap <C-f> <Right>
+inoremap <C-b> <Left>
 inoremap <C-k> <Esc>S
 inoremap <C-l> <Right><Space>
+inoremap <C-o> <End><CR>
 
 " Map to nice work in PHP
 " php-manual files are in bundle/vim-help-manual
 " <C-Space> cannot work in vim
 autocmd BufNewFile,Bufread *.ros,*.inc,*.php set keywordprg="help"
-autocmd FileType php inoremap <buffer> <C-o> <End>;<Enter>
+autocmd FileType php inoremap <buffer> <C-o> <End>;<CR>
 autocmd FileType php inoremap <buffer> <C-v> <C-Left>$<Esc>ea
 autocmd FileType php inoremap <buffer> <C-g> <End>->
 autocmd FileType php inoremap <buffer> <C-t> <C-Left>$<Esc>ea->

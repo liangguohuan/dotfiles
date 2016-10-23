@@ -216,6 +216,17 @@ let g:tmuxcomplete#trigger = 'omnifunc'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 if !has('nvim')
 "{{{
+" Do not display completion messages
+" Patch: https://groups.google.com/forum/#!topic/vim_dev/WeBBjkXE8H8
+" set noshowmode
+" try
+  " set shortmess+=c
+" catch /^Vim\%((\a\+)\)\=:E539: Illegal character/
+  " autocmd MyAutoCmd VimEnter *
+        " \ highlight ModeMsg guifg=bg guibg=bg |
+        " \ highlight Question guifg=bg guibg=bg
+" endtry
+"
 let g:ycm_python_binary_path = g:python3_host_prog
 let g:ycm_filetype_blacklist = {
             \ 'tagbar'   : 1, 'qf'        : 1, 'notes'   : 1, 'markdown' : 1, 'unite'    : 1,
@@ -227,12 +238,14 @@ let g:ycm_show_diagnostics_ui = 0
 " A bug: <C-Space> map for noting, disable it for temprory, because of it trigger one snips completion will be invalid.
 let g:ycm_key_invoke_completion = '<C-Space>'
 let g:ycm_autoclose_preview_window_after_insertion = 1
+" fixed the <s-tab>
+autocmd FileType * inoremap <expr><S-Tab> pumvisible() ? '<Up>' : '<BS>'
+" human keymap
 inoremap <expr><C-j>  pumvisible() ? "\<Down>" : "\<C-j>"
-inoremap <expr><C-k>  pumvisible() ? "\<Up>" : "\<C-k>"
+inoremap <expr><C-k>  pumvisible() ? "\<Up>" : "\<Esc>S"
 inoremap <expr><C-h>  pumvisible() ? "\<Esc>a" : "\<C-h>"
 "}}}
 endif
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => dpoplete.nvim"{{{
@@ -256,8 +269,8 @@ inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
 
 " let C-j C-k do the same thing like C-n C-p if pumvisible
 inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
-inoremap <expr><S-Tab> pumvisible() ? '<C-p>' : '<S-Tab>'
+inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<Esc>S"
+inoremap <expr><S-Tab> pumvisible() ? '<C-p>' : '<BS>'
 
 " ,<Tab> for regular tab
 inoremap <Leader><Tab> <Space><Space>
