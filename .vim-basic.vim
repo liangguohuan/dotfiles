@@ -969,27 +969,6 @@ endfunction
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => autoload file when changed by other editor."{{{
-" insert mode will trigger warnning dialog.
-" normal mode is doing well.
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-"{{{
-" Find diff change 
-"{{{
-function! DiffOrig()
-    if &diff
-        wincmd p | bdel | diffoff
-    else
-        vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
-    endif
-endfunction
-"}}}
-map <leader>do :call DiffOrig()<cr>
-set autoread
-set autowriteall 
-"}}}
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => make the code right"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
