@@ -14,12 +14,12 @@ if has('nvim')
     " frozen this plugin, it always get screen stuck in when do update.
     Plug 'zchee/deoplete-jedi', { 'for': 'python', 'frozen': 1 },
     Plug 'Shougo/neosnippet'
-    Plug 'Shougo/neosnippet-snippets'
+    Plug 'liangguohuan/neosnippet-snippets'
 else
     Plug 'https://github.com/Valloric/YouCompleteMe.git'
     Plug 'https://github.com/SirVer/ultisnips.git'
-    Plug 'https://github.com/honza/vim-snippets.git'
 endif
+Plug 'https://github.com/honza/vim-snippets.git'
 
 Plug 'https://github.com/morhetz/gruvbox.git'
 Plug 'https://github.com/tomasr/molokai.git'
