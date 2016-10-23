@@ -30,7 +30,9 @@ Plug 'https://github.com/lambdalisue/vim-fullscreen.git'
 endif
 Plug 'https://github.com/bling/vim-airline.git'
 Plug 'https://github.com/vim-airline/vim-airline-themes.git'
+if !has("gui_running")
 Plug 'https://github.com/edkolev/tmuxline.vim.git'
+endif
 Plug 'https://github.com/scrooloose/syntastic.git'
 Plug 'https://github.com/yonchu/accelerated-smooth-scroll.git'
 Plug 'https://github.com/scrooloose/nerdcommenter.git'
