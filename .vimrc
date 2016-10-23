@@ -25,7 +25,9 @@ Plug 'https://github.com/morhetz/gruvbox.git'
 Plug 'https://github.com/tomasr/molokai.git'
 Plug 'https://github.com/nanotech/jellybeans.vim.git'
 Plug 'https://github.com/ryanoasis/vim-devicons.git'
+if has("gui_running")
 Plug 'https://github.com/lambdalisue/vim-fullscreen.git'
+endif
 Plug 'https://github.com/bling/vim-airline.git'
 Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 Plug 'https://github.com/edkolev/tmuxline.vim.git'
