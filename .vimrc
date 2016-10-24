@@ -21,6 +21,7 @@ else
 endif
 Plug 'https://github.com/honza/vim-snippets.git'
 
+Plug 'https://github.com/sheerun/vim-polyglot.git'
 Plug 'https://github.com/morhetz/gruvbox.git'
 Plug 'https://github.com/tomasr/molokai.git'
 Plug 'https://github.com/nanotech/jellybeans.vim.git'
