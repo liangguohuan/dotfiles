@@ -824,7 +824,7 @@ imap <C-CR> <Esc>o
 
 " file map
 nmap new :enew<cr>
-nmap <Leader>s :sav 
+nmap <Leader>sf :sav 
 
 " if has("gui_running")
 " noremap <C-Z> <cr>
