@@ -275,7 +275,6 @@ inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<Esc>S"
 inoremap <expr><S-Tab> pumvisible() ? '<C-p>' : '<BS>'
 
 " ,<Tab> for regular tab
-inoremap <Leader><Tab> <Space><Space>
 inoremap <silent><expr> <TAB>
             \ pumvisible() ? "\<C-n>" :
             \ <SID>check_back_space() ? "\<TAB>" :
