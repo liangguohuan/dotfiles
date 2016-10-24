@@ -811,8 +811,8 @@ nnoremap cmv :e /tmp/c.vim<cr>
 nnoremap cmb :e /tmp/buffer<cr>
 
 " split buffer
-au FileType * nnoremap <buffer> <silent> sp :<C-u>sp<cr>
-au FileType * nnoremap <buffer> <silent> vsp :<C-u>vsp<cr>
+nnoremap <silent> <Leader>sh :<C-u>sp<cr>
+nnoremap <silent> <Leader>sv :<C-u>vsp<cr>
 
 inoremap <C-V> <Esc>pA
 
