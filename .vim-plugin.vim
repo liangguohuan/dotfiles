@@ -159,8 +159,6 @@ call unite#custom#source('file,file_rec,file/async,file_rec/neovim,directory,dir
 " keymap change
 augroup unite_aug
     autocmd!
-    autocmd FileType unite unmap <buffer>  sp
-    autocmd FileType unite unmap <buffer>  vsp
     autocmd FileType unite nmap  <buffer>  s      <Plug>(unite_toggle_mark_current_candidate)
     autocmd FileType unite vmap  <buffer>  s      <Plug>(unite_toggle_mark_selected_candidates)
     autocmd FileType unite nmap  <buffer>  <Space> /
@@ -183,8 +181,6 @@ augroup vimfiler_aug
     autocmd!
     autocmd FileType vimfiler nmap  <buffer> <Tab> <Plug>(vimfiler_hide)
     autocmd FileType vimfiler nmap  <buffer> <C-N> <Plug>(vimfiler_switch_to_another_vimfiler)
-    autocmd FileType vimfiler unmap <buffer> sp
-    autocmd FileType vimfiler unmap <buffer> vsp
     autocmd FileType vimfiler nmap  <buffer> s <Plug>(vimfiler_toggle_mark_current_line)
     autocmd FileType vimfiler vmap  <buffer> s <Plug>(vimfiler_toggle_mark_selected_lines)
     autocmd FileType vimfiler nmap  <buffer> <Space> /
