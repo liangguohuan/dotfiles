@@ -348,7 +348,7 @@ let g:tmuxline_separators = {
 "{{{
 let g:tagbar_width=30 
 let g:tagbar_autofocus = 1
-nnoremap <silent> <Leader>tt :<C-u>TagbarToggle<CR>
+nnoremap <silent> cot :TagbarToggle<CR>
 "}}}
 
 """""""""""""""""""""""""""z""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -372,7 +372,7 @@ nnoremap <silent> <C-F>t :CtrlSFToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
 let g:gundo_prefer_python3 = 1
-map <silent> zu :GundoToggle<CR>
+nnoremap <silent> cog :GundoToggle<CR>
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -949,7 +949,7 @@ endfunction
 " => vim-markdown"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-nnoremap <leader>tm :ToggleMarkdowExpand<CR>
+nnoremap coe :ToggleMarkdowExpand<CR>
 command! ToggleMarkdowExpand ToggleConceal
 "}}}
 
