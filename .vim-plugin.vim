@@ -1040,6 +1040,17 @@ let g:webdevicons_enable_unite = 1
 let g:webdevicons_enable_vimfiler = 1
 "}}}
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => fzf"{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+" Default fzf layout
+" - down / up / left / right
+let g:fzf_layout = { 'up': '~40%' }
+nmap <Leader>f :FZF --no-sort --reverse --inline-info<CR>
+" In Neovim, you can set up fzf window using a Vim command
+" let g:fzf_layout = { 'window': 'enew' }
+
+
 
 
 " vim: set fdm=marker ts=4 sw=4 sts=4 expandtab

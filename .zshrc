@@ -177,3 +177,5 @@ if exists percol; then
 fi
 # }}}
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

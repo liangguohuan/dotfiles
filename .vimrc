@@ -21,6 +21,8 @@ else
 endif
 Plug 'https://github.com/honza/vim-snippets.git'
 
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
 Plug 'https://github.com/sheerun/vim-polyglot.git'
 Plug 'https://github.com/morhetz/gruvbox.git'
 Plug 'https://github.com/tomasr/molokai.git'
