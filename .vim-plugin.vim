@@ -1045,8 +1045,8 @@ let g:webdevicons_enable_vimfiler = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 " Default fzf layout
 " - down / up / left / right
-let g:fzf_layout = { 'up': '~40%' }
-nmap <Leader>f :FZF --no-sort --reverse --inline-info<CR>
+let g:fzf_layout = { 'up': '~60%' }
+nmap <Leader>f :FZF --reverse --inline-info<CR>
 " In Neovim, you can set up fzf window using a Vim command
 " let g:fzf_layout = { 'window': 'enew' }
 
