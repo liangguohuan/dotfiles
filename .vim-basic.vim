@@ -1048,12 +1048,6 @@ function! s:Layout_buffer_allinone(col)
     " let expr = printf('%d/%d.0', a:row, a:col)
     " let trow = eval(expr)
 
-    " set split window rule
-    let l:sb = &splitbelow
-    let l:sr = &splitright
-    set splitbelow
-    set splitright
-
     let l:arrlist = GetBufListsNu()
 
     exec 'only'
@@ -1061,31 +1055,22 @@ function! s:Layout_buffer_allinone(col)
     let index = 0
     while index < len(l:arrlist)
         let item = l:arrlist[index]
-        " execute input('DEBUG: Press ENTER to continue... ' . bufname(item))
         if index == 0
-            exec 'vsp ' . bufname(item)
+            exec 'rightbelow vsp ' . bufname(item)
             exe "normal \<c-w>\<c-w>"
             exe 'q'
         elseif index < a:col 
-            exec 'vsp ' . bufname(item)
+            exec 'rightbelow vsp ' . bufname(item)
         else
             if index % a:col == 0
                 exe "normal " . (a:col - 1) . "\<c-w>h"
             else
                 exe "normal \<c-w>l"
             endif
-            exec 'sp ' . bufname(item)
+            exec 'rightbelow sp ' . bufname(item)
         endif
         let index = index + 1
     endwhile
-
-    " reset split window rule
-    if l:sb == 0
-        set splitbelow!
-    endif
-    if l:sr == 0
-        set splitright!
-    endif
 
 endfunction
 "}}}
