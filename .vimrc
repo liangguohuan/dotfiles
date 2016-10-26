@@ -119,7 +119,8 @@ Plug 'https://github.com/adoy/vim-php-refactoring-toolbox.git'   , { 'for': 'php
 Plug 'https://github.com/stephpy/vim-php-cs-fixer.git'           , { 'for': 'php' }
 " }}}
 " tools {{{
-Plug 'https://github.com/szw/vim-tags'                           , { 'on': 'TagsGenerate' }
+Plug 'https://github.com/xolox/vim-misc.git'
+Plug 'https://github.com/xolox/vim-easytags.git'
 Plug 'https://github.com/christoomey/vim-tmux-navigator.git'
 Plug 'https://github.com/tmux-plugins/vim-tmux-focus-events.git'
 Plug 'https://github.com/wellle/tmux-complete.vim.git'

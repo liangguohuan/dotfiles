@@ -1056,5 +1056,12 @@ nmap <Leader>f :FZF --reverse --inline-info<CR>
 let g:formatdef_php = '"/usr/local/bin/php-cs-fixer fix --level=psr2 -n"'
 let g:formatters_php = ['php']
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-easytags"{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+" BUG: if set this, will cause error.
+" let g:easytags_file = '~/.vim/tags'
+
+
 
 " vim: set fdm=marker ts=4 sw=4 sts=4 expandtab
