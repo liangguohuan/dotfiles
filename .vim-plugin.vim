@@ -1060,7 +1060,7 @@ let g:formatters_php = ['php']
 " => vim-easytags"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 " BUG: if set this, will cause error.
-" let g:easytags_file = '~/.vim/tags'
+let g:easytags_file = '/tmp/.vim/tags'
 
 
 

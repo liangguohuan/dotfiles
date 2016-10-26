@@ -952,8 +952,6 @@ endfunction
 "    default commands 'gf' can open file under cursor, 'gd' can highlight word"}}}
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{
-" k
-" 
 nnoremap gx :call HandleURL()<cr>
 "{{{
 function! HandleURL()
