@@ -1053,8 +1053,8 @@ nmap <Leader>f :FZF --reverse --inline-info<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-autoformat"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-let g:formatdef_php = '"/usr/local/bin/php-cs-fixer fix --level=psr2 -n"'
-let g:formatters_php = ['php']
+let g:formatdef_php_cs_fixer = '"/home/hanson/CodeHub/SHELL/phpcspatch"'
+let g:formatters_php = ['php_cs_fixer']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-easytags"{{{
