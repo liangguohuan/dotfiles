@@ -18,6 +18,9 @@
 " 4. 
 "}}}
 
+" true color setting in nvim
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
@@ -125,10 +128,10 @@ au BufWinEnter * set splitright
 " disable Background Color Erase (BCE) so that color schemes
 " render properly when inside 256-color tmux and GNU screen.
 " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
-if &term =~ '256color'
-  set t_ut=
-  " au VimEnter * if $is_tmux != '' | call ToggleLabelBar() | endif
-endif
+" if &term =~ '256color'
+  " set t_ut=
+  " " au VimEnter * if $is_tmux != '' | call ToggleLabelBar() | endif
+" endif
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

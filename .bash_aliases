@@ -3,7 +3,7 @@
 # => lead bug: these codes will echo ascii when command exec finish in zsh
 # ------------ but zsh work well in tmux.          
 # export TERM="screen-256color"
-export TERM="xterm-256color"
+export TERM="screen-256color"
 
 # => ctrl + s will be trigger vim dead, so do this.
 # => vim-multiple-cursors must do this for doing well.
