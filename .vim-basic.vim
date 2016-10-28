@@ -187,7 +187,7 @@ set wildignore=*.o,*~,*.pyc
 if has("win16") || has("win32")
     set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 else
-    set wildignore+=.git\*,.hg\*,.svn\*
+    set wildignore+=.git\*,.hg\*,.svn\*,fugitive\*
 endif
 
 "Always show current position

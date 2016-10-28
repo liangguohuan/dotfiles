@@ -171,7 +171,7 @@ augroup END
 " => vimfiler"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-let g:vimfiler_as_default_explorer = 1
+" let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_safe_mode_by_default=0
 nnoremap <silent> [unite]v    :<C-u>VimFiler<CR>
 nnoremap <silent> <leader>vc  :<C-u>VimFilerCurrentDir<CR>
@@ -180,6 +180,7 @@ nnoremap <silent> <leader>vd  :<C-u>VimFilerDouble<CR>
 nnoremap <silent> <leader>ve  :<C-u>VimFilerExplorer<CR>
 augroup vimfiler_aug
     autocmd!
+    autocmd FileType vimfiler setlocal cursorline
     autocmd FileType vimfiler nmap  <buffer> <Tab> <Plug>(vimfiler_hide)
     autocmd FileType vimfiler nmap  <buffer> <C-N> <Plug>(vimfiler_switch_to_another_vimfiler)
     autocmd FileType vimfiler nmap  <buffer> s <Plug>(vimfiler_toggle_mark_current_line)
