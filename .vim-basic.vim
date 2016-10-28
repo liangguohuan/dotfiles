@@ -659,7 +659,7 @@ imap <M-i> <Esc>=G$
 nmap <c-g><c-i> gg=G``
 
 " cursorline toggle
-cabbrev cls set cursorline!<CR>
+cabbrev chx !chmod +x %
 command! Reload :e!
 
 " fix the redraw problems with slient
