@@ -604,6 +604,8 @@ highlight BookmarkAnnotationLine guibg=#3c3d37 guifg=NONE
 highlight clear SignColumn
 let g:bookmark_save_per_working_dir = 1
 let g:bookmark_auto_save = 1 
+nmap mgj <Plug>BookmarkMoveUp
+nmap mgk <Plug>BookmarkMoveDown
 " let g:bookmark_highlight_lines = 1
 " let g:bookmark_sign = '♥'
 " let g:bookmark_annotation_sign = '⚑'
@@ -754,7 +756,7 @@ autocmd BufWinEnter .git/index nmap <buffer> <silent> C <leader>x:Gcommit<CR>
 cabbrev gcm   Gcommit -m
 cabbrev gcma  Gcommit -a -m
 cabbrev gcam  Gcommit --amend -m
-cabbrev g     Git!
+cabbrev gg    Git!
 cabbrev gs    Gstatus
 cabbrev ga    Git! add
 cabbrev gaa   Git! add --all
