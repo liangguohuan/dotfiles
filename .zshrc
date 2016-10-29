@@ -160,6 +160,8 @@ zle -N sudo-command-line
 bindkey "\e\e" sudo-command-line
 # }}}
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 ## percol: search shell history easier
 # {{{
 function exists { which $1 &> /dev/null }
@@ -177,5 +179,3 @@ if exists percol; then
 fi
 # }}}
 
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
