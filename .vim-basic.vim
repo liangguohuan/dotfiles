@@ -653,11 +653,6 @@ set nonumber
 set nocursorline
 set nowrap
 
-" reindent: auto indent
-nmap <M-i> =G
-imap <M-i> <Esc>=G$
-nmap <c-g><c-i> gg=G``
-
 " cursorline toggle
 cabbrev chx !chmod +x %
 command! Reload :e!
