@@ -1,7 +1,14 @@
-#!/bin/bash 
+#!/bin/bash
+
+# Tips:
+# use xwininfo can get window info
+# use xmodemap can chage key map
+# use xev can get keyboard info
+# use xdotool can control window
+# use wmctrl can contrl window too
 
 # => lead bug: these codes will echo ascii when command exec finish in zsh
-# ------------ but zsh work well in tmux.          
+# ------------ but zsh work well in tmux.
 # export TERM="screen-256color"
 export TERM="screen-256color"
 
@@ -125,8 +132,8 @@ alias dkc="docker-compose"
 alias laradock="docker-compose up -d nginx mysql redis"
 alias vmdock="docker-compose exec workspace bash"
 alias docweb="start-stop-daemon --start --background --name=docweb --exec /home/hanson/CodeHub/PYTHON/Default/local-host-bind.py \
-           && sleep 1 \
-           && xdg-open http://localhost:8888/index/docs-html/ &>/dev/null"
+    && sleep 1 \
+    && xdg-open http://localhost:8888/index/docs-html/ &>/dev/null"
 alias cscope-update="find . -name '*.php' -type f > cscope.files && cscope -bq"
 # copy file contens to clipboard: sfc [filename]
 alias sfc="xsel -b < "
