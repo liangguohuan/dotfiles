@@ -39,7 +39,7 @@ export PATH=.:$JAVA_HOME/bin:$STORM_HOME/bin:$ZOOKEEPER_HOME/bin:$LAMPP_HOME/bin
 export PATH=.:/home/hanson/CodeHub/SHELL:$PATH
 export PHP_EXTENSION_PATH=/opt/lampp/lib/php/extensions/no-debug-non-zts-20131226
 export DOCSWEB="/media/d/技术资料/docs-web"
-export EDITOR=vim
+export EDITOR=nvim
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
@@ -65,6 +65,7 @@ alias aptinstall="sudo apt-get install"
 alias aptremove="sudo aptitude purge"
 alias aptclear="sudo apt-get autoremove"
 alias aptautofix="sudo apt-get -f install"
+alias gpgmisskeyfix="sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com \$1"
 alias cdc="cd /media/c"
 alias cdd="cd /media/d"
 alias cdw="cd /home/hanson/Code"
@@ -140,11 +141,12 @@ alias temphostname="sudo hostname android-obylyw02ziobm8fr"
 alias china-weather-restart="psaux indicator-china-weather | grep -v color | awk '{print \$2}' | xargs kill -9 && start-stop-daemon --exec /usr/bin/indicator-china-weather --start --background"
 alias t="tmux"
 # good for session deattach from <keyprefix>d
-alias tt="tmux attach -t"
-alias td="tmux attach -d"
+alias tmt="tmux attach -t"
+alias tmd="tmux attach -d"
 alias m="tmuxinator"
 alias ms="tmuxinator start"
 alias msd="tmuxinator start default &>/dev/null"
 alias mux="tmuxinator"
 alias ToggleTouchpad='_(){ eval `synclient | grep TouchpadOff | tr -d " "`; [[ $TouchpadOff == 1 ]] && V=0 || V=1;synclient TouchpadOff=$V }; _'
 alias nv="nvim"
+alias f="vifm"
