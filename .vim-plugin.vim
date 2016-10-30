@@ -1077,4 +1077,4 @@ let g:easytags_file = '/tmp/.vim/tags'
 
 
 
-" vim: set fdm=marker ts=4 sw=4 sts=4 expandtab
+" vim: fdm=marker ts=4 sw=4 sts=4 expandtab

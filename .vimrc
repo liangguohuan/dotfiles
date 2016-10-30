@@ -148,4 +148,4 @@ catch
 endtry
 
 
-" vim: set fdm=marker ts=4 sw=4 sts=4 expandtab
+" vim: fdm=marker ts=4 sw=4 sts=4 expandtab

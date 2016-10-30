@@ -1089,4 +1089,4 @@ autocmd FileType php smap <buffer> <C-k> <Esc><C-Left>dbea
 
 " prevent source file show again.
 set showtabline=0
-" vim: set fdm=marker ts=4 sw=4 sts=4 expandtab
+" vim: fdm=marker ts=4 sw=4 sts=4 expandtab
