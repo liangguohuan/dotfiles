@@ -979,8 +979,6 @@ let g:startify_list_order = [
             \ 'sessions',
             \ ['   MRU files'],
             \ 'files',
-            \ ['   MRU directory:'],
-            \ 'dir',
             \ ['   bookmarks:'],
             \ 'bookmarks',
             \ ['   commands:'],
