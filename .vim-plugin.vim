@@ -1021,8 +1021,14 @@ cnoremap <C-g> :<C-u>ToggleAbbrevs<CR>:
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-quickrun"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-cabbrev qrob let g:quickrun_config['_']['outputter'] = 'buffer'
-cabbrev qrom let g:quickrun_config['_']['outputter'] = 'message'
+function! ToggleQKOutputType() abort
+    if g:quickrun_config['_']['outputter'] == 'message'
+        let g:quickrun_config['_']['outputter'] = 'buffer'
+    else
+        let g:quickrun_config['_']['outputter'] = 'message'
+    endif
+endfunction
+command! ToggleQKOutputType call ToggleQKOutputType()
 let g:quickrun_config = {
 \   "_" : {
 \       "outputter" : "message",
