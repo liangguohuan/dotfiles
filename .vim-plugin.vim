@@ -171,7 +171,7 @@ augroup END
 " => vimfiler"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-" let g:vimfiler_as_default_explorer = 1
+let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_safe_mode_by_default=0
 nnoremap <silent> [unite]v    :<C-u>VimFiler<CR>
 nnoremap <silent> <leader>vc  :<C-u>VimFilerCurrentDir<CR>

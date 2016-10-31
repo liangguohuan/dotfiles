@@ -49,7 +49,6 @@ Plug 'https://github.com/tpope/vim-eunuch.git'
 Plug 'https://github.com/tpope/vim-repeat.git'
 Plug 'https://github.com/tpope/vim-abolish.git'
 Plug 'https://github.com/tpope/vim-unimpaired.git'
-Plug 'https://github.com/tpope/vim-vinegar.git'
 Plug 'https://github.com/duggiefresh/vim-easydir.git'
 Plug 'https://github.com/terryma/vim-multiple-cursors.git'
 Plug 'https://github.com/vim-scripts/YankRing.vim.git'
@@ -67,8 +66,7 @@ Plug 'https://github.com/Chiel92/vim-autoformat.git'
 " Shougo Serise {{{
 Plug 'https://github.com/Shougo/unite.vim.git'
 Plug 'https://github.com/Shougo/neomru.vim.git'
-Plug 'https://github.com/Shougo/vimfiler.vim.git',
-            \ { 'on': [ 'VimFiler', 'VimFilerExplorer', 'VimFilerDouble', 'VimFilerBufferDir', 'VimFilerCurrentDir' ] }
+Plug 'https://github.com/Shougo/vimfiler.vim.git'
 Plug 'https://github.com/Shougo/vimproc.vim.git'                 , {'do' : 'make'}
 Plug 'https://github.com/Shougo/vimshell.git'
 Plug 'https://github.com/Shougo/tabpagebuffer.vim.git'
