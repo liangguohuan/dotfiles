@@ -340,6 +340,7 @@ map <space> /
 
 " Disable highlight when <leader><cr> is pressed
 nnoremap <silent> <CR> :noh<CR>
+nnoremap <silent> <Esc> :noh<Esc>
 
 " Smart way to move between windows
 cabbrev vba vert ba
