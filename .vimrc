@@ -127,7 +127,6 @@ Plug 'https://github.com/tmux-plugins/vim-tmux-focus-events.git'
 Plug 'https://github.com/wellle/tmux-complete.vim.git'
 Plug 'https://github.com/suan/vim-instant-markdown.git'          , { 'for': 'markdown' }
 Plug 'https://github.com/vimwiki/vimwiki'
-Plug 'https://github.com/jez/vim-superman.git'                   , { 'on': 'SuperMan' }
 Plug 'https://github.com/seyDoggy/vim-watchforchanges.git', 
             \ { 'on': [ 'WatchForChanges', 'WatchForChangesAllFile', 'WatchForChangesWhileInThisBuffer' ] }
 Plug 'https://github.com/thinca/vim-quickrun.git'                , { 'on': 'QuickRun' }

@@ -330,7 +330,7 @@ let g:airline_symbols.linenr = '⭡'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 if exists('g:colorscheme_already_seted') && g:colorscheme_already_seted == 0
-    let g:airline_theme="bubblegum" 
+    let g:airline_theme="gruvbox" 
 endif
 
 let g:airline#extensions#tmuxline#enabled = 1
@@ -931,18 +931,6 @@ autocmd FileType html,css imap <C-Y> <C-Z><Leader>
 autocmd FileType html,css vmap <C-Y> <C-Z><Leader>
 autocmd FileType html,css imap <C-X> <C-Z>k
 autocmd FileType html,css nmap <C-X> <C-Z>k 
-"}}}
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim-superman"{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-"{{{
-autocmd VimEnter,FileType *.~ call s:ManViewHandle() 
-function! s:ManViewHandle() abort
-    set nonumber
-    set showtabline=0
-    set laststatus=0
-endfunction 
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

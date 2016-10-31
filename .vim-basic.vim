@@ -256,7 +256,7 @@ function! SetColorScheme()
         syntax enable
         set t_co=256
         set background=dark
-        colorscheme monokai
+        colorscheme gruvbox
         let g:colorscheme_already_seted = 1
     endif
 endfunction
@@ -700,6 +700,8 @@ nnoremap <silent> <F4> :<C-u>q<cr>
 
 " let the help buffer map 'q' to quit
 autocmd FileType help,qf nmap <silent> <buffer> q :<C-u>q<CR>
+
+autocmd FileType netrw nmap <silent> <buffer> qq <Leader>x
 
 " It cause chaos without keyword exe to do map sometimes, just like below codes it will more one extra space if without 'exe'
 autocmd BufEnter * if &previewwindow | exe 'nmap <buffer> q ZZ' | endif
