@@ -941,21 +941,64 @@ endfunction
 " => open url under cursor with browser, replace default command 'gx'"{{{
 "    default commands 'gf' can open file under cursor, 'gd' can highlight word"}}}
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap gx :call XOpenURIUnderCursor()<CR>
 "{{{
-nnoremap gx :call HandleURL()<cr>
-"{{{
-function! HandleURL()
-    " notcie: if use 'xdg-open', it won't work in gvim.
-    let BROWSER_COMMAND = 'google-chrome'
-    let s:uri = matchstr(getline("."), "[a-z]*:\/\/[^ 　>,;'\"]*")
-    echo s:uri
-    if s:uri != ""
-        exec "Silent !" . BROWSER_COMMAND . " \"".s:uri."\" &>/dev/null"
-    else
-        echo "No URI found in line."
-    endif
-endfunction 
-"}}}
+function! XOpenURIUnderCursor() abort
+
+let line = getline('.')
+let position = getpos('.')[2]
+let uri = ''
+
+python3 << EOF
+import re
+import os
+from urllib.parse import urlparse
+import vim
+
+# get the vim variables
+s = vim.eval('line')
+p = int( vim.eval('position') )
+verbose = int( vim.eval('&verbose' ) )
+
+# get from inside ' or "
+m = re.findall(r"(['\"])(\s*?[h/~].*?)\1", s)
+verbose and print('NM1', m)
+nm = [ x[1] for x in m if os.path.isfile( x[1].replace('~', os.path.expanduser('~')) ) or urlparse(x[1]).scheme != '' ]
+# get from outside ' or "
+ns = s
+for x in nm:
+   ns = ns.replace(x, '')
+m = re.findall(r"((https?|[~/])[^\s'\"]+)['\"]?(\s|$)", ns)
+verbose and print('NM2', m)
+nm2 = [ x[0] for x in  m if os.path.isfile( x[0].replace('~', os.path.expanduser('~')) ) or urlparse(x[0]).scheme != '' ]
+# stat the substr position
+nm = nm2 + nm
+verbose and print('MM', nm)
+l = []
+uri = None
+for x in nm:
+    ps = s.find(x)
+    pe = ps + len(x) + 1
+    if p > ps and p < pe:
+        uri = x
+        break
+
+# get uri
+if uri is None and len(nm) > 0:
+    uri = nm[0]
+
+# set uri to vim
+vim.command('let uri = "%s"' %  uri)
+
+EOF
+
+" handle the uri
+let uri = substitute(uri, '\(\s\+\)', '\\\1', 'g')
+let l:cmd = printf( 'Silent !xdg-open %s', uri )
+if !&verbose | exe l:cmd | endif
+echom printf( '!xdg-open %s', uri )
+
+endfunction
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
