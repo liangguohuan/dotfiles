@@ -649,10 +649,8 @@ command! Reload :e!
 
 " fix the redraw problems with slient
 " from: http://vim.wikia.com/wiki/Avoiding_the_%22Hit_ENTER_to_continue%22_prompts
-command! -nargs=+ Nice   execute 'silent <args>' | redraw!
 command! -nargs=+ Silent execute 'silent <args>' | redraw!
 if has("gui_running")
-    command! -nargs=+ Nice   execute '<args>'
     command! -nargs=+ Silent execute 'silent <args>'
 endif
 
@@ -994,9 +992,11 @@ EOF
 
 " handle the uri
 let uri = substitute(uri, '\(\s\+\)', '\\\1', 'g')
-let l:cmd = printf( 'Silent !xdg-open %s', uri )
-if !&verbose | exe l:cmd | endif
-echom printf( '!xdg-open %s', uri )
+let uri = substitute(uri, '?', '\\?', 'g')
+let opencmd = has('gui_running') ? ( stridx(uri, 'http') > -1 ? 'google-chrome' : 'xdg-open' ) : 'xdg-open'
+let cmd = printf( 'Silent !%s %s &>/dev/null', opencmd, uri )
+if !&verbose | exe cmd | endif
+echom printf( '!%s %s', opencmd, uri )
 
 endfunction
 "}}}
