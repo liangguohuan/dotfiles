@@ -576,7 +576,7 @@ au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
 " => Syntastic (syntax checker)"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-let g:syntastic_python_checkers=['pyflakes']
+let g:syntastic_python_checkers=['pylint']
 " let g:syntastic_phpcs_conf = "--standard=/home/hanson/.phpcs-ruleset.xml" " the variable had been invalid.
 let g:syntastic_php_checkers=['php', 'phpmd']
 let g:syntastic_javascript_checkers=['jshint']
