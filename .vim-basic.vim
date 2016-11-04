@@ -1133,6 +1133,27 @@ autocmd FileType php inoremap <buffer> <C-f> <C-Left>$<Esc>ea<Space>=
 autocmd FileType php smap <buffer> <C-k> <Esc><C-Left>dbea
 "}}}
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Environments changed in project, useful for customing env for project."{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+"{{{
+function! ENVPJLocal() abort
+    try
+        let lines = readfile('.env.vim')
+        for line in lines
+            exe printf('let $%s', line)
+        endfor
+    catch
+    endtry
+endfunction
+
+call ENVPJLocal()
+"}}}
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " prevent source file show again.
 set showtabline=0
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim: fdm=marker ts=4 sw=4 sts=4 expandtab

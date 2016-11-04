@@ -1,2 +1,3 @@
 fugitive:
 .vim-bookmarks
+.env.vim

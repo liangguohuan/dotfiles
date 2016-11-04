@@ -1066,8 +1066,9 @@ let g:formatters_php = ['php_cs_fixer']
 let g:easytags_file = '/tmp/.vim/tags'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim-javascript
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-javascript"{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+"{{{
 let g:javascript_conceal_function       = "ƒ"
 let g:javascript_conceal_null           = "ø"
 let g:javascript_conceal_this           = "@"
@@ -1078,6 +1079,8 @@ let g:javascript_conceal_prototype      = "¶"
 let g:javascript_conceal_static         = "•"
 let g:javascript_conceal_super          = "Ω"
 let g:javascript_conceal_arrow_function = "⇒"
+"}}}
 
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim: fdm=marker ts=4 sw=4 sts=4 expandtab
