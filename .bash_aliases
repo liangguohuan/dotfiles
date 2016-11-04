@@ -63,7 +63,11 @@ alias grep='grep --color'
 alias ls='ls --color=auto'
 alias llu="ls -tlrh"
 alias llf="ls \$1 | fullpath"
-alias lls="ll /*(@)"
+## sample: 
+# - list all symbols links in /usr/bin: ll /usr/bin/*(@)
+# - list all symbols links in current dir: ll .*(@)
+# - list all symbols links in current dir's subdirs: ll .*/**(@)
+alias lls="ll .*(@)"
 alias fullpath="xargs -n 1 readlink -f"
 alias cls="clear"
 alias mcf="vim ~/.bash_aliases"
