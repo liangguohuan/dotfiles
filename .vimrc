@@ -117,6 +117,10 @@ Plug 'https://github.com/m2mdas/phpcomplete-extended-laravel'    , { 'for': 'php
 Plug 'https://github.com/adoy/vim-php-refactoring-toolbox.git'   , { 'for': 'php' }
 Plug 'https://github.com/stephpy/vim-php-cs-fixer.git'           , { 'for': 'php' }
 " }}}
+" javascript plugins"{{{
+Plug 'https://github.com/pangloss/vim-javascript.git'            , { 'for': 'javascript' }
+Plug 'https://github.com/jamescarr/snipmate-nodejs.git'          , { 'for': 'javascript' }
+"}}}
 " tools {{{
 Plug 'https://github.com/xolox/vim-misc.git'
 Plug 'https://github.com/xolox/vim-easytags.git'

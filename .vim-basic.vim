@@ -782,6 +782,7 @@ endfunction
 "}}}
 
 " toggle conceal"{{{
+nmap coC :ToggleConceal<CR>
 command! ToggleConceal call s:ToogleConceal()
 function! s:ToogleConceal() abort
     exe 'set conceallevel=' . (&conceallevel==0 ? 2 : 0)

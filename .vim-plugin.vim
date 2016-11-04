@@ -579,6 +579,7 @@ au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
 let g:syntastic_python_checkers=['pyflakes']
 " let g:syntastic_phpcs_conf = "--standard=/home/hanson/.phpcs-ruleset.xml" " the variable had been invalid.
 let g:syntastic_php_checkers=['php', 'phpmd']
+let g:syntastic_javascript_checkers=['jshint']
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -1007,6 +1008,8 @@ cnoremap <C-g> :<C-u>ToggleAbbrevs<CR>:
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-quickrun"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+nmap coo :ToggleQKOutputType<CR>
+command! ToggleQKOutputType call ToggleQKOutputType()
 function! ToggleQKOutputType() abort
     if g:quickrun_config['_']['outputter'] == 'message'
         let g:quickrun_config['_']['outputter'] = 'buffer'
@@ -1014,7 +1017,6 @@ function! ToggleQKOutputType() abort
         let g:quickrun_config['_']['outputter'] = 'message'
     endif
 endfunction
-command! ToggleQKOutputType call ToggleQKOutputType()
 let g:quickrun_config = {
 \   "_" : {
 \       "outputter" : "message",
@@ -1063,6 +1065,19 @@ let g:formatters_php = ['php_cs_fixer']
 " BUG: if set this, will cause error.
 let g:easytags_file = '/tmp/.vim/tags'
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-javascript
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:javascript_conceal_function       = "ƒ"
+let g:javascript_conceal_null           = "ø"
+let g:javascript_conceal_this           = "@"
+let g:javascript_conceal_return         = "⇚"
+let g:javascript_conceal_undefined      = "¿"
+let g:javascript_conceal_NaN            = "ℕ"
+let g:javascript_conceal_prototype      = "¶"
+let g:javascript_conceal_static         = "•"
+let g:javascript_conceal_super          = "Ω"
+let g:javascript_conceal_arrow_function = "⇒"
 
 
 " vim: fdm=marker ts=4 sw=4 sts=4 expandtab
