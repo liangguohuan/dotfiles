@@ -752,7 +752,7 @@ nnoremap  <Leader>td :<C-U>TaskList<CR>
 " keymap
 autocmd FileType gitcommit inoremap <buffer> <silent> <C-c> <Esc>:x!<CR>
 autocmd FileType gitcommit nnoremap <buffer> <silent> <C-c> <Esc>:x!<CR>
-autocmd BufWinEnter .git/index nmap <buffer> <silent> C <leader>x:Gcommit<CR>
+autocmd BufWinEnter .git/index nmap <buffer> <silent> C <leader>x:Gcommit<CR>i
 " autocmd VimLeavePre,BufDelete COMMIT_EDITMSG execute 'sleep 1|bnew|bw'
 " How to use it:
 " 1. input the short cut and hit the key 'Enter'
