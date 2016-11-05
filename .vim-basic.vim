@@ -339,7 +339,8 @@ map k gk
 map <space> /
 
 " Disable highlight when <leader><cr> is pressed
-nnoremap <silent> <CR> :noh<CR>
+" use <C-[> or coh to replace it. <CR> in qf will be not get what it suppose to be.
+" nnoremap <silent> <CR> :noh<CR>
 nnoremap <silent> <Esc> :noh<Esc>
 
 " Smart way to move between windows
