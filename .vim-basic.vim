@@ -795,8 +795,8 @@ endfunction
 nnoremap cme :e 
 nnoremap cms :e ~/.storge<cr>
 nnoremap cmt :e /tmp/t.php<cr>
-nnoremap cmp :e /tmp/a.py<cr>
-nnoremap cmv :e /tmp/c.vim<cr>
+nnoremap cmp :e /tmp/p.py<cr>
+nnoremap cmv :e /tmp/v.vim<cr>
 nnoremap cmb :e /tmp/buffer<cr>
 
 " split buffer
