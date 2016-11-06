@@ -141,7 +141,6 @@ autocmd FileType gitcommit setlocal spell
 " => Folding Save And View"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-set foldmethod=marker
 set nofoldenable
 set foldlevel=99
 autocmd FileType git,gitcommit setlocal foldlevel=99
@@ -341,7 +340,9 @@ map <space> /
 " Disable highlight when <leader><cr> is pressed
 " use <C-[> or coh to replace it. <CR> in qf will be not get what it suppose to be.
 " nnoremap <silent> <CR> :noh<CR>
-nnoremap <silent> <Esc> :noh<Esc>
+nnoremap <silent> <Esc>h :noh<Esc>
+nnoremap <silent> <Esc>o :only<CR>
+nnoremap <silent> <Esc>q :q<CR>
 
 " Smart way to move between windows
 cabbrev vba vert ba
