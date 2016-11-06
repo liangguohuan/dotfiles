@@ -63,7 +63,7 @@ alias grep='grep --color'
 alias ls='ls --color=auto'
 alias llu="ls -tlrh"
 alias llf="ls \$1 | fullpath"
-## sample: 
+## sample:
 # - list all symbols links in /usr/bin: ll /usr/bin/*(@)
 # - list all symbols links in current dir: ll .*(@)
 # - list all symbols links in current dir's subdirs: ll .*/**(@)

@@ -24,7 +24,7 @@ nnoremap <silent> [unite]l :<C-u>Unite file_mru -buffer-name=files_mru -prompt=>
 fun! UniteSearchRecCall()
     let cmd = 'file_rec/async'
     " b:git_dir is from plugin vim-fugitive
-    if exists('b:git_dir') 
+    if exists('b:git_dir')
         let cmd = 'file_rec/git'
     endif
     exe printf('Unite %s  -buffer-name=files -prompt=> -start-insert -unique -ignorecase', cmd)
@@ -56,7 +56,7 @@ function! s:unite_nice_settings()
     nmap <buffer> <C-t>     <Plug>(unite_toggle_auto_preview)
     nmap <buffer> <C-q>     <Plug>(unite_print_candidate)
     nmap <buffer> <C-X>     <Plug>(unite_redraw)
-    
+
     nnoremap <silent><buffer><expr> l
                 \ unite#smart_map('l', unite#do_action('default'))
 
@@ -142,7 +142,7 @@ if executable('ag')
   let g:unite_source_grep_command = 'ag'
   let g:unite_source_grep_default_opts = '-i --nocolor --follow --nogroup --hidden'
   let g:unite_source_grep_recursive_opt = ''
-endif 
+endif
 
 let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
 
@@ -304,7 +304,7 @@ let g:deoplete#sources#jedi#python_path = g:python3_host_prog
 " => airline"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-set laststatus=2 
+set laststatus=2
 set showtabline=0
 set t_Co=256
 " let g:airline_powerline_fonts = 1
@@ -330,7 +330,7 @@ let g:airline_symbols.linenr = '⭡'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 if exists('g:colorscheme_already_seted') && g:colorscheme_already_seted == 0
-    let g:airline_theme="gruvbox" 
+    let g:airline_theme="gruvbox"
 endif
 
 let g:airline#extensions#tmuxline#enabled = 1
@@ -348,7 +348,7 @@ let g:tmuxline_separators = {
 " => Tagbar"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-let g:tagbar_width=30 
+let g:tagbar_width=30
 let g:tagbar_autofocus = 1
 nnoremap <silent> cot :TagbarToggle<CR>
 "}}}
@@ -381,7 +381,7 @@ nnoremap <silent> cog :GundoToggle<CR>
 " => EasyMotion"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-" default map:  
+" default map:
 "   <Leader><Leader>w: motion words after cursor
 "   <Leader><Leader>s: find words with char
 "   <Leader><Leader>f: find words with char after cursor
@@ -424,7 +424,7 @@ endfunction
 noremap <silent><expr> z/ incsearch#go(<SID>config_easyfuzzymotion())
 noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
 noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
-noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1})) 
+noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -528,7 +528,7 @@ endif
 " => YankRing"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-" <C-n> next yank history 
+" <C-n> next yank history
 " <c-p> prev yank history
 if has("win16") || has("win32")
     " Don't do anything
@@ -545,7 +545,7 @@ map coy :<C-U>YRShow<cr>
 " => vim-multiple-cursors"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-" Key 'i' cannot be replayed at 2 cursor locations: press 'v' first to normal mode 
+" Key 'i' cannot be replayed at 2 cursor locations: press 'v' first to normal mode
 let g:multi_cursor_prev_key='<C-d>'
 let g:multi_cursor_next_key='<C-s>'
 let g:multi_cursor_skip_key='<C-x>'
@@ -556,7 +556,7 @@ function! Multiple_cursors_before()
     if exists('g:ycm_auto_trigger') | let g:ycm_auto_trigger = 0 | endif
     if exists('g:deoplete#disable_auto_complete') | let g:deoplete#disable_auto_complete = 1 | endif
 endfunction
- 
+
 function! Multiple_cursors_after()
     if exists('g:ycm_auto_trigger') | let g:ycm_auto_trigger = 1 | endif
     if exists('g:deoplete#disable_auto_complete') | let g:deoplete#disable_auto_complete = 0 | endif
@@ -568,7 +568,7 @@ endfunction
 " Annotate strings with gettext http://amix.dk/blog/post/19678
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-vmap Si S(i_<esc>f) 
+vmap Si S(i_<esc>f)
 au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
 "}}}
 
@@ -589,14 +589,14 @@ cabbrev <silent> <buffer> bd lclose\|bdelete
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0 
+let g:syntastic_check_on_wq = 0
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-bookmark"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-highlight BookmarkSign ctermbg=NONE ctermfg=gray 
+highlight BookmarkSign ctermbg=NONE ctermfg=gray
 highlight BookmarkSign guibg=NONE guifg=#A8A8A8
 highlight BookmarkAnnotationSign ctermbg=NONE ctermfg=gray
 highlight BookmarkAnnotationSign guibg=NONE guifg=#A8A8A8
@@ -606,7 +606,7 @@ highlight BookmarkAnnotationLine ctermbg=237 ctermfg=NONE
 highlight BookmarkAnnotationLine guibg=#3c3d37 guifg=NONE
 highlight clear SignColumn
 let g:bookmark_save_per_working_dir = 1
-let g:bookmark_auto_save = 1 
+let g:bookmark_auto_save = 1
 nmap mgj <Plug>BookmarkMoveUp
 nmap mgk <Plug>BookmarkMoveDown
 " let g:bookmark_highlight_lines = 1
@@ -618,7 +618,7 @@ nmap mgk <Plug>BookmarkMoveDown
 " => Vimroom"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-let g:goyo_width = 120 
+let g:goyo_width = 120
 let g:goyo_margin_top = 2
 let g:goyo_margin_bottom = 2
 nnoremap <silent> <leader>z :Goyo<cr>
@@ -633,7 +633,7 @@ nnoremap <silent> <leader>z :Goyo<cr>
         " let g:goyo_showtabline = &showtabline
     " endif
     " execute 'Goyo'
-    " if g:goyo_toggle_trigger == 1 
+    " if g:goyo_toggle_trigger == 1
         " call SetColorScheme()
         " let g:goyo_toggle_trigger = 0
         " let g:goyo_width = 100
@@ -641,23 +641,23 @@ nnoremap <silent> <leader>z :Goyo<cr>
     " else
         " let g:goyo_toggle_trigger = 1
     " endif
-" endfunction 
+" endfunction
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => gvim-fullscreen"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-if has("gui_running") 
+if has("gui_running")
     nmap <F11> <Plug>(fullscreen-toggle)
-endif 
+endif
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vimshell"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-" Use current directory as vimshell prompt. 
+" Use current directory as vimshell prompt.
 cabbrev vsh VimShell
 let g:vimshell_prompt_expr = 'escape(fnamemodify(getcwd(), ":~").">", "\\[]()?! ")." "'
 let g:vimshell_prompt_pattern = '^\%(\f\|\\.\)\+> '
@@ -694,7 +694,7 @@ endfunction
 
 autocmd FileType int-* call s:interactive_settings()
 function! s:interactive_settings()
-endfunction 
+endfunction
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -712,14 +712,14 @@ let g:trans_default_api = 'bing'
 map <Leader>ig :<C-U>IndentLinesToggle<CR>
 let g:indentLine_enabled = 0
 let g:indentLine_color_term = 239
-let g:indentLine_color_gui = '#586e75' 
+let g:indentLine_color_gui = '#586e75'
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => tasklist.vim"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-let g:tlTokenList = ["FIXME", "TODO", "HACK", "NOTE", "WARN", "MODIFY", "\" => "] 
+let g:tlTokenList = ["FIXME", "TODO", "HACK", "NOTE", "WARN", "MODIFY", "\" => "]
 nnoremap  <Leader>td :<C-U>TaskList<CR>
 "}}}
 
@@ -727,7 +727,7 @@ nnoremap  <Leader>td :<C-U>TaskList<CR>
 " => CamelCaseMotion"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-" map <S-W> <Plug>CamelCaseMotion_w 
+" map <S-W> <Plug>CamelCaseMotion_w
 " map <S-B> <Plug>CamelCaseMotion_b
 " map <S-E> <Plug>CamelCaseMotion_e
 " map <silent> w <Plug>CamelCaseMotion_w
@@ -741,7 +741,7 @@ nnoremap  <Leader>td :<C-U>TaskList<CR>
 " omap <silent> ib <Plug>CamelCaseMotion_ib
 " xmap <silent> ib <Plug>CamelCaseMotion_ib
 " omap <silent> ie <Plug>CamelCaseMotion_ie
-" xmap <silent> ie <Plug>CamelCaseMotion_ie 
+" xmap <silent> ie <Plug>CamelCaseMotion_ie
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -773,9 +773,9 @@ cabbrev gul   Git! push -u origin master
 " => Gitgutter"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-let g:gitgutter_max_signs = 1024 
+let g:gitgutter_max_signs = 1024
 autocmd FileType snippets let g:gitgutter_enabled = 0
-" autocmd FileType snippets set foldenable! 
+" autocmd FileType snippets set foldenable!
 nmap ms <Plug>GitGutterStageHunk
 nmap mr <Plug>GitGutterUndoHunk
 nmap mv <Plug>GitGutterPreviewHunk
@@ -787,26 +787,26 @@ nmap <silent> mj :call feedkeys("\<Plug>GitGutterNextHunkzv")<CR>
 " => NERDCommenter"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-let NERDSpaceDelims = 1 
-nmap <Leader>cp vip<plug>NERDCommenterSexy 
+let NERDSpaceDelims = 1
+nmap <Leader>cp vip<plug>NERDCommenterSexy
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Easy-Align"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-vmap ea <Plug>(EasyAlign) 
+vmap ea <Plug>(EasyAlign)
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign) 
+nmap ga <Plug>(EasyAlign)
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => toggle.vim"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-imap <silent><C-T> <Plug>ToggleI 
+imap <silent><C-T> <Plug>ToggleI
 nmap <silent><C-T> <Plug>ToggleN
 vmap <silent><C-T> <Plug>ToggleV
 let g:toggle_pairs = {
@@ -831,14 +831,14 @@ let g:toggle_pairs = {
   \'private':'public',
   \'&&':'||',
   \'||':'&&'
-\} 
+\}
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-shell-executor"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-let g:executor_output_win_height = 12 
+let g:executor_output_win_height = 12
 nmap <Leader><Leader>r vip:ExecuteSelection<CR>
 nmap <Leader><Leader>rd :bd executor_output<CR>
 vmap <Leader><Leader>r :ExecuteSelection<CR>
@@ -848,17 +848,17 @@ vmap <Leader><Leader>r :ExecuteSelection<CR>
 " => vim-instant-markdown"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-let g:instant_markdown_autostart = 0 
+let g:instant_markdown_autostart = 0
 let g:instant_markdown_slow = 0
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown 
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-instant-markdown"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-" set conceallevel=2 
-let g:vim_markdown_conceal = 1 
+" set conceallevel=2
+let g:vim_markdown_conceal = 1
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -883,7 +883,7 @@ let g:phpcomplete_index_composer_command='/usr/local/bin/composer'
 " => cscope"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-function! LoadCscopeDB() abort 
+function! LoadCscopeDB() abort
     if has("cscope")
         set csto=1
         set cst
@@ -897,7 +897,7 @@ function! LoadCscopeDB() abort
 endfunction
 
 call LoadCscopeDB()
-command! LoadCscopeDB call LoadCscopeDB() 
+command! LoadCscopeDB call LoadCscopeDB()
 
 nmap <C-c>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <C-c>g :cs find g <C-R>=expand("<cword>")<CR><CR>
@@ -913,31 +913,31 @@ nmap <C-c>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 " => phpcs"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-let g:php_cs_fixer_level = "psr2"                 " which level ? 
+let g:php_cs_fixer_level = "psr2"                 " which level ?
 let g:php_cs_fixer_config = "default"             " configuration
 let g:php_cs_fixer_php_path = "php"               " Path to PHP
 let g:php_cs_fixer_enable_default_mapping = 0     " Enable the mapping by default (<leader>pcd)
 let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
-let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information. 
+let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Emmet"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-let g:user_emmet_install_global = 0 
+let g:user_emmet_install_global = 0
 let g:user_emmet_leader_key='<C-Z>'
 autocmd FileType html,css EmmetInstall
 autocmd FileType html,css imap <C-Y> <C-Z><Leader>
 autocmd FileType html,css vmap <C-Y> <C-Z><Leader>
 autocmd FileType html,css imap <C-X> <C-Z>k
-autocmd FileType html,css nmap <C-X> <C-Z>k 
+autocmd FileType html,css nmap <C-X> <C-Z>k
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-watchforchanges"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-" autocmd VimEnter * WatchForChangesAllFile! 
+" autocmd VimEnter * WatchForChangesAllFile!
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-markdown"{{{
@@ -1033,13 +1033,13 @@ nmap <F5> :QuickRun<CR>
 " => vim-devicons"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-" loading the plugin 
+" loading the plugin
 let g:webdevicons_enable = 1
-" adding the flags to NERDTree 
+" adding the flags to NERDTree
 let g:webdevicons_enable_nerdtree = 0
-" adding the custom source to unite 
+" adding the custom source to unite
 let g:webdevicons_enable_unite = 1
-" adding the column to vimfiler 
+" adding the column to vimfiler
 let g:webdevicons_enable_vimfiler = 1
 "}}}
 

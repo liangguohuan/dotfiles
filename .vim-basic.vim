@@ -10,12 +10,12 @@
 " 2. ctrl+f: show command history normal
 " 3. bottom blank white line fixed
 "    # filepath: ~/.gtkrc-2.0
-"    # desc: let gvim white board invisible. 
+"    # desc: let gvim white board invisible.
 "    style "vimfix" {
 "      bg[NORMAL] = "#272822" # this matches my gvim theme 'Normal' bg color.
 "    }
 "    widget "vim-main-window.*GtkForm" style "vimfix"
-" 4. 
+" 4.
 "}}}
 
 " true color setting in nvim
@@ -25,7 +25,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " => Helper functions"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-function! GetBufLists(info) abort 
+function! GetBufLists(info) abort
     redir => bufoutput
     if a:info == 1
         silent buffers
@@ -87,14 +87,14 @@ func! DeleteTillSlash()
         else
             let g:cmd_edited = substitute(g:cmd, "\\(.*\[/\]\\).*/", "\\1", "")
         endif
-    endif   
+    endif
 
     return g:cmd_edited
 endfunc
 
 func! CurrentFileDir(cmd)
     return a:cmd . " " . expand("%:p:h") . "/"
-endfunc 
+endfunc
 
 function! Vimcmd(cmd) abort
     redir => output
@@ -113,13 +113,13 @@ set title
 " completion dont show preview window
 set completeopt-=preview
 " Set utf8 as standard encoding and en_US as the standard language
-set termencoding=utf-8 
+set termencoding=utf-8
 if !has('nvim')
 set encoding=utf8
 endif
 " Use Unix as the standard file type
-set ffs=unix,dos,mac 
-set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030 
+set ffs=unix,dos,mac
+set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
 set previewheight=20
 set diffopt+=vertical
 au BufWinEnter * set splitbelow
@@ -150,7 +150,7 @@ autocmd FileType git,gitcommit setlocal foldlevel=99
 " => General"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-" Sets how many lines of history VIM has to remember 
+" Sets how many lines of history VIM has to remember
 set history=700
 
 " Enable filetype plugins
@@ -169,16 +169,16 @@ let g:mapleader = ","
 nmap <silent> <leader>w :w!<cr>
 nmap <silent> <leader>wa :wa!<cr>
 
-" :W sudo saves the file 
+" :W sudo saves the file
 " (useful for handling the permission-denied error)
-" command! W silent w !sudo tee % > /dev/null 
+" command! W silent w !sudo tee % > /dev/null
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-" Set 7 lines to the cursor - when moving vertically using j/k 
+" Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
 
 " Turn on the WiLd menu
@@ -213,23 +213,23 @@ endif
 " Ignore case when searching
 set ignorecase
 
-" When searching try to be smart about cases 
+" When searching try to be smart about cases
 set smartcase
 
 " Highlight search results
 set hlsearch
 
 " Makes search act like search in modern browsers
-set incsearch 
+set incsearch
 
 " Don't redraw while executing macros (good performance config)
-set lazyredraw 
+set lazyredraw
 
 " For regular expressions turn magic on
 set magic
 
 " Show matching brackets when text indicator is over them
-set showmatch 
+set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
@@ -240,7 +240,7 @@ set t_vb=
 set tm=500
 
 " Add a bit extra margin to the left
-set foldcolumn=1 
+set foldcolumn=1
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -278,7 +278,7 @@ if has("gui_running")
     set guioptions-=r        " hide scroll right
     set guioptions-=b        " hide scroll bottom
     set showtabline=0        " hide tabline
-    set columns=130 lines=33 
+    set columns=130 lines=33
 endif
 "}}}
 "}}}
@@ -287,17 +287,17 @@ endif
 " => Files, backups and undo"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-" Turn backup off, since most stuff is in SVN, git et.c anyway... 
+" Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
 set nowb
-set noswapfile 
+set noswapfile
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-" Use spaces instead of tabs 
+" Use spaces instead of tabs
 set expandtab
 
 " Be smart when using tabs ;)
@@ -313,14 +313,14 @@ set tw=500
 
 set ai "Auto indent
 set si "Smart indent
-set wrap "Wrap lines 
+set wrap "Wrap lines
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Visual mode related"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-" Visual mode pressing * or # searches for the current selection 
+" Visual mode pressing * or # searches for the current selection
 " Super useful! From an idea by Michael Naumann
 vnoremap <silent> * :call VisualSelection('f', '')<CR>
 vnoremap <silent> # :call VisualSelection('b', '')<CR>
@@ -330,7 +330,7 @@ vnoremap <silent> # :call VisualSelection('b', '')<CR>
 " => Moving around, tabs, windows and buffers"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-" Treat long lines as break lines (useful when moving around in them) 
+" Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
 
@@ -374,7 +374,7 @@ nnoremap <silent> <leader>a :ZoomToggle<CR>
 inoremap <C-E> <End>
 inoremap <C-A> <Home>
 
-" Make sure all the deleted buffers will unload when session start next. 
+" Make sure all the deleted buffers will unload when session start next.
 " autocmd VimLeavePre * 1,1000argd
 
 " Close the current buffer
@@ -419,7 +419,7 @@ endfunction
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
-" Specify the behavior when switching between buffers 
+" Specify the behavior when switching between buffers
 try
   set switchbuf=useopen,usetab,newtab
   set stal=2
@@ -432,11 +432,11 @@ endtry
 " => Status line"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-" Always show the status line 
+" Always show the status line
 set laststatus=2
 
 " Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l 
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -444,11 +444,11 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 "    requires ack.vim - it's much better than vimgrep/grep"}}}
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{
-" When you press gv you Ack after the selected text 
+" When you press gv you Ack after the selected text
 vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
 
 " Open Ack and put the cursor in the right position
-" map <leader>g :CtrlSF 
+" map <leader>g :CtrlSF
 
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
@@ -474,7 +474,7 @@ map <leader>p :cp<cr>
 " => Misc"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-" Remove the Windows ^M - when the encodings gets messed up 
+" Remove the Windows ^M - when the encodings gets messed up
 noremap dwm mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Toggle paste mode on and off
@@ -485,11 +485,11 @@ map <leader>pp :setlocal paste!<cr>
 " => Helper functions"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-function! CmdLine(str) 
+function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str
     emenu Foo.Bar
     unmenu Foo
-endfunction 
+endfunction
 
 let g:virsual_selection_act = 0
 function! VisualSelection(direction, extra_filter) range
@@ -542,7 +542,7 @@ function! <SID>BufcloseCloseIt()
    if buflisted(l:currentBufNum)
      execute("bdelete! ".l:currentBufNum)
    endif
-endfunction 
+endfunction
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -561,11 +561,11 @@ autocmd! bufwritepost *.vim-plugin.vim source ~/.vim-plugin.vim | exec "AirlineR
 "    means that you can undo even when you close a buffer/VIM"}}}
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{
-try 
+try
     set undodir=~/.vim/temp_dirs/undodir
     set undofile
 catch
-endtry 
+endtry
 
 if has('nvim')
     set shada='20,<50,:20,%,n~/.nvim/nviminfo
@@ -585,14 +585,14 @@ autocmd BufReadPost *
 " => Command mode related"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-" Smart mappings on the command line 
+" Smart mappings on the command line
 cno $h e ~/
 cno $d e ~/Desktop/
 cno $j e ./
 cno $c e <C-\>eCurrentFileDir("e")<cr>
 
 " $q is super useful when browsing on the command line
-" it deletes everything until the last slash 
+" it deletes everything until the last slash
 cno $q <C-\>eDeleteTillSlash()<cr>
 
 " Bash like keys for the command line
@@ -605,14 +605,14 @@ cnoremap <C-N> <Down>
 " Map ½ to something useful
 map ½ $
 cmap ½ $
-imap ½ $ 
+imap ½ $
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Parenthesis/bracket"{{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-" select text, then Quickly ouput '$1' 
+" select text, then Quickly ouput '$1'
 vnoremap $1 <esc>`>a)<esc>`<i(<esc>
 vnoremap $2 <esc>`>a]<esc>`<i[<esc>
 vnoremap $3 <esc>`>a}<esc>`<i{<esc>
@@ -627,7 +627,7 @@ vnoremap $e <esc>`>a"<esc>`<i"<esc>
 " inoremap $4 {<esc>o}<esc>O
 " inoremap $q ''<esc>i
 " inoremap $e ""<esc>i
-" inoremap $t <><esc>i 
+" inoremap $t <><esc>i
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -641,7 +641,7 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 " => Custom Settings"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-set nonumber 
+set nonumber
 set nocursorline
 set nowrap
 
@@ -659,13 +659,13 @@ endif
 " normal mode keypress 'K' will show help of function.
 autocmd BufNewFile,Bufread *.vim set keywordprg="help"
 
-" let QuicklyFix buffer out of list 
+" let QuicklyFix buffer out of list
 autocmd FileType qf,vimfiler,git setlocal nobuflisted
 autocmd BufWinEnter * if &previewwindow | setlocal nobuflisted | endif
 
 " System clipboard sharing
-if has('clipboard') 
-    set clipboard=unnamedplus 
+if has('clipboard')
+    set clipboard=unnamedplus
 endif
 "}}}
 
@@ -674,7 +674,7 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
 "Editing mappings{{{
-" Remap VIM 0 to first non-blank character 
+" Remap VIM 0 to first non-blank character
 map 0 ^
 
 " Goback normal mode Quickly
@@ -694,7 +694,7 @@ func! DeleteTrailingWS()
 endfunc
 command! TrailingWhiteSpaceDelete call DeleteTrailingWS()
 autocmd BufWrite *.py :call DeleteTrailingWS()
-autocmd BufWrite *.coffee :call DeleteTrailingWS() 
+autocmd BufWrite *.coffee :call DeleteTrailingWS()
 "}}}
 
 nnoremap <silent> <F4> :<C-u>q<cr>
@@ -766,7 +766,7 @@ function! SmartQuit(tag) abort
             if buflisted(winbufnr(index)) == 0
                 call insert(bufnrtmp, winbufnr(index))
             endif
-            let index -= 1 
+            let index -= 1
         endwhile
         if len(bufnrtmp) > 0
             if g:smartqdebug == 1 | echo "delete from 4" | endif
@@ -791,10 +791,10 @@ function! s:ToogleConceal() abort
 endfunction
 "}}}
 
-" show the command line 
+" show the command line
 " nnoremap cm  :
 " use 'L' to switch cmdline quickly
-nnoremap cme :e 
+nnoremap cme :e
 nnoremap cms :e ~/.storge<cr>
 nnoremap cmt :e /tmp/t.php<cr>
 nnoremap cmp :e /tmp/p.py<cr>
@@ -815,7 +815,7 @@ imap <C-CR> <Esc>o
 
 " file map
 nmap new :enew<cr>
-nmap <Leader>sf :sav 
+nmap <Leader>sf :sav
 
 " if has("gui_running")
 " noremap <C-Z> <cr>
@@ -834,7 +834,7 @@ exec "vnoremap <C-N> y:<C-U>e /tmp/buffer<cr><Esc>O" . repeat('-', 120) . "<cr><
 func! GoToBufferNext(tag)
     let s:commandstr = a:tag == 'next' ? 'bn' : 'bp'
     " let s:arr = ['tagbar', 'nerdtree', 'qf', 'ctrlsf', 'runner']
-    " if index(s:arr, &filetype) == -1 
+    " if index(s:arr, &filetype) == -1
     let s:arrlist = GetBufListsNu()
     if index(s:arrlist, bufnr('%')) > -1 && winnr('$') == 1
         execute s:commandstr
@@ -849,7 +849,7 @@ function! GoToBuffer(tag) abort
         " elseif a:tag == 1
         " exe 'b' . s:nr
     endif
-endfunction 
+endfunction
 "}}}
 "}}}
 
@@ -892,7 +892,7 @@ endfunction
 " => markdown preview"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-" from http://www.jmlog.com/use-pandoc-to-preview-markdown-in-vim/ 
+" from http://www.jmlog.com/use-pandoc-to-preview-markdown-in-vim/
 command! PreviewMarkdown call PreviewMarkdown()
 "{{{
 function! PreviewMarkdown()
@@ -915,8 +915,8 @@ function! PreviewMarkdown()
         let str = matchstr(line, '\(!\[.*\](\)\@<=.\+\.\%(png\|jpe\=g\|gif\)')
         if str != "" && match(str, '^https\=:\/\/') == -1
             let newLine = substitute(line, '\(!\[.*\]\)(' . str . ')',
-                        \'\1(file://' . escape(expand("%:p:h", 1), '\') . 
-                        \('/') . 
+                        \'\1(file://' . escape(expand("%:p:h", 1), '\') .
+                        \('/') .
                         \escape(expand(str, 1), '\') . ')', 'g')
         else
             let newLine = line
@@ -928,7 +928,7 @@ function! PreviewMarkdown()
     call delete(input_file)
     " Change encoding back
     silent! execute 'set fileencoding=' . original_encoding . ' ' . original_bomb
-    " Preview 
+    " Preview
     silent! execute '!' . BROWSER_COMMAND . ' "' . output_file . '" &>/dev/null'
     execute input('Press ENTER to continue...')
     echo
@@ -1008,7 +1008,7 @@ endfunction
 " => make the code right"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-command! Coderight call MakeTheCodeRight() 
+command! Coderight call MakeTheCodeRight()
 "{{{
 function! MakeTheCodeRight() abort
     try
@@ -1023,7 +1023,7 @@ function! MakeTheCodeRight() abort
     catch
     endtry
     echo "codes had been maked right."
-endfunction 
+endfunction
 "}}}
 "}}}
 
@@ -1049,7 +1049,7 @@ nmap <silent> <C-g><C-b> :call ToggleLabelBar(0, 1)<CR>
 function! ToggleLabelBar(a, b) abort
     if a:a | exe 'set showtabline=' . (&showtabline==0 ? 2 : 0) | endif
     if a:b | exe 'set laststatus=' . (&laststatus==0 ? 2 : 0) | endif
-endfunction 
+endfunction
 "}}}
 "}}}
 
@@ -1057,7 +1057,7 @@ endfunction
 " => hope to auto effect bash_aliases file, but it doesn't ok."{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-" autocmd VimLeave * :call AutoSourceFiles() 
+" autocmd VimLeave * :call AutoSourceFiles()
 " function! AutoSourceFiles() abort
 " let s:filename = expand('%:P')
 " if match(s:filename, "bash\_alias")
@@ -1067,7 +1067,7 @@ endfunction
 " For snippet_complete marker.
 if has('conceal')
     set conceallevel=2 concealcursor=i
-endif 
+endif
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1092,7 +1092,7 @@ function! s:Layout_buffer_allinone(col)
             exec 'rightbelow vsp ' . bufname(item)
             exe "normal \<c-w>\<c-w>"
             exe 'q'
-        elseif index < a:col 
+        elseif index < a:col
             exec 'rightbelow vsp ' . bufname(item)
         else
             if index % a:col == 0
@@ -1130,7 +1130,7 @@ autocmd FileType php inoremap <buffer> <C-o> <End>;<CR>
 autocmd FileType php inoremap <buffer> <C-v> <C-Left>$<Esc>ea
 autocmd FileType php inoremap <buffer> <C-g> <End>->
 autocmd FileType php inoremap <buffer> <C-t> <C-Left>$<Esc>ea->
-autocmd FileType php inoremap <buffer> <C-f> <C-Left>$<Esc>ea<Space>= 
+autocmd FileType php inoremap <buffer> <C-f> <C-Left>$<Esc>ea<Space>=
 " smap can't work if map prefix 'Alt' key in vim, but work in nvim
 autocmd FileType php smap <buffer> <C-k> <Esc><C-Left>dbea
 "}}}
