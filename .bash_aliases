@@ -54,7 +54,7 @@ export PATH=.:/home/hanson/CodeHub/SHELL:$PATH
 export PHP_EXTENSION_PATH=/opt/lampp/lib/php/extensions/no-debug-non-zts-20131226
 export DOCSWEB="/media/d/技术资料/docs-web"
 export EDITOR=nvim
-export FZF_DEFAULT_COMMAND="ag -g ''"
+export FZF_DEFAULT_COMMAND="ag --depth 26 -t -g ''"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export LANGUAGE=en_US.UTF-8 git vi vim gvim
