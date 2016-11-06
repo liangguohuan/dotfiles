@@ -538,8 +538,7 @@ endif
 let g:yankring_window_use_bottom = 0
 let g:yankring_window_height = 12
 
-map yrs :<C-U>YRShow<cr>
-map yrr :<C-U>YRSearch  
+map coy :<C-U>YRShow<cr>
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
