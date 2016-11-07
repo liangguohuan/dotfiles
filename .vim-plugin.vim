@@ -152,7 +152,7 @@ call unite#custom#source('file_rec/neovim', 'sorters', 'sorter_rank')
 
 
 " wildignore
-call unite#custom#source('file,file_rec,file/async,file_rec/neovim,directory,directory_mru,directory_rec,directory_rec/async',
+call unite#custom#source('file,file_rec,file_rec/git,file/async,file_rec/neovim,directory,directory_mru,directory_rec,directory_rec/async',
             \ 'ignore_pattern',
             \ 'fugitive\|.idea\|.phpcomplete')
 
