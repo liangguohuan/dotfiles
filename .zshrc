@@ -91,9 +91,30 @@ source ~/.bash_aliases
 # => zsh keymap
 ########################################################################################################################
 # {{{
-## remove keymap [Alt+l], dont exec 'ls' to list directory contents,
-# and this is helpful for vim-tmux-navigator to map 'Alt'
-bindkey -r '^[l'
+# [esc+l] to chdir to the parent directory
+# bindkey -s '\el' " 2>&1|less^M"
+# [alt+u] pipe the current command through less
+# bindkey -s '\eu' '^qcd ..; ls^M'
+# [esc+enter] menu selection: pick item but stay in the menu
+bindkey -M menuselect '\e^M' accept-and-menu-complete 
+
+#=== vim mode =====================================================
+# function zle-line-init zle-keymap-select {
+    # RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
+    # RPS2=$RPS1
+    # zle reset-prompt
+# }
+# zle -N zle-line-init
+# zle -N zle-keymap-select
+# # Incremental search is elite!
+# bindkey -M vicmd "/" history-incremental-search-backward
+# bindkey -M vicmd "?" history-incremental-search-forward
+
+# # Search based on what you typed in already
+# bindkey -M vicmd "//" history-beginning-search-backward
+# bindkey -M vicmd "??" history-beginning-search-forward
+
+#=== vim mode end  =====================================================
 # }}}
 
 ########################################################################################################################
@@ -179,3 +200,5 @@ if exists percol; then
 fi
 # }}}
 
+
+# vim: fdm=marker ts=4 sw=4 sts=4 expandtab
