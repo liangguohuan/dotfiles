@@ -69,7 +69,7 @@ alias llf="ls \$1 | fullpath"
 # - list all symbols links in current dir's subdirs: ll .*/**(@)
 alias lls="ll .*(@)"
 alias fullpath="xargs -n 1 readlink -f"
-alias cls="clear"
+alias cls="xdotool set_window -name ' ' $(xdotool getactivewindow) && clear"
 alias mcf="vim ~/.bash_aliases"
 alias mcfn="source ~/.bash_aliases && echo alias files has been updated."
 alias mcfv="cat ~/.bash_aliases | egrep '(alias [a-z|\-]{3,}=\")|(export )' | less"
