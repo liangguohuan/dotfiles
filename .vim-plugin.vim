@@ -199,12 +199,14 @@ autocmd FileType gitv nmap g? :help gitv<CR>:147<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-tmux-navigator"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+"{{{
 " force everywhere
 autocmd BufEnter * nnoremap <silent> <buffer> <C-h> :TmuxNavigateLeft<cr>
 autocmd BufEnter * nnoremap <silent> <buffer> <C-j> :TmuxNavigateDown<cr>
 autocmd BufEnter * nnoremap <silent> <buffer> <C-k> :TmuxNavigateUp<cr>
 autocmd BufEnter * nnoremap <silent> <buffer> <C-l> :TmuxNavigateRight<cr>
 autocmd BufEnter * nnoremap <silent> <buffer> <C-\> :TmuxNavigatePrevious<cr>
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => tmux-complete.vim"{{{
@@ -1008,6 +1010,7 @@ cnoremap <C-g> :<C-u>ToggleAbbrevs<CR>:
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-quickrun"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+"{{{
 nmap coo :ToggleQKOutputType<CR>
 command! ToggleQKOutputType call ToggleQKOutputType()
 function! ToggleQKOutputType() abort
@@ -1028,6 +1031,7 @@ let g:quickrun_config.node = {
           \ }
 let g:quickrun_no_default_key_mappings = 1
 nmap <F5> :QuickRun<CR>
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-devicons"{{{
@@ -1046,24 +1050,30 @@ let g:webdevicons_enable_vimfiler = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => fzf"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+"{{{
 " Default fzf layout
 " - down / up / left / right
 let g:fzf_layout = { 'up': '~60%' }
 nmap <Leader>f :FZF --reverse --inline-info<CR>
 " In Neovim, you can set up fzf window using a Vim command
 " let g:fzf_layout = { 'window': 'enew' }
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-autoformat"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+"{{{
 let g:formatdef_php_cs_fixer = '"/home/hanson/CodeHub/SHELL/phpcspatch"'
 let g:formatters_php = ['php_cs_fixer']
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-easytags"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+"{{{
 " BUG: if set this, will cause error.
 let g:easytags_file = '/tmp/.vim/tags'
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-javascript"{{{
