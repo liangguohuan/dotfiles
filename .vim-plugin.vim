@@ -133,7 +133,7 @@ for item in g:unite_source_menu_menus.git.command_candidates
     if stridx(item[0], ',') > -1
         let _key = split(item[0], ',')[-1]
         let _val = item[1]
-        exe 'nnoremap <leader>' . _key . ' :' . _val . '<CR>'
+        exe 'nnoremap <leader>' . _key . ' :' . _val . '<CR>' . (stridx(_val, 'Gcommit') > -1 ? 'i' : '')
     endif
 endfor
 
