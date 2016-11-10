@@ -159,6 +159,8 @@ call unite#custom#source('file,file_rec,file_rec/git,file/async,file_rec/neovim,
 " keymap change
 augroup unite_aug
     autocmd!
+    autocmd FileType unite nmap  <buffer><expr>   <C-s>  unite#do_action('split')
+    autocmd FileType unite nmap  <buffer><expr>   <C-v>  unite#do_action('vsplit')
     autocmd FileType unite nmap  <buffer>  s      <Plug>(unite_toggle_mark_current_candidate)
     autocmd FileType unite vmap  <buffer>  s      <Plug>(unite_toggle_mark_selected_candidates)
     autocmd FileType unite nmap  <buffer>  <Space> /
@@ -181,6 +183,8 @@ nnoremap <silent> <leader>ve  :<C-u>VimFilerExplorer<CR>
 augroup vimfiler_aug
     autocmd!
     autocmd FileType vimfiler setlocal cursorline
+    autocmd FileType vimfiler nmap  <buffer><expr> <C-s> vimfiler#do_switch_action('split')
+    autocmd FileType vimfiler nmap  <buffer><expr> <C-v> vimfiler#do_switch_action('vsplit')
     autocmd FileType vimfiler nmap  <buffer> <Tab> <Plug>(vimfiler_hide)
     autocmd FileType vimfiler nmap  <buffer> <C-N> <Plug>(vimfiler_switch_to_another_vimfiler)
     autocmd FileType vimfiler nmap  <buffer> s <Plug>(vimfiler_toggle_mark_current_line)
