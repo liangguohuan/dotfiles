@@ -122,8 +122,11 @@ set ffs=unix,dos,mac
 set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
 set previewheight=20
 set diffopt+=vertical
-au BufWinEnter * set splitbelow
-au BufWinEnter * set splitright
+" set search pattern empty by default
+autocmd VimEnter * exe 'let @/ = ""'
+" set split rule
+autocmd BufWinEnter * set splitbelow
+autocmd BufWinEnter * set splitright
 
 set spellfile=~/.vim/spell/en.utf-8.add
 
@@ -223,7 +226,7 @@ set hlsearch
 set incsearch
 
 " Don't redraw while executing macros (good performance config)
-set lazyredraw
+" set lazyredraw
 
 " For regular expressions turn magic on
 set magic
