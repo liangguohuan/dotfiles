@@ -804,9 +804,11 @@ nnoremap cmp :e /tmp/p.py<cr>
 nnoremap cmv :e /tmp/v.vim<cr>
 nnoremap cmb :e /tmp/buffer<cr>
 
-" split buffer
-nnoremap <silent> <Leader>sh :<C-u>sp<cr>
-nnoremap <silent> <Leader>sv :<C-u>vsp<cr>
+" split buffer can use <C-w>s and <C-w>v
+" keymap for jumping window
+for i in range(1,9)
+    exe printf( 'nnoremap <C-w>%d :%dwincmd w<CR>', i, i )
+endfor
 
 inoremap <C-V> <Esc>pA
 
