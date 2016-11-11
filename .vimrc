@@ -109,6 +109,7 @@ Plug 'https://github.com/liangguohuan/vim-shell-executor.git'    , { 'on': 'Exec
 Plug 'https://github.com/liangguohuan/vim-control-window.git'    , { 'on': 'ControlWindow' }
 Plug 'https://github.com/liangguohuan/vim-toggle-abbrevs.git'    , { 'on': 'ToggleAbbrevs' }
 Plug 'https://github.com/liangguohuan/vim-templates.git'
+Plug 'https://github.com/liangguohuan/vim-layout.git'
 " }}}
 " php plugins {{{
 Plug 'https://github.com/alvan/vim-php-manual.git'               , { 'for': 'php' }
