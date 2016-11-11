@@ -1074,45 +1074,6 @@ endif
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Comamnd 'ban' like 'ba' and 'vert ba', but be more nautual."{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-"{{{
-cabbrev ban LayoutBuffer
-command! -nargs=* LayoutBuffer call s:Layout_buffer_allinone(<f-args>)
-"{{{
-function! s:Layout_buffer_allinone(col)
-    " let expr = printf('%d/%d.0', a:row, a:col)
-    " let trow = eval(expr)
-
-    let l:arrlist = GetBufListsNu()
-
-    exec 'only'
-
-    let index = 0
-    while index < len(l:arrlist)
-        let item = l:arrlist[index]
-        if index == 0
-            exec 'rightbelow vsp ' . bufname(item)
-            exe "normal \<c-w>\<c-w>"
-            exe 'q'
-        elseif index < a:col
-            exec 'rightbelow vsp ' . bufname(item)
-        else
-            if index % a:col == 0
-                exe "normal " . (a:col - 1) . "\<c-w>h"
-            else
-                exe "normal \<c-w>l"
-            endif
-            exec 'rightbelow sp ' . bufname(item)
-        endif
-        let index = index + 1
-    endwhile
-
-endfunction
-"}}}
-"}}}
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Language Settings"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
