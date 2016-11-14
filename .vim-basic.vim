@@ -1101,6 +1101,13 @@ autocmd FileType php inoremap <buffer> <C-f> <C-Left>$<Esc>ea<Space>=
 autocmd FileType php smap <buffer> <C-k> <Esc><C-Left>dbea
 "}}}
 
+" python
+autocmd FileType python nnoremap <buffer> K :call PydocShowUnite()<CR>
+function! PydocShowUnite() abort
+    exe printf('Unite -no-cursor-line output/shellcmd:pydoc:%s|cat', expand('<cfile>'))
+    exe 'setlocal foldcolumn=1'
+endfunction
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Environments changed in project, useful for customing env for project."{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
