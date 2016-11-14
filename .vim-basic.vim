@@ -125,12 +125,13 @@ set diffopt+=vertical
 " set search pattern empty by default
 autocmd VimEnter * exe 'let @/ = ""'
 " set split rule
-autocmd BufWinEnter * set splitbelow
-autocmd BufWinEnter * set splitright
+set splitbelow
+set splitright
 
 set spellfile=~/.vim/spell/en.utf-8.add
 
-autocmd FileType gitcommit setlocal spell
+" autocmd FileType gitcommit setlocal spell
+
 " disable Background Color Erase (BCE) so that color schemes
 " render properly when inside 256-color tmux and GNU screen.
 " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
@@ -258,7 +259,7 @@ function! SetColorScheme()
         syntax enable
         set t_co=256
         set background=dark
-        colorscheme gruvbox
+        colorscheme molokai
         let g:colorscheme_already_seted = 1
     endif
 endfunction

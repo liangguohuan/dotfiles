@@ -336,7 +336,7 @@ let g:airline_symbols.linenr = '⭡'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 if exists('g:colorscheme_already_seted') && g:colorscheme_already_seted == 0
-    let g:airline_theme="gruvbox"
+    let g:airline_theme="ravenpower"
 endif
 
 let g:airline#extensions#tmuxline#enabled = 1
