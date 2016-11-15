@@ -268,7 +268,12 @@ let g:deoplete#enable_smart_case = 1
 " omnifunc setting
 augroup omnifuncs
         autocmd!
+        autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+        autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+        autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
         autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+        autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+        autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 augroup end
 
 " <C-h>, <BS>: close popup and delete backword char.
