@@ -554,9 +554,9 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
 " map <leader>e :e! ~/.vimrc<cr>
-autocmd! bufwritepost *.vimrc source ~/.vimrc | exec "AirlineRefresh"
-autocmd! bufwritepost *.vim-basic.vim source ~/.vim-basic.vim | exec "AirlineRefresh"
-autocmd! bufwritepost *.vim-plugin.vim source ~/.vim-plugin.vim | exec "AirlineRefresh"
+autocmd! BufWritePost *.vimrc source ~/.vimrc | exec "AirlineRefresh"
+autocmd! BufWritePost *.vim-basic.vim source ~/.vim-basic.vim | exec "AirlineRefresh"
+autocmd! BufWritePost *.vim-plugin.vim source ~/.vim-plugin.vim | exec "AirlineRefresh"
 
 "}}}
 
@@ -1113,6 +1113,7 @@ endfunction
 " => Environments changed in project, useful for customing env for project."{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
+autocmd! BufWritePost .env.vim :call ENVPJLocal()
 function! ENVPJLocal() abort
     try
         let lines = readfile('.env.vim')
