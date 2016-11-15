@@ -183,6 +183,8 @@ nnoremap <silent> <leader>ve  :<C-u>VimFilerExplorer<CR>
 augroup vimfiler_aug
     autocmd!
     autocmd FileType vimfiler setlocal cursorline
+    " copy and paste file under cursor fastly
+    autocmd FileType vimfiler nmap  <buffer> F sCcCpr<CR>
     autocmd FileType vimfiler nmap  <buffer><expr> <C-s> vimfiler#do_switch_action('split')
     autocmd FileType vimfiler nmap  <buffer><expr> <C-v> vimfiler#do_switch_action('vsplit')
     autocmd FileType vimfiler nmap  <buffer> <Tab> <Plug>(vimfiler_hide)
