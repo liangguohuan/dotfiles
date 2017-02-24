@@ -27,7 +27,6 @@ Plug 'https://github.com/sheerun/vim-polyglot.git'
 Plug 'https://github.com/morhetz/gruvbox.git'
 Plug 'https://github.com/tomasr/molokai.git'
 Plug 'https://github.com/nanotech/jellybeans.vim.git'
-Plug 'https://github.com/ryanoasis/vim-devicons.git'
 if has("gui_running")
 Plug 'https://github.com/lambdalisue/vim-fullscreen.git'
 endif
@@ -53,7 +52,7 @@ Plug 'https://github.com/duggiefresh/vim-easydir.git'
 Plug 'https://github.com/terryma/vim-multiple-cursors.git'
 Plug 'https://github.com/vim-scripts/YankRing.vim.git'
 Plug 'https://github.com/junegunn/goyo.vim.git'                  , { 'on': 'Goyo' }
-Plug 'https://github.com/roman/golden-ratio.git'
+" Plug 'https://github.com/roman/golden-ratio.git'
 Plug 'https://github.com/jiangmiao/auto-pairs.git'
 if !has('nvim')
 Plug 'https://github.com/vim-utils/vim-alt-mappings.git'
@@ -113,9 +112,9 @@ Plug 'https://github.com/liangguohuan/vim-layout.git'
 " }}}
 " php plugins {{{
 Plug 'https://github.com/alvan/vim-php-manual.git'               , { 'for': 'php' }
-Plug 'https://github.com/shawncplus/phpcomplete.vim'             , { 'for': 'php' }
-Plug 'https://github.com/m2mdas/phpcomplete-extended'            , { 'for': 'php' }
-Plug 'https://github.com/m2mdas/phpcomplete-extended-laravel'    , { 'for': 'php' }
+" Plug 'https://github.com/shawncplus/phpcomplete.vim'             , { 'for': 'php' }
+" Plug 'https://github.com/m2mdas/phpcomplete-extended'            , { 'for': 'php' }
+" Plug 'https://github.com/m2mdas/phpcomplete-extended-laravel'    , { 'for': 'php' }
 Plug 'https://github.com/adoy/vim-php-refactoring-toolbox.git'   , { 'for': 'php' }
 Plug 'https://github.com/stephpy/vim-php-cs-fixer.git'           , { 'for': 'php' }
 " }}}
@@ -135,6 +134,9 @@ Plug 'https://github.com/seyDoggy/vim-watchforchanges.git',
             \ { 'on': [ 'WatchForChanges', 'WatchForChangesAllFile', 'WatchForChangesWhileInThisBuffer' ] }
 Plug 'https://github.com/thinca/vim-quickrun.git'                , { 'on': 'QuickRun' }
 " }}}
+"
+" the last
+Plug 'https://github.com/ryanoasis/vim-devicons.git'
 
 " All of your Plugs must be added before the following line
 call plug#end()

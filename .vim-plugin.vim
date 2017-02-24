@@ -103,7 +103,7 @@ let g:unite_source_menu_menus.git.command_candidates = [
     \['▷ git rm                                          ⌘ ,gr  ', 'exe "call MenuGitGremoveConfirm()"'],
     \['▷ git mv                                          ⌘ ,gm  ', 'exe "Gmove " input("DESTINO: ")'],
     \['▷ git push                                        ⌘ ,gp  ', 'Git! push'],
-    \['▷ git pull                                        ⌘ ,gf  ', 'Git! fetch'],
+    \['▷ git fetch                                       ⌘ ,gf  ', 'Git! fetch'],
     \['▷ git pull                                        ⌘ ,gx  ', 'Git! pull'],
     \['▷ git prompt                                      ⌘ ,gi  ', 'exe "Git! " input("COMANDO GIT: ")'],
     \['▷ git cd                                          ⌘ ,gj  ', 'Gcd'],
@@ -1042,20 +1042,6 @@ let g:quickrun_config.node = {
           \ }
 let g:quickrun_no_default_key_mappings = 1
 nmap <F5> :QuickRun<CR>
-"}}}
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim-devicons"{{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-"{{{
-" loading the plugin
-let g:webdevicons_enable = 1
-" adding the flags to NERDTree
-let g:webdevicons_enable_nerdtree = 0
-" adding the custom source to unite
-let g:webdevicons_enable_unite = 1
-" adding the column to vimfiler
-let g:webdevicons_enable_vimfiler = 1
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

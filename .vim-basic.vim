@@ -798,7 +798,7 @@ endfunction
 " show the command line
 " nnoremap cm  :
 " use 'L' to switch cmdline quickly
-nnoremap cme :e
+nnoremap cme :e<Space>
 nnoremap cms :e ~/.storge<cr>
 nnoremap cmt :e /tmp/t.php<cr>
 nnoremap cmp :e /tmp/p.py<cr>
@@ -821,7 +821,7 @@ imap <C-CR> <Esc>o
 
 " file map
 nmap new :enew<cr>
-nmap <Leader>sf :sav
+nmap <Leader>sf :sav<Space>
 
 " if has("gui_running")
 " noremap <C-Z> <cr>

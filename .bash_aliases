@@ -52,7 +52,7 @@ export COMPOSER_PATH=/home/hanson/.composer/vendor/bin
 export PATH=.:$JAVA_HOME/bin:$STORM_HOME/bin:$ZOOKEEPER_HOME/bin:$LAMPP_HOME/bin:$MONGODB_HOME/bin:$COMPOSER_PATH:$PATH
 export PATH=.:/home/hanson/CodeHub/SHELL:$PATH
 export PHP_EXTENSION_PATH=/opt/lampp/lib/php/extensions/no-debug-non-zts-20131226
-export DOCSWEB="/media/d/技术资料/docs-web"
+export DOCSWEB="/home/hanson/Data/docs-web"
 export EDITOR=nvim
 export FZF_DEFAULT_COMMAND="ag --depth 26 -t -g ''"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -69,7 +69,7 @@ alias llf="ls \$1 | fullpath"
 # - list all symbols links in current dir's subdirs: ll .*/**(@)
 alias lls="ll .*(@)"
 alias fullpath="xargs -n 1 readlink -f"
-alias cls="xdotool set_window -name ' ' $(xdotool getactivewindow) && clear"
+alias cls="clear"
 alias mcf="vim ~/.bash_aliases"
 alias mcfn="source ~/.bash_aliases && echo alias files has been updated."
 alias mcfv="cat ~/.bash_aliases | egrep '(alias [a-z|\-]{3,}=\")|(export )' | less"
@@ -87,7 +87,6 @@ alias gpgmisskeyfix="sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.c
 alias cdc="cd /media/c"
 alias cdd="cd /media/d"
 alias cdw="cd /home/hanson/Code"
-alias cdl="cd /media/d/技术资料/最近文档"
 alias poweroff="sudo poweroff"
 alias reboot="sudo reboot"
 alias testnet="ping 163.com"
@@ -104,7 +103,7 @@ alias mysqlconf="sudo vim /opt/lampp/etc/my.cnf"
 alias showmaster="mysql -uroot --password='' -e 'show master status;'"
 alias redisconf="cat /etc/redis.conf | grep -v ^# | grep -v ^$"
 alias uvn="uname -r | awk -F '-' '{print \$1\"-\"\$2}'"
-alias neihe-old="sudo dpkg --get-selections|grep linux|egrep linux-\(headers\|image\)-\([0-9.-]+\|extra\)|grep -v `uvn`|awk '{print \$1}'"
+alias neihe-old="sudo dpkg --get-selections|grep linux|egrep linux-\(headers\|image\)-\(\[0-9.-\]+\|extra\)|grep -v `uvn`|awk '{print \$1}'"
 alias hostconf="sudo vi /etc/hosts"
 alias hostview="less /etc/hosts"
 alias icons="nautilus ~/.local/share/icons/"
@@ -143,7 +142,6 @@ alias dkc="docker-compose"
 alias laradock="docker-compose up -d nginx mysql redis"
 alias vmdock="docker-compose exec workspace bash"
 alias docweb="start-stop-daemon --start --background --name=docweb --exec /home/hanson/CodeHub/PYTHON/Default/local-host-bind.py \
-    && sleep 1 \
     && xdg-open http://localhost:8888/index/docs-html/ &>/dev/null"
 alias cscope-update="find . -name '*.php' -type f > cscope.files && cscope -bq"
 # copy file contens to clipboard: sfc [filename]
@@ -168,3 +166,4 @@ alias mux="tmuxinator"
 alias ToggleTouchpad='_(){ eval `synclient | grep TouchpadOff | tr -d " "`; [[ $TouchpadOff == 1 ]] && V=0 || V=1;synclient TouchpadOff=$V }; _'
 alias nv="nvim"
 alias f="vifm"
+# alias sload="_(){ nv -c \"SLoad \$1\" }; _"
