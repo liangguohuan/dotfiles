@@ -589,6 +589,7 @@ au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
 " => Syntastic (syntax checker)"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
+nnoremap coe :SyntasticToggle<CR>
 let g:syntastic_python_checkers=['pylint']
 " let g:syntastic_phpcs_conf = "--standard=/home/hanson/.phpcs-ruleset.xml" " the variable had been invalid.
 let g:syntastic_php_checkers=['php', 'phpmd']
@@ -956,7 +957,7 @@ autocmd FileType html,css nmap <C-X> <C-Z>k
 " => vim-markdown"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-nnoremap coe :ToggleMarkdowExpand<CR>
+nnoremap com :ToggleMarkdowExpand<CR>
 command! ToggleMarkdowExpand ToggleConceal
 "}}}
 
