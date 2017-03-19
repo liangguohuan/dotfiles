@@ -26,11 +26,15 @@ stty ixoff -ixon
 
 eval `dircolors /usr/src/dircolors/dircolors-solarized/dircolors.256dark`
 
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 eval $(thefuck --alias)
+
+# pyenv pycurl need it
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/LD_LIBRARY_PATH/pycurl
 
 export DEV_ENV=local
 export VAGRANT_HOME=~/.vagrant.d
@@ -49,7 +53,7 @@ export STORM_HOME=/opt/storm
 export MONGODB_HOME=/opt/mongodb
 export LAMPP_HOME=/opt/lampp
 export COMPOSER_PATH=/home/hanson/.composer/vendor/bin
-export PATH=.:$JAVA_HOME/bin:$STORM_HOME/bin:$ZOOKEEPER_HOME/bin:$LAMPP_HOME/bin:$MONGODB_HOME/bin:$COMPOSER_PATH:$PATH
+export PATH=.:$JAVA_HOME/bin:$STORM_HOME/bin:$ZOOKEEPER_HOME/bin:$MONGODB_HOME/bin:$COMPOSER_PATH:$PATH
 export PATH=.:/home/hanson/CodeHub/SHELL:$PATH
 export PHP_EXTENSION_PATH=/opt/lampp/lib/php/extensions/no-debug-non-zts-20131226
 export DOCSWEB="/home/hanson/Data/docs-web"
@@ -94,7 +98,8 @@ alias vm="ssh hanson@127.0.0.1 -p 2222"
 alias hadoop="ssh root@127.0.0.1 -p 2222"
 alias ubuntu-docker="ssh root@127.0.0.1 -p 60000"
 alias szip="smartzip"
-alias disk="df -lTh"
+alias unpack="/usr/bin/dtrx"
+alias disk="df -lTh -x aufs"
 alias psaux="ps aux | grep"
 # alias portshow="sudo netstat -anp | grep tcp"
 alias zhuxiao="gnome-session-quit --logout --no-prompt"
@@ -117,6 +122,7 @@ alias phpconf="sudo vi + /opt/lampp/etc/php.ini"
 alias decrypt="encrypt -d"
 alias decryptfile="encryptfile -d"
 alias dush="du -sh"
+alias syslog="tail -f /var/log/syslog -n 100"
 alias autoeng="sudo vi +$ /usr/share/fcitx/data/AutoEng.dat"
 alias proxy="export HTTP_PROXY=127.0.0.1:8087 && export HTTPS_PROXY=127.0.0.1:8087 && echo 'use goagent proxy sucessed.'"
 alias proxydisable="export HTTP_PROXY= && export HTTPS_PROXY= && echo 'cancel proxy sucessed.'"
@@ -165,4 +171,6 @@ alias mux="tmuxinator"
 alias ToggleTouchpad='_(){ eval `synclient | grep TouchpadOff | tr -d " "`; [[ $TouchpadOff == 1 ]] && V=0 || V=1;synclient TouchpadOff=$V }; _'
 alias nv="nvim"
 alias f="vifm"
+alias squidreload="docker kill -s HUP squid"
+alias squidlogin="docker exec -i -t fd48478b838d bash"
 # alias sload="_(){ nv -c \"SLoad \$1\" }; _"
