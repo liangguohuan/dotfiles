@@ -27,14 +27,20 @@ stty ixoff -ixon
 eval `dircolors /usr/src/dircolors/dircolors-solarized/dircolors.256dark`
 
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+export PYENV_VERSION='system'
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 eval $(thefuck --alias)
 
-# pyenv pycurl need it
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/LD_LIBRARY_PATH/pycurl
+# pyenv pycurl need it from lammp, bad idea: ipython will not work
+# fixed: cp system pycurl.so to pyenv version, like below:
+#
+# sudo -u hanson cp /usr/lib/python2.7/dist-packages/pycurl.so 
+# /home/hanson/.pyenv/versions/2.7.11/envs/default/lib/python2.7/site-packages/pycurl.so
+#
+# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/LD_LIBRARY_PATH/pycurl
 
 export DEV_ENV=local
 export VAGRANT_HOME=~/.vagrant.d
