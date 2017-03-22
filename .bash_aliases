@@ -63,7 +63,7 @@ export PATH=.:$JAVA_HOME/bin:$STORM_HOME/bin:$ZOOKEEPER_HOME/bin:$MONGODB_HOME/b
 export PATH=.:/home/hanson/CodeHub/SHELL:$PATH
 export PHP_EXTENSION_PATH=/opt/lampp/lib/php/extensions/no-debug-non-zts-20131226
 export DOCSWEB="/home/hanson/Data/docs-web"
-export EDITOR=nvim
+export EDITOR=vim
 export FZF_DEFAULT_COMMAND="ag --depth 26 -t -g ''"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
@@ -80,6 +80,7 @@ alias llf="ls \$1 | fullpath"
 alias lls="ll .*(@)"
 alias fullpath="xargs -n 1 readlink -f"
 alias cls="clear"
+alias clsa="printf '\033c'"
 alias mcf="vim ~/.bash_aliases"
 alias mcfn="source ~/.bash_aliases && echo alias files has been updated."
 alias mcfv="cat ~/.bash_aliases | egrep '(alias [a-z|\-]{3,}=\")|(export )' | less"
