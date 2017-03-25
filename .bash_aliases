@@ -172,7 +172,7 @@ alias t="tmux"
 alias tmt="tmux attach -t"
 alias tmd="tmux attach -d"
 alias m="tmuxinator"
-alias ms="tmuxinator start"
+alias ms="tmuxinator start $1 &>/dev/null"
 alias msd="tmuxinator start default &>/dev/null"
 alias mux="tmuxinator"
 alias ToggleTouchpad='_(){ eval `synclient | grep TouchpadOff | tr -d " "`; [[ $TouchpadOff == 1 ]] && V=0 || V=1;synclient TouchpadOff=$V }; _'
