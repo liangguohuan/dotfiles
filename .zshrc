@@ -54,7 +54,7 @@ ZSH_THEME="pretty"
 #
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git composer docker gem laravel laravel4 mvn node npm nvm perl pip pyenv python rbenv rsync rvm sublime sudo tmux vagrant)# }}}
-plugins=(zsh_reload git composer laravel5 docker docker-compose gem tmuxinator npm pip python tmux zsh-syntax-highlighting autojump)
+plugins=(zsh_reload git laravel5 docker docker-compose gem tmuxinator npm pip python tmux zsh-syntax-highlighting autojump)
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -200,5 +200,7 @@ if exists percol; then
 fi
 # }}}
 
+# smartcd
+[ -r "$HOME/.smartcd_config" ] && ( [ -n $BASH_VERSION ] || [ -n $ZSH_VERSION ] ) && source ~/.smartcd_config
 
 # vim: fdm=marker ts=4 sw=4 sts=4 expandtab
