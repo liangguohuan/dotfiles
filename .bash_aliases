@@ -178,6 +178,7 @@ alias mux="tmuxinator"
 alias ToggleTouchpad='_(){ eval `synclient | grep TouchpadOff | tr -d " "`; [[ $TouchpadOff == 1 ]] && V=0 || V=1;synclient TouchpadOff=$V }; _'
 alias nv="nvim"
 alias f="vifm"
+alias scd="smartcd"
 alias squidreload="docker kill -s HUP squid"
 alias squidlogin="docker exec -i -t fd48478b838d bash"
 # alias sload="_(){ nv -c \"SLoad \$1\" }; _"
