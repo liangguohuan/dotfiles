@@ -1063,6 +1063,12 @@ nmap <Leader>f :FZF --reverse --inline-info<CR>
 "{{{
 let g:formatdef_php_cs_fixer = '"/home/hanson/CodeHub/SHELL/phpcspatch"'
 let g:formatters_php = ['php_cs_fixer']
+let g:formatdef_yuicompressor = '"/home/hanson/CodeHub/SHELL/yuicompressor"'
+let g:formatters_yui = ['yuicompressor']
+let g:formatdef_jsbeautify = '"/usr/local/bin/js-beautify"'
+let g:formatters_jsb = ['jsbeautify']
+let g:formatdef_uglifyjs = '"/usr/local/bin/uglifyjs"'
+let g:formatters_jsu = ['uglifyjs']
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
