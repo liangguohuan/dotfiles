@@ -64,7 +64,7 @@ export PATH=.:/home/hanson/CodeHub/SHELL:$PATH
 export PHP_EXTENSION_PATH=/opt/lampp/lib/php/extensions/no-debug-non-zts-20131226
 export DOCSWEB="/home/hanson/Data/docs-web"
 export EDITOR=vim
-export FZF_DEFAULT_COMMAND="ag --depth 26 -t -g ''"
+export FZF_DEFAULT_COMMAND="ag --depth 26 -t -g '' 2>/dev/null"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export LANGUAGE=en_US.UTF-8 git vi vim gvim
