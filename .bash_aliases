@@ -69,6 +69,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export LANGUAGE=en_US.UTF-8 git vi vim gvim
 
+alias ubuntu="lsb_release -a"
 alias grep='grep --color'
 alias ls='ls --color=auto'
 alias llu="ls -tlrh"
