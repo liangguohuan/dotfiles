@@ -61,7 +61,7 @@ export LAMPP_HOME=/opt/lampp
 export COMPOSER_PATH=/home/hanson/.composer/vendor/bin
 export PATH=.:$JAVA_HOME/bin:$STORM_HOME/bin:$ZOOKEEPER_HOME/bin:$MONGODB_HOME/bin:$COMPOSER_PATH:$PATH
 export PATH=.:/home/hanson/CodeHub/SHELL:$PATH
-export PHP_EXTENSION_PATH=/opt/lampp/lib/php/extensions/no-debug-non-zts-20131226
+export PHP_EXTENSION_PATH=$(php -i | grep ^extension_dir | awk -F ' => ' '{print $2}')
 export DOCSWEB="/home/hanson/Data/docs-web"
 export EDITOR=vim
 export FZF_DEFAULT_COMMAND="ag --depth 26 -t -g '' 2>/dev/null"
