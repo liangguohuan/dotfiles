@@ -97,6 +97,7 @@ source ~/.bash_aliases
 # bindkey -s '\eu' '^qcd ..; ls^M'
 # [esc+enter] menu selection: pick item but stay in the menu
 bindkey -M menuselect '\e^M' accept-and-menu-complete 
+bindkey \^U backward-kill-line
 
 #=== vim mode =====================================================
 # function zle-line-init zle-keymap-select {
