@@ -138,7 +138,7 @@ alias gmusic="google-chrome --app='http://music.163.com/#/my/m/music/playlist?id
 # alias gbaidu="google-chrome --user-data-dir=/tmp/163 --window-size=1000,600 --window-position=380,240 --app="http://www.baidu.com/" &>/dev/null &"
 # => google-chrome apps custom ending
 # close notebook screen via command, and recover it via keyboard <Fn+F4>
-alias closescreen="xrandr --output LVDS1 --off"
+alias closescreen="xrandr | grep primary | awks 1 | xargs -i xrandr --output {} --off"
 alias networkrestart="sudo ifdown eth0 && sudo ifup eth0"
 alias h="homestead"
 alias a="artisan"
