@@ -811,7 +811,7 @@ for i in range(1,9)
     exe printf( 'nnoremap <C-w>%d :%dwincmd w<CR>', i, i )
 endfor
 
-inoremap <C-V> <Esc>pA
+" inoremap <C-V> <Esc>pa
 
 " gvim: map break line
 nmap <S-CR> o
