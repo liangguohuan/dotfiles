@@ -949,8 +949,31 @@ endfunction
 "    default commands 'gf' can open file under cursor, 'gd' can highlight word"}}}
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap gx :call XOpenURIUnderCursor()<CR>
+nmap yu :call XCopyURIUnderCursor()<CR>
 "{{{
-function! XOpenURIUnderCursor() abort
+fun! XCopyURIUnderCursor()
+    
+    let uri = GetURIUnderCursor()
+    exe 'Silent !echo "' . uri . '" | xsel --input -b'
+    exe 'echo "copy: ' . uri . '"'
+
+endf
+"}}}
+
+"{{{
+fun! XOpenURIUnderCursor()
+    
+    let uri = GetURIUnderCursor()
+    let opencmd = has('gui_running') ? ( stridx(uri, 'http') > -1 ? 'google-chrome' : 'xdg-open' ) : 'xdg-open'
+    let cmd = printf( 'Silent !%s %s &>/dev/null', opencmd, uri )
+    if !&verbose | exe cmd | endif
+    echom printf( '!%s %s', opencmd, uri )
+
+endf
+"}}}
+
+"{{{
+function! GetURIUnderCursor() abort
 
 let line = getline('.')
 let position = getpos('.')[2]
@@ -1002,10 +1025,7 @@ EOF
 " handle the uri
 let uri = substitute(uri, '\(\s\+\)', '\\\1', 'g')
 let uri = substitute(uri, '?', '\\?', 'g')
-let opencmd = has('gui_running') ? ( stridx(uri, 'http') > -1 ? 'google-chrome' : 'xdg-open' ) : 'xdg-open'
-let cmd = printf( 'Silent !%s %s &>/dev/null', opencmd, uri )
-if !&verbose | exe cmd | endif
-echom printf( '!%s %s', opencmd, uri )
+return uri
 
 endfunction
 "}}}
