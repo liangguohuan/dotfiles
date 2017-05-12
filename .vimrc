@@ -119,6 +119,7 @@ Plug 'https://github.com/adoy/vim-php-refactoring-toolbox.git'   , { 'for': 'php
 Plug 'https://github.com/stephpy/vim-php-cs-fixer.git'           , { 'for': 'php' }
 " }}}
 " javascript plugins"{{{
+Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
 Plug 'https://github.com/pangloss/vim-javascript.git'            , { 'for': 'javascript' }
 Plug 'https://github.com/jamescarr/snipmate-nodejs.git'          , { 'for': 'javascript' }
 "}}}
