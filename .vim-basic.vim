@@ -950,6 +950,15 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap gx :call XOpenURIUnderCursor()<CR>
 nmap yu :call XCopyURIUnderCursor()<CR>
+nmap gf :call EditURIUnderCursor()<CR>
+"{{{
+fun! EditURIUnderCursor()
+    
+    let uri = GetURIUnderCursor()
+    exe 'e ' . uri
+
+endf
+"}}}
 "{{{
 fun! XCopyURIUnderCursor()
     
