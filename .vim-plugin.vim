@@ -1083,6 +1083,7 @@ let g:easytags_file = '/tmp/.vim/tags'
 " => vim-javascript"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
+au FileType javascript setlocal conceallevel=0
 let g:javascript_conceal_function       = "ƒ"
 let g:javascript_conceal_null           = "ø"
 let g:javascript_conceal_this           = "@"
