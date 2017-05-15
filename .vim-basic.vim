@@ -1180,6 +1180,24 @@ endfunction
 "}}}
 
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Trigger vim search from content of last copy of system clipboard
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+"{{{
+nmap gs :call SearchNowByLastCopy()<CR>
+fun! SearchNowByLastCopy()
+    try
+        let past = system('xclip -out -selection clipboard')  
+        let @/ = past
+        set hlsearch
+        normal n
+    catch
+    endtry
+endf
+"}}}
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " prevent source file show again.
 set showtabline=0
