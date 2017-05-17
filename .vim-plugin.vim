@@ -463,12 +463,12 @@ noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ultisnips"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+if !has('nvim')
 "{{{
 " notice: snippets must make sure to be writed right, it will caused to open more then one buffer when you open one file.
 " The third part snippets will be autoload as long as VunduleInstall them.
 " local snippets can be loaded via g:UltiSnipsSnippetDirectories, and use UltisnipEdit to edit them.
-if !has('nvim')
-"{{{
+
 let g:UltiSnipsSnippetDirectories=["~/.vim/snippets"]
 
 let g:UltiSnipsJumpForwardTrigger="<Enter>"
@@ -513,7 +513,7 @@ endif
 
 au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger     . " <C-R>=g:UltiSnips_Complete()<cr>"
 au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsJumpBackwardTrigger . " <C-R>=g:UltiSnips_Reverse()<cr>"
-"}}}
+
 "}}}
 endif
 

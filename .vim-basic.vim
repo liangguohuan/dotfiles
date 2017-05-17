@@ -948,6 +948,7 @@ endfunction
 " => open url under cursor with browser, replace default command 'gx'"{{{
 "    default commands 'gf' can open file under cursor, 'gd' can highlight word"}}}
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"{{{
 nmap gx :call XOpenURIUnderCursor()<CR>
 nmap yu :call XCopyURIUnderCursor()<CR>
 nmap gf :call EditURIUnderCursor()<CR>
@@ -958,8 +959,7 @@ fun! EditURIUnderCursor()
     exe 'e ' . uri
 
 endf
-"}}}
-"{{{
+
 fun! XCopyURIUnderCursor()
     
     let uri = GetURIUnderCursor()
@@ -967,9 +967,7 @@ fun! XCopyURIUnderCursor()
     exe 'echo "copy: ' . uri . '"'
 
 endf
-"}}}
 
-"{{{
 fun! XOpenURIUnderCursor()
     
     let uri = GetURIUnderCursor()
@@ -979,9 +977,7 @@ fun! XOpenURIUnderCursor()
     echom printf( '!%s %s', opencmd, uri )
 
 endf
-"}}}
 
-"{{{
 function! GetURIUnderCursor() abort
 
 let line = getline('.')
@@ -1037,6 +1033,7 @@ let uri = substitute(uri, '?', '\\?', 'g')
 return uri
 
 endfunction
+"}}}
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1129,7 +1126,6 @@ autocmd FileType php inoremap <buffer> <C-t> <C-Left>$<Esc>ea->
 autocmd FileType php inoremap <buffer> <C-f> <C-Left>$<Esc>ea<Space>=
 " smap can't work if map prefix 'Alt' key in vim, but work in nvim
 autocmd FileType php smap <buffer> <C-k> <Esc><C-Left>dbea
-"}}}
 
 " python
 autocmd FileType python nnoremap <buffer> K :call PydocShowUnite()<CR>
@@ -1137,6 +1133,7 @@ function! PydocShowUnite() abort
     exe printf('Unite -no-cursor-line output/shellcmd:pydoc:%s|cat', expand('<cfile>'))
     exe 'setlocal foldcolumn=1'
 endfunction
+"}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Environments changed in project, useful for customing env for project."{{{
@@ -1156,9 +1153,8 @@ endfunction
 call ENVPJLocal()
 "}}}
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Goback the last access buffer quickly
+" => Goback the last access buffer quickly"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
  "{{{
 nmap gb :call GoBackLastAccessBuffer()<CR>
@@ -1179,10 +1175,8 @@ function! GoBackLastAccessBuffer() abort
 endfunction
 "}}}
 
-
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Trigger vim search from content of last copy of system clipboard
+" => Trigger vim search from content of last copy of system clipboard"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
 nmap gs :call SearchNowByLastCopy()<CR>
@@ -1196,7 +1190,6 @@ fun! SearchNowByLastCopy()
     endtry
 endf
 "}}}
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " prevent source file show again.
