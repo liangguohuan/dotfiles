@@ -373,11 +373,23 @@ nnoremap <silent> cot :TagbarToggle<CR>
 let g:ctrlsf_extra_backend_args = {
             \ 'ag': '-i --ignore ".git" --nocolor --follow --nogroup --hidden'
             \ }
+
+let g:ctrlsf_mapping = {
+    \ "next": "n",
+    \ "prev": "N",
+    \ "openb": "",
+    \ "tab": "",
+    \ "tabb": "",
+    \ "loclist": "L",
+    \ "split"   : "<C-s>",
+    \ "vsplit"  : "<C-v>",
+    \ }
 nmap     <C-F>f <Plug>CtrlSFPrompt
 vmap     <C-F>f <Plug>CtrlSFVwordPath
 vmap     <C-F>F <Plug>CtrlSFVwordExec
 nmap     <C-F>w <Plug>CtrlSFCwordPath
 nmap     <C-F>p <Plug>CtrlSFPwordPath
+nnoremap <silent> <C-F>u :CtrlSFUpdate<CR>
 nnoremap <silent> <C-F>o :CtrlSFOpen<CR>
 nnoremap <silent> <C-F>t :CtrlSFToggle<CR>
 "}}}
