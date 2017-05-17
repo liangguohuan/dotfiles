@@ -9,6 +9,7 @@
 [include]
     path = ~/.gitalias
 [alias]
+    c1 = clone --depth 1
     addurl = remote add origin
     seturl = remote set-url origin
     cma = commit -a -m
