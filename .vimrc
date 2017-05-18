@@ -19,8 +19,8 @@ else
     " tips: ycm need install cmake python-dev first
     Plug 'https://github.com/Valloric/YouCompleteMe.git', { 'do': './install.py'  }
     Plug 'https://github.com/SirVer/ultisnips.git'
+    Plug 'https://github.com/honza/vim-snippets.git'
 endif
-Plug 'https://github.com/honza/vim-snippets.git'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all', 'frozen':1 }
 
