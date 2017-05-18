@@ -14,7 +14,7 @@ if has('nvim')
     " frozen this plugin, it always get screen stuck in when do update.
     Plug 'zchee/deoplete-jedi', { 'for': 'python', 'frozen': 1 },
     Plug 'Shougo/neosnippet'
-    Plug 'liangguohuan/neosnippet-snippets'
+    Plug 'Shougo/neosnippet-snippets'
 else
     " tips: ycm need install cmake python-dev first
     Plug 'https://github.com/Valloric/YouCompleteMe.git', { 'do': './install.py'  }
