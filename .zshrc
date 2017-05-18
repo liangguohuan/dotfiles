@@ -1,5 +1,5 @@
 # zcomdump filepath
-ZSH_COMPDUMP="/tmp/.zcompdump-${HOST}-${ZSH_VERSION}"
+# ZSH_COMPDUMP="/tmp/.zcompdump-${HOST}-${ZSH_VERSION}"
 
 # addtional zsh-completions
 # fpath=(/usr/local/share/zsh/zsh-completions/src $fpath)

@@ -682,7 +682,7 @@ endif
 map 0 ^
 
 " Goback normal mode Quickly
-imap jj <Esc>
+" imap jj <Esc>
 
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
 nmap <M-j> mz:m+<cr>`z
@@ -811,7 +811,7 @@ for i in range(1,9)
     exe printf( 'nnoremap <C-w>%d :%dwincmd w<CR>', i, i )
 endfor
 
-" inoremap <C-V> <Esc>pa
+inoremap <C-V> <Esc>pa
 
 " gvim: map break line
 nmap <S-CR> o
