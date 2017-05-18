@@ -235,7 +235,13 @@ if !has('nvim')
         " \ highlight Question guifg=bg guibg=bg
 " endtry
 "
+" Warn: The only supported tag format is the Exuberant Ctags format. The format from "plain" ctags is NOT supported.
+" Ctags needs to be called with the --fields=+l option (that's a lowercase L, not a one)
+" because YCM needs the language:<lang> field in the tags output
+let ycm_collect_identifiers_from_tags_files=1
+
 let g:ycm_python_binary_path = g:python3_host_prog
+let ycm_collect_identifiers_from_tags_files=1
 let g:ycm_filetype_blacklist = {
             \ 'tagbar'   : 1, 'qf'        : 1, 'notes'   : 1, 'markdown' : 1, 'unite'    : 1,
             \ 'text'     : 1, 'vimwiki'   : 1, 'pandoc'  : 1, 'infolog'  : 1, 'mail'     : 1,
@@ -246,6 +252,11 @@ let g:ycm_show_diagnostics_ui = 0
 " A bug: <C-Space> map for noting, disable it for temprory, because of it trigger one snips completion will be invalid.
 let g:ycm_key_invoke_completion = '<C-Space>'
 let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_error_symbol = '>>'
+let g:ycm_warning_symbol = '>*'
+nnoremap ygf :YcmCompleter GoToDeclaration<CR>
+nnoremap ygd :YcmCompleter GoToDefinition<CR>
+nnoremap ygg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " fixed the <s-tab>
 autocmd FileType * inoremap <expr><S-Tab> pumvisible() ? '<Up>' : '<BS>'
 " human keymap
@@ -922,7 +933,7 @@ function! LoadCscopeDB() abort
     endif
 endfunction
 
-call LoadCscopeDB()
+au BufEnter * call LoadCscopeDB()
 command! LoadCscopeDB call LoadCscopeDB()
 
 nmap <C-c>s :cs find s <C-R>=expand("<cword>")<CR><CR>
