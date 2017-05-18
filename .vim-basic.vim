@@ -191,9 +191,9 @@ set wildmenu
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
 if has("win16") || has("win32")
-    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store,.idea,.phpcomplete,cscope.*,tags,.tags
 else
-    set wildignore+=.git\*,.hg\*,.svn\*,fugitive\*
+    set wildignore+=.git\*,.hg\*,.svn\*,fugitive\*,.idea,.phpcomplete,cscope.*,tags,.tags
 endif
 
 "Always show current position

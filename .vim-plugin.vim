@@ -153,8 +153,8 @@ call unite#custom#source('file_rec/neovim', 'sorters', 'sorter_rank')
 
 " wildignore
 call unite#custom#source('file,file_rec,file_rec/git,file/async,file_rec/neovim,directory,directory_mru,directory_rec,directory_rec/async',
-            \ 'ignore_pattern',
-            \ 'fugitive\|.idea\|.phpcomplete')
+            \ 'ignore_globs',
+            \ split(&wildignore, ','))
 
 " keymap change
 augroup unite_aug
@@ -194,7 +194,10 @@ augroup vimfiler_aug
     autocmd FileType vimfiler nmap  <buffer> <Space> /
     autocmd FileType vimfiler nmap  <buffer> <C-b> <Plug>(vimfiler_switch_to_history_directory)
 augroup END
-let g:vimfiler_ignore_pattern = ['^\.', 'fugitive']
+
+" wildignore
+let g:vimfiler_ignore_filters = ['matcher_ignore_pattern', 'matcher_ignore_wildignore']
+let g:vimfiler_ignore_pattern = ['^\.']
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
