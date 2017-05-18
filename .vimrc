@@ -63,6 +63,7 @@ Plug 'https://github.com/thinca/vim-qfreplace.git'
 Plug 'https://github.com/mhinz/vim-startify.git'
 Plug 'https://github.com/Chiel92/vim-autoformat.git'
 Plug 'https://github.com/osyo-manga/vim-over.git'
+Plug 'https://github.com/brooth/far.vim.git'
 " }}}
 " Shougo Serise {{{
 Plug 'https://github.com/Shougo/unite.vim.git'
