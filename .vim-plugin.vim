@@ -1022,6 +1022,20 @@ let g:startify_skiplist = [
     \ escape(fnamemodify(resolve($VIMRUNTIME), ':p'), '\') .'doc',
     \ 'bundle/.*/doc',
     \ ]
+
+" startify extend
+cabbrev fsl FSLoad
+command! -nargs=1 -complete=custom,FuzzyListSessions FSLoad call FuzzyEasierSload(<q-args>)
+func! FuzzyListSessions(A,L,P)
+    let s:cmd = 'ls ~/.vim/sessions | grep -v "__"'
+    return system(s:cmd)
+endfunc
+func! FuzzyEasierSload(snprefix)
+    let s:cmd = printf('ls ~/.vim/sessions | grep "^%s"', a:snprefix)
+    let s:sname = system(s:cmd)
+    exe printf('SLoad %s', s:sname)
+endfun
+
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
