@@ -1140,17 +1140,20 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
 autocmd! BufWritePost .env.vim :call ENVPJLocal()
+command! LoadENVPJLocal call ENVPJLocal()
 function! ENVPJLocal() abort
-    try
-        let lines = readfile('.env.vim')
-        for line in lines
-            exe printf('let $%s', line)
-        endfor
-    catch
-    endtry
+    if file_readable('.env.vim')
+        try
+            let lines = readfile('.env.vim')
+            for line in lines
+                exe printf('let $%s', line)
+            endfor
+        catch
+        endtry
+    endif
 endfunction
 
-call ENVPJLocal()
+autocmd! VimEnter * call ENVPJLocal()
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
