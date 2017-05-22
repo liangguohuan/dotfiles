@@ -1161,21 +1161,25 @@ autocmd! VimEnter * call ENVPJLocal()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
  "{{{
 nmap gb :call GoBackLastAccessBuffer()<CR>
-au BufWinLeave * call RecordLastAccessBufferNr()
-function! RecordLastAccessBufferNr() abort
-    let s:bcur = bufnr('%')
-    if buflisted(s:bcur) == 1
-        let g:bufaccesslasttime = s:bcur
-        " call writefile([bcur], "/tmp/event.log", "a")
-    endif
-endfunction
-
 function! GoBackLastAccessBuffer() abort
-    try
-        exec printf('b %d', g:bufaccesslasttime)
-    catch
-    endtry
+    let s:alternateBuffer = expand('#')
+    exe printf('e %s', s:alternateBuffer)
 endfunction
+" au BufWinLeave * call RecordLastAccessBufferNr()
+" function! RecordLastAccessBufferNr() abort
+    " let s:bcur = bufnr('%')
+    " if buflisted(s:bcur) == 1
+        " let g:bufaccesslasttime = s:bcur
+        " " call writefile([bcur], "/tmp/event.log", "a")
+    " endif
+" endfunction
+
+" function! GoBackLastAccessBuffer() abort
+    " try
+        " exec printf('b %d', g:bufaccesslasttime)
+    " catch
+    " endtry
+" endfunction
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
