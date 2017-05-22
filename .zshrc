@@ -189,11 +189,9 @@ bindkey "\e\e" sudo-command-line
 # }}}
 
 # A command-line fuzzy finder written in Go: https://github.com/junegunn/fzf
+export FZF_DEFAULT_OPTS="--prompt='> ' --reverse --color=hl:2,hl+:161"
 export FZF_DEFAULT_COMMAND="ag --depth 26 -t -g '' 2>/dev/null"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_CTRL_T_OPTS="--color=hl:2,hl+:161"
-export FZF_CTRL_R_OPTS="--reverse --color=hl:2,hl+:161"
-export FZF_ALT_C_OPTS="--color=hl:2,hl+:161"
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
 # marker: https://github.com/pindexis/marker.git

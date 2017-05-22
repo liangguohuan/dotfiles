@@ -1091,8 +1091,10 @@ nmap <F5> :QuickRun<CR>
 "{{{
 " Default fzf layout
 " - down / up / left / right
-let g:fzf_layout = { 'up': '~60%' }
-nmap <Leader>f :FZF --reverse --inline-info<CR>
+" let g:fzf_layout = { 'down': '~40%' }
+nmap <Leader>f :FZF!<CR>
+" au! VimEnter * command! -bang FZF call fzf#run(fzf#wrap('fzf', {'dir': getcwd(), 'options': '--prompt="> "'}, <bang>0))
+" nmap <Leader>f :call fzf#run({'options': '--prompt "> "', 'sink': 'e'})<CR>
 " In Neovim, you can set up fzf window using a Vim command
 " let g:fzf_layout = { 'window': 'enew' }
 "}}}
