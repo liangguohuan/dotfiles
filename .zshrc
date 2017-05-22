@@ -166,6 +166,12 @@ alias -g PR=http_proxy=127.0.0.1:8087
 # zsh-mime-setup
 alias -s php=gvim
 alias -s deb=gdebi
+alias -s png=sxiv
+alias -s jpg=sxiv
+alias -s jpeg=sxiv
+alias -s avi=mpv
+alias -s mp4=mpv
+alias -s mkv=mpv
 # }}}
 
 ########################################################################################################################
@@ -182,26 +188,38 @@ zle -N sudo-command-line
 bindkey "\e\e" sudo-command-line
 # }}}
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# A command-line fuzzy finder written in Go: https://github.com/junegunn/fzf
+export FZF_DEFAULT_COMMAND="ag --depth 26 -t -g '' 2>/dev/null"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="--color=hl:2,hl+:161"
+export FZF_CTRL_R_OPTS="--reverse --color=hl:2,hl+:161"
+export FZF_ALT_C_OPTS="--color=hl:2,hl+:161"
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
-## percol: search shell history easier
+# marker: https://github.com/pindexis/marker.git
+# template file: ~/.local/share/marker/user_commands.txt
+export MARKER_KEY_NEXT_PLACEHOLDER='\C-v'
+[[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
+
+# percol: https://github.com/mooz/percol
+# search shell history easier
 # {{{
-function exists { which $1 &> /dev/null }
-if exists percol; then
-    function percol_select_history() {
-        local tac
-        exists gtac && tac="gtac" || { exists tac && tac="tac" || { tac="tail -r" } }
-        BUFFER=$(fc -l -n 1 | eval $tac | percol --query "$LBUFFER")
-        CURSOR=$#BUFFER         # move cursor
-        zle -R -c               # refresh
-    }
+# function exists { which $1 &> /dev/null }
+# if exists percol; then
+    # function percol_select_history() {
+        # local tac
+        # exists gtac && tac="gtac" || { exists tac && tac="tac" || { tac="tail -r" } }
+        # BUFFER=$(fc -l -n 1 | eval $tac | percol --query "$LBUFFER")
+        # CURSOR=$#BUFFER         # move cursor
+        # zle -R -c               # refresh
+    # }
 
-    zle -N percol_select_history
-    bindkey '^R' percol_select_history
-fi
+    # zle -N percol_select_history
+    # bindkey '^R' percol_select_history
+# fi
 # }}}
 
-# smartcd
+# smartcd: https://github.com/cxreg/smartcd
 [ -r "$HOME/.smartcd_config" ] && ( [ -n $BASH_VERSION ] || [ -n $ZSH_VERSION ] ) && source ~/.smartcd_config
 
 # dconf overwrite for switcher keys
@@ -210,5 +228,6 @@ if [ ! -f "/tmp/yet_switcher_keys_overwirte" ]; then
     xmodmap-toggle dconf swap
     touch /tmp/yet_switcher_keys_overwirte
 fi
+
 
 # vim: fdm=marker ts=4 sw=4 sts=4 expandtab
