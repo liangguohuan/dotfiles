@@ -14,7 +14,7 @@ if has("gui_running")
 let g:startify_disable_at_vimenter = 1
 endif
 let g:startify_custom_header =
-            \ map(split(system('fortune | cowsay'), '\n'), '"   ". v:val')
+            \ map(split(system('/usr/games/fortune | /usr/games/cowsay'), '\n'), '"   ". v:val')
 
 let g:startify_list_order = [
             \ ['   sessions:'],
