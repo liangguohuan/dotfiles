@@ -1138,22 +1138,49 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Environments changed in project, useful for customing env for project."{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+" file content format like below
+" XYZ="xxxxx"
+" XOXO="xoxoxo"
 "{{{
 autocmd! BufWritePost .env.vim :call ENVPJLocal()
+autocmd! SessionLoadPost * call ENVPJLocal()
+
 command! LoadENVPJLocal call ENVPJLocal()
+
 function! ENVPJLocal() abort
-    if file_readable('.env.vim')
-        try
-            let lines = readfile('.env.vim')
-            for line in lines
-                exe printf('let $%s', line)
+    let s:filename = printf('%s/.env.vim', getcwd())
+    if file_readable(s:filename)
+        if exists('g:envpjlocalrec') == 0
+            let g:envpjlocalrec = {}
+        endif
+
+        let s:lines = readfile(s:filename)
+
+        for s:line in s:lines
+            let s:envinfo = split(s:line, '=')
+            if len(s:envinfo) == 2
+                let s:envname = s:envinfo[0]
+                let s:envval  = s:envinfo[1]
+                if has_key(g:envpjlocalrec, s:envname)
+                    let s:envval_sys = g:envpjlocalrec[s:envname][1]
+                else
+                    let s:envval_sys = eval(printf('$%s', s:envname))
+                endif
+                let g:envpjlocalrec[s:envname] = [s:envval, s:envval_sys]
+                exe printf('let $%s', s:line)
+            endif
+        endfor
+    else
+        if exists('g:envpjlocalrec')
+            for s:envname  in keys(g:envpjlocalrec)
+                let s:envval_sys = g:envpjlocalrec[s:envname][1]
+                exe printf('let $%s="%s"', s:envname, s:envval_sys)
             endfor
-        catch
-        endtry
+            unlet g:envpjlocalrec
+        endif
     endif
 endfunction
 
-autocmd! VimEnter * call ENVPJLocal()
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
