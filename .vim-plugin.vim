@@ -1031,9 +1031,11 @@ func! FuzzyListSessions(A,L,P)
     return system(s:cmd)
 endfunc
 func! FuzzyEasierSload(snprefix)
-    let s:cmd = printf('ls ~/.vim/sessions | grep "^%s"', a:snprefix)
+    let s:cmd = printf('ls %s | grep "^%s" | sed -n 1p', g:startify_session_dir, a:snprefix)
     let s:sname = system(s:cmd)
-    exe printf('SLoad %s', s:sname)
+    if s:sname != ""
+        exe printf('SLoad %s', s:sname)
+    endif
 endfun
 
 "}}}
