@@ -64,8 +64,6 @@ export PATH=.:/home/hanson/CodeHub/SHELL:$PATH
 export PHP_EXTENSION_PATH=$(php -i | grep ^extension_dir | awk -F ' => ' '{print $2}')
 export DOCSWEB="/home/hanson/Data/docs-web"
 export EDITOR=vim
-export FZF_DEFAULT_COMMAND="ag --depth 26 -t -g '' 2>/dev/null"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export LANGUAGE=en_US.UTF-8 git vi vim gvim
 
@@ -174,4 +172,7 @@ alias f="vifm"
 alias scd="smartcd"
 alias squidreload="docker kill -s HUP squid"
 alias squidlogin="docker exec -i -t fd48478b838d bash"
-# alias sload="_(){ nv -c \"SLoad \$1\" }; _"
+alias vsload='_(){ vi -c "FSLoad $1"; }; _'
+# alias imgresize='_(){ ffmpeg -i $3 -vf scale=$1:$2 $4 -y &>/dev/null; }; _'
+alias imgresize='_(){ convert -resize $1x$2\! $3 $4; }; _'
+
