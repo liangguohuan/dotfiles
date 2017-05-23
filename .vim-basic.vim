@@ -710,8 +710,26 @@ autocmd FileType netrw nmap <silent> <buffer> qq <Leader>x
 
 " It cause chaos without keyword exe to do map sometimes, just like below codes it will more one extra space if without 'exe'
 autocmd BufEnter * if &previewwindow | exe 'nmap <buffer> q ZZ' | endif
-autocmd BufEnter * if &diff && match(bufname('%'), 'fugitive') > -1 | exe 'nmap <buffer> q <Leader>x' | endif
-autocmd BufEnter * if stridx(expand('%p'), 'fugitive://') > -1 | exe 'nmap <buffer> q :Bclose<CR>' | endif
+autocmd BufEnter * if stridx(expand('%p'), 'fugitive://') > -1 | call CloseFromFugitiveView() | endif
+
+function! CloseFromFugitiveView()
+    let s:filename = expand('%p')
+    let s:root = substitute(split(s:filename, '/.git/')[0], 'fugitive://', '', '')
+    let s:basename = fnamemodify(s:filename, ':p:t')
+    let s:real_filename = printf('%s/%s', s:root, s:basename)
+    if stridx(Vimcmd('nmap q'), 'No mapping found') > -1
+        let s:action = ''
+        if file_readable(s:real_filename)
+            let s:action = printf('e %s', s:real_filename)
+        else
+            let s:action = 'wincmd w'
+        endif
+        exec printf('nmap <buffer> q :%s<CR>', s:action)
+    endif
+    if &diff
+        nmap <buffer> q <Leader>x
+    endif
+endfunction
 
 " Smart quit in windows and buffers"{{{
 map <silent> <leader>x :<C-U>call SmartQuit(0)<cr>
