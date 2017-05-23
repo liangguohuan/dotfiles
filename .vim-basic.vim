@@ -1226,6 +1226,60 @@ fun! SearchNowByLastCopy()
 endf
 "}}}
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => capitalize"{{{
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+"{{{
+" From: http://www.vim.org/scripts/script.php?script_id=242
+
+vmap <silent> gc   :<C-u>call CapitalizeTitle("v")<CR>
+function! CapitalizeTitle(mode)
+" Title Case -- uppercase characters following whitespace
+    let s:col = col('v')
+    normal gv
+    " Hack: fix Vim's gv proclivity to add a line when at line end
+    if virtcol(".") == 1
+        normal '>
+        " line select
+        normal gV
+        " up one line
+        normal k
+        " back to char select
+        normal gV
+        """" back up one char
+        """normal h
+    endif
+	" yank
+	normal "xy
+	" lower case entire string
+	let @x = tolower(@x)
+	" capitalize first in series of word chars
+	let @x = substitute(@x, '\w\+', '\u&', 'g')
+	" lowercase a few words we always want lower
+	let @x = substitute(@x, '\<A\>', 'a', 'g')
+	let @x = substitute(@x, '\<An\>', 'an', 'g')
+	let @x = substitute(@x, '\<And\>', 'and', 'g')
+	let @x = substitute(@x, '\<In\>', 'in', 'g')
+	let @x = substitute(@x, '\<The\>', 'the', 'g')
+	" lowercase apostrophe s
+	let @x = substitute(@x, "'S", "'s", 'g')
+	" fix first word again
+	let @x = substitute(@x, '^.', '\u&', 'g')
+	" fix last word again
+	let str = matchstr(@x, '[[:alnum:]]\+[^[:alnum:]]*$')
+	let @x = substitute(@x, str . '$', '\u&', 'g')
+	" reselect
+	normal gv
+	" paste over selection (replacing it)
+	normal "xP
+	" return state
+    " normal gv
+    exec printf('normal! 0%d|', s:col)
+endfunction
+"}}}
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " prevent source file show again.
 set showtabline=0
