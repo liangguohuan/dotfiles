@@ -600,6 +600,26 @@ function! Multiple_cursors_after()
     if exists('g:ycm_auto_trigger') | let g:ycm_auto_trigger = 1 | endif
     if exists('g:deoplete#disable_auto_complete') | let g:deoplete#disable_auto_complete = 0 | endif
 endfunction
+
+" => Tweak MultipleCursorsFind, use default range as paragraph
+command! -range -nargs=1 Select call MultiCursorInParagraph(<line1>, <line2>, <q-args>)
+function! MultiCursorInParagraph(line1, line2, expr)
+    if a:line1 == a:line2
+        let s:line = line('.')
+        let s:col = col('.')
+        normal `{
+        let s:line1 = line('.')
+        normal `}
+        let s:line2 = line('.')
+        exe s:line
+        exec printf('normal! 0%d|', s:col)
+    else
+        let s:line1 = a:line1
+        let s:line2 = a:line2
+    endif
+    call multiple_cursors#find(s:line1, s:line2, a:expr)
+endfunction
+
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
