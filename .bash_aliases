@@ -173,6 +173,7 @@ alias scd="smartcd"
 alias squidreload="docker kill -s HUP squid"
 alias squidlogin="docker exec -i -t fd48478b838d bash"
 alias vsload='_(){ vi -c "FSLoad $1"; }; _'
+alias nvsload='_(){ nv -c "FSLoad $1"; }; _'
 # alias imgresize='_(){ ffmpeg -i $3 -vf scale=$1:$2 $4 -y &>/dev/null; }; _'
 alias imgresize='_(){ convert -resize $1x$2\! $3 $4; }; _'
 
