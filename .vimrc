@@ -81,7 +81,7 @@ Plug 'https://github.com/Kocha/vim-unite-tig.git'
 " development tools {{{
 Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'https://github.com/junegunn/gv.vim.git',   { 'on': 'GV' }
-Plug 'https://github.com/tpope/vim-rhubarb.git', { 'on': 'Gbrowse' }
+Plug 'https://github.com/tpope/vim-rhubarb.git', { 'on': [ 'Gbrowse', 'GV' ] }
 Plug 'https://github.com/gregsexton/gitv.git',   { 'on': 'Gitv' }
 Plug 'https://github.com/airblade/vim-gitgutter.git'
 " Plug 'https://github.com/vim-scripts/vcscommand.vim.git'
