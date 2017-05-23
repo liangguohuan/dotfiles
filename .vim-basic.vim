@@ -1299,6 +1299,21 @@ endfunction
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Multiple line exec motions in normal mode"{{{
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+command! -range -nargs=1 MultiLineExecNmode call MultiLineExeNmodeFuncBind(<line1>, <line2>, <q-args>)
+function! MultiLineExeNmodeFuncBind(line1, line2, cmd)
+    try
+        for s:line in range(a:line1, a:line2)
+            exe s:line
+            exe printf('normal %s', a:cmd)
+        endfor
+    catch
+    endtry
+endfunction
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " prevent source file show again.
 set showtabline=0
 
