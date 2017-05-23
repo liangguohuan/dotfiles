@@ -647,6 +647,11 @@ highlight BookmarkAnnotationLine guibg=#3c3d37 guifg=NONE
 highlight clear SignColumn
 let g:bookmark_save_per_working_dir = 1
 let g:bookmark_auto_save = 1
+
+" bookmark sign
+let g:bookmark_sign = '⇛'
+let g:bookmark_annotation_sign = '⇛'
+
 nmap mgj <Plug>BookmarkMoveUp
 nmap mgk <Plug>BookmarkMoveDown
 " let g:bookmark_highlight_lines = 1
@@ -698,43 +703,43 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
 " Use current directory as vimshell prompt.
-cabbrev vsh VimShell
-let g:vimshell_prompt_expr = 'escape(fnamemodify(getcwd(), ":~").">", "\\[]()?! ")." "'
-let g:vimshell_prompt_pattern = '^\%(\f\|\\.\)\+> '
-
-" let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
-"let g:vimshell_right_prompt = 'vcs#info("(%s)-[%b]", "(%s)-[%b|%a]")'
-
-" if has('win32') || has('win64')
-"   " Display user name on Windows.
-"   let g:vimshell_prompt = $USERNAME."% "
-" else
-"   " Display user name on Linux.
-"   let g:vimshell_prompt = $USER."% "
-" endif
-
-" Initialize execute file list.
-let g:vimshell_execute_file_list = {}
-call vimshell#set_execute_file('txt,vim,c,h,cpp,d,xml,java', 'vim')
-let g:vimshell_execute_file_list['rb'] = 'ruby'
-let g:vimshell_execute_file_list['pl'] = 'perl'
-let g:vimshell_execute_file_list['py'] = 'python'
-call vimshell#set_execute_file('html,xhtml', 'gexe firefox')
-
-autocmd FileType vimshell
-\ call vimshell#altercmd#define('g', 'git')
-\| call vimshell#altercmd#define('i', 'iexe')
-\| call vimshell#altercmd#define('l', 'll')
-\| call vimshell#altercmd#define('ll', 'ls -l')
-\| call vimshell#hook#add('chpwd', 'my_chpwd', 'MyChpwd')
-
-function! MyChpwd(args, context)
-  call vimshell#execute('ls')
-endfunction
-
-autocmd FileType int-* call s:interactive_settings()
-function! s:interactive_settings()
-endfunction
+"cabbrev vsh VimShell
+"let g:vimshell_prompt_expr = 'escape(fnamemodify(getcwd(), ":~").">", "\\[]()?! ")." "'
+"let g:vimshell_prompt_pattern = '^\%(\f\|\\.\)\+> '
+"
+"" let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
+""let g:vimshell_right_prompt = 'vcs#info("(%s)-[%b]", "(%s)-[%b|%a]")'
+"
+"" if has('win32') || has('win64')
+""   " Display user name on Windows.
+""   let g:vimshell_prompt = $USERNAME."% "
+"" else
+""   " Display user name on Linux.
+""   let g:vimshell_prompt = $USER."% "
+"" endif
+"
+"" Initialize execute file list.
+"let g:vimshell_execute_file_list = {}
+"call vimshell#set_execute_file('txt,vim,c,h,cpp,d,xml,java', 'vim')
+"let g:vimshell_execute_file_list['rb'] = 'ruby'
+"let g:vimshell_execute_file_list['pl'] = 'perl'
+"let g:vimshell_execute_file_list['py'] = 'python'
+"call vimshell#set_execute_file('html,xhtml', 'gexe firefox')
+"
+"autocmd FileType vimshell
+"\ call vimshell#altercmd#define('g', 'git')
+"\| call vimshell#altercmd#define('i', 'iexe')
+"\| call vimshell#altercmd#define('l', 'll')
+"\| call vimshell#altercmd#define('ll', 'ls -l')
+"\| call vimshell#hook#add('chpwd', 'my_chpwd', 'MyChpwd')
+"
+"function! MyChpwd(args, context)
+"  call vimshell#execute('ls')
+"endfunction
+"
+"autocmd FileType int-* call s:interactive_settings()
+"function! s:interactive_settings()
+"endfunction
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -813,6 +818,7 @@ cabbrev gul   Git! push -u origin master
 " => Gitgutter"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
+let g:gitgutter_override_sign_column_highlight = 1
 let g:gitgutter_max_signs = 1024
 autocmd FileType snippets let g:gitgutter_enabled = 0
 " autocmd FileType snippets set foldenable!
@@ -1104,7 +1110,10 @@ nmap <Leader>f :FZF!<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-autoformat"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+" echo join(map(split(globpath(&rtp, 'ftplugin/*.vim'), '\n'), 'fnamemodify(v:val, ":t:r")'), "\n")
 "{{{
+nmap cof :Autoformat<CR>
+
 let g:formatdef_php_cs_fixer = '"/home/hanson/CodeHub/SHELL/phpcspatch"'
 let g:formatters_php = ['php_cs_fixer']
 let g:formatdef_yuicompressor = '"/home/hanson/CodeHub/SHELL/yuicompressor"'
@@ -1139,6 +1148,12 @@ let g:javascript_conceal_static         = "•"
 let g:javascript_conceal_super          = "Ω"
 let g:javascript_conceal_arrow_function = "⇒"
 "}}}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => rainbow_parentheses"{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+let g:rainbow#max_level = 16
+let g:rainbow#pairs = [['(', ')'], ['[', ']']]
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

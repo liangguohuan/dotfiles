@@ -711,6 +711,7 @@ autocmd FileType netrw nmap <silent> <buffer> qq <Leader>x
 " It cause chaos without keyword exe to do map sometimes, just like below codes it will more one extra space if without 'exe'
 autocmd BufEnter * if &previewwindow | exe 'nmap <buffer> q ZZ' | endif
 autocmd BufEnter * if &diff && match(bufname('%'), 'fugitive') > -1 | exe 'nmap <buffer> q <Leader>x' | endif
+autocmd BufEnter * if stridx(expand('%p'), 'fugitive://') > -1 | exe 'nmap <buffer> q :Bclose<CR>' | endif
 
 " Smart quit in windows and buffers"{{{
 map <silent> <leader>x :<C-U>call SmartQuit(0)<cr>
@@ -1187,7 +1188,7 @@ endfunction
 " => Goback the last access buffer quickly"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
  "{{{
-nmap gb :call GoBackLastAccessBuffer()<CR>
+nmap gl :call GoBackLastAccessBuffer()<CR>
 function! GoBackLastAccessBuffer() abort
     let s:alternateBuffer = expand('#')
     exe printf('e %s', s:alternateBuffer)

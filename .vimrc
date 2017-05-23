@@ -49,6 +49,7 @@ Plug 'https://github.com/tpope/vim-eunuch.git'
 Plug 'https://github.com/tpope/vim-repeat.git'
 Plug 'https://github.com/tpope/vim-abolish.git'
 Plug 'https://github.com/tpope/vim-unimpaired.git'
+Plug 'https://github.com/tpope/vim-endwise.git'
 Plug 'https://github.com/duggiefresh/vim-easydir.git'
 Plug 'https://github.com/terryma/vim-multiple-cursors.git'
 Plug 'https://github.com/vim-scripts/YankRing.vim.git'
@@ -61,16 +62,17 @@ endif
 Plug 'https://github.com/taku-o/vim-toggle.git'
 Plug 'https://github.com/thinca/vim-qfreplace.git'
 Plug 'https://github.com/mhinz/vim-startify.git'
-Plug 'https://github.com/Chiel92/vim-autoformat.git'
-Plug 'https://github.com/osyo-manga/vim-over.git'
-Plug 'https://github.com/brooth/far.vim.git'
+Plug 'https://github.com/Chiel92/vim-autoformat.git'             , { 'on': 'Autoformat' }
+Plug 'https://github.com/osyo-manga/vim-over.git'                , { 'on': 'OverCommandLine' }
+Plug 'https://github.com/brooth/far.vim.git'                     , { 'on': ['Far', 'F'] }
+Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'   , { 'do' : ['RainbowParentheses', 'RainbowParenthesesColors'] }
 " }}}
 " Shougo Serise {{{
 Plug 'https://github.com/Shougo/unite.vim.git'
 Plug 'https://github.com/Shougo/neomru.vim.git'
 Plug 'https://github.com/Shougo/vimfiler.vim.git'
-Plug 'https://github.com/Shougo/vimproc.vim.git'                 , {'do' : 'make'}
-Plug 'https://github.com/Shougo/vimshell.git'
+Plug 'https://github.com/Shougo/vimproc.vim.git'                 , { 'do' : 'make' }
+Plug 'https://github.com/Shougo/vimshell.git'                    , { 'on': 'VimShell' }
 Plug 'https://github.com/Shougo/tabpagebuffer.vim.git'
 Plug 'https://github.com/Shougo/unite-outline.git'
 Plug 'https://github.com/chemzqm/unite-location.git'
@@ -78,7 +80,9 @@ Plug 'https://github.com/Kocha/vim-unite-tig.git'
 " }}}
 " development tools {{{
 Plug 'https://github.com/tpope/vim-fugitive.git'
-Plug 'https://github.com/gregsexton/gitv.git', { 'on': 'Gitv' }
+Plug 'https://github.com/junegunn/gv.vim.git',   { 'on': 'GV' }
+Plug 'https://github.com/tpope/vim-rhubarb.git', { 'on': 'Gbrowse' }
+Plug 'https://github.com/gregsexton/gitv.git',   { 'on': 'Gitv' }
 Plug 'https://github.com/airblade/vim-gitgutter.git'
 " Plug 'https://github.com/vim-scripts/vcscommand.vim.git'
 " }}}
@@ -100,7 +104,7 @@ Plug 'https://github.com/haya14busa/incsearch-fuzzy.vim.git'
 Plug 'https://github.com/terryma/vim-expand-region.git'
 Plug 'https://github.com/tommcdo/vim-exchange.git'
 Plug 'https://github.com/vim-scripts/argtextobj.vim.git'
-Plug 'https://github.com/mattn/emmet-vim'
+Plug 'https://github.com/mattn/emmet-vim'                        , { 'for': 'html' }
 " Plug 'https://github.com/bkad/CamelCaseMotion.git'
 " }}}
 " my custom {{{
@@ -132,7 +136,7 @@ Plug 'https://github.com/christoomey/vim-tmux-navigator.git'
 Plug 'https://github.com/tmux-plugins/vim-tmux-focus-events.git'
 Plug 'https://github.com/wellle/tmux-complete.vim.git'
 Plug 'https://github.com/suan/vim-instant-markdown.git'          , { 'for': 'markdown' }
-Plug 'https://github.com/vimwiki/vimwiki'
+" Plug 'https://github.com/vimwiki/vimwiki'
 Plug 'https://github.com/seyDoggy/vim-watchforchanges.git', 
             \ { 'on': [ 'WatchForChanges', 'WatchForChangesAllFile', 'WatchForChangesWhileInThisBuffer' ] }
 Plug 'https://github.com/thinca/vim-quickrun.git'                , { 'on': 'QuickRun' }

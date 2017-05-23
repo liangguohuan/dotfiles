@@ -6,10 +6,6 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
-" bookmark sign
-let g:bookmark_sign = '⇛'
-let g:bookmark_annotation_sign = '⇛'
-
 if has("gui_running")
 let g:startify_disable_at_vimenter = 1
 endif
@@ -29,13 +25,11 @@ let g:airline_theme="molokai"
 endif
 " let g:gruvbox_contrast_dark = 'hard'
 " let g:airline_theme="gruvbox" 
-let g:gitgutter_override_sign_column_highlight = 1
-colorscheme molokai
+" colorscheme gruvbox
 
 " colorscheme setting
 autocmd VimEnter,BufWritePost,ColorScheme,SessionLoadPost * call ColorSchemePatch()
 
-nmap cof :Autoformat<CR>
 " Toggle EasyTags Highlight
 "{{{
 " nohi by default
@@ -57,16 +51,16 @@ function! EasyTagsHighlight() abort
     exe 'HighlightTags'
   endif
   let hidict = {
-        \ 'phpClassesTag'    : {'ctermbg' : 3},
-        \ 'phpFunctionsTag'   : {'ctermbg' : 2},
-        \ 'pythonFunctionTag'  : {'ctermbg' : 8},
-        \ 'pythonMethodTag'   : {'ctermbg' : 2},
-        \ 'pythonClassTag'    : {'ctermbg' : 3},
-        \ 'vimAutoGroupTag'   : {'ctermbg' : 8},
-        \ 'vimCommandTag'    : {'ctermbg' : 3},
-        \ 'vimFuncNameTag'    : {'ctermbg' : 2},
+        \ 'phpClassesTag'        : {'ctermbg' : 3},
+        \ 'phpFunctionsTag'      : {'ctermbg' : 2},
+        \ 'pythonFunctionTag'    : {'ctermbg' : 8},
+        \ 'pythonMethodTag'      : {'ctermbg' : 2},
+        \ 'pythonClassTag'       : {'ctermbg' : 3},
+        \ 'vimAutoGroupTag'      : {'ctermbg' : 8},
+        \ 'vimCommandTag'        : {'ctermbg' : 3},
+        \ 'vimFuncNameTag'       : {'ctermbg' : 2},
         \ 'vimScriptFuncNameTag' : {'ctermbg' : 5},
-        \ 'shFunctionTag'    : {'ctermbg' : 8},
+        \ 'shFunctionTag'        : {'ctermbg' : 8},
         \ }
   for key in keys(hidict)
    for ikey in keys(hidict[key]) 
