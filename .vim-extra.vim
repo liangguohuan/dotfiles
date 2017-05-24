@@ -227,7 +227,7 @@ endfunction
 " endfunction
 "
 " Tips: <Esc> key in macro is illegal
-let @k = "f.hvF-hd"
+let @k = "$F.hvF-hd"
 let @j = "pvF-S]lvf d"
 
 
