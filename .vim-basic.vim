@@ -509,7 +509,9 @@ function! VisualSelection(direction, extra_filter) range
     elseif a:direction == 'gv'
         call CmdLine("CtrlSF \"" . l:pattern . "\" " )
     elseif a:direction == 'replace'
-        call CmdLine("%s" . '/'. l:pattern . '/')
+        " call CmdLine("%s" . '/'. l:pattern . '/')
+        let @/=''
+        exec "OverCommandLine %s" . '/'. l:pattern . '/'
     elseif a:direction == 'f'
         execute "normal /" . l:pattern . "^M"
     endif
