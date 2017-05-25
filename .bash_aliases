@@ -61,8 +61,10 @@ export LAMPP_HOME=/opt/lampp
 export COMPOSER_PATH=/home/hanson/.composer/vendor/bin
 export PATH=.:$JAVA_HOME/bin:$STORM_HOME/bin:$ZOOKEEPER_HOME/bin:$MONGODB_HOME/bin:$COMPOSER_PATH:$PATH
 export PATH=.:/home/hanson/CodeHub/SHELL:$PATH
-export PHP_EXTENSION_PATH=$(php -i | grep ^extension_dir | awk -F ' => ' '{print $2}')
-export DOCSWEB="/home/hanson/Data/docs-web"
+# export PHP_EXTENSION_PATH=$(php -i | grep ^extension_dir | awk -F ' => ' '{print $2}')
+export PHP_EXTENSION_PATH=/opt/lampp/lib/php/extensions/no-debug-non-zts-20151012
+export DOCSWEB=/home/hanson/Data/docs-web
+export XDG_CONFIG_HOME=~/.config
 export EDITOR=vim
 
 export LANGUAGE=en_US.UTF-8 git vi vim gvim
@@ -138,8 +140,7 @@ alias gmusic="google-chrome --app='http://music.163.com/#/my/m/music/playlist?id
 # close notebook screen via command, and recover it via keyboard <Fn+F4>
 alias closescreen="xrandr | grep primary | awks 1 | xargs -i xrandr --output {} --off"
 alias networkrestart="sudo ifdown eth0 && sudo ifup eth0"
-alias h="homestead"
-alias a="artisan"
+# alias h="homestead"
 alias dk="docker"
 alias dkc="docker-compose"
 alias laradock="docker-compose up -d nginx mysql redis"
@@ -168,7 +169,8 @@ alias msd="tmuxinator start default &>/dev/null"
 alias mux="tmuxinator"
 alias ToggleTouchpad='_(){ eval `synclient | grep TouchpadOff | tr -d " "`; [[ $TouchpadOff == 1 ]] && V=0 || V=1;synclient TouchpadOff=$V }; _'
 alias nv="nvim"
-alias f="vifm"
+alias fv="vifm"
+alias fr="ranger"
 alias scd="smartcd"
 alias squidreload="docker kill -s HUP squid"
 alias squidlogin="docker exec -i -t fd48478b838d bash"
@@ -176,4 +178,5 @@ alias vsload='_(){ vi -c "FSLoad $1"; }; _'
 alias nvsload='_(){ nv -c "FSLoad $1"; }; _'
 # alias imgresize='_(){ ffmpeg -i $3 -vf scale=$1:$2 $4 -y &>/dev/null; }; _'
 alias imgresize='_(){ convert -resize $1x$2\! $3 $4; }; _'
+alias agg="ag -t -g"
 
