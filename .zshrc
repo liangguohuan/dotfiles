@@ -1,3 +1,4 @@
+# vim: fdm=marker ts=4 sw=4 sts=4 expandtab
 # zcomdump filepath
 # ZSH_COMPDUMP="/tmp/.zcompdump-${HOST}-${ZSH_VERSION}"
 
@@ -54,7 +55,7 @@ ZSH_THEME="pretty"
 #
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git composer docker gem laravel laravel4 mvn node npm nvm perl pip pyenv python rbenv rsync rvm sublime sudo tmux vagrant)# }}}
-plugins=(zsh_reload git laravel5 docker docker-compose gem tmuxinator npm pip python tmux zsh-syntax-highlighting autojump)
+plugins=(zsh_reload git laravel5 docker docker-compose gem tmuxinator npm pip python tmux zsh-syntax-highlighting fasd)
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
