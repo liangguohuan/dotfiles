@@ -220,12 +220,3 @@ export MARKER_KEY_NEXT_PLACEHOLDER='\C-v'
 # smartcd: https://github.com/cxreg/smartcd
 [ -r "$HOME/.smartcd_config" ] && ( [ -n $BASH_VERSION ] || [ -n $ZSH_VERSION ] ) && source ~/.smartcd_config
 
-# dconf overwrite for switcher keys
-if [ ! -f "/tmp/yet_switcher_keys_overwirte" ]; then
-    xmodmap-toggle dconf default
-    xmodmap-toggle dconf swap
-    touch /tmp/yet_switcher_keys_overwirte
-fi
-
-
-# vim: fdm=marker ts=4 sw=4 sts=4 expandtab
