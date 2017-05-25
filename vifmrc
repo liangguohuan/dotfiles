@@ -109,9 +109,9 @@ set statusline="  %t%= %A %10u:%-7g %15s %20d  "
 
 " :mark mark /full/directory/path [filename]
 
-mark x ~/Download
-mark i ~/Pictures
-mark f ~/Document
+mark D ~/Download
+mark P ~/Pictures
+mark F ~/Document
 mark h ~/
 mark t /tmp
 mark d ~/Data
@@ -218,7 +218,9 @@ filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.m2v,*.mo
         \ {View using mplayer}
         \ mplayer %f,
 fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.m2v,*.mov,*.webm,*.ts,*.m4v,*.vdat
-         \ ffprobe -pretty %c 2>&1
+        " \ mediainfo %c 2>&1
+        " Contain , will faild: \ ffprobe -pretty %c 2>&1 | sed -n "/Input/,$p"
+        \ ffprobe -pretty %c 2>&1 | tail -n 20 | egrep -v 'libav|libp|libs'
 
 " Web
 filextype *.html,*.htm
@@ -240,10 +242,11 @@ fileviewer *.[1-8] gtbl %c | groff -Tascii -man | col -b
 " Image
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
         \ {View in sxiv}
-        \ sxiv -b -r -s w -g 800x449+285+155 %f,
+        " \ sxiv -b -r -s w -g 800x449+285+155 %f %i,
+        \ sxiv -b %f *.* %i,
         \ {View in gpicview}
         \ gpicview %c,
-fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm convert -identify %f -verbose /dev/null
+fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm mediainfo %f
 
 " MD5
 filetype *.md5
@@ -346,7 +349,7 @@ fileviewer .*/,*/ tree %f
 " uncommenting one of lines below will result in ignoring 'vi[x]cmd' option
 " for unknown file types.
 " For *nix:
-" filetype * xdg-open
+filetype * xdg-open
 " For OS X:
 " filetype * open
 " For Windows:
@@ -404,16 +407,16 @@ nnoremap cm :move<cr>
 vnoremap cm :move<cr>
 
 " Yank current directory path into the clipboard
-nnoremap yd :!echo %d | xsel -b<cr>
+nnoremap yd :!echo %d | xsel -b -i<cr>
 
 " Yank current file path into the clipboard
-nnoremap yf :!echo %c:p | xsel -b<cr>
+nnoremap yf :!echo %c:p | xsel -b -i<cr>
 
 " Yank current file name into the clipboard
-nnoremap yn :!echo %c:t | xsel -b<cr>
+nnoremap yn :!echo %c:t | xsel -b -i<cr>
 
 " yank root of current file's name into the clipboard
-nnoremap yr :!echo -n %c:r | xsel -b<cr>
+nnoremap yr :!echo -n %c:r | xsel -b -i<cr>
 
 " Mappings for faster renaming
 nnoremap I cw<c-a>
@@ -479,7 +482,8 @@ fileviewer *.tar,*.zip,*.cpio,*.deb,*.rpm,*.gem,*.7z,*.cab,*.lzh,*.rar,*.gz,*.bz
 
 " --- keymap
 " t can selecte multiple file
-nmap <F4> :q<CR>
+nmap f /
+nmap E :!vim %c<CR>
 nmap Q :shell<CR>
 nmap s :sort<CR>
 nmap S :invert o<CR>
@@ -490,13 +494,21 @@ nmap T :trashes<CR>
 nmap ~ :cd ~<CR>
 nmap X :com<CR>
 nmap x :!xdg-open %c %i<CR>
-nmap E :file<CR>
+nmap r :file<CR>
 nmap R :reload<CR>
-nmap * :invert s<CR>
+vmap V :invert s<CR>
+nmap V :invert s<CR>
 nmap B :marks<CR>
 nmap ,nf :touch<space>
 nmap ,nd :mkdir<space>
 nmap ,nl :alink<CR>
+vmap t :select<CR>
+nmap q :quit<CR>
+
+nnoremap yw :echo system("echo " . expand('%c:t') . "| cut -d ' ' -f1,2 | tr '[:upper:]' '[:lower:]' | xsel -b -i")<cr>
+nmap * :execute "normal /" . system("echo " . expand('%c:t') . "| cut -d ' ' -f1 | tr '[:upper:]' '[:lower:]'")<CR>nN
+nmap & :execute "normal /" . system("echo " . expand('%c:t') . "| cut -d ' ' -f1,2 | tr '[:upper:]' '[:lower:]'")<CR>nN
+
 " --- command
 command! targz tar czf %a.tar.gz %f %%
 command! gdebi gdebi -q %f %m
@@ -508,6 +520,7 @@ command! mfind find %d -type f -name "*%a*" ! -path "*.git*" ! -path "*fugitive*
 " Example: ag 'app.*http.*request'
 command! ag ag -i --nocolor --follow --nogroup --hidden --ignore '.git' --ignore 'fugitive' -g '%a' %d %M
 command! mv mv %f %a
+
 
 
 " Total size of selected files
