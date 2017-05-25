@@ -620,6 +620,10 @@ function! MultiCursorInParagraph(line1, line2, expr)
     call multiple_cursors#find(s:line1, s:line2, a:expr)
 endfunction
 
+" => Select quickly
+nmap <Leader><Leader>s :execute(printf("Select %s", expand("<cword>")))<cr>
+vmap <Leader><Leader>s :call VisualSelection('select', '')<CR>
+
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

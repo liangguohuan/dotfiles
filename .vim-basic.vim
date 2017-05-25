@@ -514,6 +514,8 @@ function! VisualSelection(direction, extra_filter) range
         exec "OverCommandLine %s" . '/'. l:pattern . '/'
     elseif a:direction == 'f'
         execute "normal /" . l:pattern . "^M"
+    elseif a:direction == 'select'
+        execute printf("Select %s", l:pattern)
     endif
 
     let g:virsual_selection_act = 0
