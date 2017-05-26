@@ -55,7 +55,7 @@ ZSH_THEME="pretty"
 #
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git composer docker gem laravel laravel4 mvn node npm nvm perl pip pyenv python rbenv rsync rvm sublime sudo tmux vagrant)# }}}
-plugins=(zsh_reload git laravel5 docker docker-compose gem tmuxinator npm pip python tmux zsh-syntax-highlighting fasd git-extras)
+plugins=(zsh_reload git laravel5 docker docker-compose gem tmuxinator npm pip python tmux zsh-syntax-highlighting fasd git-extras fzf-marker)
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -189,35 +189,15 @@ zle -N sudo-command-line
 bindkey "\e\e" sudo-command-line
 # }}}
 
-# A command-line fuzzy finder written in Go: https://github.com/junegunn/fzf
+# => A command-line fuzzy finder written in Go: https://github.com/junegunn/fzf
 export FZF_DEFAULT_OPTS="--prompt='> ' --reverse --color=hl:2,hl+:161 --height='95%'"
 export FZF_DEFAULT_COMMAND="ag --depth 26 -t -g '' 2>/dev/null"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
-# marker: https://github.com/pindexis/marker.git
-# template file: ~/.local/share/marker/user_commands.txt
-export MARKER_KEY_NEXT_PLACEHOLDER='\C-v'
-[[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
-
-# percol: https://github.com/mooz/percol
-# search shell history easier
-# {{{
-# function exists { which $1 &> /dev/null }
-# if exists percol; then
-    # function percol_select_history() {
-        # local tac
-        # exists gtac && tac="gtac" || { exists tac && tac="tac" || { tac="tail -r" } }
-        # BUFFER=$(fc -l -n 1 | eval $tac | percol --query "$LBUFFER")
-        # CURSOR=$#BUFFER         # move cursor
-        # zle -R -c               # refresh
-    # }
-
-    # zle -N percol_select_history
-    # bindkey '^R' percol_select_history
-# fi
-# }}}
-
-# smartcd: https://github.com/cxreg/smartcd
+# => smartcd: https://github.com/cxreg/smartcd
 [ -r "$HOME/.smartcd_config" ] && ( [ -n $BASH_VERSION ] || [ -n $ZSH_VERSION ] ) && source ~/.smartcd_config
+
+# => testing
+[[ -s "$HOME/.zshtest" ]] && source "$HOME/.zshtest"
 
