@@ -7,6 +7,10 @@
 # use xev can get keyboard info
 # use xdotool can control window
 # use wmctrl can contrl window too
+#
+# Warn:
+#   alias contain variable or function, the best way is use single quote ' to  wrap
+#   Example: alais xxx='_(){ echo $1 $2 $3; }; _'
 
 # => lead bug: these codes will echo ascii when command exec finish in zsh
 # ------------ but zsh work well in tmux.
@@ -81,10 +85,10 @@ alias llf="ls \$1 | fullpath"
 alias lls="ll .*(@)"
 alias fullpath="xargs -n 1 readlink -f"
 alias cls="clear"
-alias clsa="printf '\033c'"
+alias clsa='printf "\033c"'
 alias mcf="vim ~/.bash_aliases"
 alias mcfn="source ~/.bash_aliases && echo alias files has been updated."
-alias mcfv="cat ~/.bash_aliases | egrep '(alias [a-z|\-]{3,}=\")|(export )' | less"
+alias mcfv='cat ~/.bash_aliases | egrep "(alias [a-z|\-]{3,}=\")|(export )" | sed "s/^\s\+//" | less'
 alias update="sudo apt update"
 alias upgrade="sudo apt upgrade"
 alias updateall="sudo apt update && sudo apt upgrade"
@@ -96,7 +100,7 @@ alias aptremove="sudo apt remove"
 alias aptpurge="sudo aptitude purge"
 alias aptautoremove="sudo apt autoremove"
 alias aptfix="sudo apt -f install"
-alias gpgmisskeyfix="sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com \$1"
+alias gpgkeyfix='sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com $1'
 alias poweroff="sudo poweroff"
 alias reboot="sudo reboot"
 alias testnet="ping 163.com"
@@ -109,8 +113,8 @@ alias zhuxiao="gnome-session-quit --logout --no-prompt"
 alias mysqlconf="sudo vim /opt/lampp/etc/my.cnf"
 alias showmaster="mysql -uroot --password='' -e 'show master status;'"
 alias redisconf="cat /etc/redis.conf | grep -v ^# | grep -v ^$"
-alias uvn="uname -r | awk -F '-' '{print \$1\"-\"\$2}'"
-alias neihe-old="sudo dpkg --get-selections|grep linux|egrep linux-\(headers\|image\)-\(\[0-9.-\]+\|extra\)|grep -v `uvn`|awk '{print \$1}'"
+alias uvn='uname -r | awk -F "-" "{print \$1\"-\"\$2}"'
+alias neihe-old='sudo dpkg --get-selections|grep linux|egrep linux-\(headers\|image\)-\(\[0-9.-\]+\|extra\)|grep -v `uvn`|awk "{print \$1}"'
 alias hostconf="sudo vi /etc/hosts"
 alias hostview="less /etc/hosts"
 alias icons="nautilus ~/.local/share/icons/"
@@ -124,7 +128,7 @@ alias phpconf="sudo vi + /opt/lampp/etc/php.ini"
 alias dush="du -sh"
 alias syslog="tail -f /var/log/syslog -n 100"
 alias autoeng="sudo vi +$ /usr/share/fcitx/data/AutoEng.dat"
-alias proxy="export HTTP_PROXY=127.0.0.1:8087 && export HTTPS_PROXY=127.0.0.1:8087 && echo 'use goagent proxy sucessed.'"
+alias proxy='_(){ export HTTP_PROXY=${1:-127.0.0.1:8087} && export HTTPS_PROXY=${1:-127.0.0.1:8087} && echo "use ${1:-127.0.0.1:8087} proxy sucessed."; }; _'
 alias proxydisable="export HTTP_PROXY= && export HTTPS_PROXY= && echo 'cancel proxy sucessed.'"
 alias cdjekyll="cd ~/Data/Latest/jekyll/dark.github.io/"
 alias sjekyll="cdjekyll && jekyll s && cd - && cls"
@@ -156,9 +160,9 @@ alias trash-put="sudo trash"
 alias trash-list="sudo trash-list"
 alias gdriver="skicka"
 alias baiduyun="pcs"
-alias randomchars="python -c \"import random,string;print ''.join(random.sample(string.ascii_letters+string.digits, 16)).lower()\""
+alias randomchars='python -c "import random,string;print \"\".join(random.sample(string.ascii_letters+string.digits, 16)).lower()"'
 alias temphostname="sudo hostname android-obylyw02ziobm8fr"
-alias china-weather-restart="psaux indicator-china-weather | grep -v color | awk '{print \$2}' | xargs kill -9 && start-stop-daemon --exec /usr/bin/indicator-china-weather --start --background"
+alias china-weather-restart='psaux indicator-china-weather | grep -v color | awk "{print \$2}" | xargs kill -9 && start-stop-daemon --exec /usr/bin/indicator-china-weather --start --background'
 alias t="tmux"
 # good for session deattach from <keyprefix>d
 alias tmt="tmux attach -t"
