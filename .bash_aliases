@@ -10,7 +10,7 @@
 #
 # Warn:
 #   alias contain variable or function, the best way is use single quote ' to  wrap
-#   Example: alais xxx='_(){ echo $1 $2 $3; }; _'
+#   Example: alais xxx='_f(){ echo $1 $2 $3; }; _f'
 
 # => lead bug: these codes will echo ascii when command exec finish in zsh
 # ------------ but zsh work well in tmux.
@@ -128,7 +128,7 @@ alias phpconf="sudo vi + /opt/lampp/etc/php.ini"
 alias dush="du -sh"
 alias syslog="tail -f /var/log/syslog -n 100"
 alias autoeng="sudo vi +$ /usr/share/fcitx/data/AutoEng.dat"
-alias proxy='_(){ export HTTP_PROXY=${1:-127.0.0.1:8087} && export HTTPS_PROXY=${1:-127.0.0.1:8087} && echo "use ${1:-127.0.0.1:8087} proxy sucessed."; }; _'
+alias proxy='_f(){ export HTTP_PROXY=${1:-127.0.0.1:8087} && export HTTPS_PROXY=${1:-127.0.0.1:8087} && echo "use ${1:-127.0.0.1:8087} proxy sucessed."; }; _f'
 alias proxydisable="export HTTP_PROXY= && export HTTPS_PROXY= && echo 'cancel proxy sucessed.'"
 alias cdjekyll="cd ~/Data/Latest/jekyll/dark.github.io/"
 alias sjekyll="cdjekyll && jekyll s && cd - && cls"
@@ -171,16 +171,16 @@ alias m="tmuxinator"
 alias ms="tmuxinator start $1 &>/dev/null"
 alias msd="tmuxinator start default &>/dev/null"
 alias mux="tmuxinator"
-alias ToggleTouchpad='_(){ eval `synclient | grep TouchpadOff | tr -d " "`; [[ $TouchpadOff == 1 ]] && V=0 || V=1;synclient TouchpadOff=$V }; _'
+alias ToggleTouchpad='_f(){ eval `synclient | grep TouchpadOff | tr -d " "`; [[ $TouchpadOff == 1 ]] && V=0 || V=1;synclient TouchpadOff=$V }; _f'
 alias nv="nvim"
 alias fv="vifm"
 alias fr="ranger"
 alias scd="smartcd"
 alias squidreload="docker kill -s HUP squid"
 alias squidlogin="docker exec -i -t fd48478b838d bash"
-alias vsload='_(){ vi -c "FSLoad $1"; }; _'
-alias nvsload='_(){ nv -c "FSLoad $1"; }; _'
-# alias imgresize='_(){ ffmpeg -i $3 -vf scale=$1:$2 $4 -y &>/dev/null; }; _'
-alias imgresize='_(){ convert -resize $1x$2\! $3 $4; }; _'
+alias vsload='_f(){ vi -c "FSLoad $1"; }; _f'
+alias nvsload='_f(){ nv -c "FSLoad $1"; }; _f'
+# alias imgresize='_f(){ ffmpeg -i $3 -vf scale=$1:$2 $4 -y &>/dev/null; }; _f'
+alias imgresize='_f(){ convert -resize $1x$2\! $3 $4; }; _f'
 alias agg="ag -t -g"
 
