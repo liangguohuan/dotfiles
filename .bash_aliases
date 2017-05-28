@@ -153,8 +153,8 @@ alias docweb="start-stop-daemon --start --background --name=docweb --exec /home/
     && xdg-open http://localhost:8888/index/docs-html/ &>/dev/null"
 alias cscope-update="find . -name '*.php' -type f > cscope.files && cscope -bq"
 # copy file contens to clipboard: sfc [filename]
-alias sfc="xsel -b < "
-alias copyfiletoclip=sfc
+alias cfc="xsel -b -i <"
+alias cptoclip=cfc
 alias trash="sudo trash"
 alias trash-put="sudo trash"
 alias trash-list="sudo trash-list"
