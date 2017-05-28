@@ -605,14 +605,9 @@ endfunction
 command! -range -nargs=1 Select call MultiCursorInParagraph(<line1>, <line2>, <q-args>)
 function! MultiCursorInParagraph(line1, line2, expr)
     if a:line1 == a:line2
-        let s:line = line('.')
-        let s:col = col('.')
-        normal `{
-        let s:line1 = line('.')
-        normal `}
-        let s:line2 = line('.')
-        exe s:line
-        exec printf('normal! 0%d|', s:col)
+        let range = GetRangInParagraph()
+        let s:line1 = range[0]
+        let s:line2 = range[1]
     else
         let s:line1 = a:line1
         let s:line2 = a:line2
@@ -621,7 +616,7 @@ function! MultiCursorInParagraph(line1, line2, expr)
 endfunction
 
 " => Select quickly
-nmap <Leader><Leader>s :execute(printf("Select %s", expand("<cword>")))<cr>
+nmap <Leader><Leader>s :Select <C-r>=expand("<cword>")<CR><CR>
 vmap <Leader><Leader>s :call VisualSelection('select', '')<CR>
 
 "}}}
@@ -1179,6 +1174,25 @@ let g:javascript_conceal_arrow_function = "⇒"
 let g:rainbow#max_level = 16
 let g:rainbow#pairs = [['(', ')'], ['[', ']']]
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => OverCommandLine"{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+nmap <Leader><Leader>r :Replace <C-r>=expand("<cword>")<CR><CR>
+vmap <Leader><Leader>r :call VisualSelection('replace', '')<CR>
+command! -range -nargs=1 Replace call RepalceInParagraph(<line1>, <line2>, <q-args>)
+
+function! RepalceInParagraph(line1, line2, expr)
+    let @/=''
+    if a:line1 == a:line2
+        let range = GetRangInParagraph()
+        let s:line1 = range[0]
+        let s:line2 = range[1]
+    else
+        let s:line1 = a:line1
+        let s:line2 = a:line2
+    endif
+    exec printf('OverCommandLine %d,%ds/%s/\1', s:line1, s:line2, a:expr)
+endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim: fdm=marker ts=4 sw=4 sts=4 expandtab

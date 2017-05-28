@@ -1,3 +1,11 @@
+" gv.vim command
+cabbrev gv GV
+cabbrev sel Select
+cabbrev mcf MultipleCursorsFind
+cabbrev mle MultiLineExecNmode
+nmap coq :RainbowParentheses!!<CR>
+nmap coG :GV<CR>
+
 let g:airline#extensions#tmuxline#enabled = 0
 
 " syntastic
@@ -212,6 +220,27 @@ endfunction
 " set foldtext=MarkerTypeFoldText()
 "}}}
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Search command via xdotool
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+command! -range -nargs=1 Search call SearchInParagraph(<line1>, <line2>, <q-args>)
+
+function! SearchInParagraph(line1, line2, kw)
+    if a:line1 == a:line2
+        let range = GetRangInParagraph()
+        let s:line1 = range[0]
+        let s:line2 = range[1]
+    else
+        let s:line1 = a:line1
+        let s:line2 = a:line2
+    endif
+    call SearchViaXdotool(printf('\\%%>%dl\\%%<%dl%s', s:line1, s:line2, a:kw))
+endfunction
+
+function! SearchViaXdotool(kw)
+    silent call system(printf('xdotool type "/%s"', a:kw))
+    silent call system('xdotool key ctrl+m')
+endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => testing

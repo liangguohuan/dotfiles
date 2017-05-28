@@ -102,6 +102,19 @@ function! Vimcmd(cmd) abort
     redir END
     return output
 endfunction
+
+function! GetRangInParagraph()
+    let s:line = line('.')
+    let s:col = col('.')
+    normal `{
+    let s:firstline = line('.')
+    normal `}
+    let s:lastline = line('.')
+    exe s:line
+    exec printf('normal! 0%d|', s:col)
+    return [s:firstline, s:lastline]
+endfunction
+
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -516,6 +529,8 @@ function! VisualSelection(direction, extra_filter) range
         execute "normal /" . l:pattern . "^M"
     elseif a:direction == 'select'
         execute printf("Select %s", l:pattern)
+    elseif a:direction == 'replace'
+        execute printf("Replace %s", l:pattern)
     endif
 
     let g:virsual_selection_act = 0
