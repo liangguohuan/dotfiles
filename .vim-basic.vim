@@ -1176,6 +1176,10 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Environments changed in project, useful for customing env for project."{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+" => Debug easily
+" command! WS exec('w') | exec('source %')
+command! DEBUG exec(printf("autocmd! BufWritePost *%s source %s", expand('%:t'), expand('%:p')))
+
 " file content format like below
 " XYZ="xxxxx"
 " XOXO="xoxoxo"
