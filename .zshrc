@@ -128,8 +128,8 @@ compdef vboxmanage=VBoxManage
 
 zstyle ':completion:*:ping:*' hosts 163.com twitter.com facebook.com
 my_accounts=(
-{hanson,osily,john,root}@{192.168.1.1,192.168.0.1,202.96.128.100}
-osily@localhost
+{hanson,vagrant,root}@{192.168.1.1,192.168.0.1,202.96.128.100}
+vagrant@localhost
 )
 zstyle ':completion:*:my-accounts' users-hosts $my_accounts
 
@@ -190,7 +190,7 @@ bindkey "\e\e" sudo-command-line
 # }}}
 
 # => A command-line fuzzy finder written in Go: https://github.com/junegunn/fzf
-export FZF_DEFAULT_OPTS="--prompt='> ' --reverse --color=hl:2,hl+:161 --height='95%'"
+export FZF_DEFAULT_OPTS="--prompt='> ' --reverse --color=hl:2,hl+:161 --height=60%"
 export FZF_DEFAULT_COMMAND="ag --depth 26 -t -g '' 2>/dev/null"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
