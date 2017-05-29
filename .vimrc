@@ -76,7 +76,6 @@ Plug 'https://github.com/Shougo/vimshell.git'                    , { 'on': 'VimS
 Plug 'https://github.com/Shougo/tabpagebuffer.vim.git'
 Plug 'https://github.com/Shougo/unite-outline.git'
 Plug 'https://github.com/chemzqm/unite-location.git'
-Plug 'https://github.com/Kocha/vim-unite-tig.git'
 " }}}
 " development tools {{{
 Plug 'https://github.com/tpope/vim-fugitive.git'
