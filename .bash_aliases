@@ -77,7 +77,7 @@ alias ubuntu="lsb_release -a"
 alias grep='grep --color'
 alias ls='ls --color=auto'
 alias llu="ls -tlrh"
-alias llf="ls \$1 | fullpath"
+alias llf='_f(){ pwd=$(pwd); cd ${1:-.}; ls | fullpath; cd $pwd; }; _f'
 ## sample:
 # - list all symbols links in /usr/bin: ll /usr/bin/*(@)
 # - list all symbols links in current dir: ll .*(@)
@@ -114,16 +114,13 @@ alias mysqlconf="sudo vim /opt/lampp/etc/my.cnf"
 alias showmaster="mysql -uroot --password='' -e 'show master status;'"
 alias redisconf="cat /etc/redis.conf | grep -v ^# | grep -v ^$"
 alias uvn='uname -r | awk -F "-" "{print \$1\"-\"\$2}"'
-alias neihe-old='sudo dpkg --get-selections|grep linux|egrep linux-\(headers\|image\)-\(\[0-9.-\]+\|extra\)|grep -v `uvn`|awk "{print \$1}"'
+alias neihe-old='sudo dpkg --get-selections|grep linux|egrep linux-\(headers\|image\)-\(\[0-9.-\]+\|extra-\[0-9\]\)|grep -v `uvn`|awk "{print \$1}"'
 alias hostconf="sudo vi /etc/hosts"
 alias hostview="less /etc/hosts"
 alias icons="nautilus ~/.local/share/icons/"
 alias desktop-top="nautilus ~/.local/share/applications/"
 alias uuids="sudo blkid"
 alias gateway="route -n"
-alias dl="docker ps -l -q"
-alias dls="docker ps -a"
-alias dis="docker images"
 alias phpconf="sudo vi + /opt/lampp/etc/php.ini"
 alias dush="du -sh"
 alias syslog="tail -f /var/log/syslog -n 100"
@@ -132,8 +129,6 @@ alias proxy='_f(){ export HTTP_PROXY=${1:-127.0.0.1:8087} && export HTTPS_PROXY=
 alias proxydisable="export HTTP_PROXY= && export HTTPS_PROXY= && echo 'cancel proxy sucessed.'"
 alias cdjekyll="cd ~/Data/Latest/jekyll/dark.github.io/"
 alias sjekyll="cdjekyll && jekyll s && cd - && cls"
-alias zshconf="vi ~/.zshrc"
-alias zshconfnow="source ~/.zshrc"
 # => google-chrome apps custom start
 alias gqq="google-chrome --app='http://web.qq.com' &>/dev/null"
 alias gnote="google-chrome --app='http://www.maxiang.info' &>/dev/null"
@@ -144,15 +139,18 @@ alias gmusic="google-chrome --app='http://music.163.com/#/my/m/music/playlist?id
 # close notebook screen via command, and recover it via keyboard <Fn+F4>
 alias closescreen="xrandr | grep primary | awks 1 | xargs -i xrandr --output {} --off"
 alias networkrestart="sudo ifdown eth0 && sudo ifup eth0"
-# alias h="homestead"
-alias dk="docker"
-alias dkc="docker-compose"
+# alias hs="homestead"
+alias de="docker"
+alias dm="docker-compose"
+alias dl="docker ps -l -q"
+alias dls="docker ps -a"
+alias dis="docker images"
 alias laradock="docker-compose up -d nginx mysql redis"
 alias vmdock="docker-compose exec workspace bash"
 alias docweb="start-stop-daemon --start --background --name=docweb --exec /home/hanson/CodeHub/PYTHON/Default/local-host-bind.py \
     && xdg-open http://localhost:8888/index/docs-html/ &>/dev/null"
 alias cscope-update="find . -name '*.php' -type f > cscope.files && cscope -bq"
-# copy file contens to clipboard: sfc [filename]
+# copy file content to clipboard: cfc [filename]
 alias cfc="xsel -b -i <"
 alias cptoclip=cfc
 alias trash="sudo trash"
@@ -165,22 +163,20 @@ alias temphostname="sudo hostname android-obylyw02ziobm8fr"
 alias china-weather-restart='psaux indicator-china-weather | grep -v color | awk "{print \$2}" | xargs kill -9 && start-stop-daemon --exec /usr/bin/indicator-china-weather --start --background'
 alias t="tmux"
 # good for session deattach from <keyprefix>d
-alias tmt="tmux attach -t"
-alias tmd="tmux attach -d"
+alias tt="tmux attach -t"
+alias td="tmux attach -d"
 alias m="tmuxinator"
-alias ms="tmuxinator start $1 &>/dev/null"
+alias ms="tmuxinator start $1 &>/dev/null" # use single quote got no completion -_-
 alias msd="tmuxinator start default &>/dev/null"
-alias mux="tmuxinator"
 alias ToggleTouchpad='_f(){ eval `synclient | grep TouchpadOff | tr -d " "`; [[ $TouchpadOff == 1 ]] && V=0 || V=1;synclient TouchpadOff=$V }; _f'
 alias nv="nvim"
 alias fv="vifm"
 alias fr="ranger"
 alias scd="smartcd"
 alias squidreload="docker kill -s HUP squid"
-alias squidlogin="docker exec -i -t fd48478b838d bash"
+alias squidlogin='docker exec -i -t $(docker ps | grep squid | awk "{print \$1}") bash'
 alias vsload='_f(){ vi -c "FSLoad $1"; }; _f'
 alias nvsload='_f(){ nv -c "FSLoad $1"; }; _f'
 # alias imgresize='_f(){ ffmpeg -i $3 -vf scale=$1:$2 $4 -y &>/dev/null; }; _f'
 alias imgresize='_f(){ convert -resize $1x$2\! $3 $4; }; _f'
-alias agg="ag -t -g"
 
