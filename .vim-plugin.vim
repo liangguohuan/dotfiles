@@ -1179,10 +1179,13 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']']]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 nmap <Leader><Leader>r :Replace <C-r>=expand("<cword>")<CR><CR>
 vmap <Leader><Leader>r :call VisualSelection('replace', '')<CR>
-command! -range -nargs=1 Replace call RepalceInParagraph(<line1>, <line2>, <q-args>)
+command! -range -nargs=1 Replace call ReplaceInParagraph(<line1>, <line2>, <q-args>)
 
-function! RepalceInParagraph(line1, line2, expr)
+function! ReplaceInParagraph(line1, line2, expr)
     let @/=''
+    let s:args = split(substitute(a:expr, '\s\+', ' ', 'g'), ' ')
+    let s:findstr = s:args[0]
+    let s:repstr = len(s:args) > 1 ? s:args[1] : '\1'
     if a:line1 == a:line2
         let range = GetRangInParagraph()
         let s:line1 = range[0]
@@ -1191,7 +1194,7 @@ function! RepalceInParagraph(line1, line2, expr)
         let s:line1 = a:line1
         let s:line2 = a:line2
     endif
-    exec printf('OverCommandLine %d,%ds/%s/\1', s:line1, s:line2, a:expr)
+    exec printf('OverCommandLine %d,%ds/%s/%s', s:line1, s:line2, s:findstr, s:repstr)
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
