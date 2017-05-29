@@ -73,19 +73,19 @@ export EDITOR=vim
 
 export LANGUAGE=en_US.UTF-8 git vi vim gvim
 
-alias ubuntu="lsb_release -a"
-alias grep='grep --color'
-alias ls='ls --color=auto'
-alias llu="ls -tlrh"
-alias llf='_f(){ pwd=$(pwd); cd ${1:-.}; ls | fullpath; cd $pwd; }; _f'
 ## sample:
 # - list all symbols links in /usr/bin: ll /usr/bin/*(@)
 # - list all symbols links in current dir: ll .*(@)
 # - list all symbols links in current dir's subdirs: ll .*/**(@)
+alias ls='ls --color=auto'
+alias llu="ls -tlrh"
+alias llf='_f(){ pwd=$(pwd); cd ${1:-.}; ls | fullpath; cd $pwd; }; _f'
 alias lls="ll .*(@)"
 alias fullpath="xargs -n 1 readlink -f"
 alias cls="clear"
 alias clsa='printf "\033c"'
+alias grep='grep --color'
+alias ubuntu="lsb_release -a"
 alias mcf="vim ~/.bash_aliases"
 alias mcfn="source ~/.bash_aliases && echo alias files has been updated."
 alias mcfv='cat ~/.bash_aliases | egrep "(alias [a-z|\-]{3,}=\")|(export )" | sed "s/^\s\+//" | less'
@@ -108,7 +108,6 @@ alias vm="ssh vagrant@127.0.0.1 -p 2222"
 alias unpack="/usr/bin/dtrx"
 alias disk="df -lTh -x aufs"
 alias psaux="ps aux | grep -v grep | grep"
-# alias portshow="sudo netstat -anp | grep tcp"
 alias zhuxiao="gnome-session-quit --logout --no-prompt"
 alias mysqlconf="sudo vim /opt/lampp/etc/my.cnf"
 alias showmaster="mysql -uroot --password='' -e 'show master status;'"
