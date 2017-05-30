@@ -23,6 +23,7 @@ else
 endif
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all', 'frozen':1 }
+Plug 'junegunn/fzf.vim'
 
 Plug 'https://github.com/sheerun/vim-polyglot.git'
 Plug 'https://github.com/morhetz/gruvbox.git'
@@ -88,7 +89,7 @@ Plug 'https://github.com/airblade/vim-gitgutter.git'
 " sidebar tools {{{
 Plug 'https://github.com/majutsushi/tagbar.git'
 Plug 'https://github.com/dyng/ctrlsf.vim.git'
-Plug 'https://github.com/rking/ag.vim.git'
+" Plug 'https://github.com/rking/ag.vim.git'
 Plug 'https://github.com/sjl/gundo.vim.git'                      , { 'on': 'GundoToggle' }
 Plug 'https://github.com/MattesGroeger/vim-bookmarks.git'       
 Plug 'https://github.com/vim-scripts/TaskList.vim.git'           , { 'on': 'TaskList' }
