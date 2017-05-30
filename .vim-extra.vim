@@ -1,10 +1,11 @@
-" gv.vim command
-cabbrev gv GV
-cabbrev sel Select
+" Extra file, option codes for vim
+" vim: fdm=marker ts=4 sw=4 sts=4 expandtab
+
+" overwrite Locate command in tpope/vim-eunuch
+au VimEnter * command! -bang -nargs=+ -complete=dir Locate call fzf#vim#locate(<q-args>, <bang>0)
+
 cabbrev mcf MultipleCursorsFind
 cabbrev mle MultiLineExecNmode
-nmap coq :RainbowParentheses!!<CR>
-nmap coG :GV<CR>
 
 let g:airline#extensions#tmuxline#enabled = 0
 
@@ -259,5 +260,3 @@ endfunction
 let @k = "$F.hvF-hd"
 let @j = "pvF-S]lvf d"
 
-
-" vim: fdm=marker ts=4 sw=4 sts=4 expandtab
