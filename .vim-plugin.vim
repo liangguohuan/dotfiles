@@ -1,3 +1,5 @@
+" vim: fdm=marker ts=2 sw=2 sts=2 expandtab
+"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Unite"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
@@ -22,119 +24,119 @@ nnoremap <silent> [unite]a :<C-u>call UniteSearchRecCall()<CR>
 nnoremap <silent> [unite]l :<C-u>Unite file_mru -buffer-name=files_mru -prompt=> -start-insert <CR>
 
 fun! UniteSearchRecCall()
-    let cmd = 'file_rec/async'
-    " b:git_dir is from plugin vim-fugitive
-    if exists('b:git_dir')
-        let cmd = 'file_rec/git'
-    endif
-    exe printf('Unite %s  -buffer-name=files -prompt=> -start-insert -unique -ignorecase', cmd)
+  let cmd = 'file_rec/async'
+  " b:git_dir is from plugin vim-fugitive
+  if exists('b:git_dir')
+    let cmd = 'file_rec/git'
+  endif
+  exe printf('Unite %s  -buffer-name=files -prompt=> -start-insert -unique -ignorecase', cmd)
 endf
 
 
 autocmd FileType unite call s:unite_nice_settings()
 
 function! s:unite_nice_settings()
-    " Overwrite settings.
-    imap <buffer> jj        <Plug>(unite_insert_leave)
-    imap <buffer> <C-c>     <Plug>(unite_exit)
-    nmap <buffer> <C-c>     <Plug>(unite_exit)
+  " Overwrite settings.
+  imap <buffer> jj        <Plug>(unite_insert_leave)
+  imap <buffer> <C-c>     <Plug>(unite_exit)
+  nmap <buffer> <C-c>     <Plug>(unite_exit)
 
-    imap <buffer><expr> j unite#smart_map('j', '')
-    imap <buffer> <TAB>     <Plug>(unite_select_next_line)
-    imap <buffer> <C-w>     <Plug>(unite_delete_backward_path)
-    imap <buffer> '         <Plug>(unite_quick_match_default_action)
-    nmap <buffer> '         <Plug>(unite_quick_match_default_action)
-    imap <buffer><expr> x unite#smart_map('x', "\<Plug>(unite_quick_match_choose_action)")
-    nmap <buffer> x         <Plug>(unite_quick_match_choose_action)
-    nmap <buffer> <C-z>     <Plug>(unite_toggle_transpose_window)
-    imap <buffer> <C-z>     <Plug>(unite_toggle_transpose_window)
-    imap <buffer> <C-y>     <Plug>(unite_narrowing_path)
-    nmap <buffer> <C-y>     <Plug>(unite_narrowing_path)
-    imap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
-    nmap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
+  imap <buffer><expr> j unite#smart_map('j', '')
+  imap <buffer> <TAB>     <Plug>(unite_select_next_line)
+  imap <buffer> <C-w>     <Plug>(unite_delete_backward_path)
+  imap <buffer> '         <Plug>(unite_quick_match_default_action)
+  nmap <buffer> '         <Plug>(unite_quick_match_default_action)
+  imap <buffer><expr> x unite#smart_map('x', "\<Plug>(unite_quick_match_choose_action)")
+  nmap <buffer> x         <Plug>(unite_quick_match_choose_action)
+  nmap <buffer> <C-z>     <Plug>(unite_toggle_transpose_window)
+  imap <buffer> <C-z>     <Plug>(unite_toggle_transpose_window)
+  imap <buffer> <C-y>     <Plug>(unite_narrowing_path)
+  nmap <buffer> <C-y>     <Plug>(unite_narrowing_path)
+  imap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
+  nmap <buffer> <C-r>     <Plug>(unite_narrowing_input_history)
 
-    nmap <buffer> <C-t>     <Plug>(unite_toggle_auto_preview)
-    nmap <buffer> <C-q>     <Plug>(unite_print_candidate)
-    nmap <buffer> <C-X>     <Plug>(unite_redraw)
+  nmap <buffer> <C-t>     <Plug>(unite_toggle_auto_preview)
+  nmap <buffer> <C-q>     <Plug>(unite_print_candidate)
+  nmap <buffer> <C-X>     <Plug>(unite_redraw)
 
-    nnoremap <silent><buffer><expr> l
-                \ unite#smart_map('l', unite#do_action('default'))
+  nnoremap <silent><buffer><expr> l
+        \ unite#smart_map('l', unite#do_action('default'))
 
-    let unite = unite#get_current_unite()
-    if unite.profile_name ==# 'search'
-        nnoremap <silent><buffer><expr> r     unite#do_action('replace')
-    else
-        nnoremap <silent><buffer><expr> r     unite#do_action('rename')
-    endif
+  let unite = unite#get_current_unite()
+  if unite.profile_name ==# 'search'
+    nnoremap <silent><buffer><expr> r     unite#do_action('replace')
+  else
+    nnoremap <silent><buffer><expr> r     unite#do_action('rename')
+  endif
 
-    nnoremap <silent><buffer><expr> cd     unite#do_action('lcd')
-    nnoremap <buffer><expr> S      unite#mappings#set_current_filters(
-                \ empty(unite#mappings#get_current_filters()) ?
-                \ ['sorter_reverse'] : [])
+  nnoremap <silent><buffer><expr> cd     unite#do_action('lcd')
+  nnoremap <buffer><expr> S      unite#mappings#set_current_filters(
+        \ empty(unite#mappings#get_current_filters()) ?
+        \ ['sorter_reverse'] : [])
 
-    " Runs "split" action by <C-s>.
-    imap <silent><buffer><expr> <C-s>     unite#do_action('split')
+  " Runs "split" action by <C-s>.
+  imap <silent><buffer><expr> <C-s>     unite#do_action('split')
 endfunction
 
 " custom menu for unite
 let g:unite_source_menu_menus = {}
 let g:unite_source_menu_menus.git = {
-    \ 'description' : '            gestionar repositorios git
-        \                            ⌘ [espacio]g',
-    \}
+      \ 'description' : '            gestionar repositorios git
+      \                            ⌘ [espacio]g',
+      \}
 let logwatchadded = 'exe "Git! log --follow --diff-filter=A --find-renames=40\\% " input("path:", ".")'
 function! MenuGitGremoveConfirm() abort
-    let sel = confirm("Do You Really Want To RM This File ?",  "&y\n&n", 1)
-    if sel == 1
-        exe "Gremove"
-    endif
+  let sel = confirm("Do You Really Want To RM This File ?",  "&y\n&n", 1)
+  if sel == 1
+    exe "Gremove"
+  endif
 endfunction
 let g:unite_source_menu_menus.git.command_candidates = [
-    \['▷ gitv browser    (Gitv Browser mode)             ⌘ ,gv  ', 'exe "Gitv"'],
-    \['▷ gitv browser    (Gitv File mode)                ⌘ ,ge  ', 'exe "Gitv!"'],
-    \['▷ git log view                                    ⌘ ,gl  ', 'GV'],
-    \['▷ git log view current file                       ⌘ ,g!  ', 'GV!'],
-    \['▷ git status                                      ⌘ ,gs  ', 'Gstatus'],
-    \['▷ git diff                                        ⌘ ,gd  ', 'Gdiff'],
-    \['▷ git commit                                      ⌘ ,gc  ', 'Gcommit'],
-    \['▷ git blame                                       ⌘ ,gb  ', 'Gblame'],
-    \['▷ git stage                                       ⌘ ,gw  ', 'Gwrite'],
-    \['▷ git checkout                                    ⌘ ,go  ', 'Gread'],
-    \['▷ git rm                                          ⌘ ,gr  ', 'exe "call MenuGitGremoveConfirm()"'],
-    \['▷ git mv                                          ⌘ ,gm  ', 'exe "Gmove " input("DESTINO: ")'],
-    \['▷ git push                                        ⌘ ,gp  ', 'Git! push'],
-    \['▷ git fetch                                       ⌘ ,gf  ', 'Git! fetch'],
-    \['▷ git pull                                        ⌘ ,gx  ', 'Git! pull'],
-    \['▷ git prompt                                      ⌘ ,gi  ', 'exe "Git! " input("COMANDO GIT: ")'],
-    \['▷ git cd                                          ⌘ ,gj  ', 'Gcd'],
-    \['▷ git () add and commmit                          ⌘ ,gg  ', 'exe "Gcommit %"'],
-    \['▷ git () change last commit message               ⌘ ,ga  ', 'Gcommit --amend'],
-    \['▷ git () log show last commit                            ', 'Git! log -p -1'],
-    \['▷ git () log show two days commits                       ', 'Git! log --pretty=oneline --since="2 days ago"'],
-    \['▷ git () log show what added                             ', logwatchadded],
-    \['▷ git () log show current file all commit                ', 'Git! log -p -- %'],
-    \['▷ git () show the repositorios info                      ', 'Git! remote -v'],
-    \['▷ git () show remote url                                 ', 'Git! config --get remote.origin.url'],
-    \['▷ git () show what change                         ⌘ ,gh  ', 'Git! diff HEAD %'],
-    \['▷ git () show last commit                                ', 'Git! show %'],
-    \['▷ git () recover from remote                             ', 'Git! checkout -- %'],
-    \['▷ git () revert commit                                   ', 'Git  revert HEAD'],
-    \['▷ git () reset commit (soft)                             ', 'Git! reset --soft HEAD~1'],
-    \['▷ git () reset commit (hard)                             ', 'Git! reset --hard HEAD~1'],
-    \['▷ git () reset commit (hard) and (clean) cache           ', 'Git! reset --hard HEAD~1 && git clean -fd'],
-    \['▷ git () stash dirty working directory                   ', 'Git! stash'],
-    \['▷ git () remove and apply a single stashed state         ', 'Git! stash pop'],
-    \['▷ git () show stash list                                 ', 'Git! stash list'],
-    \]
+      \['▷ gitv browser    (Gitv Browser mode)             ⌘ ,gv  ', 'exe "Gitv"'],
+      \['▷ gitv browser    (Gitv File mode)                ⌘ ,ge  ', 'exe "Gitv!"'],
+      \['▷ git log view                                    ⌘ ,gl  ', 'GV'],
+      \['▷ git log view current file                       ⌘ ,g!  ', 'GV!'],
+      \['▷ git status                                      ⌘ ,gs  ', 'Gstatus'],
+      \['▷ git diff                                        ⌘ ,gd  ', 'Gdiff'],
+      \['▷ git commit                                      ⌘ ,gc  ', 'Gcommit'],
+      \['▷ git blame                                       ⌘ ,gb  ', 'Gblame'],
+      \['▷ git stage                                       ⌘ ,gw  ', 'Gwrite'],
+      \['▷ git checkout                                    ⌘ ,go  ', 'Gread'],
+      \['▷ git rm                                          ⌘ ,gr  ', 'exe "call MenuGitGremoveConfirm()"'],
+      \['▷ git mv                                          ⌘ ,gm  ', 'exe "Gmove " input("DESTINO: ")'],
+      \['▷ git push                                        ⌘ ,gp  ', 'Git! push'],
+      \['▷ git fetch                                       ⌘ ,gf  ', 'Git! fetch'],
+      \['▷ git pull                                        ⌘ ,gx  ', 'Git! pull'],
+      \['▷ git prompt                                      ⌘ ,gi  ', 'exe "Git! " input("COMANDO GIT: ")'],
+      \['▷ git cd                                          ⌘ ,gj  ', 'Gcd'],
+      \['▷ git () add and commmit                          ⌘ ,gg  ', 'exe "Gcommit %"'],
+      \['▷ git () change last commit message               ⌘ ,ga  ', 'Gcommit --amend'],
+      \['▷ git () log show last commit                            ', 'Git! log -p -1'],
+      \['▷ git () log show two days commits                       ', 'Git! log --pretty=oneline --since="2 days ago"'],
+      \['▷ git () log show what added                             ', logwatchadded],
+      \['▷ git () log show current file all commit                ', 'Git! log -p -- %'],
+      \['▷ git () show the repositorios info                      ', 'Git! remote -v'],
+      \['▷ git () show remote url                                 ', 'Git! config --get remote.origin.url'],
+      \['▷ git () show what change                         ⌘ ,gh  ', 'Git! diff HEAD %'],
+      \['▷ git () show last commit                                ', 'Git! show %'],
+      \['▷ git () recover from remote                             ', 'Git! checkout -- %'],
+      \['▷ git () revert commit                                   ', 'Git  revert HEAD'],
+      \['▷ git () reset commit (soft)                             ', 'Git! reset --soft HEAD~1'],
+      \['▷ git () reset commit (hard)                             ', 'Git! reset --hard HEAD~1'],
+      \['▷ git () reset commit (hard) and (clean) cache           ', 'Git! reset --hard HEAD~1 && git clean -fd'],
+      \['▷ git () stash dirty working directory                   ', 'Git! stash'],
+      \['▷ git () remove and apply a single stashed state         ', 'Git! stash pop'],
+      \['▷ git () show stash list                                 ', 'Git! stash list'],
+      \]
 
 
 nnoremap <silent>[unite]g :Unite -prompt=> -silent -start-insert menu:git<CR>
 for item in g:unite_source_menu_menus.git.command_candidates
-    if stridx(item[0], ',') > -1
-        let _key = split(item[0], ',')[-1]
-        let _val = item[1]
-        exe 'nnoremap <leader>' . _key . ' :' . _val . '<CR>' . (stridx(_val, 'Gcommit') > -1 ? 'i' : '')
-    endif
+  if stridx(item[0], ',') > -1
+    let _key = split(item[0], ',')[-1]
+    let _val = item[1]
+    exe 'nnoremap <leader>' . _key . ' :' . _val . '<CR>' . (stridx(_val, 'Gcommit') > -1 ? 'i' : '')
+  endif
 endfor
 
 " For ag.
@@ -153,19 +155,19 @@ call unite#custom#source('file_rec/neovim', 'sorters', 'sorter_rank')
 
 " wildignore
 call unite#custom#source('file,file_rec,file_rec/git,file/async,file_rec/neovim,directory,directory_mru,directory_rec,directory_rec/async',
-            \ 'ignore_globs',
-            \ split(&wildignore, ','))
+      \ 'ignore_globs',
+      \ split(&wildignore, ','))
 
 " keymap change
 augroup unite_aug
-    autocmd!
-    autocmd FileType unite nmap  <buffer><expr>   <C-s>  unite#do_action('split')
-    autocmd FileType unite nmap  <buffer><expr>   <C-v>  unite#do_action('vsplit')
-    autocmd FileType unite nmap  <buffer>  s      <Plug>(unite_toggle_mark_current_candidate)
-    autocmd FileType unite vmap  <buffer>  s      <Plug>(unite_toggle_mark_selected_candidates)
-    autocmd FileType unite nmap  <buffer>  <Space> /
-    autocmd FileType unite nmap  <buffer>  <C-b>  <Plug>(unite_delete_backward_path)
-    autocmd FileType unite nmap  <buffer>  <C-y>  <Plug>(unite_redraw)
+  autocmd!
+  autocmd FileType unite nmap  <buffer><expr>   <C-s>  unite#do_action('split')
+  autocmd FileType unite nmap  <buffer><expr>   <C-v>  unite#do_action('vsplit')
+  autocmd FileType unite nmap  <buffer>  s      <Plug>(unite_toggle_mark_current_candidate)
+  autocmd FileType unite vmap  <buffer>  s      <Plug>(unite_toggle_mark_selected_candidates)
+  autocmd FileType unite nmap  <buffer>  <Space> /
+  autocmd FileType unite nmap  <buffer>  <C-b>  <Plug>(unite_delete_backward_path)
+  autocmd FileType unite nmap  <buffer>  <C-y>  <Plug>(unite_redraw)
 augroup END
 "}}}
 
@@ -181,18 +183,18 @@ nnoremap <silent> <leader>vb  :<C-u>VimFilerBufferDir<CR>
 nnoremap <silent> <leader>vd  :<C-u>VimFilerDouble<CR>
 nnoremap <silent> <leader>ve  :<C-u>VimFilerExplorer<CR>
 augroup vimfiler_aug
-    autocmd!
-    autocmd FileType vimfiler setlocal cursorline
-    " copy and paste file under cursor fastly
-    autocmd FileType vimfiler nmap  <buffer> F sCcCpr<CR>
-    autocmd FileType vimfiler nmap  <buffer><expr> <C-s> vimfiler#do_switch_action('split')
-    autocmd FileType vimfiler nmap  <buffer><expr> <C-v> vimfiler#do_switch_action('vsplit')
-    autocmd FileType vimfiler nmap  <buffer> <Tab> <Plug>(vimfiler_hide)
-    autocmd FileType vimfiler nmap  <buffer> <C-N> <Plug>(vimfiler_switch_to_another_vimfiler)
-    autocmd FileType vimfiler nmap  <buffer> s <Plug>(vimfiler_toggle_mark_current_line)
-    autocmd FileType vimfiler vmap  <buffer> s <Plug>(vimfiler_toggle_mark_selected_lines)
-    autocmd FileType vimfiler nmap  <buffer> <Space> /
-    autocmd FileType vimfiler nmap  <buffer> <C-b> <Plug>(vimfiler_switch_to_history_directory)
+  autocmd!
+  autocmd FileType vimfiler setlocal cursorline
+  " copy and paste file under cursor fastly
+  autocmd FileType vimfiler nmap  <buffer> F sCcCpr<CR>
+  autocmd FileType vimfiler nmap  <buffer><expr> <C-s> vimfiler#do_switch_action('split')
+  autocmd FileType vimfiler nmap  <buffer><expr> <C-v> vimfiler#do_switch_action('vsplit')
+  autocmd FileType vimfiler nmap  <buffer> <Tab> <Plug>(vimfiler_hide)
+  autocmd FileType vimfiler nmap  <buffer> <C-N> <Plug>(vimfiler_switch_to_another_vimfiler)
+  autocmd FileType vimfiler nmap  <buffer> s <Plug>(vimfiler_toggle_mark_current_line)
+  autocmd FileType vimfiler vmap  <buffer> s <Plug>(vimfiler_toggle_mark_selected_lines)
+  autocmd FileType vimfiler nmap  <buffer> <Space> /
+  autocmd FileType vimfiler nmap  <buffer> <C-b> <Plug>(vimfiler_switch_to_history_directory)
 augroup END
 
 " wildignore
@@ -226,100 +228,100 @@ let g:tmuxcomplete#trigger = 'omnifunc'
 " => YouCompleteMe"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 if !has('nvim')
-"{{{
-" Do not display completion messages
-" Patch: https://groups.google.com/forum/#!topic/vim_dev/WeBBjkXE8H8
-" set noshowmode
-" try
+  "{{{
+  " Do not display completion messages
+  " Patch: https://groups.google.com/forum/#!topic/vim_dev/WeBBjkXE8H8
+  " set noshowmode
+  " try
   " set shortmess+=c
-" catch /^Vim\%((\a\+)\)\=:E539: Illegal character/
+  " catch /^Vim\%((\a\+)\)\=:E539: Illegal character/
   " autocmd MyAutoCmd VimEnter *
-        " \ highlight ModeMsg guifg=bg guibg=bg |
-        " \ highlight Question guifg=bg guibg=bg
-" endtry
-"
-" Warn: The only supported tag format is the Exuberant Ctags format. The format from "plain" ctags is NOT supported.
-" Ctags needs to be called with the --fields=+l option (that's a lowercase L, not a one)
-" because YCM needs the language:<lang> field in the tags output
-let ycm_collect_identifiers_from_tags_files=1
+  " \ highlight ModeMsg guifg=bg guibg=bg |
+  " \ highlight Question guifg=bg guibg=bg
+  " endtry
+  "
+  " Warn: The only supported tag format is the Exuberant Ctags format. The format from "plain" ctags is NOT supported.
+  " Ctags needs to be called with the --fields=+l option (that's a lowercase L, not a one)
+  " because YCM needs the language:<lang> field in the tags output
+  let ycm_collect_identifiers_from_tags_files=1
 
-let g:ycm_python_binary_path = g:python3_host_prog
-let ycm_collect_identifiers_from_tags_files=1
-let g:ycm_filetype_blacklist = {
-            \ 'tagbar'   : 1, 'qf'        : 1, 'notes'   : 1, 'markdown' : 1, 'unite'    : 1,
-            \ 'text'     : 1, 'vimwiki'   : 1, 'pandoc'  : 1, 'infolog'  : 1, 'mail'     : 1,
-            \ 'vimfiler' : 1, 'gitcommit' : 1, 'leaderf' : 1, 'nerdtree' : 1, 'startify' : 1
-            \ }
-let g:ycm_auto_trigger = 1
-let g:ycm_show_diagnostics_ui = 0
-" A bug: <C-Space> map for noting, disable it for temprory, because of it trigger one snips completion will be invalid.
-let g:ycm_key_invoke_completion = '<C-Space>'
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_error_symbol = '>>'
-let g:ycm_warning_symbol = '>*'
-nnoremap ygf :YcmCompleter GoToDeclaration<CR>
-nnoremap ygd :YcmCompleter GoToDefinition<CR>
-nnoremap ygg :YcmCompleter GoToDefinitionElseDeclaration<CR>
-" fixed the <s-tab>
-autocmd FileType * inoremap <expr><S-Tab> pumvisible() ? '<Up>' : '<BS>'
-" human keymap
-inoremap <expr><C-j>  pumvisible() ? "\<Down>" : "\<C-j>"
-inoremap <expr><C-k>  pumvisible() ? "\<Up>" : "\<Esc>S"
-inoremap <expr><C-h>  pumvisible() ? "\<Esc>a" : "\<C-h>"
-"}}}
+  let g:ycm_python_binary_path = g:python3_host_prog
+  let ycm_collect_identifiers_from_tags_files=1
+  let g:ycm_filetype_blacklist = {
+        \ 'tagbar'   : 1, 'qf'        : 1, 'notes'   : 1, 'markdown' : 1, 'unite'    : 1,
+        \ 'text'     : 1, 'vimwiki'   : 1, 'pandoc'  : 1, 'infolog'  : 1, 'mail'     : 1,
+        \ 'vimfiler' : 1, 'gitcommit' : 1, 'leaderf' : 1, 'nerdtree' : 1, 'startify' : 1
+        \ }
+  let g:ycm_auto_trigger = 1
+  let g:ycm_show_diagnostics_ui = 0
+  " A bug: <C-Space> map for noting, disable it for temprory, because of it trigger one snips completion will be invalid.
+  let g:ycm_key_invoke_completion = '<C-Space>'
+  let g:ycm_autoclose_preview_window_after_insertion = 1
+  let g:ycm_error_symbol = '>>'
+  let g:ycm_warning_symbol = '>*'
+  nnoremap ygf :YcmCompleter GoToDeclaration<CR>
+  nnoremap ygd :YcmCompleter GoToDefinition<CR>
+  nnoremap ygg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+  " fixed the <s-tab>
+  autocmd FileType * inoremap <expr><S-Tab> pumvisible() ? '<Up>' : '<BS>'
+  " human keymap
+  inoremap <expr><C-j>  pumvisible() ? "\<Down>" : "\<C-j>"
+  inoremap <expr><C-k>  pumvisible() ? "\<Up>" : "\<Esc>S"
+  inoremap <expr><C-h>  pumvisible() ? "\<Esc>a" : "\<C-h>"
+  "}}}
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => dpoplete.nvim"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 if has('nvim')
-"{{{
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
-" Use smartcase.
-let g:deoplete#enable_smart_case = 1
+  "{{{
+  " Use deoplete.
+  let g:deoplete#enable_at_startup = 1
+  " Use smartcase.
+  let g:deoplete#enable_smart_case = 1
 
-" omnifunc setting
-augroup omnifuncs
-        autocmd!
-        autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-        autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-        autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-        autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-        autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-augroup end
+  " omnifunc setting
+  augroup omnifuncs
+    autocmd!
+    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+    autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+  augroup end
 
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
+  " <C-h>, <BS>: close popup and delete backword char.
+  inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+  inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
 
-" let C-j C-k do the same thing like C-n C-p if pumvisible
-inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<Esc>S"
-inoremap <expr><S-Tab> pumvisible() ? '<C-p>' : '<BS>'
+  " let C-j C-k do the same thing like C-n C-p if pumvisible
+  inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+  inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<Esc>S"
+  inoremap <expr><S-Tab> pumvisible() ? '<C-p>' : '<BS>'
 
-" ,<Tab> for regular tab
-inoremap <silent><expr> <TAB>
-            \ pumvisible() ? "\<C-n>" :
-            \ <SID>check_back_space() ? "\<TAB>" :
-            \ deoplete#mappings#manual_complete()
+  " ,<Tab> for regular tab
+  inoremap <silent><expr> <TAB>
+        \ pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<TAB>" :
+        \ deoplete#mappings#manual_complete()
 
-function! s:check_back_space() abort "{{{
+  function! s:check_back_space() abort "{{{
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
+  endfunction"}}}
 
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+  " <CR>: close popup and save indent.
+  inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 
-function! s:my_cr_function() abort
+  function! s:my_cr_function() abort
     return deoplete#close_popup() . "\<CR>"
-endfunction
+  endfunction
 
-call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
+  call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
 
-"}}}
+  "}}}
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -349,7 +351,7 @@ let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#capslock#enabled = 1
 if !exists('g:airline_symbols')
-let g:airline_symbols = {}
+  let g:airline_symbols = {}
 endif
 let g:airline_symbols.branch    = '⭠'
 let g:airline_symbols.readonly = '⭤'
@@ -357,17 +359,17 @@ let g:airline_symbols.linenr = '⭡'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 if exists('g:colorscheme_already_seted') && g:colorscheme_already_seted == 0
-    let g:airline_theme="ravenpower"
+  let g:airline_theme="ravenpower"
 endif
 
 let g:airline#extensions#tmuxline#enabled = 1
 let g:tmuxline_preset = 'righteous'
 let g:tmuxline_separators = {
-    \ 'left' : '',
-    \ 'left_alt': '',
-    \ 'right' : '',
-    \ 'right_alt' : '',
-    \ 'space' : ' '}
+      \ 'left' : '',
+      \ 'left_alt': '',
+      \ 'right' : '',
+      \ 'right_alt' : '',
+      \ 'space' : ' '}
 
 "}}}
 
@@ -385,19 +387,19 @@ nnoremap <silent> cot :TagbarToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
 let g:ctrlsf_extra_backend_args = {
-            \ 'ag': '-i --ignore ".git" --nocolor --follow --nogroup --hidden'
-            \ }
+      \ 'ag': '-i --ignore ".git" --nocolor --follow --nogroup --hidden'
+      \ }
 
 let g:ctrlsf_mapping = {
-    \ "next": "n",
-    \ "prev": "N",
-    \ "openb": "",
-    \ "tab": "",
-    \ "tabb": "",
-    \ "loclist": "L",
-    \ "split"   : "<C-s>",
-    \ "vsplit"  : "<C-v>",
-    \ }
+      \ "next": "n",
+      \ "prev": "N",
+      \ "openb": "",
+      \ "tab": "",
+      \ "tabb": "",
+      \ "loclist": "L",
+      \ "split"   : "<C-s>",
+      \ "vsplit"  : "<C-v>",
+      \ }
 nmap     <C-F>f <Plug>CtrlSFPrompt
 vmap     <C-F>f <Plug>CtrlSFVwordPath
 vmap     <C-F>F <Plug>CtrlSFVwordExec
@@ -439,25 +441,25 @@ let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 let g:EasyMotion_smartcase = 1 " can use '\c' and '\C' after the search keyword to change
 function! s:incsearch_config(...) abort
   if g:virsual_selection_act == 0
-      return incsearch#util#deepextend(deepcopy({
-      \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
-      \   'keymap': {
-      \     "\<CR>": '<Over>(easymotion)'
-      \   },
-      \   'is_expr': 0
-      \ }), get(a:, 1, {}))
+    return incsearch#util#deepextend(deepcopy({
+          \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+          \   'keymap': {
+          \     "\<CR>": '<Over>(easymotion)'
+          \   },
+          \   'is_expr': 0
+          \ }), get(a:, 1, {}))
   endif
 endfunction
 
 " incsearch.vim x fuzzy x vim-easymotion
 function! s:config_easyfuzzymotion(...) abort
   return extend(copy({
-  \   'converters': [incsearch#config#fuzzy#converter()],
-  \   'modules': [incsearch#config#easymotion#module()],
-  \   'keymap': {"\<CR>": '<Over>(easymotion)'},
-  \   'is_expr': 0,
-  \   'is_stay': 1
-  \ }), get(a:, 1, {}))
+        \   'converters': [incsearch#config#fuzzy#converter()],
+        \   'modules': [incsearch#config#easymotion#module()],
+        \   'keymap': {"\<CR>": '<Over>(easymotion)'},
+        \   'is_expr': 0,
+        \   'is_stay': 1
+        \ }), get(a:, 1, {}))
 endfunction
 
 noremap <silent><expr> z/ incsearch#go(<SID>config_easyfuzzymotion())
@@ -478,89 +480,89 @@ noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
 " => ultisnips"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 if !has('nvim')
-"{{{
-" notice: snippets must make sure to be writed right, it will caused to open more then one buffer when you open one file.
-" The third part snippets will be autoload as long as VunduleInstall them.
-" local snippets can be loaded via g:UltiSnipsSnippetDirectories, and use UltisnipEdit to edit them.
+  "{{{
+  " notice: snippets must make sure to be writed right, it will caused to open more then one buffer when you open one file.
+  " The third part snippets will be autoload as long as VunduleInstall them.
+  " local snippets can be loaded via g:UltiSnipsSnippetDirectories, and use UltisnipEdit to edit them.
 
-let g:UltiSnipsSnippetDirectories=["~/.vim/snippets"]
+  let g:UltiSnipsSnippetDirectories=["~/.vim/snippets"]
 
-let g:UltiSnipsJumpForwardTrigger="<Enter>"
-let g:UltiSnipsJumpBackwardTrigger="<C-b>"
+  let g:UltiSnipsJumpForwardTrigger="<Enter>"
+  let g:UltiSnipsJumpBackwardTrigger="<C-b>"
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" fixed compatible between UltiSnips and YouCompleteMe
-" from: http://blog.csdn.net/qq_20336817/article/details/51115411
+  """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+  " fixed compatible between UltiSnips and YouCompleteMe
+  " from: http://blog.csdn.net/qq_20336817/article/details/51115411
 
-" help function"{{{
-function! g:UltiSnips_Complete()
+  " help function"{{{
+  function! g:UltiSnips_Complete()
     call UltiSnips#ExpandSnippet()
     if g:ulti_expand_res == 0
-        if pumvisible()
-            return "\<C-n>"
-        else
-            call UltiSnips#JumpForwards()
-            if g:ulti_jump_forwards_res == 0
-                return "\<TAB>"
-            endif
+      if pumvisible()
+        return "\<C-n>"
+      else
+        call UltiSnips#JumpForwards()
+        if g:ulti_jump_forwards_res == 0
+          return "\<TAB>"
         endif
+      endif
     endif
     return ""
-endfunction
+  endfunction
 
-function! g:UltiSnips_Reverse()
+  function! g:UltiSnips_Reverse()
     call UltiSnips#JumpBackwards()
     if g:ulti_jump_backwards_res == 0
-        return "\<C-P>"
+      return "\<C-P>"
     endif
 
     return ""
-endfunction
-"}}}
+  endfunction
+  "}}}
 
-if !exists("g:UltiSnipsJumpForwardTrigger")
+  if !exists("g:UltiSnipsJumpForwardTrigger")
     let g:UltiSnipsJumpForwardTrigger = "<tab>"
-endif
-if !exists("g:UltiSnipsJumpBackwardTrigger")
+  endif
+  if !exists("g:UltiSnipsJumpBackwardTrigger")
     let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-endif
+  endif
 
-au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger     . " <C-R>=g:UltiSnips_Complete()<cr>"
-au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsJumpBackwardTrigger . " <C-R>=g:UltiSnips_Reverse()<cr>"
+  au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger     . " <C-R>=g:UltiSnips_Complete()<cr>"
+  au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsJumpBackwardTrigger . " <C-R>=g:UltiSnips_Reverse()<cr>"
 
-"}}}
+  "}}}
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => neosnippets"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 if has('nvim')
-"{{{
-" Plugin key-mappings.
-imap <C-g>     <Plug>(neosnippet_expand_or_jump)
-smap <C-g>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-g>     <Plug>(neosnippet_expand_target)
+  "{{{
+  " Plugin key-mappings.
+  imap <C-g>     <Plug>(neosnippet_expand_or_jump)
+  smap <C-g>     <Plug>(neosnippet_expand_or_jump)
+  xmap <C-g>     <Plug>(neosnippet_expand_target)
 
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
+  " SuperTab like snippets behavior.
+  imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+        \ "\<Plug>(neosnippet_expand_or_jump)"
+        \: pumvisible() ? "\<C-n>" : "\<TAB>"
+  smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+        \ "\<Plug>(neosnippet_expand_or_jump)"
+        \: "\<TAB>"
 
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
+  " For snippet_complete marker.
+  if has('conceal')
+    set conceallevel=2 concealcursor=niv
+  endif
 
-" Enable snipMate compatibility feature.
-let g:neosnippet#enable_snipmate_compatibility = 1
+  " Enable snipMate compatibility feature.
+  let g:neosnippet#enable_snipmate_compatibility = 1
 
-" Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-php-snippets/snippets'
-let g:neosnippet#snippets_directory='~/.vim/snippets'
-"}}}
+  " Tell Neosnippet about the other snippets
+  let g:neosnippet#snippets_directory='~/.vim/bundle/vim-php-snippets/snippets'
+  let g:neosnippet#snippets_directory='~/.vim/snippets'
+  "}}}
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -570,9 +572,9 @@ endif
 " <C-n> next yank history
 " <c-p> prev yank history
 if has("win16") || has("win32")
-    " Don't do anything
+  " Don't do anything
 else
-    let g:yankring_history_dir = '~/.vim/temp_dirs/'
+  let g:yankring_history_dir = '~/.vim/temp_dirs/'
 endif
 let g:yankring_window_use_bottom = 0
 let g:yankring_window_height = 12
@@ -592,27 +594,27 @@ let g:multi_cursor_quit_key='<Esc>'
 
 " slow multiple_cursors in YCM
 function! Multiple_cursors_before()
-    if exists('g:ycm_auto_trigger') | let g:ycm_auto_trigger = 0 | endif
-    if exists('g:deoplete#disable_auto_complete') | let g:deoplete#disable_auto_complete = 1 | endif
+  if exists('g:ycm_auto_trigger') | let g:ycm_auto_trigger = 0 | endif
+  if exists('g:deoplete#disable_auto_complete') | let g:deoplete#disable_auto_complete = 1 | endif
 endfunction
 
 function! Multiple_cursors_after()
-    if exists('g:ycm_auto_trigger') | let g:ycm_auto_trigger = 1 | endif
-    if exists('g:deoplete#disable_auto_complete') | let g:deoplete#disable_auto_complete = 0 | endif
+  if exists('g:ycm_auto_trigger') | let g:ycm_auto_trigger = 1 | endif
+  if exists('g:deoplete#disable_auto_complete') | let g:deoplete#disable_auto_complete = 0 | endif
 endfunction
 
 " => Tweak MultipleCursorsFind, use default range as paragraph
 command! -range -nargs=1 Select call MultiCursorInParagraph(<line1>, <line2>, <q-args>)
 function! MultiCursorInParagraph(line1, line2, expr)
-    if a:line1 == a:line2
-        let range = GetRangInParagraph()
-        let s:line1 = range[0]
-        let s:line2 = range[1]
-    else
-        let s:line1 = a:line1
-        let s:line2 = a:line2
-    endif
-    call multiple_cursors#find(s:line1, s:line2, a:expr)
+  if a:line1 == a:line2
+    let range = GetRangInParagraph()
+    let s:line1 = range[0]
+    let s:line2 = range[1]
+  else
+    let s:line1 = a:line1
+    let s:line2 = a:line2
+  endif
+  call multiple_cursors#find(s:line1, s:line2, a:expr)
 endfunction
 
 " => Select quickly
@@ -690,21 +692,21 @@ nnoremap <silent> <leader>z :Goyo<cr>
 
 " let g:goyo_toggle_trigger = 0
 " function! GoyoFunc()
-    " if &filetype == "help"
-        " let g:goyo_width = 100
-    " endif
-    " if g:goyo_toggle_trigger == 0
-        " let g:goyo_showtabline = &showtabline
-    " endif
-    " execute 'Goyo'
-    " if g:goyo_toggle_trigger == 1
-        " call SetColorScheme()
-        " let g:goyo_toggle_trigger = 0
-        " let g:goyo_width = 100
-        " exec 'set showtabline=' . g:goyo_showtabline
-    " else
-        " let g:goyo_toggle_trigger = 1
-    " endif
+" if &filetype == "help"
+" let g:goyo_width = 100
+" endif
+" if g:goyo_toggle_trigger == 0
+" let g:goyo_showtabline = &showtabline
+" endif
+" execute 'Goyo'
+" if g:goyo_toggle_trigger == 1
+" call SetColorScheme()
+" let g:goyo_toggle_trigger = 0
+" let g:goyo_width = 100
+" exec 'set showtabline=' . g:goyo_showtabline
+" else
+" let g:goyo_toggle_trigger = 1
+" endif
 " endfunction
 "}}}
 
@@ -713,7 +715,7 @@ nnoremap <silent> <leader>z :Goyo<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
 if has("gui_running")
-    nmap <F11> <Plug>(fullscreen-toggle)
+  nmap <F11> <Plug>(fullscreen-toggle)
 endif
 "}}}
 
@@ -875,28 +877,28 @@ imap <silent><C-T> <Plug>ToggleI
 nmap <silent><C-T> <Plug>ToggleN
 vmap <silent><C-T> <Plug>ToggleV
 let g:toggle_pairs = {
-  \'and':'or',
-  \'or':'and',
-  \'if':'unless',
-  \'unless':'if',
-  \'elsif':'else',
-  \'else':'elsif',
-  \'it':'specify',
-  \'specify':'it',
-  \'describe':"context",
-  \'context':"describe",
-  \'true':'false',
-  \'false':'true',
-  \'yes':'no',
-  \'no':'yes',
-  \'on':'off',
-  \'off':'on',
-  \'public':'protected',
-  \'protected':'private',
-  \'private':'public',
-  \'&&':'||',
-  \'||':'&&'
-\}
+      \'and':'or',
+      \'or':'and',
+      \'if':'unless',
+      \'unless':'if',
+      \'elsif':'else',
+      \'else':'elsif',
+      \'it':'specify',
+      \'specify':'it',
+      \'describe':"context",
+      \'context':"describe",
+      \'true':'false',
+      \'false':'true',
+      \'yes':'no',
+      \'no':'yes',
+      \'on':'off',
+      \'off':'on',
+      \'public':'protected',
+      \'protected':'private',
+      \'private':'public',
+      \'&&':'||',
+      \'||':'&&'
+      \}
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -949,16 +951,16 @@ let g:phpcomplete_index_composer_command='/usr/local/bin/composer'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
 function! LoadCscopeDB() abort
-    if has("cscope")
-        set csto=1
-        set cst
-        set nocsverb
-        if filereadable("cscope.out")
-            cs add cscope.out
-        endif
-        set csverb
-        set cscopeverbose
+  if has("cscope")
+    set csto=1
+    set cst
+    set nocsverb
+    if filereadable("cscope.out")
+      cs add cscope.out
     endif
+    set csverb
+    set cscopeverbose
+  endif
 endfunction
 
 au BufEnter * call LoadCscopeDB()
@@ -1029,38 +1031,38 @@ let g:startify_session_persistence = 1
 let g:startify_session_delete_buffers = 1
 
 let g:startify_list_order = [
-            \ ['   sessions:'],
-            \ 'sessions',
-            \ ['   MRU files'],
-            \ 'files',
-            \ ['   bookmarks:'],
-            \ 'bookmarks',
-            \ ['   commands:'],
-            \ 'commands',
-            \ ]
+      \ ['   sessions:'],
+      \ 'sessions',
+      \ ['   MRU files'],
+      \ 'files',
+      \ ['   bookmarks:'],
+      \ 'bookmarks',
+      \ ['   commands:'],
+      \ 'commands',
+      \ ]
 
 let g:startify_skiplist = [
-    \ 'COMMIT_EDITMSG',
-    \ '\.git',
-    \ '/tmp/',
-    \ '\.\(jpg\|png\|jpeg\|txt\)',
-    \ escape(fnamemodify(resolve($VIMRUNTIME), ':p'), '\') .'doc',
-    \ 'bundle/.*/doc',
-    \ ]
+      \ 'COMMIT_EDITMSG',
+      \ '\.git',
+      \ '/tmp/',
+      \ '\.\(jpg\|png\|jpeg\|txt\)',
+      \ escape(fnamemodify(resolve($VIMRUNTIME), ':p'), '\') .'doc',
+      \ 'bundle/.*/doc',
+      \ ]
 
 " startify extend
 cabbrev fsl FSLoad
 command! -nargs=1 -complete=custom,FuzzyListSessions FSLoad call FuzzyEasierSload(<q-args>)
 func! FuzzyListSessions(A,L,P)
-    let s:cmd = 'ls ~/.vim/sessions | grep -v "__"'
-    return system(s:cmd)
+  let s:cmd = 'ls ~/.vim/sessions | grep -v "__"'
+  return system(s:cmd)
 endfunc
 func! FuzzyEasierSload(snprefix)
-    let s:cmd = printf('ls %s | grep "^%s" | sed -n 1p', g:startify_session_dir, a:snprefix)
-    let s:sname = system(s:cmd)
-    if s:sname != ""
-        exe printf('SLoad %s', s:sname)
-    endif
+  let s:cmd = printf('ls %s | grep "^%s" | sed -n 1p', g:startify_session_dir, a:snprefix)
+  let s:sname = system(s:cmd)
+  if s:sname != ""
+    exe printf('SLoad %s', s:sname)
+  endif
 endfun
 
 "}}}
@@ -1093,21 +1095,21 @@ cnoremap <C-g> :<C-u>ToggleAbbrevs<CR>:
 nmap coo :ToggleQKOutputType<CR>
 command! ToggleQKOutputType call ToggleQKOutputType()
 function! ToggleQKOutputType() abort
-    if g:quickrun_config['_']['outputter'] == 'message'
-        let g:quickrun_config['_']['outputter'] = 'buffer'
-    else
-        let g:quickrun_config['_']['outputter'] = 'message'
-    endif
+  if g:quickrun_config['_']['outputter'] == 'message'
+    let g:quickrun_config['_']['outputter'] = 'buffer'
+  else
+    let g:quickrun_config['_']['outputter'] = 'message'
+  endif
 endfunction
 let g:quickrun_config = {
-\   "_" : {
-\       "outputter" : "message",
-\   },
-\}
+      \   "_" : {
+      \       "outputter" : "message",
+      \   },
+      \}
 let g:quickrun_config.node = {
-          \ 'command': 'node',
-          \ 'outputter': 'message'
-          \ }
+      \ 'command': 'node',
+      \ 'outputter': 'message'
+      \ }
 let g:quickrun_no_default_key_mappings = 1
 nmap <F5> :QuickRun<CR>
 "}}}
@@ -1182,20 +1184,18 @@ vmap <Leader><Leader>r :call VisualSelection('replace', '')<CR>
 command! -range -nargs=1 Replace call ReplaceInParagraph(<line1>, <line2>, <q-args>)
 
 function! ReplaceInParagraph(line1, line2, expr)
-    let @/=''
-    let s:args = split(substitute(a:expr, '\s\+', ' ', 'g'), ' ')
-    let s:findstr = s:args[0]
-    let s:repstr = len(s:args) > 1 ? s:args[1] : '\1'
-    if a:line1 == a:line2
-        let range = GetRangInParagraph()
-        let s:line1 = range[0]
-        let s:line2 = range[1]
-    else
-        let s:line1 = a:line1
-        let s:line2 = a:line2
-    endif
-    exec printf('OverCommandLine %d,%ds/%s/%s', s:line1, s:line2, s:findstr, s:repstr)
+  let @/=''
+  let s:args = split(substitute(a:expr, '\s\+', ' ', 'g'), ' ')
+  let s:findstr = s:args[0]
+  let s:repstr = len(s:args) > 1 ? s:args[1] : '\1'
+  if a:line1 == a:line2
+    let range = GetRangInParagraph()
+    let s:line1 = range[0]
+    let s:line2 = range[1]
+  else
+    let s:line1 = a:line1
+    let s:line2 = a:line2
+  endif
+  exec printf('OverCommandLine %d,%ds/%s/%s', s:line1, s:line2, s:findstr, s:repstr)
 endfunction
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim: fdm=marker ts=4 sw=4 sts=4 expandtab

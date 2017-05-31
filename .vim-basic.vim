@@ -1,3 +1,5 @@
+" vim: fdm=marker ts=4 sw=4 sts=4 expandtab
+"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Map Helper"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
@@ -26,93 +28,93 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
 function! GetBufLists(info) abort
-    redir => bufoutput
-    if a:info == 1
-        silent buffers
-    else
-        silent buffers!
-    endif
-    redir END
-    return bufoutput
+  redir => bufoutput
+  if a:info == 1
+    silent buffers
+  else
+    silent buffers!
+  endif
+  redir END
+  return bufoutput
 endfunction
 
 function! GetBufListedNr() abort
-    let s:bufoutput = GetBufLists(1)
-    let s:count = 0
-    for buf in split(s:bufoutput, '\n')
-        let s:count += 1
-        " let s:bits = split(buf, '"')
-        " if s:bits[0] !~ "u"
-            " let s:count += 1
-        " endif
-    endfor
-    return s:count
+  let s:bufoutput = GetBufLists(1)
+  let s:count = 0
+  for buf in split(s:bufoutput, '\n')
+    let s:count += 1
+    " let s:bits = split(buf, '"')
+    " if s:bits[0] !~ "u"
+    " let s:count += 1
+    " endif
+  endfor
+  return s:count
 endfunction
 
 function! GetBufNr(nr) abort
-    let s:bufoutput = GetBufLists(1)
-    let s:count = 1
-    for buf in split(s:bufoutput, '\n')
-        let s:bits = split(buf, ' ')
-        if s:count == a:nr
-            return str2nr(s:bits[0])
-        endif
-        let s:count +=1
-    endfor
-    return 0
+  let s:bufoutput = GetBufLists(1)
+  let s:count = 1
+  for buf in split(s:bufoutput, '\n')
+    let s:bits = split(buf, ' ')
+    if s:count == a:nr
+      return str2nr(s:bits[0])
+    endif
+    let s:count +=1
+  endfor
+  return 0
 endfunction
 
 function! GetBufListsNu() abort
-    let s:bufoutput = GetBufLists(1)
-    let s:arrlist = []
-    for buf in split(s:bufoutput, '\n')
-        let s:bits = split(buf, ' ')
-        call add(s:arrlist, str2nr(s:bits[0]))
-    endfor
-    return s:arrlist
+  let s:bufoutput = GetBufLists(1)
+  let s:arrlist = []
+  for buf in split(s:bufoutput, '\n')
+    let s:bits = split(buf, ' ')
+    call add(s:arrlist, str2nr(s:bits[0]))
+  endfor
+  return s:arrlist
 endfunction
 
 func! DeleteTillSlash()
-    let g:cmd = getcmdline()
+  let g:cmd = getcmdline()
 
+  if has("win16") || has("win32")
+    let g:cmd_edited = substitute(g:cmd, "\\(.*\[\\\\]\\).*", "\\1", "")
+  else
+    let g:cmd_edited = substitute(g:cmd, "\\(.*\[/\]\\).*", "\\1", "")
+  endif
+
+  if g:cmd == g:cmd_edited
     if has("win16") || has("win32")
-        let g:cmd_edited = substitute(g:cmd, "\\(.*\[\\\\]\\).*", "\\1", "")
+      let g:cmd_edited = substitute(g:cmd, "\\(.*\[\\\\\]\\).*\[\\\\\]", "\\1", "")
     else
-        let g:cmd_edited = substitute(g:cmd, "\\(.*\[/\]\\).*", "\\1", "")
+      let g:cmd_edited = substitute(g:cmd, "\\(.*\[/\]\\).*/", "\\1", "")
     endif
+  endif
 
-    if g:cmd == g:cmd_edited
-        if has("win16") || has("win32")
-            let g:cmd_edited = substitute(g:cmd, "\\(.*\[\\\\\]\\).*\[\\\\\]", "\\1", "")
-        else
-            let g:cmd_edited = substitute(g:cmd, "\\(.*\[/\]\\).*/", "\\1", "")
-        endif
-    endif
-
-    return g:cmd_edited
+  return g:cmd_edited
 endfunc
 
 func! CurrentFileDir(cmd)
-    return a:cmd . " " . expand("%:p:h") . "/"
+  return a:cmd . " " . expand("%:p:h") . "/"
 endfunc
 
 function! Vimcmd(cmd) abort
-    redir => output
-        silent exe a:cmd
-    redir END
-    return output
+  redir => output
+  silent exe a:cmd
+  redir END
+  return output
 endfunction
 
 function! GetRangInParagraph()
-    let s:line = line('.')
-    let s:col = col('.')
-    normal `{
-    let s:firstline = line('.')
-    normal `}
-    let s:lastline = line('.')
-    exe s:line
-    exec printf('normal! 0%d|', s:col)
-    return [s:firstline, s:lastline]
+  let s:line = line('.')
+  let s:col = col('.')
+  normal `{
+  let s:firstline = line('.')
+  normal `}
+  let s:lastline = line('.')
+  exe s:line
+  exec printf('normal! 0%d|', s:col)
+  return [s:firstline, s:lastline]
 endfunction
 
 "}}}
@@ -128,7 +130,7 @@ set completeopt-=preview
 " Set utf8 as standard encoding and en_US as the standard language
 set termencoding=utf-8
 if !has('nvim')
-set encoding=utf8
+  set encoding=utf8
 endif
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
@@ -149,8 +151,8 @@ set spellfile=~/.vim/spell/en.utf-8.add
 " render properly when inside 256-color tmux and GNU screen.
 " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
 " if &term =~ '256color'
-  " set t_ut=
-  " " au VimEnter * if $is_tmux != '' | call ToggleLabelBar() | endif
+" set t_ut=
+" " au VimEnter * if $is_tmux != '' | call ToggleLabelBar() | endif
 " endif
 "}}}
 
@@ -204,9 +206,9 @@ set wildmenu
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
 if has("win16") || has("win32")
-    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store,.idea,.phpcomplete,cscope.*,tags,.tags
+  set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store,.idea,.phpcomplete,cscope.*,tags,.tags
 else
-    set wildignore+=.git\*,.hg\*,.svn\*,fugitive\*,.idea,.phpcomplete,cscope.*,tags,.tags
+  set wildignore+=.git\*,.hg\*,.svn\*,fugitive\*,.idea,.phpcomplete,cscope.*,tags,.tags
 endif
 
 "Always show current position
@@ -268,13 +270,13 @@ set foldcolumn=1
 " add variable 'g:colorschemealreadyseted' prevent auto source look bad.
 "{{{
 function! SetColorScheme()
-    if exists('g:colorscheme_already_seted') == 0
-        syntax enable
-        set t_co=256
-        set background=dark
-        colorscheme molokai
-        let g:colorscheme_already_seted = 1
-    endif
+  if exists('g:colorscheme_already_seted') == 0
+    syntax enable
+    set t_co=256
+    set background=dark
+    colorscheme molokai
+    let g:colorscheme_already_seted = 1
+  endif
 endfunction
 " Goyo Plugin Must call for well
 call SetColorScheme()
@@ -283,19 +285,19 @@ call SetColorScheme()
 " Set extra options when running in GUI mode
 "{{{
 if has("gui_running")
-    set guioptions-=T
-    set guioptions-=e
-    set t_Co=256
-    set guitablabel=%M\ %t
-    " set guifont=Source\ Code\ Pro\ Medium\ 11
-    set guifont=SauceCodePro\ Nerd\ Font\ Medium\ 11
-    set guioptions-=m        " hide menus
-    set guioptions-=T        " hide tools
-    set guioptions-=L        " hide scroll left
-    set guioptions-=r        " hide scroll right
-    set guioptions-=b        " hide scroll bottom
-    set showtabline=0        " hide tabline
-    set columns=130 lines=33
+  set guioptions-=T
+  set guioptions-=e
+  set t_Co=256
+  set guitablabel=%M\ %t
+  " set guifont=Source\ Code\ Pro\ Medium\ 11
+  set guifont=SauceCodePro\ Nerd\ Font\ Medium\ 11
+  set guioptions-=m        " hide menus
+  set guioptions-=T        " hide tools
+  set guioptions-=L        " hide scroll left
+  set guioptions-=r        " hide scroll right
+  set guioptions-=b        " hide scroll bottom
+  set showtabline=0        " hide tabline
+  set columns=130 lines=33
 endif
 "}}}
 "}}}
@@ -371,17 +373,17 @@ cabbrev vba vert ba
 " Zoom / Restore window.
 "{{{
 function! s:ZoomToggle() abort
-    if exists('t:zoomed') && t:zoomed
-        execute t:zoom_winrestcmd
-        let t:zoomed = 0
-    else
-        let t:zoom_winrestcmd = winrestcmd()
-        resize
-        vertical resize
-        let t:zoomed = 1
-    endif
-    " integrate with tmux
-    call system('xdotool key F6 z')
+  if exists('t:zoomed') && t:zoomed
+    execute t:zoom_winrestcmd
+    let t:zoomed = 0
+  else
+    let t:zoom_winrestcmd = winrestcmd()
+    resize
+    vertical resize
+    let t:zoomed = 1
+  endif
+  " integrate with tmux
+  call system('xdotool key F6 z')
 endfunction
 "}}}
 command! ZoomToggle call s:ZoomToggle()
@@ -406,30 +408,30 @@ map <Leader>bo :call BufferOtherAllDelete()<cr>
 " bug with function bufexists() , so use 'try ... catch ... end'
 "{{{
 function! BufferOtherAllDelete() abort
-    silent call BufferLeftAllDelete()
-    silent call BufferRightAllDelete()
-    echo "** Delete All Other Buffer"
+  silent call BufferLeftAllDelete()
+  silent call BufferRightAllDelete()
+  echo "** Delete All Other Buffer"
 endfunction
 
 function! BufferLeftAllDelete() abort
-    let s:arrlist = GetBufListsNu()
-    let s:bufnums = bufnr('%')
-    try
-        silent exe s:arrlist[0] . ',' . s:bufnums . '-bd!'
-    catch
-    endtry
-    echo "** Delete All Buffer At Current Left."
+  let s:arrlist = GetBufListsNu()
+  let s:bufnums = bufnr('%')
+  try
+    silent exe s:arrlist[0] . ',' . s:bufnums . '-bd!'
+  catch
+  endtry
+  echo "** Delete All Buffer At Current Left."
 endfunction
 
 function! BufferRightAllDelete() abort
-    let s:arrlist = GetBufListsNu()
-    let s:bufnums = bufnr('%')
-    let i = index(s:arrlist, s:bufnums)
-    try
-        silent exe s:arrlist[i+1] . ',$bd!'
-    catch
-    endtry
-    echo "** Delete All Buffer At Current Right."
+  let s:arrlist = GetBufListsNu()
+  let s:bufnums = bufnr('%')
+  let i = index(s:arrlist, s:bufnums)
+  try
+    silent exe s:arrlist[i+1] . ',$bd!'
+  catch
+  endtry
+  echo "** Delete All Buffer At Current Right."
 endfunction
 "}}}
 
@@ -503,68 +505,68 @@ map <leader>pp :setlocal paste!<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
 function! CmdLine(str)
-    exe "menu Foo.Bar :" . a:str
-    emenu Foo.Bar
-    unmenu Foo
+  exe "menu Foo.Bar :" . a:str
+  emenu Foo.Bar
+  unmenu Foo
 endfunction
 
 let g:virsual_selection_act = 0
 function! VisualSelection(direction, extra_filter) range
-    let g:virsual_selection_act = 1
-    let l:saved_reg = @"
-    execute "normal! vgvy"
+  let g:virsual_selection_act = 1
+  let l:saved_reg = @"
+  execute "normal! vgvy"
 
-    let l:pattern = escape(@", '\\/.*$^~[]')
-    let l:pattern = substitute(l:pattern, "\n$", "", "")
+  let l:pattern = escape(@", '\\/.*$^~[]')
+  let l:pattern = substitute(l:pattern, "\n$", "", "")
 
-    if a:direction == 'b'
-        execute "normal ?" . l:pattern . "^M"
-    elseif a:direction == 'gv'
-        call CmdLine("CtrlSF \"" . l:pattern . "\" " )
-    elseif a:direction == 'replace'
-        " call CmdLine("%s" . '/'. l:pattern . '/')
-        let @/=''
-        exec "OverCommandLine %s" . '/'. l:pattern . '/'
-    elseif a:direction == 'f'
-        execute "normal /" . l:pattern . "^M"
-    elseif a:direction == 'select'
-        execute printf("Select %s", l:pattern)
-    elseif a:direction == 'replace'
-        execute printf("Replace %s", l:pattern)
-    endif
+  if a:direction == 'b'
+    execute "normal ?" . l:pattern . "^M"
+  elseif a:direction == 'gv'
+    call CmdLine("CtrlSF \"" . l:pattern . "\" " )
+  elseif a:direction == 'replace'
+    " call CmdLine("%s" . '/'. l:pattern . '/')
+    let @/=''
+    exec "OverCommandLine %s" . '/'. l:pattern . '/'
+  elseif a:direction == 'f'
+    execute "normal /" . l:pattern . "^M"
+  elseif a:direction == 'select'
+    execute printf("Select %s", l:pattern)
+  elseif a:direction == 'replace'
+    execute printf("Replace %s", l:pattern)
+  endif
 
-    let g:virsual_selection_act = 0
-    let @/ = l:pattern
-    let @" = l:saved_reg
+  let g:virsual_selection_act = 0
+  let @/ = l:pattern
+  let @" = l:saved_reg
 endfunction
 
 " Returns true if paste mode is enabled
 function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    en
-    return ''
+  if &paste
+    return 'PASTE MODE  '
+  en
+  return ''
 endfunction
 
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
-   let l:currentBufNum = bufnr("%")
-   let l:alternateBufNum = bufnr("#")
+  let l:currentBufNum = bufnr("%")
+  let l:alternateBufNum = bufnr("#")
 
-   if buflisted(l:alternateBufNum)
-     buffer #
-   else
-     bnext
-   endif
+  if buflisted(l:alternateBufNum)
+    buffer #
+  else
+    bnext
+  endif
 
-   if bufnr("%") == l:currentBufNum
-     new
-   endif
+  if bufnr("%") == l:currentBufNum
+    new
+  endif
 
-   if buflisted(l:currentBufNum)
-     execute("bdelete! ".l:currentBufNum)
-   endif
+  if buflisted(l:currentBufNum)
+    execute("bdelete! ".l:currentBufNum)
+  endif
 endfunction
 "}}}
 
@@ -585,22 +587,22 @@ autocmd! BufWritePost *.vim-plugin.vim source ~/.vim-plugin.vim | exec "AirlineR
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "{{{
 try
-    set undodir=~/.vim/temp_dirs/undodir
-    set undofile
+  set undodir=~/.vim/temp_dirs/undodir
+  set undofile
 catch
 endtry
 
 if has('nvim')
-    set shada='20,<50,:20,%,n~/.nvim/nviminfo
+  set shada='20,<50,:20,%,n~/.nvim/nviminfo
 else
-    set viminfo='20,<50,:20,%,n$HOME/.vim/files/info/viminfo
+  set viminfo='20,<50,:20,%,n$HOME/.vim/files/info/viminfo
 endif
 
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
+      \ if line("'\"") > 0 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" |
+      \ endif
 
 "}}}
 
@@ -676,7 +678,7 @@ command! Reload :e!
 " from: http://vim.wikia.com/wiki/Avoiding_the_%22Hit_ENTER_to_continue%22_prompts
 command! -nargs=+ Silent execute 'silent <args>' | redraw!
 if has("gui_running")
-    command! -nargs=+ Silent execute 'silent <args>'
+  command! -nargs=+ Silent execute 'silent <args>'
 endif
 
 " normal mode keypress 'K' will show help of function.
@@ -688,7 +690,7 @@ autocmd BufWinEnter * if &previewwindow | setlocal nobuflisted | endif
 
 " System clipboard sharing
 if has('clipboard')
-    set clipboard=unnamedplus
+  set clipboard=unnamedplus
 endif
 "}}}
 
@@ -732,22 +734,22 @@ autocmd BufEnter * if &previewwindow | exe 'nmap <buffer> q ZZ' | endif
 autocmd BufEnter * if stridx(expand('%p'), 'fugitive://') > -1 | call CloseFromFugitiveView() | endif
 
 function! CloseFromFugitiveView()
-    let s:filename = expand('%p')
-    let s:root = substitute(split(s:filename, '/.git/')[0], 'fugitive://', '', '')
-    let s:basename = fnamemodify(s:filename, ':p:t')
-    let s:real_filename = printf('%s/%s', s:root, s:basename)
-    if stridx(Vimcmd('nmap q'), 'No mapping found') > -1
-        let s:action = ''
-        if file_readable(s:real_filename)
-            let s:action = printf('e %s', s:real_filename)
-        else
-            let s:action = 'wincmd w'
-        endif
-        exec printf('nmap <buffer> q :%s<CR>', s:action)
+  let s:filename = expand('%p')
+  let s:root = substitute(split(s:filename, '/.git/')[0], 'fugitive://', '', '')
+  let s:basename = fnamemodify(s:filename, ':p:t')
+  let s:real_filename = printf('%s/%s', s:root, s:basename)
+  if stridx(Vimcmd('nmap q'), 'No mapping found') > -1
+    let s:action = ''
+    if file_readable(s:real_filename)
+      let s:action = printf('e %s', s:real_filename)
+    else
+      let s:action = 'wincmd w'
     endif
-    if &diff
-        nmap <buffer> q <Leader>x
-    endif
+    exec printf('nmap <buffer> q :%s<CR>', s:action)
+  endif
+  if &diff
+    nmap <buffer> q <Leader>x
+  endif
 endfunction
 
 " Smart quit in windows and buffers"{{{
@@ -757,70 +759,70 @@ map <silent> <leader>x :<C-U>call SmartQuit(0)<cr>
 let g:smartqdebug = 0
 
 function! NormalQOr(cmd) abort
-    if g:smartqdebug == 1 | exec 'sleep 3' | endif
-    if match(Vimcmd('nmap q'), '\cdelete\|exit\|close\|quit') > -1
-        exec 'normal q'
-    elseif index(['gitcommit'], &filetype) > -1
-        exec 'q'
-    else
-        exec a:cmd
-    end
+  if g:smartqdebug == 1 | exec 'sleep 3' | endif
+  if match(Vimcmd('nmap q'), '\cdelete\|exit\|close\|quit') > -1
+    exec 'normal q'
+  elseif index(['gitcommit'], &filetype) > -1
+    exec 'q'
+  else
+    exec a:cmd
+  end
 endfunction
 
 function! SmartQuit(tag) abort
-    " if gdiff run, call function once
-    if getwinvar('#', '&diff')
+  " if gdiff run, call function once
+  if getwinvar('#', '&diff')
+    call NormalQOr('q')
+    if buflisted(bufnr('fugitive')) != 0
+      if g:smartqdebug == 1 | echo "delete from 0" | endif
+      call NormalQOr('bdelete! fugitive:')
+    endif
+    return
+  endif
+
+  " delete the current window
+  if a:tag == 0
+    if buflisted(bufnr('%')) == 0
+      if g:smartqdebug == 1 | echo "delete from 1" | endif
+      call NormalQOr('bdelete!')
+    else
+      if winnr('$') > 1
+        if g:smartqdebug == 1 | echo "delete from 2" | endif
         call NormalQOr('q')
-        if buflisted(bufnr('fugitive')) != 0
-            if g:smartqdebug == 1 | echo "delete from 0" | endif
-            call NormalQOr('bdelete! fugitive:')
-        endif
-        return
+      else
+        if g:smartqdebug == 1 | echo "delete from 3" | endif
+        call NormalQOr('bdelete!')
+      endif
     endif
+  endif
 
-    " delete the current window
-    if a:tag == 0
-        if buflisted(bufnr('%')) == 0
-            if g:smartqdebug == 1 | echo "delete from 1" | endif
-            call NormalQOr('bdelete!')
-        else
-            if winnr('$') > 1
-                if g:smartqdebug == 1 | echo "delete from 2" | endif
-                call NormalQOr('q')
-            else
-                if g:smartqdebug == 1 | echo "delete from 3" | endif
-                call NormalQOr('bdelete!')
-            endif
-        endif
+  " Close all specail  window
+  exe 'pc'
+  exe 'lclose'
+  exe 'cclose'
+
+  " delete unuseful window
+  let winnums = winnr('$')
+  let bufnrtmp = []
+  if winnums > 0
+    let index = winnums
+    while index > 0
+      if buflisted(winbufnr(index)) == 0
+        call insert(bufnrtmp, winbufnr(index))
+      endif
+      let index -= 1
+    endwhile
+    if len(bufnrtmp) > 0
+      if g:smartqdebug == 1 | echo "delete from 4" | endif
+      call NormalQOr('bdelete!' . join(bufnrtmp, ' '))
     endif
+  endif
 
-    " Close all specail  window
-    exe 'pc'
-    exe 'lclose'
-    exe 'cclose'
-
-    " delete unuseful window
-    let winnums = winnr('$')
-    let bufnrtmp = []
-    if winnums > 0
-        let index = winnums
-        while index > 0
-            if buflisted(winbufnr(index)) == 0
-                call insert(bufnrtmp, winbufnr(index))
-            endif
-            let index -= 1
-        endwhile
-        if len(bufnrtmp) > 0
-            if g:smartqdebug == 1 | echo "delete from 4" | endif
-            call NormalQOr('bdelete!' . join(bufnrtmp, ' '))
-        endif
-    endif
-
-    " continue
-    if buflisted(bufnr('%')) == 0 && GetBufListedNr() > 0
-        if g:smartqdebug == 1 | echo "continue ..." | endif
-        call SmartQuit(1)
-    endif
+  " continue
+  if buflisted(bufnr('%')) == 0 && GetBufListedNr() > 0
+    if g:smartqdebug == 1 | echo "continue ..." | endif
+    call SmartQuit(1)
+  endif
 
 endfunction
 "}}}
@@ -829,7 +831,7 @@ endfunction
 nmap coC :ToggleConceal<CR>
 command! ToggleConceal call s:ToogleConceal()
 function! s:ToogleConceal() abort
-    exe 'set conceallevel=' . (&conceallevel==0 ? 2 : 0)
+  exe 'set conceallevel=' . (&conceallevel==0 ? 2 : 0)
 endfunction
 "}}}
 
@@ -846,7 +848,7 @@ nnoremap cmb :e /tmp/buffer<cr>
 " split buffer can use <C-w>s and <C-w>v
 " keymap for jumping window
 for i in range(1,9)
-    exe printf( 'nnoremap <C-w>%d :%dwincmd w<CR>', i, i )
+  exe printf( 'nnoremap <C-w>%d :%dwincmd w<CR>', i, i )
 endfor
 
 inoremap <C-V> <Esc>pa
@@ -871,28 +873,28 @@ exec "vnoremap <C-N> y:<C-U>e /tmp/buffer<cr><Esc>O" . repeat('-', 120) . "<cr><
 "Buffer Switch Quickly{{{
 " map <silent> <M-0> :bl<cr>
 " for n in [1,2,3,4,5,6,7,8,9]
-    " exe 'map <silent> <M-' . n . '> :call GoToBuffer('. n . ')<cr>'
+" exe 'map <silent> <M-' . n . '> :call GoToBuffer('. n . ')<cr>'
 " endfor
 " map <silent> <Tab> :call GoToBufferNext('next')<cr>
 " map <silent> <S-Tab> :call GoToBufferNext('prev')<cr>
 func! GoToBufferNext(tag)
-    let s:commandstr = a:tag == 'next' ? 'bn' : 'bp'
-    " let s:arr = ['tagbar', 'nerdtree', 'qf', 'ctrlsf', 'runner']
-    " if index(s:arr, &filetype) == -1
-    let s:arrlist = GetBufListsNu()
-    if index(s:arrlist, bufnr('%')) > -1 && winnr('$') == 1
-        execute s:commandstr
-    endif
+  let s:commandstr = a:tag == 'next' ? 'bn' : 'bp'
+  " let s:arr = ['tagbar', 'nerdtree', 'qf', 'ctrlsf', 'runner']
+  " if index(s:arr, &filetype) == -1
+  let s:arrlist = GetBufListsNu()
+  if index(s:arrlist, bufnr('%')) > -1 && winnr('$') == 1
+    execute s:commandstr
+  endif
 endfunc
 function! GoToBuffer(tag) abort
-    let s:nr = GetBufNr(a:tag)
-    if s:nr > 0 && buflisted(bufnr('%'))
-        exe 'b' . s:nr
-        " if buflisted(a:tag)
-        " exe 'b' . a:tag
-        " elseif a:tag == 1
-        " exe 'b' . s:nr
-    endif
+  let s:nr = GetBufNr(a:tag)
+  if s:nr > 0 && buflisted(bufnr('%'))
+    exe 'b' . s:nr
+    " if buflisted(a:tag)
+    " exe 'b' . a:tag
+    " elseif a:tag == 1
+    " exe 'b' . s:nr
+  endif
 endfunction
 "}}}
 "}}}
@@ -924,11 +926,11 @@ endfunction
 "{{{
 command! SearchOnline call OnlineDoc()
 fun! OnlineDoc()
-    let s:browser = "google-chrome"
-    let s:wordUnderCursor = expand("<cword>")
-    let s:url = "https://www.google.com.hk/\\#newwindow=1\\&safe=strict\\&q=" . s:wordUnderCursor
-    let s:cmd = "Silent !" . s:browser . " " . s:url
-    execute s:cmd
+  let s:browser = "google-chrome"
+  let s:wordUnderCursor = expand("<cword>")
+  let s:url = "https://www.google.com.hk/\\#newwindow=1\\&safe=strict\\&q=" . s:wordUnderCursor
+  let s:cmd = "Silent !" . s:browser . " " . s:url
+  execute s:cmd
 endfunction
 "}}}
 
@@ -940,44 +942,44 @@ endfunction
 command! PreviewMarkdown call PreviewMarkdown()
 "{{{
 function! PreviewMarkdown()
-    if !executable('pandoc')
-        echohl ErrorMsg | echo 'Please install pandoc first.' | echohl None
-        return
+  if !executable('pandoc')
+    echohl ErrorMsg | echo 'Please install pandoc first.' | echohl None
+    return
+  endif
+  let BROWSER_COMMAND = 'xdg-open'
+  let output_file = tempname() . '.html'
+  let input_file = tempname() . '.md'
+  let css_file = 'file://' . expand('/opt/lampp/htdocs/tools/pandoc/markdown.css', 1)
+  " Convert buffer to UTF-8 before running pandoc
+  let original_encoding = &fileencoding
+  let original_bomb = &bomb
+  silent! execute 'set fileencoding=utf-8 nobomb'
+  " Generate html file for preview
+  let content = getline(1, '$')
+  let newContent = []
+  for line in content
+    let str = matchstr(line, '\(!\[.*\](\)\@<=.\+\.\%(png\|jpe\=g\|gif\)')
+    if str != "" && match(str, '^https\=:\/\/') == -1
+      let newLine = substitute(line, '\(!\[.*\]\)(' . str . ')',
+            \'\1(file://' . escape(expand("%:p:h", 1), '\') .
+            \('/') .
+            \escape(expand(str, 1), '\') . ')', 'g')
+    else
+      let newLine = line
     endif
-    let BROWSER_COMMAND = 'xdg-open'
-    let output_file = tempname() . '.html'
-    let input_file = tempname() . '.md'
-    let css_file = 'file://' . expand('/opt/lampp/htdocs/tools/pandoc/markdown.css', 1)
-    " Convert buffer to UTF-8 before running pandoc
-    let original_encoding = &fileencoding
-    let original_bomb = &bomb
-    silent! execute 'set fileencoding=utf-8 nobomb'
-    " Generate html file for preview
-    let content = getline(1, '$')
-    let newContent = []
-    for line in content
-        let str = matchstr(line, '\(!\[.*\](\)\@<=.\+\.\%(png\|jpe\=g\|gif\)')
-        if str != "" && match(str, '^https\=:\/\/') == -1
-            let newLine = substitute(line, '\(!\[.*\]\)(' . str . ')',
-                        \'\1(file://' . escape(expand("%:p:h", 1), '\') .
-                        \('/') .
-                        \escape(expand(str, 1), '\') . ')', 'g')
-        else
-            let newLine = line
-        endif
-        call add(newContent, newLine)
-    endfor
-    call writefile(newContent, input_file)
-    silent! execute '!pandoc -f markdown_github -t html -s -S -c "' . css_file . '" -o "' . output_file .'" "' . input_file . '"'
-    call delete(input_file)
-    " Change encoding back
-    silent! execute 'set fileencoding=' . original_encoding . ' ' . original_bomb
-    " Preview
-    silent! execute '!' . BROWSER_COMMAND . ' "' . output_file . '" &>/dev/null'
-    execute input('Press ENTER to continue...')
-    echo
-    call delete(output_file)
-    exec "redraw!"
+    call add(newContent, newLine)
+  endfor
+  call writefile(newContent, input_file)
+  silent! execute '!pandoc -f markdown_github -t html -s -S -c "' . css_file . '" -o "' . output_file .'" "' . input_file . '"'
+  call delete(input_file)
+  " Change encoding back
+  silent! execute 'set fileencoding=' . original_encoding . ' ' . original_bomb
+  " Preview
+  silent! execute '!' . BROWSER_COMMAND . ' "' . output_file . '" &>/dev/null'
+  execute input('Press ENTER to continue...')
+  echo
+  call delete(output_file)
+  exec "redraw!"
 endfunction
 "}}}
 "}}}
@@ -992,28 +994,22 @@ nmap yu :call XCopyURIUnderCursor()<CR>
 nmap gf :call EditURIUnderCursor()<CR>
 "{{{
 fun! EditURIUnderCursor()
-    
-    let uri = GetURIUnderCursor()
-    exe 'e ' . uri
-
+  let uri = GetURIUnderCursor()
+  exe 'e ' . uri
 endf
 
 fun! XCopyURIUnderCursor()
-    
-    let uri = GetURIUnderCursor()
-    exe 'Silent !echo "' . uri . '" | xsel --input -b'
-    exe 'echo "copy: ' . uri . '"'
-
+  let uri = GetURIUnderCursor()
+  exe 'Silent !echo "' . uri . '" | xsel --input -b'
+  exe 'echo "copy: ' . uri . '"'
 endf
 
 fun! XOpenURIUnderCursor()
-    
-    let uri = GetURIUnderCursor()
-    let opencmd = has('gui_running') ? ( stridx(uri, 'http') > -1 ? 'google-chrome' : 'xdg-open' ) : 'xdg-open'
-    let cmd = printf( 'Silent !%s %s &>/dev/null', opencmd, uri )
-    if !&verbose | exe cmd | endif
-    echom printf( '!%s %s', opencmd, uri )
-
+  let uri = GetURIUnderCursor()
+  let opencmd = has('gui_running') ? ( stridx(uri, 'http') > -1 ? 'google-chrome' : 'xdg-open' ) : 'xdg-open'
+  let cmd = printf( 'Silent !%s %s &>/dev/null', opencmd, uri )
+  if !&verbose | exe cmd | endif
+  echom printf( '!%s %s', opencmd, uri )
 endf
 
 function! GetURIUnderCursor() abort
@@ -1081,18 +1077,18 @@ endfunction
 command! Coderight call MakeTheCodeRight()
 "{{{
 function! MakeTheCodeRight() abort
-    try
-        silent exe "%s/  / /g"
-        silent exe "%s/；/;/g"
-        silent exe "%s/＂/\"/g"
-        silent exe "%s/（/(/g"
-        silent exe "%s/）/)/g"
-        silent exe "%s/｛/{/g"
-        silent exe "%s/｝/}/g"
-        silent exe "%s/ / /g"
-    catch
-    endtry
-    echo "codes had been maked right."
+  try
+    silent exe "%s/  / /g"
+    silent exe "%s/；/;/g"
+    silent exe "%s/＂/\"/g"
+    silent exe "%s/（/(/g"
+    silent exe "%s/）/)/g"
+    silent exe "%s/｛/{/g"
+    silent exe "%s/｝/}/g"
+    silent exe "%s/ / /g"
+  catch
+  endtry
+  echo "codes had been maked right."
 endfunction
 "}}}
 "}}}
@@ -1106,9 +1102,9 @@ nmap yt :call CopyFilePath('t')<CR>
 nmap yd :call CopyFilePath('p:h')<CR>
 "{{{
 function! CopyFilePath(type) abort
-    let s:filename = expand('%:' . a:type)
-    exe 'Silent !echo "' . s:filename . '" | xsel --input -b'
-    exe 'echo "copy: ' . s:filename . '"'
+  let s:filename = expand('%:' . a:type)
+  exe 'Silent !echo "' . s:filename . '" | xsel --input -b'
+  exe 'echo "copy: ' . s:filename . '"'
 endfunction
 "}}}
 
@@ -1117,8 +1113,8 @@ nmap <silent> <C-g><C-a> :call ToggleLabelBar(1, 0)<CR>
 nmap <silent> <C-g><C-b> :call ToggleLabelBar(0, 1)<CR>
 "{{{
 function! ToggleLabelBar(a, b) abort
-    if a:a | exe 'set showtabline=' . (&showtabline==0 ? 2 : 0) | endif
-    if a:b | exe 'set laststatus=' . (&laststatus==0 ? 2 : 0) | endif
+  if a:a | exe 'set showtabline=' . (&showtabline==0 ? 2 : 0) | endif
+  if a:b | exe 'set laststatus=' . (&laststatus==0 ? 2 : 0) | endif
 endfunction
 "}}}
 "}}}
@@ -1136,7 +1132,7 @@ endfunction
 " endfunction
 " For snippet_complete marker.
 if has('conceal')
-    set conceallevel=2 concealcursor=i
+  set conceallevel=2 concealcursor=i
 endif
 "}}}
 
@@ -1168,8 +1164,8 @@ autocmd FileType php smap <buffer> <C-k> <Esc><C-Left>dbea
 " python
 autocmd FileType python nnoremap <buffer> K :call PydocShowUnite()<CR>
 function! PydocShowUnite() abort
-    exe printf('Unite -no-cursor-line output/shellcmd:pydoc:%s|cat', expand('<cfile>'))
-    exe 'setlocal foldcolumn=1'
+  exe printf('Unite -no-cursor-line output/shellcmd:pydoc:%s|cat', expand('<cfile>'))
+  exe 'setlocal foldcolumn=1'
 endfunction
 "}}}
 
@@ -1190,37 +1186,37 @@ autocmd! SessionLoadPost * call ENVPJLocal()
 command! LoadENVPJLocal call ENVPJLocal()
 
 function! ENVPJLocal() abort
-    let s:filename = printf('%s/.env.vim', getcwd())
-    if file_readable(s:filename)
-        if exists('g:envpjlocalrec') == 0
-            let g:envpjlocalrec = {}
-        endif
-
-        let s:lines = readfile(s:filename)
-
-        for s:line in s:lines
-            let s:envinfo = split(s:line, '=')
-            if len(s:envinfo) == 2
-                let s:envname = s:envinfo[0]
-                let s:envval  = s:envinfo[1]
-                if has_key(g:envpjlocalrec, s:envname)
-                    let s:envval_sys = g:envpjlocalrec[s:envname][1]
-                else
-                    let s:envval_sys = eval(printf('$%s', s:envname))
-                endif
-                let g:envpjlocalrec[s:envname] = [s:envval, s:envval_sys]
-                exe printf('let $%s', s:line)
-            endif
-        endfor
-    else
-        if exists('g:envpjlocalrec')
-            for s:envname  in keys(g:envpjlocalrec)
-                let s:envval_sys = g:envpjlocalrec[s:envname][1]
-                exe printf('let $%s="%s"', s:envname, s:envval_sys)
-            endfor
-            unlet g:envpjlocalrec
-        endif
+  let s:filename = printf('%s/.env.vim', getcwd())
+  if file_readable(s:filename)
+    if exists('g:envpjlocalrec') == 0
+      let g:envpjlocalrec = {}
     endif
+
+    let s:lines = readfile(s:filename)
+
+    for s:line in s:lines
+      let s:envinfo = split(s:line, '=')
+      if len(s:envinfo) == 2
+        let s:envname = s:envinfo[0]
+        let s:envval  = s:envinfo[1]
+        if has_key(g:envpjlocalrec, s:envname)
+          let s:envval_sys = g:envpjlocalrec[s:envname][1]
+        else
+          let s:envval_sys = eval(printf('$%s', s:envname))
+        endif
+        let g:envpjlocalrec[s:envname] = [s:envval, s:envval_sys]
+        exe printf('let $%s', s:line)
+      endif
+    endfor
+  else
+    if exists('g:envpjlocalrec')
+      for s:envname  in keys(g:envpjlocalrec)
+        let s:envval_sys = g:envpjlocalrec[s:envname][1]
+        exe printf('let $%s="%s"', s:envname, s:envval_sys)
+      endfor
+      unlet g:envpjlocalrec
+    endif
+  endif
 endfunction
 
 "}}}
@@ -1228,23 +1224,23 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Goback the last access buffer quickly"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
- "{{{
+"{{{
 nmap <silent> gl :call GoBackLastAccessBuffer()<CR>
 au BufWinLeave * call RecordLastAccessBufferNr()
 function! RecordLastAccessBufferNr() abort
-    let s:bcur = bufnr('%')
-    if buflisted(s:bcur) == 1
-        let g:bufaccesslasttime = s:bcur
-    endif
+  let s:bcur = bufnr('%')
+  if buflisted(s:bcur) == 1
+    let g:bufaccesslasttime = s:bcur
+  endif
 endfunction
 
 function! GoBackLastAccessBuffer() abort
-    " let s:alternateBuffer = expand('#')
-    " exe printf('e %s', s:alternateBuffer)
-    try
-        exec printf('b %d', g:bufaccesslasttime)
-    catch
-    endtry
+  " let s:alternateBuffer = expand('#')
+  " exe printf('e %s', s:alternateBuffer)
+  try
+    exec printf('b %d', g:bufaccesslasttime)
+  catch
+  endtry
 endfunction
 "}}}
 
@@ -1254,13 +1250,13 @@ endfunction
 "{{{
 nmap gs :call SearchNowByLastCopy()<CR>
 fun! SearchNowByLastCopy()
-    try
-        let past = system('xclip -out -selection clipboard')  
-        let @/ = past
-        set hlsearch
-        normal n
-    catch
-    endtry
+  try
+    let past = system('xclip -out -selection clipboard')  
+    let @/ = past
+    set hlsearch
+    normal n
+  catch
+  endtry
 endf
 "}}}
 
@@ -1273,47 +1269,47 @@ endf
 
 vmap <silent> gc   :<C-u>call CapitalizeTitle("v")<CR>
 function! CapitalizeTitle(mode)
-" Title Case -- uppercase characters following whitespace
-    let s:col = col('v')
-    normal gv
-    " Hack: fix Vim's gv proclivity to add a line when at line end
-    if virtcol(".") == 1
-        normal '>
-        " line select
-        normal gV
-        " up one line
-        normal k
-        " back to char select
-        normal gV
-        """" back up one char
-        """normal h
-    endif
-	" yank
-	normal "xy
-	" lower case entire string
-	let @x = tolower(@x)
-	" capitalize first in series of word chars
-	let @x = substitute(@x, '\w\+', '\u&', 'g')
-	" lowercase a few words we always want lower
-	let @x = substitute(@x, '\<A\>', 'a', 'g')
-	let @x = substitute(@x, '\<An\>', 'an', 'g')
-	let @x = substitute(@x, '\<And\>', 'and', 'g')
-	let @x = substitute(@x, '\<In\>', 'in', 'g')
-	let @x = substitute(@x, '\<The\>', 'the', 'g')
-	" lowercase apostrophe s
-	let @x = substitute(@x, "'S", "'s", 'g')
-	" fix first word again
-	let @x = substitute(@x, '^.', '\u&', 'g')
-	" fix last word again
-	let str = matchstr(@x, '[[:alnum:]]\+[^[:alnum:]]*$')
-	let @x = substitute(@x, str . '$', '\u&', 'g')
-	" reselect
-	normal gv
-	" paste over selection (replacing it)
-	normal "xP
-	" return state
-    " normal gv
-    exec printf('normal! 0%d|', s:col)
+  " Title Case -- uppercase characters following whitespace
+  let s:col = col('v')
+  normal gv
+  " Hack: fix Vim's gv proclivity to add a line when at line end
+  if virtcol(".") == 1
+    normal '>
+    " line select
+    normal gV
+    " up one line
+    normal k
+    " back to char select
+    normal gV
+    """" back up one char
+    """normal h
+  endif
+  " yank
+  normal "xy
+  " lower case entire string
+  let @x = tolower(@x)
+  " capitalize first in series of word chars
+  let @x = substitute(@x, '\w\+', '\u&', 'g')
+  " lowercase a few words we always want lower
+  let @x = substitute(@x, '\<A\>', 'a', 'g')
+  let @x = substitute(@x, '\<An\>', 'an', 'g')
+  let @x = substitute(@x, '\<And\>', 'and', 'g')
+  let @x = substitute(@x, '\<In\>', 'in', 'g')
+  let @x = substitute(@x, '\<The\>', 'the', 'g')
+  " lowercase apostrophe s
+  let @x = substitute(@x, "'S", "'s", 'g')
+  " fix first word again
+  let @x = substitute(@x, '^.', '\u&', 'g')
+  " fix last word again
+  let str = matchstr(@x, '[[:alnum:]]\+[^[:alnum:]]*$')
+  let @x = substitute(@x, str . '$', '\u&', 'g')
+  " reselect
+  normal gv
+  " paste over selection (replacing it)
+  normal "xP
+  " return state
+  " normal gv
+  exec printf('normal! 0%d|', s:col)
 endfunction
 "}}}
 
@@ -1323,13 +1319,13 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 command! -range -nargs=1 MultiLineExecNmode call MultiLineExeNmodeFuncBind(<line1>, <line2>, <q-args>)
 function! MultiLineExeNmodeFuncBind(line1, line2, cmd)
-    try
-        for s:line in range(a:line1, a:line2)
-            exe s:line
-            exe printf('normal %s', a:cmd)
-        endfor
-    catch
-    endtry
+  try
+    for s:line in range(a:line1, a:line2)
+      exe s:line
+      exe printf('normal %s', a:cmd)
+    endfor
+  catch
+  endtry
 endfunction
 
 
@@ -1337,5 +1333,3 @@ endfunction
 " prevent source file show again.
 set showtabline=0
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim: fdm=marker ts=4 sw=4 sts=4 expandtab

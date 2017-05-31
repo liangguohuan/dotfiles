@@ -1,3 +1,5 @@
+" vim: fdm=marker ts=2 sw=2 sts=2 expandtab
+"
 " nvim python virtual environments.
 let g:python_host_prog  = printf('%s/.pyenv/versions/neovim2/bin/python', $HOME)
 let g:python3_host_prog = printf('%s/.pyenv/versions/neovim3/bin/python', $HOME)
@@ -10,16 +12,16 @@ call plug#begin('~/.vim/bundle')
 
 " base editor plugins {{{
 if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    " frozen this plugin, it always get screen stuck in when do update.
-    Plug 'zchee/deoplete-jedi', { 'for': 'python', 'frozen': 1 },
-    Plug 'Shougo/neosnippet'
-    Plug 'Shougo/neosnippet-snippets'
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  " frozen this plugin, it always get screen stuck in when do update.
+  Plug 'zchee/deoplete-jedi', { 'for': 'python', 'frozen': 1 },
+  Plug 'Shougo/neosnippet'
+  Plug 'Shougo/neosnippet-snippets'
 else
-    " tips: ycm need install cmake python-dev first
-    Plug 'https://github.com/Valloric/YouCompleteMe.git', { 'do': './install.py'  }
-    Plug 'https://github.com/SirVer/ultisnips.git'
-    Plug 'https://github.com/honza/vim-snippets.git'
+  " tips: ycm need install cmake python-dev first
+  Plug 'https://github.com/Valloric/YouCompleteMe.git', { 'do': './install.py'  }
+  Plug 'https://github.com/SirVer/ultisnips.git'
+  Plug 'https://github.com/honza/vim-snippets.git'
 endif
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all', 'frozen':1 }
@@ -161,5 +163,3 @@ source ~/.vim-extra.vim
 catch
 endtry
 
-
-" vim: fdm=marker ts=4 sw=4 sts=4 expandtab
