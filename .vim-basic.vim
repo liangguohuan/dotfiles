@@ -1095,17 +1095,19 @@ endfunction
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => copy filename"{{{
+" => copy filename part"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-nmap yf :call CopyFilePath('p')<CR>
-nmap yt :call CopyFilePath('t')<CR>
-nmap yd :call CopyFilePath('p:h')<CR>
+nmap yd :call CopyFilenamePart('%:p:h')<CR>
+nmap yf :call CopyFilenamePart('%:p')<CR>
+nmap yn :call CopyFilenamePart('%:p:t')<CR>
+nmap yr :call CopyFilenamePart('%:p:r')<CR>
+nmap ye :call CopyFilenamePart('%:p:e')<CR>
 "{{{
-function! CopyFilePath(type) abort
-  let s:filename = expand('%:' . a:type)
-  exe 'Silent !echo "' . s:filename . '" | xsel --input -b'
-  exe 'echo "copy: ' . s:filename . '"'
+function! CopyFilenamePart(type) abort
+  let s:strmatch = expand(a:type)
+  call system(printf('echo %s | xsel -b -i', s:strmatch))
+  exe printf('echo "copy: %s"', s:strmatch)
 endfunction
 "}}}
 
