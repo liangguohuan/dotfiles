@@ -618,8 +618,8 @@ function! MultiCursorInParagraph(line1, line2, expr)
 endfunction
 
 " => Select quickly
-nmap <Leader><Leader>s :Select <C-r>=expand("<cword>")<CR><CR>
-vmap <Leader><Leader>s :call VisualSelection('select', '')<CR>
+nmap <M-s> :Select <C-r>=expand("<cword>")<CR><CR>
+vmap <M-s> :call VisualSelection('select', '')<CR>
 
 "}}}
 
@@ -1179,8 +1179,8 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']']]
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => OverCommandLine"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-nmap <Leader><Leader>r :Replace <C-r>=expand("<cword>")<CR><CR>
-vmap <Leader><Leader>r :call VisualSelection('replace', '')<CR>
+nmap <M-r> :Replace <C-r>=expand("<cword>")<CR><CR>
+vmap <M-r> :call VisualSelection('overcmdline', '')<CR>
 command! -range -nargs=1 Replace call ReplaceInParagraph(<line1>, <line2>, <q-args>)
 
 function! ReplaceInParagraph(line1, line2, expr)

@@ -524,14 +524,13 @@ function! VisualSelection(direction, extra_filter) range
   elseif a:direction == 'gv'
     call CmdLine("CtrlSF \"" . l:pattern . "\" " )
   elseif a:direction == 'replace'
-    " call CmdLine("%s" . '/'. l:pattern . '/')
-    let @/=''
-    exec "OverCommandLine %s" . '/'. l:pattern . '/'
+    call CmdLine("%s" . '/'. l:pattern . '/')
   elseif a:direction == 'f'
     execute "normal /" . l:pattern . "^M"
   elseif a:direction == 'select'
     execute printf("Select %s", l:pattern)
-  elseif a:direction == 'replace'
+  elseif a:direction == 'overcmdline'
+    let @/=''
     execute printf("Replace %s", l:pattern)
   endif
 
@@ -861,7 +860,7 @@ imap <C-CR> <Esc>o
 
 " file map
 nmap new :enew<cr>
-nmap <Leader>sf :sav<Space>
+nmap <Leader>sa :sav<Space>
 
 " if has("gui_running")
 " noremap <C-Z> <cr>
@@ -995,7 +994,9 @@ nmap gf :call EditURIUnderCursor()<CR>
 "{{{
 fun! EditURIUnderCursor()
   let uri = GetURIUnderCursor()
-  exe 'e ' . uri
+  if filereadable(uri)
+      exe 'e ' . uri
+  endif
 endf
 
 fun! XCopyURIUnderCursor()
@@ -1248,7 +1249,7 @@ endfunction
 " => Trigger vim search from content of last copy of system clipboard"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-nmap gs :call SearchNowByLastCopy()<CR>
+nmap <F3> :call SearchNowByLastCopy()<CR>
 fun! SearchNowByLastCopy()
   try
     let past = system('xclip -out -selection clipboard')  
