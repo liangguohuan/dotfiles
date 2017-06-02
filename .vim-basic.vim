@@ -673,13 +673,6 @@ set nowrap
 cabbrev chx !chmod +x %
 command! Reload :e!
 
-" fix the redraw problems with slient
-" from: http://vim.wikia.com/wiki/Avoiding_the_%22Hit_ENTER_to_continue%22_prompts
-command! -nargs=+ Silent execute 'silent <args>' | redraw!
-if has("gui_running")
-  command! -nargs=+ Silent execute 'silent <args>'
-endif
-
 " normal mode keypress 'K' will show help of function.
 autocmd BufNewFile,Bufread *.vim set keywordprg="help"
 
@@ -928,8 +921,8 @@ fun! OnlineDoc()
   let s:browser = "google-chrome"
   let s:wordUnderCursor = expand("<cword>")
   let s:url = "https://www.google.com.hk/\\#newwindow=1\\&safe=strict\\&q=" . s:wordUnderCursor
-  let s:cmd = "Silent !" . s:browser . " " . s:url
-  execute s:cmd
+  let s:cmd = printf('%s %s', s:browser, s:url)
+  call system(s:cmd)
 endfunction
 "}}}
 
@@ -969,16 +962,17 @@ function! PreviewMarkdown()
     call add(newContent, newLine)
   endfor
   call writefile(newContent, input_file)
-  silent! execute '!pandoc -f markdown_github -t html -s -S -c "' . css_file . '" -o "' . output_file .'" "' . input_file . '"'
+  let cmd = printf('pandoc -f markdown_github -t html -s -S -c "%s" -o "%s" "%s"', css_file, output_file, input_file)
+  call system(cmd)
   call delete(input_file)
   " Change encoding back
   silent! execute 'set fileencoding=' . original_encoding . ' ' . original_bomb
   " Preview
-  silent! execute '!' . BROWSER_COMMAND . ' "' . output_file . '" &>/dev/null'
+  let cmd = printf('%s "%s" &>/dev/null', BROWSER_COMMAND, output_file)
+  call system(cmd)
   execute input('Press ENTER to continue...')
   echo
   call delete(output_file)
-  exec "redraw!"
 endfunction
 "}}}
 "}}}
@@ -991,33 +985,35 @@ endfunction
 nmap gx :call XOpenURIUnderCursor()<CR>
 nmap yu :call XCopyURIUnderCursor()<CR>
 nmap gf :call EditURIUnderCursor()<CR>
+
 "{{{
 fun! EditURIUnderCursor()
-  let uri = GetURIUnderCursor()
-  if filereadable(uri)
-      exe 'e ' . uri
+  let s:uri = GetURIUnderCursor()
+  if filereadable(s:uri)
+      exe 'e ' . s:uri
   endif
 endf
 
 fun! XCopyURIUnderCursor()
-  let uri = GetURIUnderCursor()
-  exe 'Silent !echo "' . uri . '" | xsel --input -b'
-  exe 'echo "copy: ' . uri . '"'
+  let s:uri = GetURIUnderCursor()
+  let s:cmd = printf('echo %s | xsel -b -i', s:uri)
+  call system(s:cmd)
+  exe 'echo "copy: ' . s:uri . '"'
 endf
 
 fun! XOpenURIUnderCursor()
-  let uri = GetURIUnderCursor()
-  let opencmd = has('gui_running') ? ( stridx(uri, 'http') > -1 ? 'google-chrome' : 'xdg-open' ) : 'xdg-open'
-  let cmd = printf( 'Silent !%s %s &>/dev/null', opencmd, uri )
-  if !&verbose | exe cmd | endif
-  echom printf( '!%s %s', opencmd, uri )
+  let s:uri = GetURIUnderCursor()
+  let s:opencmd = has('gui_running') ? ( stridx(s:uri, 'http') > -1 ? 'google-chrome' : 'xdg-open' ) : 'xdg-open'
+  let s:cmd = printf('%s %s &>/dev/null', s:opencmd, s:uri)
+  if !&verbose | call system(s:cmd) | endif
+  echom printf( '!%s %s', s:opencmd, s:uri )
 endf
 
 function! GetURIUnderCursor() abort
 
-let line = getline('.')
-let position = getpos('.')[2]
-let uri = ''
+let s:line = getline('.')
+let s:position = getpos('.')[2]
+let s:uri = ''
 
 python3 << EOF
 import re
@@ -1026,8 +1022,8 @@ from urllib.parse import urlparse
 import vim
 
 # get the vim variables
-s = vim.eval('line')
-p = int( vim.eval('position') )
+s = vim.eval('s:line')
+p = int( vim.eval('s:position') )
 verbose = int( vim.eval('&verbose' ) )
 
 # get from inside ' or "
@@ -1058,14 +1054,14 @@ if uri is None and len(nm) > 0:
     uri = nm[0]
 
 # set uri to vim
-vim.command('let uri = "%s"' %  uri)
+vim.command('let s:uri = "%s"' %  uri)
 
 EOF
 
 " handle the uri
-let uri = substitute(uri, '\(\s\+\)', '\\\1', 'g')
-let uri = substitute(uri, '?', '\\?', 'g')
-return uri
+let s:uri = substitute(s:uri, '\(\s\+\)', '\\\1', 'g')
+let s:uri = substitute(s:uri, '?', '\\?', 'g')
+return s:uri
 
 endfunction
 "}}}
