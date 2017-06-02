@@ -88,7 +88,7 @@ alias grep='grep --color'
 alias ubuntu="lsb_release -a"
 alias mcf="vim ~/.bash_aliases"
 alias mcfn="source ~/.bash_aliases && echo alias files has been updated."
-alias mcfv='cat ~/.bash_aliases | egrep "(alias [a-z|\-]{3,}=\")|(export )" | sed "s/^\s\+//" | less'
+alias mcfv='cat ~/.bash_aliases | grep -P "(alias [a-z-]{3,}=\")|(export )" | sed -r "s/^\s+//" | less'
 alias update="sudo apt update"
 alias upgrade="sudo apt upgrade"
 alias updateall="sudo apt update && sudo apt upgrade"
