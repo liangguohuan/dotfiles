@@ -113,7 +113,7 @@ alias mysqlconf="sudo vim /opt/lampp/etc/my.cnf"
 alias showmaster="mysql -uroot --password='' -e 'show master status;'"
 alias redisconf="cat /etc/redis.conf | grep -v ^# | grep -v ^$"
 alias uvn='uname -r | awk -F "-" "{print \$1\"-\"\$2}"'
-alias neihe-old='sudo dpkg --get-selections|grep linux|egrep linux-\(headers\|image\)-\(\[0-9.-\]+\|extra-\[0-9\]\)|grep -v `uvn`|awk "{print \$1}"'
+alias neihe-old='sudo dpkg --get-selections | grep -P "linux-(headers|image)-([0-9.-]+|extra-[0-9])" | grep -v `uvn`| awk "{print \$1}"'
 alias hostconf="sudo vi /etc/hosts"
 alias hostview="less /etc/hosts"
 alias icons="nautilus ~/.local/share/icons/"
