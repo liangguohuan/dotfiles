@@ -260,6 +260,12 @@ set tm=500
 
 " Add a bit extra margin to the left
 set foldcolumn=1
+
+" Keep cursor position when switch buffers
+if v:version >= 700
+  au BufLeave * let b:winview = winsaveview()
+  au BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
+endif
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
