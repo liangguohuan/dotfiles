@@ -406,17 +406,20 @@ vnoremap cy :copy<cr>
 nnoremap cm :move<cr>
 vnoremap cm :move<cr>
 
+" Yank first two word into the clipboard
+nnoremap yw :echo system("echo " . expand('%c:t') . "| cut -d ' ' -f1,2 | tr '[:upper:]' '[:lower:]' | xsel -b -i") | echo ' COPY first two word on line'<cr>
+
 " Yank current directory path into the clipboard
-nnoremap yd :!echo %d | xsel -b -i<cr>
+nnoremap yd :echo system("echo " . expand('%d') . "| xsel -b -i") | echo ' COPY ' . expand('%d')<cr>
 
 " Yank current file path into the clipboard
-nnoremap yf :!echo %c:p | xsel -b -i<cr>
+nnoremap yf :echo system("echo " . expand('%c:p') . "| xsel -b -i") | echo ' COPY ' . expand('%c:p')<cr>
 
 " Yank current file name into the clipboard
-nnoremap yn :!echo %c:t | xsel -b -i<cr>
+nnoremap yn :echo system("echo " . expand('%c:t') . "| xsel -b -i") | echo ' COPY ' . expand('%c:t')<cr>
 
 " yank root of current file's name into the clipboard
-nnoremap yr :!echo -n %c:r | xsel -b -i<cr>
+nnoremap yr :echo system("echo " . expand('%c:r') . "| xsel -b -i") | echo ' COPY ' . expand('%c:r')<cr>
 
 " Mappings for faster renaming
 nnoremap I cw<c-a>
@@ -505,8 +508,9 @@ nmap ,nl :alink<CR>
 vmap t :select<CR>
 nmap q :quit<CR>
 
-nnoremap yw :echo system("echo " . expand('%c:t') . "| cut -d ' ' -f1,2 | tr '[:upper:]' '[:lower:]' | xsel -b -i")<cr>
+" search first one word
 nmap * :execute "normal /" . system("echo " . expand('%c:t') . "| cut -d ' ' -f1 | tr '[:upper:]' '[:lower:]'")<CR>nN
+" search first two word
 nmap & :execute "normal /" . system("echo " . expand('%c:t') . "| cut -d ' ' -f1,2 | tr '[:upper:]' '[:lower:]'")<CR>nN
 
 " --- command
