@@ -124,7 +124,7 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
 " force show window title
-set title
+set notitle
 " completion dont show preview window
 set completeopt-=preview
 " Set utf8 as standard encoding and en_US as the standard language
