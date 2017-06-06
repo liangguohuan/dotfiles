@@ -1,4 +1,4 @@
-" vim: fdm=marker ts=4 sw=4 sts=4 expandtab
+" vim: fdm=marker ts=2 sw=2 sts=2 expandtab
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Map Helper"{{{
@@ -995,8 +995,8 @@ nmap gf :call EditURIUnderCursor()<CR>
 "{{{
 fun! EditURIUnderCursor()
   let s:uri = GetURIUnderCursor()
-  if filereadable(s:uri)
-      exe 'e ' . s:uri
+  if filereadable(expand(s:uri))
+      exe printf('e %s', fnameescape(s:uri))
   endif
 endf
 
@@ -1004,22 +1004,26 @@ fun! XCopyURIUnderCursor()
   let s:uri = GetURIUnderCursor()
   let s:cmd = printf('echo %s | xsel -b -i', s:uri)
   call system(s:cmd)
-  exe 'echo "copy: ' . s:uri . '"'
+  echo printf('COPY: %s', s:uri)
 endf
 
 fun! XOpenURIUnderCursor()
   let s:uri = GetURIUnderCursor()
+  let s:uri = shellescape(s:uri, 1)
   let s:opencmd = has('gui_running') ? ( stridx(s:uri, 'http') > -1 ? 'google-chrome' : 'xdg-open' ) : 'xdg-open'
   let s:cmd = printf('%s %s &>/dev/null', s:opencmd, s:uri)
-  if !&verbose | call system(s:cmd) | endif
-  echom printf( '!%s %s', s:opencmd, s:uri )
+  call system(s:cmd)
+  echo s:cmd
 endf
 
 function! GetURIUnderCursor() abort
 
 let s:line = getline('.')
-let s:position = getpos('.')[2]
+let s:position = col('.')
 let s:uri = ''
+
+" currline is url
+if filereadable(s:line) | return s:line | endif
 
 python3 << EOF
 import re
@@ -1064,9 +1068,6 @@ vim.command('let s:uri = "%s"' %  uri)
 
 EOF
 
-" handle the uri
-let s:uri = substitute(s:uri, '\(\s\+\)', '\\\1', 'g')
-let s:uri = substitute(s:uri, '?', '\\?', 'g')
 return s:uri
 
 endfunction
