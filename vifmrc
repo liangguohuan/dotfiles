@@ -1,4 +1,5 @@
-" vim: filetype=vifm :
+" vim: filetype=vim fdm=marker ts=4 sw=4 sts=4 expandtab
+"
 " Sample configuration file for vifm (last updated: 24 Oct, 2014)
 " You can edit this file by hand.
 " The " character at the beginning of a line comments out the line.
@@ -242,8 +243,7 @@ fileviewer *.[1-8] gtbl %c | groff -Tascii -man | col -b
 " Image
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
         \ {View in sxiv}
-        " \ sxiv -b -r -s w -g 800x449+285+155 %f %i,
-        \ sxiv -b %f *.* %i,
+        \ isxiv %f %i,
         \ {View in gpicview}
         \ gpicview %c,
 fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm mediainfo %f
@@ -464,8 +464,21 @@ nnoremap ,w :set wrap!<cr>
 " nnoremap <left> <nop>
 
 " --- CUSTOM SETTINGS ----------------------------------------------------------
+"
 set vimhelp
 colorscheme my
+
+" --- devicons
+" file types
+set classify=' :dir:, :exe:, :reg:, :link:'
+" various file names
+set classify+=' ::*.styl::, ::*.scss::, ::*.htm::, ::*.html::, ::*.slim::, ::*.ejs::, ::*.css::, ::*.less::, ::*.md::, ::*.markdown::, ::*.json::, ::*.js::, ::*.jsx::, ::*.rb::, ::*.php::, ::*.py::, ::*.pyc::, ::*.pyo::, ::*.pyd::, ::*.coffee::, ::*.mustache::, ::*.hbs::, ::*.conf::, ::*.ini::, ::*.yml::, ::*.bat::, ::*.jpg::, ::*.jpeg::, ::*.bmp::, ::*.png::, ::*.gif::, ::*.ico::, ::*.twig::, ::*.cpp::, ::*.c++::, ::*.cxx::, ::*.cc::, ::*.cp::, ::*.c::, ::*.hs::, ::*.lhs::, ::*.lua::, ::*.java::, ::*.sh::, ::*.fish::,λ ::*.ml::,λ ::*.mli::, ::*.diff::, ::*.db::, ::*.sql::, ::*.dump::, ::*.clj::, ::*.cljc::, ::*.cljs::, ::*.edn::, ::*.scala::, ::*.go::, ::*.dart::, ::*.xul::, ::*.sln::, ::*.suo::, ::*.pl::, ::*.pm::, ::*.t::, ::*.rss::, ::*.f#::, ::*.fsscript::, ::*.fsx::, ::*.fs::, ::*.fsi::, ::*.rs::, ::*.rlib::, ::*.d::, ::*.erl::, ::*.hrl::, ::*.vim::, ::*.ai::, ::*.psd::, ::*.psb::, ::*.ts::, ::*.jl::, ::*.rc::, ::*.xml::, ::*.log::, ::*.avi::, ::*.wmv::, ::*.mpeg::, ::*.mpg::, ::*.mkv::, ::*.flv::, ::*.mp4::, ::*.vdat::, ::*.mp3::, ::*.flac::, ::*.wav::, ::*.ogg::, ::*.epub::, ::*.pdf::, ::*.7z::, ::*.apk::, ::*.bz2::, ::*.cab::, ::*.cpio::, ::*.deb::, ::*.gem::, ::*.gz::, ::*.gzip::, ::*.lha::, ::*.lzh::, ::*.lzma::, ::*.rar::, ::*.rpm::, ::*.tar::, ::*.tgz::, ::*.xz::, ::*.zip::'
+" exact file names
+set classify+=' ::../::,X1 ::exact-match-case-sensitive-1.txt::,X2 ::exact-match-case-sensitive-2::, ::gruntfile.coffee::, ::gruntfile.js::, ::gruntfile.ls::, ::gulpfile.coffee::, ::gulpfile.js::, ::gulpfile.ls::, ::dropbox::, ::.ds_store::, ::.gitconfig::, ::.gitignore::, ::.bashrc::, ::.bashprofile::, ::favicon.ico::, ::license::, ::node_modules::, ::react.jsx::, ::procfile::, ::.Xdefaults::, ::.Xresources::, ::.dmrc::, ::.fasd::, ::.gitconfig::, ::.jack-settings::, ::.mime.types::, ::.nvidia-settings-rc::, ::.pam_environment::, ::.profile::, ::.recently-used::, ::.selected_editor::, ::.vimrc::, ::.xinputrc::, ::mimeapps.list::, ::user-dirs.dirs::, ::ini::, ::config::'
+
+" Total size of selected files
+set statusline="  %t%= %A %10u:%-7g %15E %20d  "
+
 " --- filetype improved
 " image
 filextype *.jpg,*.jpeg,*.gif,*.png,*.bmp
@@ -517,18 +530,11 @@ nmap & :execute "normal /" . system("echo " . expand('%c:t') . "| cut -d ' ' -f1
 command! targz tar czf %a.tar.gz %f %%
 command! gdebi gdebi -q %f %m
 command! dtrx dtrx %f %m
+command! unpack dtrx %f %m
 command! rm rm -rf %f
-command! trash trash %f
 command! trash trash %f
 command! mfind find %d -type f -name "*%a*" ! -path "*.git*" ! -path "*fugitive*" %M
 " Example: ag 'app.*http.*request'
 command! ag ag -i --nocolor --follow --nogroup --hidden --ignore '.git' --ignore 'fugitive' -g '%a' %d %M
 command! mv mv %f %a
 
-
-
-" Total size of selected files
-set statusline="  %t%= %A %10u:%-7g %15E %20d  "
-
-
-" vim: filetype=vim fdm=marker ts=4 sw=4 sts=4 expandtab
