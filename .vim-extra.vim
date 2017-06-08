@@ -3,9 +3,6 @@
 
 nmap cof :set foldenable!<CR>
 
-" overwrite Locate command in tpope/vim-eunuch
-au VimEnter * command! -bang -nargs=+ -complete=dir Locate call fzf#vim#locate(<q-args>, <bang>0)
-
 cabbrev mcf MultipleCursorsFind
 cabbrev mle MultiLineExecNmode
 
@@ -21,7 +18,7 @@ if has("gui_running")
   let g:startify_disable_at_vimenter = 1
 endif
 let g:startify_custom_header =
-      \ map(split(system('/usr/games/fortune | /usr/games/cowsay'), '\n'), '"   ". v:val')
+      \ map(split(system('/usr/games/fortune -s | /usr/games/cowsay -W 60'), '\n'), '"   ". v:val')
 
 let g:startify_list_order = [
       \ ['   sessions:'],

@@ -177,11 +177,11 @@ augroup END
 "{{{
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_safe_mode_by_default=0
-nnoremap <silent> [unite]v    :<C-u>VimFiler<CR>
-nnoremap <silent> <leader>vc  :<C-u>VimFilerCurrentDir<CR>
-nnoremap <silent> <leader>vb  :<C-u>VimFilerBufferDir<CR>
-nnoremap <silent> <leader>vd  :<C-u>VimFilerDouble<CR>
-nnoremap <silent> <leader>ve  :<C-u>VimFilerExplorer<CR>
+nnoremap <silent> [unite]vf   :<C-u>VimFiler<CR>
+nnoremap <silent> [unite]vc   :<C-u>VimFilerCurrentDir<CR>
+nnoremap <silent> [unite]vb   :<C-u>VimFilerBufferDir<CR>
+nnoremap <silent> [unite]vd   :<C-u>VimFilerDouble<CR>
+nnoremap <silent> [unite]ve   :<C-u>VimFilerExplorer<CR>
 augroup vimfiler_aug
   autocmd!
   autocmd FileType vimfiler setlocal cursorline
@@ -1120,7 +1120,7 @@ nmap <F5> :QuickRun<CR>
 "{{{
 " Default fzf layout
 " - down / up / left / right
-" let g:fzf_layout = { 'down': '~40%' }
+let g:fzf_layout = { 'down': '~100%' }
 nmap <Leader>f :FZF!<CR>
 " au! VimEnter * command! -bang FZF call fzf#run(fzf#wrap('fzf', {'dir': getcwd(), 'options': '--prompt="> "'}, <bang>0))
 " nmap <Leader>f :call fzf#run({'options': '--prompt "> "', 'sink': 'e'})<CR>
@@ -1198,4 +1198,9 @@ function! ReplaceInParagraph(line1, line2, expr)
   endif
   exec printf('OverCommandLine %d,%ds/%s/%s', s:line1, s:line2, s:findstr, s:repstr)
 endfunction
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vifm
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>v :EditVifm<CR>
 

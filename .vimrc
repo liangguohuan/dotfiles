@@ -25,7 +25,7 @@ else
 endif
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all', 'frozen':1 }
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf.vim'
 
 Plug 'https://github.com/sheerun/vim-polyglot.git'
 Plug 'https://github.com/morhetz/gruvbox.git'
@@ -70,13 +70,14 @@ Plug 'https://github.com/mhinz/vim-startify.git'
 Plug 'https://github.com/Chiel92/vim-autoformat.git'             , { 'on': 'Autoformat' }
 Plug 'https://github.com/osyo-manga/vim-over.git'                , { 'on': 'OverCommandLine' }
 Plug 'https://github.com/brooth/far.vim.git'                     , { 'on': ['Far', 'F'] }
-Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'   , { 'do' : ['RainbowParentheses', 'RainbowParenthesesColors'] }
+Plug 'https://github.com/junegunn/rainbow_parentheses.vim.git'   , { 'on': 'RainbowParentheses' }
+Plug 'https://github.com/vifm/vifm.vim.git'                      , { 'on': ['EditVifm', 'SplitVifm', 'VsplitVifm', 'DiffVifm'] }
 " }}}
 " Shougo Serise {{{
 Plug 'https://github.com/Shougo/unite.vim.git'
 Plug 'https://github.com/Shougo/neomru.vim.git'
 Plug 'https://github.com/Shougo/vimfiler.vim.git'
-Plug 'https://github.com/Shougo/vimproc.vim.git'                 , { 'do' : 'make' }
+Plug 'https://github.com/Shougo/vimproc.vim.git'                 , { 'do': 'make' }
 Plug 'https://github.com/Shougo/vimshell.git'                    , { 'on': 'VimShell' }
 Plug 'https://github.com/Shougo/tabpagebuffer.vim.git'
 Plug 'https://github.com/Shougo/unite-outline.git'
@@ -123,9 +124,6 @@ Plug 'https://github.com/liangguohuan/vim-layout.git'
 " }}}
 " php plugins {{{
 Plug 'https://github.com/alvan/vim-php-manual.git'               , { 'for': 'php' }
-" Plug 'https://github.com/shawncplus/phpcomplete.vim'             , { 'for': 'php' }
-" Plug 'https://github.com/m2mdas/phpcomplete-extended'            , { 'for': 'php' }
-" Plug 'https://github.com/m2mdas/phpcomplete-extended-laravel'    , { 'for': 'php' }
 Plug 'https://github.com/adoy/vim-php-refactoring-toolbox.git'   , { 'for': 'php' }
 Plug 'https://github.com/stephpy/vim-php-cs-fixer.git'           , { 'for': 'php' }
 " }}}
