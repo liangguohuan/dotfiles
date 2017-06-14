@@ -10,11 +10,13 @@
     path = ~/.gitalias
 [alias]
     c1 = clone --depth 1
+    browse = "!f(){ start-stop-daemon --start --background --name=docweb --exec /usr/bin/xdg-open $(git http-url | sed 's/\\.git//') &>/dev/null; }; f"
     addurl = remote add origin
     seturl = remote set-url origin
     cma = commit -a -m
     cam = commit --amend -m
     url = config --get remote.origin.url
+    http-url = "!f(){ git url | awk -F ':' '{ if (index($0, \"http\") == 0) printf(\"https://github.com/%s\", $2); else print $0 }'; }; f"
     info = remote  -v
     uload = push -u origin master
     dload = pull origin master

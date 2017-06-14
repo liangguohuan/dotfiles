@@ -371,7 +371,7 @@
 
   # TODO
   log-refs = log --all --graph --decorate --oneline --simplify-by-decoration --no-merges
-  log-timeline = log --date=short --format=' %Cred%h %C(yellow)%ar %Creset- %s %Cgreen%ad %Cblue%an'
+  log-timeline = log --date=short --format='%Cred%h %C(yellow)%ar %Creset- %s %Cgreen%ad %Cblue%an'
   # log-local = log --oneline origin..HEAD
   log-fetched = log --oneline HEAD..origin/master
 
