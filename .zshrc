@@ -55,7 +55,7 @@ ZSH_THEME="pretty"
 #
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git composer docker gem laravel laravel4 mvn node npm nvm perl pip pyenv python rbenv rsync rvm sublime sudo tmux vagrant)# }}}
-plugins=(zsh_reload git laravel5 docker docker-compose gem tmuxinator npm pip python tmux zsh-syntax-highlighting fasd git-extras fzf-marker)
+plugins=(zsh_reload git laravel5 docker docker-compose go gem tmuxinator npm pip python tmux zsh-syntax-highlighting fasd git-extras fzf-marker)
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"

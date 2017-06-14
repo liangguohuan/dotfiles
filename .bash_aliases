@@ -63,8 +63,9 @@ export STORM_HOME=/opt/storm
 export MONGODB_HOME=/opt/mongodb
 export LAMPP_HOME=/opt/lampp
 export COMPOSER_PATH=/home/hanson/.composer/vendor/bin
-export PATH=.:$JAVA_HOME/bin:$STORM_HOME/bin:$ZOOKEEPER_HOME/bin:$MONGODB_HOME/bin:$COMPOSER_PATH:$PATH
-export PATH=.:/home/hanson/CodeHub/SHELL:$PATH
+export GOPATH=$HOME/.go
+export PATH=$GOPATH/bin:$JAVA_HOME/bin:$STORM_HOME/bin:$ZOOKEEPER_HOME/bin:$MONGODB_HOME/bin:$COMPOSER_PATH:$PATH
+export PATH=.:$HOME/CodeHub/SHELL:$PATH
 # export PHP_EXTENSION_PATH=$(php -i | grep ^extension_dir | awk -F ' => ' '{print $2}')
 export PHP_EXTENSION_PATH=/opt/lampp/lib/php/extensions/no-debug-non-zts-20151012
 export DOCSWEB=/home/hanson/Data/docs-web
@@ -146,7 +147,7 @@ alias dls="docker ps -a"
 alias dis="docker images"
 alias laradock="docker-compose up -d nginx mysql redis"
 alias vmdock="docker-compose exec workspace bash"
-alias docweb="start-stop-daemon --start --background --name=docweb --exec /home/hanson/CodeHub/PYTHON/Default/local-host-bind.py \
+alias docweb="start-stop-daemon --start --background --name=docweb --exec /home/hanson/CodeHub/MISC/local-host-bind.py \
     && xdg-open http://localhost:8888/index/docs-html/ &>/dev/null"
 alias cscope-update="find . -name '*.php' -type f > cscope.files && cscope -bq"
 # copy file content to clipboard: cfc [filename]

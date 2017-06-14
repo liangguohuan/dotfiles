@@ -303,7 +303,7 @@ if has("gui_running")
   set guioptions-=r        " hide scroll right
   set guioptions-=b        " hide scroll bottom
   set showtabline=0        " hide tabline
-  set columns=130 lines=33
+  set columns=130 lines=35
 endif
 "}}}
 "}}}
