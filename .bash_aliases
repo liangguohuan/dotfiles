@@ -28,8 +28,6 @@ fi
 stty ixany
 stty ixoff -ixon
 
-eval `dircolors /usr/src/dircolors/dircolors-solarized/dircolors.256dark`
-
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 export PYENV_VERSION='system'
 export PATH="$HOME/.pyenv/bin:$PATH"
