@@ -10,8 +10,9 @@ zplug () {
   local dir=$(printf "%s/custom/plugins/%s" "$ZSH" "$name")
   [[ ! -e "$dir" ]] && {
     git clone --recursive --depth 1 "$uri" "$dir"
-    [[ ! -e "$dir/$name.plugin.zsh" ]] && find "$dir" -name "*.plugin.zsh" | xargs -i ln -s {} "$dir/$name.plugin.zsh"  
+    [[ ! -e "$dir/$name.plugin.zsh" ]] && find "$dir" -maxdepth 1 -name "*.plugin.zsh" | xargs -i ln -rs {} "$dir/$name.plugin.zsh"  
   }
+  [[ -n "$2" ]] && [[ -s "$dir/$2" ]] && [[ ! -e "$dir/$name.plugin.zsh" ]] && ln -rsf "$dir/$2" "$dir/$name.plugin.zsh"
   plugins+=("$name")
 }
 
@@ -29,7 +30,7 @@ ZSH_THEME="pretty"
 
 # Add wisely, as too many plugins slow down shell startup.
 # dont use plugin fasd, it will caused 'permission denied: ../..' when alias using function is been executed.
-plugins=(zsh_reload git git-extras laravel5 docker docker-compose tmux tmuxinator go gem yarn pip python)
+plugins=(zsh_reload fasd git git-extras laravel5 docker docker-compose tmux tmuxinator go gem yarn pip python)
 # plugin extends
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "Tarrasch/zsh-bd"
@@ -41,7 +42,6 @@ zplug "liangguohuan/zsh-dircolors-solarized"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
-source ~/.bash_aliases
 
 #=======================================================================================================================
 #=> extends
@@ -49,13 +49,6 @@ source ~/.bash_aliases
 # {{{
 #=> alias
 source ~/.bash_aliases
-
-#=> zsh alias setting
-alias '..'='cd ..'
-alias -g ...='../..'
-alias -g ....='../../..'
-alias -g .....='../../../..'
-alias -g PR=http_proxy=127.0.0.1:8087
 
 #=> zsh-mime-setup
 alias -s php=gvim
