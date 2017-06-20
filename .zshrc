@@ -35,16 +35,15 @@ plugins=(zsh_reload fasd git git-extras laravel5 docker docker-compose tmux tmux
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "Tarrasch/zsh-bd"
 zplug "Tarrasch/zsh-autoenv"
+zplug "liangguohuan/fzf-extends"
 zplug "liangguohuan/fzf-marker"
 zplug "liangguohuan/zsh-dircolors-solarized"
-# User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
+# enabled oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
 #=======================================================================================================================
-#=> extends
+#=> extends base
 #=======================================================================================================================
 # {{{
 #=> alias
@@ -96,13 +95,67 @@ sudo-command-line() {
 }
 zle -N sudo-command-line
 bindkey "\e\e" sudo-command-line
+#}}}
 
+#=======================================================================================================================
+#=> extends misc
+#=======================================================================================================================
+# {{{
 #=> A command-line fuzzy finder written in Go: https://github.com/junegunn/fzf
 export FZF_DEFAULT_OPTS="--prompt='> ' --reverse --color=hl:2,hl+:161 --height=60%"
 export FZF_DEFAULT_COMMAND="ag --depth 26 -t -g '' 2>/dev/null"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
+#=> docs search via ag and fzf
+alias zhelp="fzf-htmldocs-search ~/Data/docs-web/zsh_html $1"
+alias mhelp="fzf-htmldocs-search ~/Data/docs-web/mysql_html $1"
+
+#=> repalce man into vman
+man() { vman "$@" }
+
+#=> fixed fasd bug
+_fasd_preexec_fixed() {
+  [[ -n $functions[fasd] ]] && unset -f fasd
+}
+add-zsh-hook preexec _fasd_preexec_fixed
+
+# Video translate into gif
+video2gif() {
+  ffmpeg -y -i "${1}" -vf fps=${3:-10},scale=${2:-320}:-1:flags=lanczos,palettegen "${1}.png"
+  ffmpeg -i "${1}" -i "${1}.png" -filter_complex "fps=${3:-10},scale=${2:-320}:-1:flags=lanczos[x];[x][1:v]paletteuse" "${1}".gif
+  rm "${1}.png"
+}
+# }}}
+
+#=======================================================================================================================
+#=> NOTICE: complete function must enabled bashcompinit
+#=======================================================================================================================
+# {{{
+[[ -z $functions[complete] ]] && autoload -U +X bashcompinit && bashcompinit
+#=> completion for command bulk
+_bulkcompletelist() { bulk help edit | egrep -o '\-\-[a-z]+'; echo -e 'help\nedit' }
+complete -F _bulkcompletelist bulk
+#=> smartcd
+_smartcdcompletelist() { smartcd -h | egrep -o '[a-z]+[||)]' | egrep -o '[a-z]+'; echo -e 'enter\nleave' }
+complete -F _smartcdcompletelist smartcd
+#=> npm
+npmcmds=$(cat << EOF
+access adduser bin bugs c cache completion config
+ddp dedupe deprecate dist-tag docs edit explore get
+help help-search i init install install-test it link
+list ln login logout ls outdated owner pack ping
+prefix prune publish rb rebuild repo restart root
+run run-script s se search set shrinkwrap star
+stars start stop t tag team test tst un uninstall
+unpublish unstar up update v version view whoami
+EOF
+)
+_npmcompletelist() { sed -r -e 's/\s+/\n/g' <<< $npmcmds }
+complete -F _npmcompletelist npm
+#=> dropbox
+# _dropboxcompletelist() { dropbox help | grep -Z -P -o '^\s[\w]+' | tr " " "\n" }
+# complete -F _dropboxcompletelist dropbox
 # }}}
 
 #=> testing
