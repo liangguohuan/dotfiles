@@ -1235,16 +1235,29 @@ nmap <silent> gl :call GoBackLastAccessBuffer()<CR>
 au BufWinLeave * call RecordLastAccessBufferNr()
 function! RecordLastAccessBufferNr() abort
   let s:bcur = bufnr('%')
-  if buflisted(s:bcur) == 1
-    let g:bufaccesslasttime = s:bcur
+  if exists('g:bufaccesslasttime') == 0
+    let g:bufaccesslasttime = []
+  endif
+  if buflisted(s:bcur) == 1 && filereadable(expand('%:p'))
+    if s:bcur != get(g:bufaccesslasttime, -1)
+        call add(g:bufaccesslasttime, s:bcur)
+    endif
+    if len(g:bufaccesslasttime) > 2
+      let g:bufaccesslasttime = [g:bufaccesslasttime[-2], g:bufaccesslasttime[-1]]
+    endif
   endif
 endfunction
 
 function! GoBackLastAccessBuffer() abort
   " let s:alternateBuffer = expand('#')
   " exe printf('e %s', s:alternateBuffer)
+  let s:bcur = bufnr('%')
   try
-    exec printf('b %d', g:bufaccesslasttime)
+    let s:lb = g:bufaccesslasttime[-1]
+    if s:lb == s:bcur
+      let s:lb = g:bufaccesslasttime[-2]
+    endif
+    exec printf('b %d', s:lb)
   catch
   endtry
 endfunction
