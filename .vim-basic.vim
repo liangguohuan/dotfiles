@@ -526,13 +526,15 @@ function! VisualSelection(direction, extra_filter) range
   let l:pattern = substitute(l:pattern, "\n$", "", "")
 
   if a:direction == 'b'
-    execute "normal ?" . l:pattern . "^M"
+    let @/ = l:pattern
+    exec "normal N"
   elseif a:direction == 'gv'
     call CmdLine("CtrlSF \"" . l:pattern . "\" " )
   elseif a:direction == 'replace'
     call CmdLine("%s" . '/'. l:pattern . '/')
   elseif a:direction == 'f'
-    execute "normal /" . l:pattern . "^M"
+    let @/ = l:pattern
+    exec "normal n"
   elseif a:direction == 'select'
     execute printf("Select %s", l:pattern)
   elseif a:direction == 'overcmdline'
@@ -738,7 +740,7 @@ function! CloseFromFugitiveView()
   let s:real_filename = printf('%s/%s', s:root, s:basename)
   if stridx(Vimcmd('nmap q'), 'No mapping found') > -1
     let s:action = ''
-    if file_readable(s:real_filename)
+    if filereadable(s:real_filename)
       let s:action = printf('e %s', s:real_filename)
     else
       let s:action = 'wincmd w'
@@ -1193,7 +1195,7 @@ command! LoadENVPJLocal call ENVPJLocal()
 
 function! ENVPJLocal() abort
   let s:filename = printf('%s/.env.vim', getcwd())
-  if file_readable(s:filename)
+  if filereadable(s:filename)
     if exists('g:envpjlocalrec') == 0
       let g:envpjlocalrec = {}
     endif
@@ -1238,7 +1240,7 @@ function! RecordLastAccessBufferNr() abort
   if exists('g:bufaccesslasttime') == 0
     let g:bufaccesslasttime = []
   endif
-  if buflisted(s:bcur) == 1 && filereadable(expand('%:p'))
+  if buflisted(s:bcur) == 1 
     if s:bcur != get(g:bufaccesslasttime, -1)
         call add(g:bufaccesslasttime, s:bcur)
     endif

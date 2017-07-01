@@ -112,7 +112,7 @@ Plug 'https://github.com/terryma/vim-expand-region.git'
 Plug 'https://github.com/tommcdo/vim-exchange.git'
 Plug 'https://github.com/vim-scripts/argtextobj.vim.git'
 Plug 'https://github.com/vim-scripts/ReplaceWithRegister.git'
-Plug 'https://github.com/mattn/emmet-vim'                        , { 'for': 'html' }
+Plug 'https://github.com/mattn/emmet-vim'                        , { 'for': ['html', 'css'] }
 " Plug 'https://github.com/bkad/CamelCaseMotion.git'
 " }}}
 " my custom {{{

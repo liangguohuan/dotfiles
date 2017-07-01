@@ -251,6 +251,93 @@ function! SearchViaXdotool(kw)
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Language Helper
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => clang helper
+autocmd FileType c nmap <buffer> K :silent call system("tmux splitw -p 100 'exec vman <C-r>=expand('<cword>')<CR>' \; tmux resize -Z")<CR>
+
+" => PHP helper
+command! PHPFuncHelper call PHPFuncHelper()
+function! PHPFuncHelper()
+  let s:method = substitute(expand('<cword>'), '_', '-', 'g')
+  let s:uri = substitute($PHPFUNCTEMPLATE, '{{method}}', s:method, '')
+  let s:file = get(matchlist(s:uri, ':\/\/\(.*html\)'), 1)
+  if !filereadable(s:file)
+    echo 'php doc request failed'
+    return
+  endif
+  let s:cmd = printf('xdg-open %s', s:uri)
+  silent call system(s:cmd)
+endfunction
+
+" go helper
+autocmd FileType go nnoremap <buffer> K :call GoApiDocHelper()<CR>
+function! GoApiDocHelper()
+  call ApiDocHelper($GOAPITEMPLATE)
+endfunction
+
+" javascript helper
+autocmd FileType javascript nnoremap <buffer> K :call NodeApiDocHelper()<CR>
+function! NodeApiDocHelper()
+  call ApiDocHelper($NODEAPITEMPLATE)
+endfunction
+
+" template format: file:///home/hanson/Data/docs-web/nodejs.org/api/%s.html#%s
+function! GetApiRealPkg(pkg)
+  let s:matchparts = []
+  " golang
+  call add(s:matchparts, printf('\s\+%s\s\+[\''"]\(.*\)[\''"]', a:pkg))
+  call add(s:matchparts, printf('\s\+[\''"]\(.*%s\)[\''"]', a:pkg))
+  " nodejs
+  call add(s:matchparts, printf('\s\+%s\s\+[^.]*[\''"]\(.*\)[\''"]', a:pkg))
+
+  let s:lines = getline(1, line('.'))
+  for s:line in s:lines
+    for s:matchpart in s:matchparts 
+      if match(s:line, s:matchpart) > -1
+        return get(matchlist(s:line, s:matchpart), 1)
+      endif
+    endfor
+  endfor
+  return a:pkg
+endfunction
+
+function! ApiDocHelper(template)
+  " parse api on curline
+  let s:line = getline('.')
+  let s:matchlist = matchlist(s:line, printf('\(\w\+\)\.\(\(\w\+\.\)*%s\)', expand('<cword>')))
+  let s:pkg = get(s:matchlist, 1)
+  let s:method = get(s:matchlist, 2)
+  " find really pkg
+  let s:pkg = GetApiRealPkg(s:pkg)
+  " handle uri
+  let s:uri = substitute(a:template, '{{pkg}}', s:pkg, 'g')
+  let s:uri = substitute(s:uri, '{{method}}', s:method, 'g')
+  " check file exists
+  let s:file = get(matchlist(s:uri, ':\/\/\(.*html\)'), 1)
+  if !filereadable(s:file)
+    echo 'Api doc request failed'
+    return
+  endif
+  " find fragment
+  let s:fragment = strpart(s:uri, stridx(s:uri, '#'))
+  let s:cmd = printf('grep -ioP "%s[\w]*" %s | head -1', s:fragment, s:file)
+  let s:rfragment = system(s:cmd)
+  if s:rfragment != ''
+    let s:uri = substitute(s:uri, s:fragment, s:rfragment, '')
+  endif
+  " open uri with browse
+  if $is_tmux
+    let s:uri = substitute(s:uri, '#', '##', '')
+    let s:cmd = printf('tmux run ''tmux splitw "lynx -vikeys %s" \; resizep -Z''', s:uri)
+  else
+    let s:cmd = printf('xdg-open %s', s:uri)
+  endif
+  echom s:cmd
+  silent call system(s:cmd)
+endfunction
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => testing
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Notice: gitcommit will be failed if do this.

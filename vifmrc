@@ -525,6 +525,8 @@ nmap q :quit<CR>
 nmap * :execute "normal /" . system("echo " . expand('%c:t') . "| cut -d ' ' -f1 | tr '[:upper:]' '[:lower:]'")<CR>nN
 " search first two word
 nmap & :execute "normal /" . system("echo " . expand('%c:t') . "| cut -d ' ' -f1,2 | tr '[:upper:]' '[:lower:]'")<CR>nN
+" search from clipboard
+nmap gs :execute "normal /" . system("xsel -b -o")<CR>nN
 
 " --- command
 command! targz tar czf %a.tar.gz %f %%

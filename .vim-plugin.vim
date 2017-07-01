@@ -245,6 +245,9 @@ if !has('nvim')
   " because YCM needs the language:<lang> field in the tags output
   let ycm_collect_identifiers_from_tags_files=1
 
+  "Youcompleteme fix
+  let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+
   let g:ycm_python_binary_path = g:python3_host_prog
   let ycm_collect_identifiers_from_tags_files=1
   let g:ycm_filetype_blacklist = {
@@ -259,6 +262,14 @@ if !has('nvim')
   let g:ycm_autoclose_preview_window_after_insertion = 1
   let g:ycm_error_symbol = '>>'
   let g:ycm_warning_symbol = '>*'
+  let g:ycm_collect_identifiers_from_tags_files=1
+  let g:ycm_min_num_of_chars_for_completion=2
+  let g:ycm_cache_omnifunc=0
+  let g:ycm_seed_identifiers_with_syntax=1
+  let g:ycm_complete_in_strings = 1
+  let g:ycm_complete_in_comments = 1
+  let g:ycm_collect_identifiers_from_comments_and_strings = 0
+  let g:clang_user_options='|| exit 0'
   nnoremap ygf :YcmCompleter GoToDeclaration<CR>
   nnoremap ygd :YcmCompleter GoToDefinition<CR>
   nnoremap ygg :YcmCompleter GoToDefinitionElseDeclaration<CR>
@@ -1211,3 +1222,10 @@ autocmd FileType go nmap ygg :GoDef<CR>
 autocmd FileType go nmap ygd :GoInfo<CR>
 autocmd FileType go nmap ygi :GoImports<CR>
 autocmd BufWritePost *.go exec "GoImports"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-eunuch
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>W :SudoWrite<CR>
+nmap <leader>E :SudoEdit<CR>
+
