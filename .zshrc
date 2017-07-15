@@ -103,7 +103,7 @@ bindkey "\e\e" sudo-command-line
 # {{{
 #=> A command-line fuzzy finder written in Go: https://github.com/junegunn/fzf
 export FZF_DEFAULT_OPTS="--prompt='> ' --reverse --color=hl:2,hl+:161 --height=60%"
-export FZF_DEFAULT_COMMAND="ag --depth 26 -t -g '' 2>/dev/null"
+export FZF_DEFAULT_COMMAND="ag --depth 26 -t -g '' --path-to-agignore ${HOME}/.agignore 2>/dev/null"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
