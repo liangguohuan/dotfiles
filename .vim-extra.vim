@@ -254,7 +254,18 @@ endfunction
 " => Language Helper
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => clang helper
-autocmd FileType c nmap <buffer> K :silent call system("tmux splitw -p 100 'exec vman <C-r>=expand('<cword>')<CR>' \; tmux resize -Z")<CR>
+" autocmd FileType c nmap <buffer> K :silent call system("tmux splitw -p 100 'exec vman <C-r>=expand('<cword>')<CR>' \; tmux resize -Z")<CR>
+let g:ft_man_open_mode = 'tab'
+autocmd FileType c nnoremap <buffer> K :call CFuncHelper()<CR>
+autocmd FileType man setlocal foldcolumn=1 virtualedit+=all
+fun! CFuncHelper()
+  if exists(":Man") != 2
+    source $VIMRUNTIME/ftplugin/man.vim
+  endif 
+  let s:cword = expand('<cword>')
+  let s:cmd = printf("Man 3 %s", s:cword)
+  exe s:cmd
+endf
 
 " => PHP helper
 command! PHPFuncHelper call PHPFuncHelper()
