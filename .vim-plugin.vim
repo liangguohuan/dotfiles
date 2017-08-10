@@ -646,22 +646,38 @@ au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Syntastic (syntax checker)"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+" "{{{
+" nnoremap coe :SyntasticToggle<CR>
+" let g:syntastic_python_checkers=['flake8']
+" " let g:syntastic_phpcs_conf = "--standard=/home/hanson/.phpcs-ruleset.xml" " the variable had been invalid.
+" let g:syntastic_php_checkers=['php', 'phpmd']
+" let g:syntastic_javascript_checkers=['jshint']
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+
+" cabbrev <silent> <buffer> bd lclose\|bdelete
+
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" "}}}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => ALE (syntax checker)"{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-nnoremap coe :SyntasticToggle<CR>
-let g:syntastic_python_checkers=['pylint']
-" let g:syntastic_phpcs_conf = "--standard=/home/hanson/.phpcs-ruleset.xml" " the variable had been invalid.
-let g:syntastic_php_checkers=['php', 'phpmd']
-let g:syntastic_javascript_checkers=['jshint']
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-cabbrev <silent> <buffer> bd lclose\|bdelete
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:ale_sign_column_always = 0
+let g:airline#extensions#ale#enabled = 1
+let g:ale_set_highlights = 0
+let g:ale_sign_error = '✷'
+let g:ale_sign_warning = '✶'
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
+nmap <Leader>ck <Plug>(ale_previous_wrap)
+nmap <Leader>cj <Plug>(ale_next_wrap)
+nmap coe :ALEToggle<CR>
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

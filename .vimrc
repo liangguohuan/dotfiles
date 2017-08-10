@@ -42,7 +42,8 @@ if !has("gui_running")
 Plug 'https://github.com/edkolev/tmuxline.vim.git'
 Plug 'https://github.com/tmux-plugins/vim-tmux-focus-events.git'
 endif
-Plug 'https://github.com/scrooloose/syntastic.git'
+" Plug 'https://github.com/scrooloose/syntastic.git'
+Plug 'https://github.com/w0rp/ale.git'
 Plug 'https://github.com/yonchu/accelerated-smooth-scroll.git'
 Plug 'https://github.com/scrooloose/nerdcommenter.git'
 Plug 'https://github.com/Yggdroot/indentLine.git'
