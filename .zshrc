@@ -141,6 +141,58 @@ video2gif() {
   ffmpeg -i "${1}" -i "${1}.png" -filter_complex "fps=${3:-10},scale=${2:-320}:-1:flags=lanczos[x];[x][1:v]paletteuse" "${1}".gif
   rm "${1}.png"
 }
+
+# Mkdir and goto there
+mkcd() {
+  local MKPATH=$1
+  mkdir -p $MKPATH
+  cd $MKPATH
+}
+
+#=> add file to fasd
+addfasd() {
+  time=$(date '+%s')
+  file="$1"
+  filefasd="${HOME}/.fasd"
+  if [[ -f "$file" ]]; then
+    grep -o "$file|" -q "$filefasd"
+    if [[ $? > 0 ]]; then
+      printf "%s|%s|%s" "$file" "1" "$time" >> "$filefasd"
+    fi
+  fi
+}
+
+# git-launch app-name for starting *.desktop
+# Please note that gtk-launch requires the .desktop file to be installed
+# (i.e. located in /usr/share/applications or ~/.local/share/applications).
+launch(){
+# Usage: launch PATH [URI...]
+python - "$@" &>/dev/null <<EOF
+import sys
+from gi.repository import Gio
+Gio.DesktopAppInfo.new_from_filename(sys.argv[1]).launch_uris(sys.argv[2:])
+EOF
+}
+
+suniq() {
+# Usage: suniq $PATH :
+python - "$@" <<EOF
+import sys
+rpath = []
+string = sys.argv[1]
+sep = sys.argv[2]
+apath = string.split(sep)
+for path in apath:
+  if path not in rpath:
+    rpath.append(path)
+print(sep.join(rpath))
+EOF
+}
+
+daemon() {
+# Usage: daemon command
+  start-stop-daemon --start --background --name=docweb --exec $@
+}
 # }}}
 
 #=======================================================================================================================

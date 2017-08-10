@@ -62,15 +62,19 @@ export MONGODB_HOME=/opt/mongodb
 export LAMPP_HOME=/opt/lampp
 export COMPOSER_PATH=/home/hanson/.composer/vendor/bin
 export GOPATH=$HOME/.go
-export PATH=$GOPATH/bin:$JAVA_HOME/bin:$STORM_HOME/bin:$ZOOKEEPER_HOME/bin:$MONGODB_HOME/bin:$COMPOSER_PATH:$PATH
-export PATH=.:$HOME/CodeHub/SHELL:$PATH
 # export PHP_EXTENSION_PATH=$(php -i | grep ^extension_dir | awk -F ' => ' '{print $2}')
-export PHP_EXTENSION_PATH=/opt/lampp/lib/php/extensions/no-debug-non-zts-20151012
+export PHP_EXTENSION_PATH=/opt/lampp/lib/php/extensions/no-debug-non-zts-20160303
 export DOCSWEB=/home/hanson/Data/docs-web
 export XDG_CONFIG_HOME=~/.config
+export SYSTEMD_PATH=/etc/systemd/system/multi-user.target.wants
+export AUTOSTART_DESKTOP=/home/hanson/.config/autostart
 export EDITOR=vim
-
 export LANGUAGE=en_US.UTF-8 git vi vim gvim
+
+export PATH=$GOPATH/bin:$JAVA_HOME/bin:$STORM_HOME/bin:$ZOOKEEPER_HOME/bin:$MONGODB_HOME/bin:$COMPOSER_PATH:$PATH
+export PATH=.:$HOME/CodeHub/SHELL:$PATH
+# uniq path, suniq function is in file .zshrc
+# export PATH=$(suniq $PATH :)
 
 ## sample:
 # - list all symbols links in /usr/bin: ll /usr/bin/*(@)
@@ -177,4 +181,9 @@ alias vsload='_f(){ vi -c "FSLoad $1"; }; _f'
 alias nvsload='_f(){ nv -c "FSLoad $1"; }; _f'
 # alias imgresize='_f(){ ffmpeg -i $3 -vf scale=$1:$2 $4 -y &>/dev/null; }; _f'
 alias imgresize='_f(){ convert -resize $1x$2\! $3 $4; }; _f'
-
+alias phpsh="boris"
+alias chm2html=extract_chmLib
+alias dnsname="nmcli dev show enp0s29u1u2"
+alias ccq='_f(){ gcc $1  -Wall -Og -o ${1##${1:0:1}*.}; }; _f'
+alias c="composer"
+alias mimeconf="vi /home/hanson/.config/mimeapps.list"
