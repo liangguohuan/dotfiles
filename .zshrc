@@ -4,6 +4,21 @@
 #=======================================================================================================================
 # => extend oh-my-zsh plugins from github repos
 zplug () {
+  # update all extend plugins
+  if [[ "$1" == "update" ]]; then
+    local rootdir=$(printf "%s/custom/plugins" "$ZSH")
+    local -a pdirs=($(ls $rootdir))
+    for name in $pdirs; do
+      local pdir=$(printf "%s/custom/plugins/%s" "$ZSH" "$name")
+      cd $pdir
+      if ls .git &>/dev/null; then
+        echo "\x1b[38;5;3m" "update extend plugin: ++++++ " "\x1b[48;235;3m" $name "\x1b[0m" "\x1b[38;5;3m" "++++++" "\x1b[0m"
+        git pull
+      fi
+    done
+    return
+  fi
+  # check | install plugins
   local repo="$1"
   local name=$(basename "$repo")
   local uri="https://github.com/$1"
