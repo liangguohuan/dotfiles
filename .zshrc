@@ -142,6 +142,22 @@ video2gif() {
   rm "${1}.png"
 }
 
+# Image resize
+imgresize() {
+  local w=$1; h=$2; i=$3; o=$4
+  if [ "$#" -eq 2 ]; then
+    h=$w; i=$2; o=$i
+  elif [ "$#" -eq 3 ]; then
+    if [ -z "${2##[0-9]*}" ]; then
+      o=$i
+    else
+      h=$w; i=$2; o=$3
+    fi
+  fi
+  # ffmpeg -i $i -vf scale=$w:$h $o -y &>/dev/null
+  convert -resize ${w}x${h}\! $i $o
+}
+
 # Mkdir and goto there
 mkcd() {
   local MKPATH=$1
@@ -150,7 +166,7 @@ mkcd() {
 }
 
 #=> add file to fasd
-addfasd() {
+fasdadd() {
   time=$(date '+%s')
   file="$1"
   filefasd="${HOME}/.fasd"
@@ -159,6 +175,18 @@ addfasd() {
     if [[ $? > 0 ]]; then
       printf "%s|%s|%s" "$file" "1" "$time" >> "$filefasd"
     fi
+  fi
+}
+
+#=> remove record from fasd log
+fasdremove() {
+  lineregx="$1"
+  [[ -z "$1" ]] && lineregx=`pwd`| 
+  lineregx=$(printf $lineregx | sed 's#/#\\/#g')
+  filefasd=~/.fasd
+  if [[ -f "$filefasd" ]]; then
+    sed -i $(printf '/%s/d' $lineregx) "$filefasd"
+    cd ~ # need this, otherwise a new item pwd will be added.
   fi
 }
 
