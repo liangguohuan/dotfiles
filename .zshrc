@@ -135,6 +135,17 @@ _fasd_preexec_fixed() {
 }
 add-zsh-hook preexec _fasd_preexec_fixed
 
+#=> auto add sudo prefix
+export SUDOCOMMANDS=(apt aptitude service dpkg gdebi)
+_accept_line_patch () {
+  cmd=$(echo $BUFFER | awk '{print $1}')
+  if [[ ${SUDOCOMMANDS[(i)$cmd]} -le ${#SUDOCOMMANDS} ]]; then
+    BUFFER="sudo ${BUFFER}"
+  fi
+  zle .accept-line
+}
+zle -N accept-line _accept_line_patch
+
 # Video translate into gif
 video2gif() {
   ffmpeg -y -i "${1}" -vf fps=${3:-10},scale=${2:-320}:-1:flags=lanczos,palettegen "${1}.png"
@@ -190,6 +201,10 @@ fasdremove() {
   fi
 }
 
+#=> load vim session
+vsload()  { vi -c "FSLoad $1" }
+nvsload() { nv -c "FSLoad $1" }
+
 # git-launch app-name for starting *.desktop
 # Please note that gtk-launch requires the .desktop file to be installed
 # (i.e. located in /usr/share/applications or ~/.local/share/applications).
@@ -228,6 +243,10 @@ daemon() {
 #=======================================================================================================================
 # {{{
 [[ -z $functions[complete] ]] && autoload -U +X bashcompinit && bashcompinit
+#=> completion for command vsload and nvsload
+_vsloadcompletelist() { ls ~/.vim/sessions | grep -v __LAST__ }
+complete -F _vsloadcompletelist vsload
+complete -F _vsloadcompletelist nvsload
 #=> completion for command bulk
 _bulkcompletelist() { bulk help edit | egrep -o '\-\-[a-z]+'; echo -e 'help\nedit' }
 complete -F _bulkcompletelist bulk
