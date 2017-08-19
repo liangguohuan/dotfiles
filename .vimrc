@@ -18,8 +18,8 @@ if has('nvim')
   Plug 'Shougo/neosnippet'
   Plug 'Shougo/neosnippet-snippets'
 else
-  " tips: ycm need install cmake python-dev first
-  Plug 'https://github.com/Valloric/YouCompleteMe.git', { 'do': './install.py' }
+  " tips: 1.ycm need install cmake python-dev first. 2.it's better close all apps before compiling.
+  Plug 'https://github.com/Valloric/YouCompleteMe.git', { 'do': './install.py --clang-completer', 'frozen':1 }
   Plug 'https://github.com/SirVer/ultisnips.git'
   Plug 'https://github.com/honza/vim-snippets.git'
 endif

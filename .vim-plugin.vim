@@ -669,10 +669,12 @@ au FileType mako vmap Si S"i${ _(<esc>2f"a) }<esc>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
 let g:ale_sign_column_always = 0
-let g:airline#extensions#ale#enabled = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
 let g:ale_set_highlights = 0
-let g:ale_sign_error = '✷'
-let g:ale_sign_warning = '✶'
+let g:ale_sign_error = '☠'
+let g:ale_sign_warning = '⚠'
+let g:airline#extensions#ale#enabled = 1
 highlight clear ALEErrorSign
 highlight clear ALEWarningSign
 nmap <Leader>ck <Plug>(ale_previous_wrap)

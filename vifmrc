@@ -527,6 +527,7 @@ nmap * :execute "normal /" . system("echo " . expand('%c:t') . "| cut -d ' ' -f1
 nmap & :execute "normal /" . system("echo " . expand('%c:t') . "| cut -d ' ' -f1,2 | tr '[:upper:]' '[:lower:]'")<CR>nN
 " search from clipboard
 nmap gs :execute "normal /" . system("xsel -b -o")<CR>nN
+nmap <F3> gs
 
 " --- command
 command! targz tar czf %a.tar.gz %f %%

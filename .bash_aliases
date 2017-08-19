@@ -177,10 +177,6 @@ alias fr="ranger"
 alias scd="smartcd"
 alias squidreload="docker kill -s HUP squid"
 alias squidlogin='docker exec -i -t $(docker ps | grep squid | awk "{print \$1}") bash'
-alias vsload='_f(){ vi -c "FSLoad $1"; }; _f'
-alias nvsload='_f(){ nv -c "FSLoad $1"; }; _f'
-# alias imgresize='_f(){ ffmpeg -i $3 -vf scale=$1:$2 $4 -y &>/dev/null; }; _f'
-alias imgresize='_f(){ convert -resize $1x$2\! $3 $4; }; _f'
 alias phpsh="boris"
 alias chm2html=extract_chmLib
 alias dnsname="nmcli dev show enp0s29u1u2"

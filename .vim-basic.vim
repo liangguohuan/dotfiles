@@ -186,7 +186,6 @@ let g:mapleader = ","
 
 " Fast saving
 nmap <silent> <leader>w :w!<cr>
-nmap <silent> <leader>wa :wa!<cr>
 
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
@@ -503,7 +502,7 @@ map <leader>p :cp<cr>
 noremap dwm mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
+nmap cop :setlocal paste!<cr>
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1080,7 +1079,7 @@ endfunction
 " => make the code right"{{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
-command! Coderight call MakeTheCodeRight()
+command! ModifyCodes call MakeTheCodeRight()
 "{{{
 function! MakeTheCodeRight() abort
   try
@@ -1094,7 +1093,9 @@ function! MakeTheCodeRight() abort
     silent exe "%s/ / /g"
   catch
   endtry
-  echo "codes had been maked right."
+  " remove window format ^M
+  normal dwm
+  echo "The code has been modified."
 endfunction
 "}}}
 "}}}
