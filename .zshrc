@@ -110,6 +110,23 @@ sudo-command-line() {
 }
 zle -N sudo-command-line
 bindkey "\e\e" sudo-command-line
+
+#=> auto add sudo prefix
+export SUDOCOMMANDS=(apt aptitude service systemctl dpkg gdebi)
+_accept_line_patch () {
+  cmd=$(echo $BUFFER | awk '{print $1}')
+  if [[ ${SUDOCOMMANDS[(i)$cmd]} -le ${#SUDOCOMMANDS} ]]; then
+    BUFFER="sudo ${BUFFER}"
+  fi
+  zle .accept-line
+}
+zle -N accept-line _accept_line_patch
+
+#=> fixed fasd bug
+_fasd_preexec_fixed() {
+  [[ -n $functions[fasd] ]] && unset -f fasd
+}
+add-zsh-hook preexec _fasd_preexec_fixed
 #}}}
 
 #=======================================================================================================================
@@ -128,23 +145,6 @@ alias mhelp="fzf-htmldocs-search ~/Data/docs-web/mysql_html $1"
 
 #=> repalce man into vman
 man() { vman "$@" }
-
-#=> fixed fasd bug
-_fasd_preexec_fixed() {
-  [[ -n $functions[fasd] ]] && unset -f fasd
-}
-add-zsh-hook preexec _fasd_preexec_fixed
-
-#=> auto add sudo prefix
-export SUDOCOMMANDS=(apt aptitude service dpkg gdebi)
-_accept_line_patch () {
-  cmd=$(echo $BUFFER | awk '{print $1}')
-  if [[ ${SUDOCOMMANDS[(i)$cmd]} -le ${#SUDOCOMMANDS} ]]; then
-    BUFFER="sudo ${BUFFER}"
-  fi
-  zle .accept-line
-}
-zle -N accept-line _accept_line_patch
 
 # Video translate into gif
 video2gif() {
