@@ -88,9 +88,9 @@ Plug 'https://github.com/chemzqm/unite-location.git'
 " }}}
 " development tools {{{
 Plug 'https://github.com/tpope/vim-fugitive.git'
-Plug 'https://github.com/junegunn/gv.vim.git',   { 'on': 'GV' }
-Plug 'https://github.com/tpope/vim-rhubarb.git', { 'on': [ 'Gbrowse', 'GV' ] }
-Plug 'https://github.com/gregsexton/gitv.git',   { 'on': 'Gitv' }
+Plug 'https://github.com/junegunn/gv.vim.git'                    , { 'on': 'GV' }
+Plug 'https://github.com/tpope/vim-rhubarb.git'                  , { 'on': [ 'Gbrowse' , 'GV' ] }
+Plug 'https://github.com/gregsexton/gitv.git'                    , { 'on': 'Gitv' }
 Plug 'https://github.com/airblade/vim-gitgutter.git'
 " Plug 'https://github.com/vim-scripts/vcscommand.vim.git'
 " }}}
@@ -134,6 +134,9 @@ Plug 'https://github.com/stephpy/vim-php-cs-fixer.git'           , { 'for': 'php
 Plug 'marijnh/tern_for_vim',                  { 'do': 'npm install', 'for': 'javascript' }
 Plug 'https://github.com/pangloss/vim-javascript.git'            , { 'for': 'javascript' }
 Plug 'https://github.com/jamescarr/snipmate-nodejs.git'          , { 'for': 'javascript' }
+"}}}
+" lua moonscript"{{{
+Plug 'https://github.com/leafo/moonscript-vim.git'               , { 'for': 'moon' }
 "}}}
 " tools {{{
 Plug 'https://github.com/xolox/vim-misc.git'
