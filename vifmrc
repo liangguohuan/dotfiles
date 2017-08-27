@@ -210,6 +210,8 @@ fileviewer *.flac soxi
 " Video
         " \ ffplay -x 1024 -y 576 %c &>/dev/null &,
 filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.m2v,*.mov,*.webm,*.ts,*.m4v,*.vdat
+        \ {View using mpv}
+        \ mpv -fs --keep-open=yes &>/dev/null &,
         \ {View using ffplay}
         \ ffplay -fs &>/dev/null &,
         \ {View using totem}
@@ -520,6 +522,10 @@ nmap ,nd :mkdir<space>
 nmap ,nl :alink<CR>
 vmap t :select<CR>
 nmap q :quit<CR>
+
+" disable left right key
+" nmap <left> <nop>
+" nmap <right> <nop>
 
 " search first one word
 nmap * :execute "normal /" . system("echo " . expand('%c:t') . "| cut -d ' ' -f1 | tr '[:upper:]' '[:lower:]'")<CR>nN
