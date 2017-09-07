@@ -65,8 +65,7 @@ source $ZSH/oh-my-zsh.sh
 source ~/.bash_aliases
 
 #=> zsh-mime-setup
-alias -s php=gvim
-alias -s deb=gdebi
+alias -s deb="sudo gdebi"
 alias -s png=sxiv
 alias -s jpg=sxiv
 alias -s jpeg=sxiv
