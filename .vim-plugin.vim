@@ -675,6 +675,7 @@ let g:ale_set_highlights = 0
 let g:ale_sign_error = '☠'
 let g:ale_sign_warning = '⚠'
 let g:airline#extensions#ale#enabled = 1
+let g:ale_php_phpcs_standard='PSR2 -n'
 highlight clear ALEErrorSign
 highlight clear ALEWarningSign
 nmap <Leader>ck <Plug>(ale_previous_wrap)
@@ -1180,6 +1181,7 @@ let g:formatters_jsu = ['uglifyjs']
 "{{{
 " BUG: if set this, will cause error.
 " let g:easytags_file = '/tmp/.vim/tags'
+let g:easytags_async = 1
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
