@@ -1,0 +1,9 @@
+vim-install.sh
+preview.png
+.gitignore
+.git
+fugitive:
+README.md
+LICENSE
+Makefile
+exclude.txt

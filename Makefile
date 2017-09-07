@@ -1,22 +1,20 @@
 #------------------------------------------------ 
 # Makefile for dotfile
+# 
+# WARN: the dotfiles must in user home, depth 1
 #------------------------------------------------ 
-#=> install or recover all dotfile to system
+#=> install dotfiles to system
 define publish
-	rsync -av \
-		--exclude 'vim-install.sh'\
-		--exclude 'preview.png'\
-		--exclude '.gitignore'\
-		--exclude '.git'\
-		--exclude 'fugitive:'\
-		--exclude 'README.md'\
-		--exclude 'LICENSE'\
-		--exclude 'Makefile'\
-		./ ../
+	rsync -av --exclude-from exclude.txt ./ ../
 endef
 
-#=> install vim dependens
-define installvim
+#=> push system updated files to dotfiles folder
+define push
+	rsync -av --existing --exclude-from exclude.txt ../ ./
+endef
+
+#=> install vim depends
+define ivim-depends
 	# install depends
 	sudo apt install curl git-core cmake python-dev
 
@@ -35,15 +33,34 @@ define installvim
 	vim +PlugInstall +qall
 endef
 
+#=> install vim
+define ivim
+	cp -f .vimrc ~/
+	cp -f .vim-basic.vim ~/
+	cp -f .vim-plugin.vim ~/
+	vim +PlugInstall +qall
+endef
+
 .PHONY: publish
 publish:
-	echo "sync dotfiles folder to home folder"
+	@echo "\033[38;5;2m""* sync dotfiles folder to home folder *""\033[0m"
 	@$(publish)
 
-all: ivim publish
+.PHONY: push
+push:
+	@echo "\033[38;5;2m""* sync home folder to dotfiles folder *""\033[0m"
+	@$(push)
+
+.PHONY: ivim-depends
+ivim-depends:
+	@echo "\033[38;5;2m""* install vim depends *""\033[0m"
+	$(ivim-depends)
 
 .PHONY: ivim
 ivim:
-	echo "install vim dependens"
-	$(installvim)
+	@echo "\033[38;5;2m""* install vim *""\033[0m"
+	$(ivim)
+
+install: ivim-depends ivim install 
+all: install
 
