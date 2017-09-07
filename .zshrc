@@ -39,8 +39,6 @@ export ZSH=~/.oh-my-zsh
 [[ ! -e "$ZSH" ]] && git clone --depth 1 https://github.com/robbyrussell/oh-my-zsh "$ZSH"
 
 # Set name of the theme to load.
-MYZSHTHEME="$ZSH/themes/pretty.zsh-theme"
-[[ ! -e "$MYZSHTHEME"  ]] && wget https://github.com/liangguohuan/dotfiles/raw/master/pretty.zsh-theme -O "$MYZSHTHEME" 
 ZSH_THEME="pretty"
 
 # Add wisely, as too many plugins slow down shell startup.

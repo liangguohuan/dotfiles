@@ -581,9 +581,9 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
 " map <leader>e :e! ~/.vimrc<cr>
-autocmd! BufWritePost *.vimrc source ~/.vimrc | exec "AirlineRefresh"
-autocmd! BufWritePost *.vim-basic.vim source ~/.vim-basic.vim | exec "AirlineRefresh"
-autocmd! BufWritePost *.vim-plugin.vim source ~/.vim-plugin.vim | exec "AirlineRefresh"
+autocmd! BufWritePost *.vimrc exec "source % | AirlineRefresh"
+autocmd! BufWritePost *.vim-basic.vim exec "source % | AirlineRefresh"
+autocmd! BufWritePost *.vim-plugin.vim exec "source % | AirlineRefresh"
 
 "}}}
 
