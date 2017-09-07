@@ -1,0 +1,4 @@
+# https://github.com/linsong/w3m-config/blob/master/
+# -------------------------------------------------
+extbrowser sh -c 'echo $0 | xsel -b -i'
+imgdisplay ""

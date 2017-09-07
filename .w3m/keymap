@@ -1,0 +1,5 @@
+# https://github.com/linsong/w3m-config/blob/master/
+# -------------------------------------------------
+keymap m EXTERN_LINK "echo %s | xsel -b -i"
+keymap C-f NEXT_PAGE
+keymap C-b PREV_PAGE
