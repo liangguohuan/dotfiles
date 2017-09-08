@@ -57,10 +57,10 @@ ivim-depends:
 	$(ivim-depends)
 
 .PHONY: ivim
-ivim:
+ivim: ivim-depends
 	@echo "\033[38;5;2m""* install vim *""\033[0m"
 	$(ivim)
 
-install: ivim-depends ivim install 
+install: publish ivim
 all: install
 
