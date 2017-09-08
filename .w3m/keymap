@@ -39,6 +39,7 @@ keymap TAB NEXT_LINK
 keymap ESC-TAB PREV_LINK
 keymap u UNDO
 keymap C-r REDO
+keymap ESC-l LIST
 keymap L LIST_MENU
 
 # Hyperlink operation
