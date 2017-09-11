@@ -1,0 +1,8 @@
+# Write your default config options here!
+# autofit-larger=1024x576
+# ontop=yes
+window-dragging=no
+geometry=1024x576-0-0
+screenshot-directory=/tmp/mpv/screenshot
+keep-open=always
+osd-level=0
