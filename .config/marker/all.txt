@@ -1,0 +1,28 @@
+ls -d */ | parallel eval "cd {} && ls .git &>/dev/null && git pull"##{{git pull multiple}}
+rsync -rtv {{source}}/ {{target}}/##{{sync two folder in local}}
+find {{dir}} -maxdepth 1 -type f | awk -F '/' '{printf "* [%s](%s/%s)\\n",$2,$1,$2}' | sort | clipcopy##{{gitbook summary autogen}}
+echo '{{data}}' | nc -4u -w1 127.0.0.1 {{port}}##{{#UDP send and get data}}
+sudo python setup.py install --record install.txt##{{Install python package}}
+cat install.txt | xargs sudo rm -rf##{{Uninstall python package}}
+find . ! -name '.' -a ! -name '*.chs&eng.srt' -a ! -name '*.eng.srt' | parallel rm##{{parallel succesed even if filename has single quote, Subtitle filter}}
+find . ! -name '.' -a ! -name '*.简体&英文.srt' -a ! -name '*.英文.srt' | parallel rm##{{Subtitle filter}}
+service network-manager restart
+xdotool getmouselocation --shell
+docker exec -i -t {{container}} sh ##docker login via match line, use xargs get error
+docker run -i -t -v /tmp:/tmp -w /tmp --name tmp {{container}} bash##create tmp container
+docker kill -s HUP squid ##Restart docker squid
+tail -f /var/log/squid3/access.log ##Squid access log
+service shadowsocks restart
+service privoxy restart
+nmcli device show {{interface}} ##show dns
+`gcc -print-prog-name=cc1` -v ##print gcc libs include order
+imgresize {{width}} {{height}} {{inputfile}} {{outputfile}}##Image resize quickly
+setfacl -R -m u:hanson:{{rwx}} {{dir}}##Set premission for folder
+setfacl -m u:hanson:{{rwx}} {{filename}}##Set premission for file
+ffmpeg -i {{inputfile}} -vf scale={{854:480}} -aspect {{16:9}} -b:v {{1200k}} -y {{outputfile}}##Zoom video
+ffmpeg -i {{inputfile}} -filter_complex crop={{854:480}} -y {{outputfile}}##Cut video
+video2gif {{inputfile}} {{width}} {{fps}}
+socat - udp4-datagram:127.0.0.1:{{port}} <<< '{{data}}'##{{#UDP send data to remote}}
+socat - TCP4:0.0.0.0:{{port}}##Create a connection to a host and port, transfer data in STDIO to connected host
+socat - TCP-LISTEN:{{port}},fork##Listen to a port, wait for an incoming connection and transfer data to STDIO
+socat TCP-LISTEN:80,fork TCP4:0.0.0.0:{{port}}##Forward incoming data of a local port to another host and port
