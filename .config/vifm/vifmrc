@@ -119,7 +119,6 @@ mark d ~/Data
 mark l ~/Data/Latest
 mark c ~/Data/CHM
 mark p ~/Data/PDF
-mark a /mnt/d/Temp/All
 
 " ------------------------------------------------------------------------------
 
@@ -409,7 +408,7 @@ nnoremap cm :move<cr>
 vnoremap cm :move<cr>
 
 " Yank first two word into the clipboard
-nnoremap yw :echo system("echo " . expand('%c:t') . "| cut -d ' ' -f1,2 | tr '[:upper:]' '[:lower:]' | xsel -b -i") | echo ' COPY first two word on line'<cr>
+nnoremap yw :echo system("echo " . expand('%c:t') . "| cut -d ' ' -f1,2 | tr '[:upper:]' '[:lower:]' | tr -d '\n' | xsel -b -i") | echo ' COPY first two word on line'<cr>
 
 " Yank current directory path into the clipboard
 nnoremap yd :echo system("echo " . expand('%d') . "| xsel -b -i") | echo ' COPY ' . expand('%d')<cr>
@@ -534,6 +533,7 @@ nmap & :execute "normal /" . system("echo " . expand('%c:t') . "| cut -d ' ' -f1
 " search from clipboard
 nmap gs :execute "normal /" . system("xsel -b -o")<CR>nN
 nmap <F3> gs
+nmap ci :s/(\.[a-z0-9]+)$/ - THETOP\1/<CR>
 
 " --- command
 command! targz tar czf %a.tar.gz %f %%
