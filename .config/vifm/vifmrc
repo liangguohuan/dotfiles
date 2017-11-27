@@ -533,7 +533,6 @@ nmap & :execute "normal /" . system("echo " . expand('%c:t') . "| cut -d ' ' -f1
 " search from clipboard
 nmap gs :execute "normal /" . system("xsel -b -o")<CR>nN
 nmap <F3> gs
-nmap ci :s/(\.[a-z0-9]+)$/ - THETOP\1/<CR>
 
 " --- command
 command! targz tar czf %a.tar.gz %f %%
@@ -546,4 +545,6 @@ command! mfind find %d -type f -name "*%a*" ! -path "*.git*" ! -path "*fugitive*
 " Example: ag 'app.*http.*request'
 command! ag ag -i --nocolor --follow --nogroup --hidden --ignore '.git' --ignore 'fugitive' -g '%a' %d %M
 command! mv mv %f %a
-
+command! tagfile tagfile %c %a %i
+command! untagfile untagfile %c %a %i
+command! plus :s/(\.\w+)$/ - %a\1/
