@@ -57,6 +57,7 @@ Plug 'https://github.com/tpope/vim-repeat.git'
 Plug 'https://github.com/tpope/vim-abolish.git'
 Plug 'https://github.com/tpope/vim-unimpaired.git'
 Plug 'https://github.com/tpope/vim-endwise.git'
+Plug 'https://github.com/tpope/vim-rsi.git'
 " Plug 'https://github.com/kopischke/vim-stay'
 Plug 'https://github.com/duggiefresh/vim-easydir.git'
 Plug 'https://github.com/terryma/vim-multiple-cursors.git'
@@ -64,7 +65,7 @@ Plug 'https://github.com/vim-scripts/YankRing.vim.git'
 Plug 'https://github.com/junegunn/goyo.vim.git'                  , { 'on': 'Goyo' }
 " Plug 'https://github.com/roman/golden-ratio.git'
 Plug 'https://github.com/jiangmiao/auto-pairs.git'
-if !has('nvim')
+if !has('nvim') && $is_tmux
 Plug 'https://github.com/vim-utils/vim-alt-mappings.git'
 endif
 Plug 'https://github.com/taku-o/vim-toggle.git'
