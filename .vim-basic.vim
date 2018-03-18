@@ -1273,7 +1273,7 @@ endfunction
 nmap <F3> :call SearchNowByLastCopy()<CR>
 fun! SearchNowByLastCopy()
   try
-    let past = system('xclip -out -selection clipboard')  
+    let past = system("xsel -b -o | sed -e 's/^\\s*//' -e 's/\\s*$//' | tr '[:upper:]' '[:lower:]'")  
     let @/ = past
     set hlsearch
     normal n
