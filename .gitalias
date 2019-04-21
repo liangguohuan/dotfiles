@@ -584,7 +584,7 @@
  
   assume   = update-index --assume-unchanged
   unassume = update-index --no-assume-unchanged
-  assume-all = "!git st -s | awk {'print $2'} | xargs git assume"
+  assume-all = "!git status -s | awk {'print $2'} | xargs git assume"
   unassume-all = "!git assumed | xargs git update-index --no-assume-unchanged"
   assumed  = !"git ls-files -v | grep ^h | cut -c 3-"
 
