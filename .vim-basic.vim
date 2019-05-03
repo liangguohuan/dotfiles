@@ -510,9 +510,7 @@ nmap cop :setlocal paste!<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 "{{{
 function! CmdLine(str)
-  exe "menu Foo.Bar :" . a:str
-  emenu Foo.Bar
-  unmenu Foo
+  call feedkeys(":" . a:str)
 endfunction
 
 let g:virsual_selection_act = 0
