@@ -7,3 +7,15 @@ README.md
 LICENSE
 Makefile
 exclude.txt
+Library
+Desktop
+Music
+Movies
+Documents
+Docs
+Downloads
+Applications
+CodeHub
+Pictures
+Data
+Local

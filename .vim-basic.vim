@@ -17,7 +17,7 @@
 "      bg[NORMAL] = "#272822" # this matches my gvim theme 'Normal' bg color.
 "    }
 "    widget "vim-main-window.*GtkForm" style "vimfix"
-" 4.
+" 4. :ret! 4 tab trans to space
 "}}}
 
 " true color setting in nvim
@@ -687,7 +687,7 @@ autocmd BufWinEnter * if &previewwindow | setlocal nobuflisted | endif
 
 " System clipboard sharing
 if has('clipboard')
-  set clipboard=unnamedplus
+  set clipboard=unnamed
 endif
 "}}}
 
@@ -700,7 +700,7 @@ endif
 map 0 ^
 
 " Goback normal mode Quickly
-" imap jj <Esc>
+imap jj <Esc>
 
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
 nmap <M-j> mz:m+<cr>`z
@@ -943,7 +943,7 @@ function! PreviewMarkdown()
     echohl ErrorMsg | echo 'Please install pandoc first.' | echohl None
     return
   endif
-  let BROWSER_COMMAND = 'xdg-open'
+  let BROWSER_COMMAND = 'open'
   let output_file = tempname() . '.html'
   let input_file = tempname() . '.md'
   let css_file = 'file://' . expand('/opt/lampp/htdocs/tools/pandoc/markdown.css', 1)
@@ -967,9 +967,10 @@ function! PreviewMarkdown()
     call add(newContent, newLine)
   endfor
   call writefile(newContent, input_file)
-  let cmd = printf('pandoc -f markdown_github -t html -s -S -c "%s" -o "%s" "%s"', css_file, output_file, input_file)
+  let cmd = printf('pandoc -f gfm -t html --metadata pagetitle="..." -c "%s" -o "%s" "%s"', css_file, output_file, input_file)
   call system(cmd)
   call delete(input_file)
+  echo output_file
   " Change encoding back
   silent! execute 'set fileencoding=' . original_encoding . ' ' . original_bomb
   " Preview
@@ -1001,7 +1002,7 @@ endf
 
 fun! XCopyURIUnderCursor()
   let s:uri = GetURIUnderCursor()
-  let s:cmd = printf('echo %s | xsel -b -i', s:uri)
+  let s:cmd = printf('echo %s | pbcopy', s:uri)
   call system(s:cmd)
   echo printf('COPY: %s', s:uri)
 endf
@@ -1009,7 +1010,7 @@ endf
 fun! XOpenURIUnderCursor()
   let s:uri = GetURIUnderCursor()
   let s:uri = shellescape(s:uri, 1)
-  let s:opencmd = has('gui_running') ? ( stridx(s:uri, 'http') > -1 ? 'google-chrome' : 'xdg-open' ) : 'xdg-open'
+  let s:opencmd = has('gui_running') ? ( stridx(s:uri, 'http') > -1 ? 'google-chrome' : 'open' ) : 'open'
   let s:cmd = printf('%s %s &>/dev/null', s:opencmd, s:uri)
   call system(s:cmd)
   echo s:cmd
@@ -1110,7 +1111,7 @@ nmap ye :call CopyFilenamePart('%:p:e')<CR>
 "{{{
 function! CopyFilenamePart(type) abort
   let s:strmatch = expand(a:type)
-  call system(printf('echo %s | xsel -b -i', s:strmatch))
+  call system(printf('echo %s | pbcopy', s:strmatch))
   exe printf('echo "copy: %s"', s:strmatch)
 endfunction
 "}}}
@@ -1271,7 +1272,7 @@ endfunction
 nmap <F3> :call SearchNowByLastCopy()<CR>
 fun! SearchNowByLastCopy()
   try
-    let past = system("xsel -b -o | sed -e 's/^\\s*//' -e 's/\\s*$//' | tr '[:upper:]' '[:lower:]'")  
+    let past = system("pbpaste | sed -e 's/^\\s*//' -e 's/\\s*$//' | tr '[:upper:]' '[:lower:]'")  
     let @/ = past
     set hlsearch
     normal n

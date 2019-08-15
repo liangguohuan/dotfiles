@@ -36,7 +36,7 @@ endif
 " colorscheme gruvbox
 
 " colorscheme setting
-autocmd VimEnter,BufWritePost,ColorScheme,SessionLoadPost * call ColorSchemePatch()
+" autocmd VimEnter,BufWritePost,ColorScheme,SessionLoadPost * call ColorSchemePatch()
 
 " Toggle EasyTags Highlight
 "{{{
@@ -246,8 +246,8 @@ function! SearchInParagraph(line1, line2, kw)
 endfunction
 
 function! SearchViaXdotool(kw)
-  silent call system(printf('xdotool type "/%s"', a:kw))
-  silent call system('xdotool key ctrl+m')
+  silent call system(printf('cliclick "t:/%s"', a:kw))
+  silent call system('cliclick "kp:return"')
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

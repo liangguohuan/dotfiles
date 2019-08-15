@@ -2,7 +2,7 @@
     email = liangguohuan@gmail.com
     name = liangguohuan
 [push]
-    default = matching
+    default = current
 [branch "master"]
     remote = origin
     merge = refs/heads/master
@@ -10,7 +10,7 @@
     path = ~/.gitalias
 [alias]
     c1 = clone --depth 1
-    browse = "!f(){ start-stop-daemon --start --background --name=docweb --exec /usr/bin/xdg-open $(git http-url | sed 's/\\.git//') &>/dev/null; }; f"
+    browse = "!f(){ open $(git http-url | sed 's/\\.git//') &>/dev/null; }; f"
     addurl = remote add origin
     seturl = remote set-url origin
     cma = commit -a -m
@@ -31,8 +31,16 @@
     ui = auto
 [core]
     editor = vim
-    excludesfile = ~/.gitignore
+    excludesfile = /Users/liangguohuan/.gitignore_global
 [credential]
     helper = store
 [http]
     sslVerify = false
+[difftool "sourcetree"]
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path = 
+[mergetool "sourcetree"]
+    cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
+[commit]
+    template = /Users/liangguohuan/.stCommitMsg

@@ -43,14 +43,15 @@ ZSH_THEME="pretty"
 
 # Add wisely, as too many plugins slow down shell startup.
 # dont use plugin fasd, it will caused 'permission denied: ../..' when alias using function is been executed.
-plugins=(zsh_reload fasd git git-extras laravel5 docker docker-compose tmux tmuxinator go gem yarn pip python)
+plugins=(zsh_reload fasd git git-extras laravel5 docker docker-compose tmux tmuxinator go gem yarn pip python composer)
 # plugin extends
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "Tarrasch/zsh-bd"
 zplug "Tarrasch/zsh-autoenv"
+# zplug "zsh-users/zsh-completions"
 zplug "liangguohuan/fzf-extends"
 zplug "liangguohuan/fzf-marker"
-zplug "liangguohuan/zsh-dircolors-solarized"
+#zplug "liangguohuan/zsh-dircolors-solarized"
 
 # enabled oh-my-zsh
 source $ZSH/oh-my-zsh.sh
@@ -63,7 +64,6 @@ source $ZSH/oh-my-zsh.sh
 source ~/.bash_aliases
 
 #=> zsh-mime-setup
-alias -s deb="sudo gdebi"
 alias -s png=sxiv
 alias -s jpg=sxiv
 alias -s jpeg=sxiv
@@ -75,7 +75,7 @@ alias -s mkv=mpv
 bindkey \^U backward-kill-line
 
 #=> misc setting
-compdef vboxmanage=VBoxManage
+#compdef vboxmanage=VBoxManage
 
 #=> autocomplete
 zstyle ':completion:*:ping:*' hosts 163.com twitter.com facebook.com
@@ -89,10 +89,10 @@ zstyle ':completion:*:my-accounts' users-hosts $my_accounts
 DISABLE_AUTO_TITLE="true"
 
 #=> dir hash
-hash -d document=~/Document
+hash -d document=~/Documents
 hash -d music=~/Music
-hash -d download=~/Download
-hash -d video=~/Videos
+hash -d download=~/Downloads
+hash -d movies=~/Movies
 hash -d picture=~/Pictures
 
 #=> help nicely
@@ -109,7 +109,7 @@ zle -N sudo-command-line
 bindkey "\e\e" sudo-command-line
 
 #=> auto add sudo prefix
-export SUDOCOMMANDS=(apt aptitude service systemctl dpkg gdebi)
+export SUDOCOMMANDS=(pfctl killall mount)
 _accept_line_patch () {
   cmd=$(echo $BUFFER | awk '{print $1}')
   if [[ ${SUDOCOMMANDS[(i)$cmd]} -le ${#SUDOCOMMANDS} ]]; then
@@ -132,16 +132,16 @@ add-zsh-hook preexec _fasd_preexec_fixed
 # {{{
 #=> A command-line fuzzy finder written in Go: https://github.com/junegunn/fzf
 export FZF_DEFAULT_OPTS="--prompt='> ' --reverse --color=hl:2,hl+:161 --height=60%"
-export FZF_DEFAULT_COMMAND="ag --depth 26 -t -g '' --path-to-agignore ${HOME}/.agignore 2>/dev/null"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_COMMAND="ag --depth 26 -t -g '' 2>/dev/null"
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 #=> docs search via ag and fzf
 alias zhelp="fzf-htmldocs-search ~/Data/docs-web/zsh_html $1"
 alias mhelp="fzf-htmldocs-search ~/Data/docs-web/mysql_html $1"
 
 #=> repalce man into vman
-man() { vman "$@" }
+# man() { vman "$@" }
 
 # Video translate into gif
 video2gif() {

@@ -118,13 +118,13 @@ Plug 'https://github.com/mattn/emmet-vim'                        , { 'for': ['ht
 " Plug 'https://github.com/bkad/CamelCaseMotion.git'
 " }}}
 " my custom {{{
-Plug 'https://github.com/liangguohuan/vim-php-snippets'          , { 'for': 'php' }
+" Plug 'https://github.com/liangguohuan/vim-php-snippets'          , { 'for': 'php' }
 Plug 'https://github.com/liangguohuan/vim-monokai.git'
 Plug 'https://github.com/liangguohuan/vim-shell-executor.git'    , { 'on': 'ExecuteSelection' }
-Plug 'https://github.com/liangguohuan/vim-control-window.git'    , { 'on': 'ControlWindow' }
-Plug 'https://github.com/liangguohuan/vim-toggle-abbrevs.git'    , { 'on': 'ToggleAbbrevs' }
+" Plug 'https://github.com/liangguohuan/vim-control-window.git'    , { 'on': 'ControlWindow' }
+" Plug 'https://github.com/liangguohuan/vim-toggle-abbrevs.git'    , { 'on': 'ToggleAbbrevs' }
 Plug 'https://github.com/liangguohuan/vim-templates.git'
-Plug 'https://github.com/liangguohuan/vim-layout.git'
+" Plug 'https://github.com/liangguohuan/vim-layout.git'
 " }}}
 " php plugins {{{
 Plug 'https://github.com/alvan/vim-php-manual.git'               , { 'for': 'php' }
@@ -141,7 +141,7 @@ Plug 'https://github.com/leafo/moonscript-vim.git'               , { 'for': 'moo
 "}}}
 " tools {{{
 Plug 'https://github.com/xolox/vim-misc.git'
-Plug 'https://github.com/xolox/vim-easytags.git'
+"Plug 'https://github.com/xolox/vim-easytags.git'
 Plug 'https://github.com/christoomey/vim-tmux-navigator.git'
 Plug 'https://github.com/tmux-plugins/vim-tmux-focus-events.git'
 Plug 'https://github.com/wellle/tmux-complete.vim.git'
@@ -153,7 +153,7 @@ Plug 'https://github.com/thinca/vim-quickrun.git'                , { 'on': 'Quic
 " }}}
 "
 " the last
-Plug 'https://github.com/ryanoasis/vim-devicons.git'
+" Plug 'https://github.com/ryanoasis/vim-devicons.git'
 
 " All of your Plugs must be added before the following line
 call plug#end()
