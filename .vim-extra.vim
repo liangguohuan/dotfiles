@@ -277,7 +277,7 @@ function! PHPFuncHelper()
     echo 'php doc request failed'
     return
   endif
-  let s:cmd = printf('xdg-open %s', s:uri)
+  let s:cmd = printf('open %s', s:uri)
   silent call system(s:cmd)
 endfunction
 
@@ -342,7 +342,7 @@ function! ApiDocHelper(template)
     let s:uri = substitute(s:uri, '#', '##', '')
     let s:cmd = printf('tmux run ''tmux splitw "lynx -vikeys %s" \; resizep -Z''', s:uri)
   else
-    let s:cmd = printf('xdg-open %s', s:uri)
+    let s:cmd = printf('open %s', s:uri)
   endif
   echom s:cmd
   silent call system(s:cmd)

@@ -1,6 +1,6 @@
 [user]
-    email = liangguohuan@gmail.com
-    name = liangguohuan
+	email = liangguohuan@gmail.com
+	name = liangguohuan
 [push]
     default = current
 [branch "master"]
@@ -31,16 +31,16 @@
     ui = auto
 [core]
     editor = vim
-    excludesfile = /Users/liangguohuan/.gitignore_global
+	excludesfile = /Users/liangguohuan/.gitignore_global
 [credential]
     helper = store
 [http]
     sslVerify = false
 [difftool "sourcetree"]
-    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-    path = 
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
 [mergetool "sourcetree"]
-    cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-    trustExitCode = true
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
 [commit]
-    template = /Users/liangguohuan/.stCommitMsg
+	template = /Users/liangguohuan/.stCommitMsg
