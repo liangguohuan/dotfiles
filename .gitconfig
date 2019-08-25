@@ -24,6 +24,7 @@
     whatadded = log --follow --diff-filter=A --find-renames=40%
     oneline = log --pretty=oneline --since='2 days ago'
     onelog = log -p -1
+    purify = "!f(){ git checkout . && git clean -fd; }; f"
 [color]
     diff = auto
     status = auto
