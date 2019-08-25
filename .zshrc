@@ -25,9 +25,9 @@ zplug () {
   local dir=$(printf "%s/custom/plugins/%s" "$ZSH" "$name")
   [[ ! -e "$dir" ]] && {
     git clone --recursive --depth 1 "$uri" "$dir"
-    [[ ! -e "$dir/$name.plugin.zsh" ]] && find "$dir" -maxdepth 1 -name "*.plugin.zsh" | xargs -J % ln -s % "$dir/$name.plugin.zsh"  
+    [[ ! -e "$dir/$name.plugin.zsh" ]] && find "$dir" -maxdepth 1 -name "*.plugin.zsh" | xargs -J % ln -sf % "$dir/$name.plugin.zsh"  
   }
-  [[ -n "$2" ]] && [[ -s "$dir/$2" ]] && [[ ! -e "$dir/$name.plugin.zsh" ]] && ln -rsf "$dir/$2" "$dir/$name.plugin.zsh"
+  [[ -n "$2" ]] && [[ -s "$dir/$2" ]] && [[ ! -e "$dir/$name.plugin.zsh" ]] && ln -sf "$dir/$2" "$dir/$name.plugin.zsh"
   plugins+=("$name")
 }
 
