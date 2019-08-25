@@ -199,22 +199,6 @@ fasdremove() {
   fi
 }
 
-#=> load vim session
-vsload()  { vi -c "FSLoad $1" }
-nvsload() { nv -c "FSLoad $1" }
-
-# git-launch app-name for starting *.desktop
-# Please note that gtk-launch requires the .desktop file to be installed
-# (i.e. located in /usr/share/applications or ~/.local/share/applications).
-launch(){
-# Usage: launch PATH [URI...]
-python - "$@" &>/dev/null <<EOF
-import sys
-from gi.repository import Gio
-Gio.DesktopAppInfo.new_from_filename(sys.argv[1]).launch_uris(sys.argv[2:])
-EOF
-}
-
 suniq() {
 # Usage: suniq $PATH :
 python - "$@" <<EOF
@@ -230,10 +214,6 @@ print(sep.join(rpath))
 EOF
 }
 
-daemon() {
-# Usage: daemon command
-  start-stop-daemon --start --background --name=docweb --exec $@
-}
 # }}}
 
 #=======================================================================================================================
