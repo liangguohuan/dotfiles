@@ -388,7 +388,7 @@ function! s:ZoomToggle() abort
     let t:zoomed = 1
   endif
   " integrate with tmux
-  call system('xdotool key F6 z')
+  call system('tmux resize-pane -Z')
 endfunction
 "}}}
 command! ZoomToggle call s:ZoomToggle()
