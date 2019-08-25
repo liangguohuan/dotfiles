@@ -65,9 +65,9 @@ Plug 'https://github.com/vim-scripts/YankRing.vim.git'
 Plug 'https://github.com/junegunn/goyo.vim.git'                  , { 'on': 'Goyo' }
 " Plug 'https://github.com/roman/golden-ratio.git'
 Plug 'https://github.com/jiangmiao/auto-pairs.git'
-if !has('nvim') && $is_tmux
-Plug 'https://github.com/vim-utils/vim-alt-mappings.git'
-endif
+" if !has('nvim') && $is_tmux
+" Plug 'https://github.com/vim-utils/vim-alt-mappings.git'
+" endif
 Plug 'https://github.com/taku-o/vim-toggle.git'
 Plug 'https://github.com/thinca/vim-qfreplace.git'
 Plug 'https://github.com/mhinz/vim-startify.git'
