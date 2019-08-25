@@ -46,12 +46,13 @@ ZSH_THEME="pretty"
 plugins=(zsh_reload fasd git git-extras laravel5 docker docker-compose tmux tmuxinator go gem yarn pip python composer)
 # plugin extends
 zplug "zsh-users/zsh-syntax-highlighting"
-zplug "Tarrasch/zsh-bd"
+# zplug "Tarrasch/zsh-bd"
 zplug "Tarrasch/zsh-autoenv"
 # zplug "zsh-users/zsh-completions"
 zplug "liangguohuan/fzf-extends"
 zplug "liangguohuan/fzf-marker"
 #zplug "liangguohuan/zsh-dircolors-solarized"
+zplug "shyiko/commacd" commacd.sh
 
 # enabled oh-my-zsh
 source $ZSH/oh-my-zsh.sh
