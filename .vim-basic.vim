@@ -946,7 +946,8 @@ function! PreviewMarkdown()
   let BROWSER_COMMAND = 'open'
   let output_file = tempname() . '.html'
   let input_file = tempname() . '.md'
-  let css_file = 'file://' . expand('/opt/lampp/htdocs/tools/pandoc/markdown.css', 1)
+  " let css_file = 'https://raw.githubusercontent.com/liangguohuan/pandoc/master/markdown.css'
+  let css_file = 'file://' . expand('~/pandoc/markdown.css', 1)
   " Convert buffer to UTF-8 before running pandoc
   let original_encoding = &fileencoding
   let original_bomb = &bomb
@@ -967,7 +968,7 @@ function! PreviewMarkdown()
     call add(newContent, newLine)
   endfor
   call writefile(newContent, input_file)
-  let cmd = printf('pandoc -f gfm -t html --metadata pagetitle="..." -c "%s" -o "%s" "%s"', css_file, output_file, input_file)
+  let cmd = printf('pandoc -s -f gfm -t html --metadata pagetitle="..." -c "%s" -o "%s" "%s"', css_file, output_file, input_file)
   call system(cmd)
   call delete(input_file)
   echo output_file
