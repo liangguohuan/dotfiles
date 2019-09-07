@@ -837,10 +837,10 @@ endfunction
 " use 'L' to switch cmdline quickly
 nnoremap cme :e<Space>
 nnoremap cms :e ~/.storge<cr>
-nnoremap cmt :e /tmp/t.php<cr>
-nnoremap cmp :e /tmp/p.py<cr>
-nnoremap cmv :e /tmp/v.vim<cr>
-nnoremap cmb :e /tmp/buffer<cr>
+nnoremap cmt :e ~/.vim/temp_files/t.php<cr>
+nnoremap cmp :e ~/.vim/temp_files/p.py<cr>
+nnoremap cmv :e ~/.vim/temp_files/v.vim<cr>
+nnoremap cmb :e ~/.vim/temp_files/buffer<cr>
 
 " split buffer can use <C-w>s and <C-w>v
 " keymap for jumping window
