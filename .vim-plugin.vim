@@ -1154,10 +1154,12 @@ let g:quickrun_config = {
       \   "_" : {
       \       "outputter" : "message",
       \   },
+      \   "javascript.jsx" : {
+      \       "command" : "node",
+      \   },
       \}
 let g:quickrun_config.node = {
       \ 'command': 'node',
-      \ 'outputter': 'message'
       \ }
 let g:quickrun_no_default_key_mappings = 1
 nmap <F5> :QuickRun<CR>
