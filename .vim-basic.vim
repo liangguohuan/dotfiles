@@ -951,7 +951,7 @@ function! PreviewMarkdown()
   " Convert buffer to UTF-8 before running pandoc
   let original_encoding = &fileencoding
   let original_bomb = &bomb
-  silent! execute 'set fileencoding=utf-8 nobomb'
+  " execute 'set fileencoding=utf-8 nobomb'
   " Generate html file for preview
   let content = getline(1, '$')
   let newContent = []
@@ -971,9 +971,9 @@ function! PreviewMarkdown()
   let cmd = printf('pandoc -s -f gfm -t html --metadata pagetitle="..." -c "%s" -o "%s" "%s"', css_file, output_file, input_file)
   call system(cmd)
   call delete(input_file)
-  echo output_file
+  " echo output_file
   " Change encoding back
-  silent! execute 'set fileencoding=' . original_encoding . ' ' . original_bomb
+  " execute 'set fileencoding=' . original_encoding . ' ' . original_bomb
   " Preview
   let cmd = printf('%s "%s" &>/dev/null', BROWSER_COMMAND, output_file)
   call system(cmd)
