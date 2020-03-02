@@ -214,6 +214,10 @@ print(sep.join(rpath))
 EOF
 }
 
+falias() {
+  zsh -ixc : 2>&1 | grep $1
+}
+
 # }}}
 
 #=======================================================================================================================
@@ -252,4 +256,3 @@ complete -F _npmcompletelist npm
 
 #=> testing
 [[ -s "$HOME/.zshtest" ]] && source "$HOME/.zshtest"
-
