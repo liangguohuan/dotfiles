@@ -18,7 +18,7 @@ fi
 # pyenv config
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 export PYENV_VERSION='system'
-export PATH="$HOME/.pyenv/bin:$PATH"
+export PATH="/usr/local/bin/php:$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
