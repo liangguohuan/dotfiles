@@ -40,7 +40,9 @@ Plug 'https://github.com/bling/vim-airline.git'
 Plug 'https://github.com/vim-airline/vim-airline-themes.git'
 if !has("gui_running")
 Plug 'https://github.com/edkolev/tmuxline.vim.git'
+Plug 'https://github.com/christoomey/vim-tmux-navigator.git'
 Plug 'https://github.com/tmux-plugins/vim-tmux-focus-events.git'
+Plug 'https://github.com/wellle/tmux-complete.vim.git'
 endif
 " Plug 'https://github.com/scrooloose/syntastic.git'
 Plug 'https://github.com/w0rp/ale.git'
@@ -142,9 +144,6 @@ Plug 'https://github.com/leafo/moonscript-vim.git'               , { 'for': 'moo
 " tools {{{
 Plug 'https://github.com/xolox/vim-misc.git'
 "Plug 'https://github.com/xolox/vim-easytags.git'
-Plug 'https://github.com/christoomey/vim-tmux-navigator.git'
-Plug 'https://github.com/tmux-plugins/vim-tmux-focus-events.git'
-Plug 'https://github.com/wellle/tmux-complete.vim.git'
 Plug 'https://github.com/suan/vim-instant-markdown.git'          , { 'for': 'markdown' }
 " Plug 'https://github.com/vimwiki/vimwiki'
 Plug 'https://github.com/seyDoggy/vim-watchforchanges.git', 
