@@ -56,7 +56,7 @@ alias llf='_f(){ pwd=$(pwd); cd ${1:-.}; ls | fullpath; cd $pwd; }; _f'
 alias lls="ll .*(@)"
 alias fullpath="xargs -n 1 readlink -f"
 alias cls="clear"
-alias clsa='printf "\033c"'
+alias clsa='printf "\033[2J\033[3J\033[1;1H"'
 alias grep='grep --color'
 alias mcf="vim ~/.bash_aliases"
 alias mcfn="source ~/.bash_aliases && echo alias files has been updated."
