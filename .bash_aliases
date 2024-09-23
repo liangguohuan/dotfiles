@@ -16,11 +16,11 @@ if [ "$TERM" = "screen" -o "$TERM" = "screen-256color" ]; then
 fi
 
 # pyenv config
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-export PYENV_VERSION='system'
-export PATH="/usr/local/bin/php:$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+# export PYENV_VERSION='system'
+# export PATH="/usr/local/bin/php:$HOME/.pyenv/bin:$PATH"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
 
 # eval $(thefuck --alias)
 
@@ -42,7 +42,17 @@ export PYTHONPATH=/usr/local/lib/python2.7/site-packages/py/
 export EDITOR=vim
 export LANGUAGE=en_US.UTF-8 git vi vim gvim
 
-export PATH=.:$HOME/CodeHub/SHELL:$PATH
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+
+# ignore zsh git plugin alias for GoFrame command
+unalias gf 
+
+GO111MODULE=on
+export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+
+export PATH=.:$HOME/CodeHub/SHELL:$PATH:$GOBIN
 # uniq path, suniq function is in file .zshrc
 # export PATH=$(suniq $PATH :)
 
@@ -102,3 +112,4 @@ alias c="composer"
 alias bi="brew install"
 alias bs="brew info"
 alias phpstan='docker run -v $PWD:/app --rm phpstan/phpstan'
+alias ago="ag -g"

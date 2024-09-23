@@ -43,7 +43,7 @@ ZSH_THEME="pretty"
 
 # Add wisely, as too many plugins slow down shell startup.
 # dont use plugin fasd, it will caused 'permission denied: ../..' when alias using function is been executed.
-plugins=(zsh_reload fasd git git-extras laravel5 docker docker-compose tmux tmuxinator go gem yarn pip python composer)
+plugins=(fasd git git-extras laravel5 docker docker-compose tmux tmuxinator gem yarn pip python composer zsh-completions symfony-complete)
 # plugin extends
 zplug "zsh-users/zsh-syntax-highlighting"
 # zplug "Tarrasch/zsh-bd"
@@ -53,7 +53,6 @@ zplug "liangguohuan/fzf-extends"
 zplug "liangguohuan/fzf-marker"
 #zplug "liangguohuan/zsh-dircolors-solarized"
 zplug "shyiko/commacd" commacd.sh
-
 # enabled oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
@@ -256,3 +255,46 @@ complete -F _npmcompletelist npm
 
 #=> testing
 [[ -s "$HOME/.zshtest" ]] && source "$HOME/.zshtest"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/liangguohuan/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/liangguohuan/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/liangguohuan/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/liangguohuan/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+# <<< brew initialize <<<
+source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
+
+alias b=brew
+compdef _brew b
+# <<< brew initialize <<<
+
+# <<< symfony-complete initialize <<<
+compdef _symfony_complete valet
+alias v=valet
+compdef _valet v
+# <<< symfony-complete initialize <<<
+alias a="php artisan"
+alias x="xdebug artisan"
+compdef _artisan v
+
+alias gf=gf
+mktouch() { mkdir -p "$(dirname "$1")" && touch "$1" ; }
+eval $(thefuck --alias)

@@ -16,14 +16,14 @@ endef
 #=> install vim depends
 define ivim-depends
 	# install depends
-	sudo apt install curl git-core cmake python-dev
+	#sudo apt install curl git-core cmake python-dev
 
 	# pyenv install and virtualenv
-	curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
-	pyenv install 2.7.12
-	pyenv virtualenv 2.7.12 neovim2
-	pyenv install 3.6.1
-	pyenv virtualenv 3.6.1 neovim3
+	#curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
+	#pyenv install 2.7.12
+	#pyenv virtualenv 2.7.12 neovim2
+	#pyenv install 3.6.1
+	#pyenv virtualenv 3.6.1 neovim3
 
 	# install vim-plug
 	curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
