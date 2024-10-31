@@ -31,6 +31,21 @@ zplug () {
   plugins+=("$name")
 }
 
+zstyle ':completion:*' menu select
+
+# #xtrace
+# zmodload zsh/datetime
+# setopt PROMPT_SUBST
+# PS4='+$EPOCHREALTIME %N:%i> '
+
+# logfilepath="/tmp/zsh_profile.7Pw1Ny0G"
+# [[ -e "$logfilepath" ]] && rm "$logfilepath"
+# logfile=$(mktemp "$logfilepath")
+# echo "Logging to $logfile"
+# exec 3>&2 2>$logfile
+
+# setopt XTRACE
+
 #=======================================================================================================================
 #=> oh-my-zsh: https://github.com/robbyrussell/oh-my-zsh
 #=======================================================================================================================
@@ -51,7 +66,8 @@ zplug "Tarrasch/zsh-autoenv"
 zplug "liangguohuan/fzf-extends"
 zplug "liangguohuan/fzf-marker"
 zplug "liangguohuan/zsh-dircolors-solarized"
-
+# zplug "qoomon/zsh-lazyload"
+# zplug "mroth/evalcache"
 # enabled oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
@@ -272,3 +288,6 @@ complete -F _npmcompletelist npm
 #=> testing
 [[ -s "$HOME/.zshtest" ]] && source "$HOME/.zshtest"
 
+# #xtrace
+# unsetopt XTRACE
+# exec 2>&3 3>&-
